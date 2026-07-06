@@ -261,14 +261,27 @@ a {
 }
 
 /* ARROW */
-.arrow {
+/* .arrow {
     transition: transform var(--transition);
     color: var(--color-primary);
 }
 
 .dropdown:hover .arrow {
     transform: rotate(180deg);
+} */
+
+.arrow-icon svg {
+    transition: transform 0.3s ease;
+    
+    width: 18px;
+    height: 18px;
 }
+
+/* rotation on hover (like dropdown behavior) */
+.dropdown:hover .arrow-icon svg {
+    transform: rotate(180deg);
+}
+
 
 /* THEME ICON */
 .theme-toggle {
@@ -304,13 +317,27 @@ a {
     outline-offset: 2px;
 }
 
-.theme-toggle i {
+.theme-toggle svg {
     transition: transform var(--transition);
 }
 
-.theme-toggle:active i {
+.theme-toggle:active svg {
     transform: rotate(180deg);
 }
+
+.theme-toggle {
+    font-size: var(--font-size-md);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+
+
+
 
 /* VISIBILITY */
 .desktop-nav,
@@ -550,6 +577,13 @@ a {
     box-shadow: var(--shadow-lg);
 }
 
+.chevron-right svg{
+    display:inline-block;
+    transition: transform var(--transition);
+    color: var(--color-button-arrow);
+    width: 18px;
+    height: 18px;
+}
 @media (max-width:768px){
 
     .hero{
@@ -666,11 +700,33 @@ a {
     box-shadow: var(--shadow-md);
 }
 
-.benefit-card i {
-    font-size: var(--font-size-3xl);
-    color: var(--color-primary);
-    margin-bottom: var(--space-md);
+.sun svg,
+.moon svg,
+.arrow svg,
+.search svg,
+.chevronRight svg,
+.map-marker svg,
+.plus-circle svg,
+.trophy svg,
+.star svg,
+.football svg,
+.clock svg,
+.userGroup svg,
+.dollar svg,
+.filter svg,
+.users svg,
+.instagram svg,
+.facebook svg,
+.xTwitter svg,
+.whatsapp svg {
+  font-size: var(--font-size-3xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+  height: 18px;
+  width: 18px;
 }
+
+
 
 .benefit-card h4 {
     color: var(--color-text);
