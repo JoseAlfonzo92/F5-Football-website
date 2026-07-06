@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description"
+    content="Conocé cómo Fulsap recopila, utiliza y protege tu información personal al utilizar nuestro directorio de canchas de fútbol en Argentina.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad | Fulsap</title>
+    <meta property="og:title" content="Política de Privacidad | Fulsap">
+    <meta property="og:description" content="Conocé cómo Fulsap recopila y protege tu información personal.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://domain.com/pages/privacy-page.html">
+    <link rel="canonical" href="https://domain.com/pages/privacy-page.html">
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/terms-policy.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)"> 
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Leaflet CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
+
+<!-- Leaflet JS -->
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
+<!-- Routing Machine CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" /> -->
+
+<!-- Routing Machine JS -->
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
+
+<!-- prevent theme flash on load -->
+<script>
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+})();
+</script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+
+        <!-- Logo -->
+        <a href="../index.html" class="logo">
+            <h1>Fulsap</h1>
+        </a>
+
+        <!-- Desktop Search -->
+        <div class="search desktop-search">
+            <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+
+                <li class="dropdown">
+                    <a href="#" class="quick-link">
+                        Enlaces rapidos <i class="fas fa-chevron-down arrow"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="../index.html"> Inicio</a></li>
+                        <li><a href="../pages/all-fields-page.html"> Todas las canchas</a></li>
+                        <li><a href="../pages/add-field.html"> Agregar cancha</a></li>
+                        <li><a href="../pages/terms-page.html"> Términos y condiciones</a></li>
+                        <li><a href="../pages/contact.html"> Contacto</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <button class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+
+        <!-- Mobile Controls -->
+        <div class="controls mobile-only">
+            <i class="fas fa-search" id="search-toggle"></i>
+
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="search mobile-search" id="mobile-search">
+            <input type="text" class="global-search" placeholder="Buscar...">
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/add-field.html">Agregar cancha</a></li>
+                <li><a href="../pages/terms-page.html">Términos y condiciones</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+
+                <li>
+                    <button class="theme-toggle mobile-theme">
+                        <i class="fas fa-moon"></i> Theme
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="privacy-hero">
+
+    <div class="privacy-hero-content">
+
+        <span class="privacy-badge">
+            <i class="fas fa-shield-halved"></i>
+            Privacidad y seguridad
+        </span>
+
+        <h1>
+            Política de Privacidad
+        </h1>
+
+        <p>
+            Conocé cómo recopilamos, utilizamos y protegemos tu información al utilizar Fulsap.
+        </p>
+
+        <div class="privacy-meta">
+            <span>
+                <i class="fas fa-calendar"></i>
+                Última actualización: 29 de junio de 2026
+            </span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTENT -->
+<section class="privacy-section">
+
+    <div class="privacy-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="privacy-sidebar">
+
+            <div class="privacy-sidebar-card">
+
+                <h3>
+                    Contenido
+                </h3>
+
+                <nav class="privacy-nav">
+                    <a href="#info">Información recopilada</a>
+                    <a href="#controller">Responsable del tratamiento</a>
+                    <a href="#usage">Uso de la información</a>
+                    <a href="#cookies">Cookies</a>
+                    <a href="#sharing">Compartir información</a>
+                    <a href="#security">Seguridad</a>
+                    <a href="#rights">Tus derechos</a>
+                    <a href="#contact">Contacto</a>
+                </nav>
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+        <div class="privacy-content">
+
+            <!-- INFO -->
+            <div class="privacy-card" id="info">
+
+                <h2>
+                    <i class="fas fa-database"></i>
+                    Información recopilada
+                </h2>
+
+                <p>
+                    En Fulsap recopilamos cierta información necesaria para mejorar tu experiencia dentro de la plataforma y garantizar el correcto funcionamiento del servicio.
+                </p>
+
+                <ul>
+                    <li>Datos proporcionados voluntariamente mediante formularios de contacto o publicación de canchas (por ejemplo, nombre, correo electrónico y teléfono).</li>
+                    <li>Información técnica como dirección IP, navegador, dispositivo y sistema operativo.</li>
+                    <li>Información sobre el uso del sitio para mejorar nuestros servicios.</li>
+                </ul>
+
+            </div>
+
+           <!--  CONTROLLER -->
+             <div class="privacy-card" id="controller">
+
+    <h2>
+        <i class="fas fa-building"></i>
+        Responsable del tratamiento de los datos
+    </h2>
+
+    <p>
+        Fulsap es una plataforma digital propiedad y operada por Zonofal.
+    </p>
+
+    <p>
+        Zonofal es la entidad responsable de la recopilación, el uso, el almacenamiento y la protección de los datos personales obtenidos a través de Fulsap, de conformidad con la legislación aplicable.
+    </p>
+
+</div>
+
+            <!-- USAGE -->
+            <div class="privacy-card" id="usage">
+
+                <h2>
+                    <i class="fas fa-gear"></i>
+                    Uso de la información
+                </h2>
+
+                <p>
+                    Utilizamos la información recopilada para ofrecer una experiencia más segura, rápida y personalizada.
+                </p>
+
+                <ul>
+                    <li>Responder consultas enviadas mediante formularios.</li>
+                    <li>Publicar y administrar la información de las canchas.</li>
+                    <li>Mejorar el funcionamiento del sitio.</li>
+                    <li>Detectar errores y prevenir usos indebidos.</li>
+                </ul>
+
+            </div>
+
+            <!-- COOKIES -->
+            <div class="privacy-card" id="cookies">
+
+                <h2>
+                    <i class="fas fa-cookie-bite"></i>
+                    Cookies
+                </h2>
+
+                <p>
+                    Utilizamos cookies para recordar preferencias, mejorar la navegación y analizar el uso del sitio web.
+                </p>
+
+                <ul>
+                    <li>Recordar la preferencia de tema claro u oscuro.</li>
+                    <li>Recordar configuraciones del sitio.</li>
+                    <li>Analizar estadísticas de uso.</li>
+                </ul>
+
+                <div class="privacy-alert">
+                    <i class="fas fa-circle-info"></i>
+
+                    <p>
+                        Podés desactivar las cookies desde tu navegador, aunque algunas funciones podrían dejar de funcionar correctamente.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- SHARING -->
+            <div class="privacy-card" id="sharing">
+
+                <h2>
+                    <i class="fas fa-share-nodes"></i>
+                    Compartir información
+                </h2>
+
+                <p>
+                    No vendemos información personal a terceros. Solo compartimos datos cuando es necesario para brindar nuestros servicios.
+                </p>
+
+                <ul>
+
+                    <li>Con proveedores tecnológicos que prestan servicios para el funcionamiento del sitio.</li>
+                    <li>Cuando sea necesario para cumplir con una obligación legal.</li>
+                    <li>Cuando el usuario solicite expresamente que compartamos determinada información.</li>
+                </ul>
+
+            </div>
+
+            <!-- SECURITY -->
+            <div class="privacy-card" id="security">
+
+                <h2>
+                    <i class="fas fa-lock"></i>
+                    Seguridad
+                </h2>
+
+                <p>
+                    Aplicamos medidas de seguridad modernas para proteger tu información contra accesos no autorizados o usos indebidos.
+                </p>
+
+                <div class="privacy-grid">
+
+                    <div class="privacy-feature">
+                        <i class="fas fa-shield"></i>
+
+                        <h4>
+                            Protección
+                        </h4>
+
+                        <p>
+                            Tus datos son almacenados mediante sistemas seguros.
+                        </p>
+                    </div>
+
+                    <div class="privacy-feature">
+                        <i class="fas fa-server"></i>
+
+                        <h4>
+                            Infraestructura
+                        </h4>
+
+                        <p>
+                            Utilizamos tecnologías confiables y monitoreo constante.
+                        </p>
+                    </div>
+
+                    <div class="privacy-feature">
+                        <i class="fas fa-user-shield"></i>
+
+                        <h4>
+                            Accesos controlados
+                        </h4>
+
+                        <p>
+                            Solo personal autorizado puede acceder a determinada información.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHTS -->
+            <div class="privacy-card" id="rights">
+
+                <h2>
+                    <i class="fas fa-scale-balanced"></i>
+                    Tus derechos
+                </h2>
+
+                <p>
+                    Como usuario, podés solicitar acceso, modificación o eliminación de tus datos personales en cualquier momento.
+                </p>
+
+                <ul>
+                    <li>Solicitar una copia de tus datos.</li>
+                    <li>Corregir información desactualizada.</li>
+                    <li>Solicitar la eliminación de los datos personales que nos hayan proporcionado.</li>
+                    <li>Limitar determinados usos de la información.</li>
+                </ul>
+
+            </div>
+
+            <!-- CONTACT -->
+            <div class="privacy-card" id="contact">
+
+                <h2>
+                    <i class="fas fa-envelope"></i>
+                    Contacto
+                </h2>
+
+                    <p>
+                        Si tenés consultas sobre esta Política de Privacidad, el tratamiento de tus datos personales o querés ejercer alguno de tus derechos, podés comunicarte con Zonofal a través de los medios de contacto indicados.
+                    </p>
+
+                <a href="mailto:email@fulsap.com.ar" class="privacy-contact-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Contactar soporte
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+<script type="module" src="../assets/scripts/main.js"></script>
+</body>
+</html>

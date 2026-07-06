@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description"
+    content="Centro de ayuda de Fulsap. Descubrí cómo funciona la plataforma, resolvé tus dudas y consultá las preguntas frecuentes.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información y Ayuda | Fulsap</title>
+    <meta property="og:title" content="Información y Ayuda | Fulsap">
+    <meta property="og:description" content="Aprendé cómo funciona Fulsap y encontrá respuestas a las preguntas frecuentes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://domain.com/pages/info-page.html">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/info-page.html">
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/info-page.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)"> 
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Leaflet CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
+
+<!-- Leaflet JS -->
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
+<!-- Routing Machine CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" /> -->
+
+<!-- Routing Machine JS -->
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
+
+<!-- prevent theme flash on load -->
+<script>
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+})();
+</script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+
+        <!-- Logo -->
+        <a href="../index.html" class="logo">
+            <h1>Fulsap</h1>
+        </a>
+
+        <!-- Desktop Search -->
+        <div class="search desktop-search">
+            <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+
+                <li class="dropdown">
+                    <a href="#" class="quick-link">
+                        Enlaces rapidos <i class="fas fa-chevron-down arrow"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="../index.html"> Inicio</a></li>
+                        <li><a href="../pages/all-fields-page.html"> Todas las canchas</a></li>
+                        <li><a href="../pages/add-field.html"> Agregar cancha</a></li>
+                        <li><a href="../pages/terms-page.html"> Términos y condiciones</a></li>
+                        <li><a href="../pages/contact.html"> Contacto</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <button class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+
+        <!-- Mobile Controls -->
+        <div class="controls mobile-only">
+            <i class="fas fa-search" id="search-toggle"></i>
+
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="search mobile-search" id="mobile-search">
+            <input type="text" class="global-search" placeholder="Buscar...">
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/add-field.html">Agregar cancha</a></li>
+                <li><a href="../pages/terms-page.html">Términos y condiciones</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+
+                <li>
+                    <button class="theme-toggle mobile-theme">
+                        <i class="fas fa-moon"></i> Theme
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="help-page">
+
+        <header class="help-header">
+            <h1>Información y ayuda</h1>
+
+            <p>
+                Conocé cómo funciona Fulsap, cómo se calculan las calificaciones, cómo reportar información incorrecta y encontrá respuestas a las preguntas más frecuentes.
+            </p>
+        </header>
+
+        <section class="help-section">
+
+    <h2>¿Cómo funciona Fulsap?</h2>
+
+    <div class="help-card">
+        <h3>Calificaciones de la comunidad</h3>
+
+        <p>
+            Las calificaciones son enviadas por usuarios que visitan y evalúan las canchas.
+            Cuantos más votos tenga una cancha, más representativa será su puntuación promedio.
+        </p>
+    </div>
+
+    <div class="help-card">
+        <h3>Información de precios</h3>
+
+        <p>
+            Los precios mostrados son orientativos y pueden variar según el día, horario,
+            promociones vigentes o decisiones del establecimiento.
+        </p>
+    </div>
+
+    <div class="help-card">
+        <h3>Distancias</h3>
+
+        <p>
+            Las distancias se calculan a partir de tu ubicación actual y la ubicación registrada de cada cancha.
+            Se muestran como una referencia aproximada para ayudarte a encontrar opciones cercanas.
+        </p>
+    </div>
+
+    <div class="help-card">
+        <h3>Última actualización</h3>
+
+        <p>
+            Cada cancha muestra la fecha de su última actualización. Revisamos periódicamente
+            la información disponible, aunque algunos datos pueden cambiar sin previo aviso.
+            Te recomendamos confirmar precios, horarios y disponibilidad directamente con la cancha antes de realizar una reserva.
+        </p>
+    </div>
+
+</section>
+
+        <!-- FAQ -->
+        <section class="help-section" id="help-faq">
+
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq-list">
+
+        <details class="faq-item">
+            <summary>
+                ¿Fulsap es gratis para los jugadores?
+            </summary>
+
+            <p>
+                Sí. Buscar canchas, explorar perfiles y contactar establecimientos es completamente gratuito para los jugadores.
+            </p>
+        </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Cómo contacto una cancha?
+            </summary>
+
+            <p>
+                Cada perfil incluye información de contacto para que puedas comunicarte directamente con el establecimiento, generalmente mediante WhatsApp.
+            </p>
+        </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Fulsap procesa reservas o pagos?
+            </summary>
+
+            <p>
+                No. Las reservas, pagos y acuerdos se realizan directamente entre los jugadores y cada establecimiento.
+            </p>
+        </details>
+
+            <details class="faq-item">
+        <summary>
+            ¿La información de las canchas está actualizada?
+        </summary>
+
+        <p>
+            Cada cancha muestra la fecha de su última actualización para que puedas conocer qué tan reciente es la información publicada. Aunque revisamos periódicamente los datos, los precios, horarios, servicios y la disponibilidad pueden cambiar sin previo aviso. Por eso, recomendamos confirmar los detalles directamente con la cancha antes de reservar.
+        </p>
+    </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Los precios publicados son definitivos?
+            </summary>
+
+            <p>
+                No necesariamente. Los precios son informativos y pueden variar según el día, horario, promociones o decisiones del establecimiento.
+            </p>
+        </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Cómo se calculan las calificaciones?
+            </summary>
+
+            <p>
+                Las calificaciones se basan en los votos realizados por los usuarios. Cuantos más votos reciba una cancha, más representativa será su puntuación.
+            </p>
+        </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Puedo votar más de una vez?
+            </summary>
+
+            <p>
+                El sistema limita la frecuencia de los votos para evitar abusos y mantener calificaciones más confiables para toda la comunidad.
+            </p>
+        </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Por qué una cancha tiene pocas valoraciones?
+            </summary>
+
+            <p>
+                Algunas canchas fueron agregadas recientemente o todavía no recibieron suficientes votos de los usuarios.
+            </p>
+        </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Cómo agrego mi cancha?
+            </summary>
+
+            <p>
+                Completá el formulario de publicación. Revisaremos la información y nos pondremos en contacto para activar el perfil.
+            </p>
+        </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Cuánto cuesta publicar una cancha?
+            </summary>
+
+            <p>
+                Publicar una cancha en Fulsap tiene un costo de $10.000 por mes e incluye perfil completo, fotos, contacto por WhatsApp y aparición en los resultados de búsqueda.
+            </p>
+        </details>
+
+        <details class="faq-item">
+            <summary>
+                ¿Puedo reportar información incorrecta?
+            </summary>
+
+            <p>
+                Sí. Si encontrás datos incorrectos, información desactualizada o algún problema en un perfil, podés comunicarte con nosotros desde la página de contacto.
+            </p>
+        </details>
+
+    </div>
+
+</section>
+
+        <!-- CONTACTO -->
+        <section class="help-contact">
+
+            <h2>¿No encontraste lo que buscabas?</h2>
+
+            <p>
+                Si tenés alguna consulta, sugerencia o encontraste información incorrecta,
+                podés comunicarte con nosotros.
+            </p>
+
+            <a href="../pages/contact.html" class="help-btn">
+                Ir a contacto
+            </a>
+
+        </section>
+
+    </main>
+
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+<script type="module" src="../assets/scripts/main.js"></script>
+</body>
+</html>

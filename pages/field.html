@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta
+    name="description"
+    content="Descubrí canchas de fútbol en Argentina. Consultá precios, horarios, ubicación y contacto en Fulsap.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fulsap - Detalle de Cancha</title>
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/fields-style.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)"> 
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet"href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <!-- prevent theme flash on load -->
+    <script>
+        (function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+    })();
+    </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+        <!-- Logo -->
+        <a href="../index.html" class="logo">
+            <h1>Fulsap</h1>
+        </a>
+        <!-- Desktop Search -->
+        <div class="search desktop-search">
+            <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+        </div>
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+
+                <li class="dropdown">
+                    <a href="#" class="quick-link">
+                        Enlaces rapidos <i class="fas fa-chevron-down arrow"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="../index.html"> Inicio</a></li>
+                        <li><a href="../pages/all-fields-page.html"> Todas las canchas</a></li>
+                        <li><a href="../pages/add-field.html"> Agregar cancha</a></li>
+                        <li><a href="../pages/terms-page.html"> Términos y condiciones</a></li>
+                        <li><a href="../pages/contact.html"> Contacto</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <button class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+
+        <!-- Mobile Controls -->
+        <div class="controls mobile-only">
+            <i class="fas fa-search" id="search-toggle"></i>
+
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="search mobile-search" id="mobile-search">
+            <input type="text" class="global-search" placeholder="Buscar...">
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/add-field.html">Agregar cancha</a></li>
+                <li><a href="../pages/terms-page.html">Términos y condiciones</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+
+                <li>
+                    <button class="theme-toggle mobile-theme">
+                        <i class="fas fa-moon"></i> Theme
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<section class="field-detail">
+
+    <a href="all-fields-page.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Volver a las canchas
+    </a>
+
+    <div class="field-content-grid">
+
+        <!-- LEFT -->
+        <div class="field-left">
+
+            <!-- IMAGE/CAROUSEL -->
+            <div class="field-hero">
+
+    <button class="hero-arrow hero-left" id="hero-left" aria-label="Anterior">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <div class="field-hero-carousel" id="field-hero-carousel"></div>
+
+    <button class="hero-arrow hero-right" id="hero-right" aria-label="Siguiente">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    </div>
+
+            <!-- TITLE -->
+            <div class="field-title">
+                <h2 id="field-name"></h2>
+
+                <div class="title-meta">
+                    <span class="rating" id="field-rating"></span>
+                    <span class="location" id="field-location"></span>
+                    <span class="distance" id="field-distance"></span>
+                </div>
+
+                <p class="address" id="field-address"></p>
+                <p class="info-last-update" id="field-last-update"></p>
+                
+            </div>
+
+            <div class="card-section">
+
+                <div class="field-rating-box">
+
+                <h3>Calificá esta cancha</h3>
+
+                <div class="vote-stars">
+                    <button data-rating="1" aria-label="Calificar con 1 estrella">★</button>
+                    <button data-rating="2" aria-label="Calificar con 2 estrellas">★</button>
+                    <button data-rating="3" aria-label="Calificar con 3 estrellas">★</button>
+                    <button data-rating="4" aria-label="Calificar con 4 estrellas">★</button>
+                    <button data-rating="5" aria-label="Calificar con 5 estrellas">★</button>
+                </div>
+
+                <small id="vote-message"></small>
+
+                </div>
+            </div>
+ 
+
+            <p class="description" id="field-description"></p>
+            
+            <!-- PRECIOS -->
+            <div class="card-section">
+                <h3><i class="fas fa-dollar-sign"></i> Precios</h3>
+
+                <div class="price-row">
+                    <span>Lunes a Viernes</span>
+                    <div class="price">
+                        <strong id="price-week"></strong>
+                        <small>/ h</small>
+                    </div>
+                </div>
+
+                <div class="price-row">
+                    <span>Sábados y Domingos</span>
+                    <div class="price">
+                        <strong id="price-weekend"></strong>
+                        <small>/ h</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HORARIOS -->
+            <div class="card-section">
+                <h3><i class="fas fa-clock"></i> Horarios</h3>
+
+                <div class="schedule-row">
+                    <span>Lunes a Viernes</span>
+                    <strong id="schedule-week"></strong>
+                </div>
+
+                <div class="schedule-row">
+                    <span>Sábados y Domingos</span>
+                    <strong id="schedule-weekend"></strong>
+                </div>
+            </div>
+
+            <!-- COMODIDADES -->
+            <div class="card-section">
+                <h3><i class="fas fa-star"></i> Comodidades</h3>
+                <div class="tags" id="features-container"></div>
+            </div>
+            
+            <!-- FIELD SIZES -->
+            <div class="card-section">
+                <h3><i class="fas fa-ruler-combined"></i> Tamaños Disponibles</h3>
+                <div class="tags sizes-container" id="field-sizes-container"></div>
+            </div>
+
+            <!-- BOTINES PERMITIDOS -->
+            <div class="card-section">
+                <h3><i class="fas fa-shoe-prints"></i> Botines Permitidos</h3>
+                <div class="boots-container" id="allowed-boots-container">
+        
+                </div>
+            </div>
+
+            <!-- CAMISETAS DISPONIBLES -->
+            <div class="card-section">
+                <h3><i class="fas fa-tshirt"></i> Camisetas Disponibles</h3>
+                <div class="jerseys-container" id="available-jerseys-container">
+        
+                </div>
+            </div>
+
+            <!-- BUFFET -->
+            <div class="card-section">
+                <h3><i class="fas fa-utensils"></i> Buffet</h3>
+                <div class="tags" id="buffet-container"></div>
+            </div>
+
+            <div class="card-section">
+    <h3><i class="fas fa-fire"></i> Parrilla</h3>
+
+    <div id="barbecue-container" class="barbecue-info"></div>
+</div>
+
+            <!-- INFO EXTRA -->
+            <div class="card-section">
+                <h3><i class="fas fa-info-circle"></i> Información adicional</h3>
+                <div class="info-list" id="extra-info-container"></div>
+            </div>
+
+            <!-- WEATHER 7 DAYS FORECAST -->
+             <div class="card-section">
+                <h3><i class="fas fa-cloud-sun"></i> Pronóstico del clima</h3>
+                <div id="weather-forecast-container" class="weather-forecast">
+                    
+                </div>
+            </div>
+
+            <!-- MAP -->
+            <div class="card-section">
+                <h3><i class="fas fa-map"></i> Ubicación</h3>
+
+                <div id="field-map" class="field-map"></div>
+
+                <p class="map-address" id="map-address"></p>
+            </div>
+
+           <!-- Share field with friends on socials -->
+            <div class="card-section">
+                <h3><i class="fas fa-share-alt"></i> Compartir cancha</h3>
+
+                <div class="social-icons">
+                    <a href="#" id="share-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" id="share-facebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#" id="share-twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" id="share-messenger" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
+                    <a href="#" id="share-instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+        
+             <!-- Copy Link Button -->
+                <button id="copy-link-btn" class="copy-link-btn">
+                    <i class="fas fa-link"></i>
+                    <span>Copiar enlace</span>
+                </button>
+            </div>
+
+            </div>
+
+            <!-- similar fields carrousel gallery -->
+            
+            <div class="card-section">
+                        <h3><i class="fas fa-thumbs-up"></i> Canchas similares</h3>
+    
+                        <div class="similar-carousel-wrapper">
+                            <button class="carousel-arrow arrow-left" id="similar-arrow-left" aria-label="Anterior">
+                            <i class="fas fa-chevron-left"></i>
+                            </button>
+        
+                        <div class="similar-fields-carousel" id="similar-fields-carousel"></div>
+        
+                        <button class="carousel-arrow arrow-right" id="similar-arrow-right" aria-label="Siguiente">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        </div>
+            </div>
+            
+        </div>
+
+        <!-- RIGHT -->
+        <div class="field-right">
+            <div class="booking-box sticky">
+             <!-- volver a las canchas -->
+            <a href="../pages/all-fields-page.html" class="btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver a las canchas
+            </a>
+
+        <!-- WEATHER -->
+            <div class="card-section">
+                <h3><i class="fas fa-cloud-sun"></i> Clima Actual</h3>
+            <div id="weather-container" class="weather-widget">
+            
+                <p class="loading-text">Cargando clima...</p>
+            </div>
+            </div>
+                <p class="price-highlight">
+                    Desde <strong id="price-from"></strong> <span>/ h</span>
+                </p>
+
+                <div class="booking-info">
+                    <p id="booking-sizes"></p>
+                    <p id="booking-surface"></p>
+                </div>
+
+                <a id="booking-whatsapp" class="btn-primary" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Consultar disponibilidad
+                </a>
+
+                <a id="booking-phone" class="call-link"></a>
+                 </div>
+            </div>
+        </div>
+
+    </section>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
+    <!-- Leaflet Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+    <!-- Main JS File -->
+    <script type="module" src="../assets/scripts/main.js"></script>
+</body>
+</html>

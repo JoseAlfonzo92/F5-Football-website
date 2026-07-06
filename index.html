@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description"
+    content="Encontrá canchas de fútbol en Argentina. Compará ubicaciones, servicios y datos de contacto para reservar tu próxima cancha con Fulsap.">
+
+    <meta property="og:title"
+    content="Encontrá canchas de fútbol en Argentina | Fulsap">
+
+    <meta property="og:description"
+    content="Encontrá, compará y contactá canchas de fútbol en Argentina para reservar tu próxima cancha.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://domain.com">
+    <link rel="canonical" href="https://fulsap.com/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:site_name" content="Fulsap">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Encontrá canchas de fútbol en Argentina | Fulsap">
+    <meta name="twitter:description" content="Encontrá, compará y contactá canchas de fútbol en Argentina para reservar tu próxima cancha.">
+    <meta name="twitter:image" content="https://fulsap.com/assets/images/og-image.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontrá canchas de fútbol en Argentina | Fulsap</title>
+    
+    <link rel="stylesheet" href="assets/styles/style.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)">
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- preload gsap cdn script --> 
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- prevent theme flash on load -->
+    <script>
+    (function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+    })();
+    </script>
+
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Fulsap",
+    "url": "https://fulsap.com",
+    "inLanguage": "es-AR",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Zonofal",
+        "url": "https://zonofal.com"
+    }
+    }
+    </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <h1>Fulsap</h1>
+        </a>
+
+        <!-- Desktop Search -->
+        <div class="search desktop-search">
+            <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+
+                <li class="dropdown">
+                    <a href="#" class="quick-link">
+                        Enlaces rapidos <i class="fas fa-chevron-down arrow"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html"> Inicio</a></li>
+                        <li><a href="pages/all-fields-page.html"> Todas las canchas</a></li>
+                        <li><a href="pages/add-field.html"> Agregar cancha</a></li>
+                        <li><a href="pages/terms-page.html"> Términos y condiciones</a></li>
+                        <li><a href="pages/contact.html"> Contacto</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <button class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+
+        <!--  MOBILE -->
+
+        <!-- Mobile Controls -->
+        <div class="controls mobile-only">
+            <i class="fas fa-search" id="search-toggle"></i>
+
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="search mobile-search" id="mobile-search">
+            <input type="text" class="global-search" placeholder="Buscar...">
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="pages/add-field.html">Agregar cancha</a></li>
+                <li><a href="pages/terms-page.html">Términos y condiciones</a></li>
+                <li><a href="pages/contact.html">Contacto</a></li>
+
+                <li>
+                    <button class="theme-toggle mobile-theme">
+                        <i class="fas fa-moon"></i> Theme
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <img
+        src="https://res.cloudinary.com/dolmulmgp/image/upload/w_1920/q_auto/f_auto/v1779978864/hero-section-image_mb24x8.jpg"
+
+        srcset="
+            https://res.cloudinary.com/dolmulmgp/image/upload/w_1080/q_auto/f_auto/v1779978864/hero-section-image_mb24x8.jpg 1080w,
+
+            https://res.cloudinary.com/dolmulmgp/image/upload/w_1920/q_auto/f_auto/v1779978864/hero-section-image_mb24x8.jpg 1920w,
+
+            https://res.cloudinary.com/dolmulmgp/image/upload/w_2400/q_auto/f_auto/v1779978864/hero-section-image_mb24x8.jpg 2400w
+        "
+        sizes="100vw"
+        alt="Cancha de fútbol"
+        class="hero-bg"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async">
+
+   <div class="hero-content">
+
+    <h2 class="hero-title">
+        <strong class="hero-highlight">
+            <span>Reservá</span>
+        </strong>
+        <span>tu</span>
+        <span>próxima</span>
+        <span>cancha</span>
+        <span>en</span>
+        <span>minutos</span>
+    </h2>
+
+    <p>Descubrí canchas de fútbol cercanas, compará opciones y reservá sin complicaciones.</p>
+
+    <a href="pages/all-fields-page.html" class="btn-primary">
+        Ver canchas <i class="fas fa-chevron-right"></i>
+    </a>
+
+</div>
+
+</section>
+
+<!-- quick actions -->
+ <section class="quick-actions">
+
+    <div class="section-header">
+        <h3>Accesos rápidos</h3>
+    </div>
+
+    <div class="quick-actions-grid">
+
+        <a href="pages/all-fields-page.html?nearby=true" class="quick-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Canchas cercanas</h4>
+            <p>Descubrí opciones cerca de tu ubicación.</p>
+        </a>
+
+        <a href="pages/add-field.html" class="quick-card">
+            <i class="fas fa-plus-circle"></i>
+            <h4>Agregar cancha</h4>
+            <p>Sumá tu cancha al directorio.</p>
+        </a>
+
+        <a href="pages/all-fields-page.html?sort=rating" class="quick-card">
+            <i class="fas fa-trophy"></i>
+            <h4>Mejor valoradas</h4>
+            <p>Descubrí las favoritas de la comunidad.</p>
+        </a>
+
+        <a href="pages/all-fields-page.html?sort=newest" class="quick-card">
+            <i class="fas fa-star"></i>
+            <h4>Canchas nuevas</h4>
+            <p>Conocé las últimas incorporaciones.</p>
+        </a>
+
+    </div>
+
+</section>
+
+<!-- Featured -->
+<section class="featured">
+
+    <div class="section-header">
+        <h3>Mejor valoradas</h3>
+
+        <a href="pages/all-fields-page.html" class="see-all">
+            Ver mas canchas
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+
+    <div class="cards" id="featured-fields-container"></div>
+
+</section>
+
+<!-- stats -->
+ <section class="stats">
+
+   <div class="stat-card">
+    <i class="fas fa-futbol"></i>
+    <strong>50+</strong>
+    <span>Canchas</span>
+</div>
+
+<div class="stat-card">
+    <i class="fas fa-location-dot"></i>
+    <strong>10+</strong>
+    <span>Ciudades</span>
+</div>
+
+<div class="stat-card">
+    <i class="fab fa-whatsapp"></i>
+    <strong>Directo</strong>
+    <span>WhatsApp</span>
+</div>
+
+<div class="stat-card">
+    <i class="fas fa-clock"></i>
+    <strong>24/7</strong>
+    <span>Disponible</span>
+</div>
+
+<div class="stat-card">
+    <i class="fas fa-user-group"></i>
+    <strong>Gratis</strong>
+    <span>Para jugadores</span>
+</div>
+
+</section>
+
+<!-- benefits -->
+ <section class="benefits">
+
+    <div class="section-header">
+        <h3>¿Por qué usar Fulsap?</h3>
+    </div>
+
+    <div class="benefits-grid">
+
+        <article class="benefit-card">
+            <i class="fas fa-location-dot"></i>
+            <h4>Encontrá canchas fácilmente</h4>
+            <p>Descubrí opciones cercanas en segundos.</p>
+        </article>
+
+        <article class="benefit-card">
+            <i class="fas fa-filter"></i>
+            <h4>Compará opciones</h4>
+            <p>Consultá características y servicios disponibles.</p>
+        </article>
+
+        <article class="benefit-card">
+            <i class="fas fa-users"></i>
+            <h4>Comunidad en crecimiento</h4>
+            <p>Nuevas canchas se agregan constantemente.</p>
+        </article>
+
+    </div>
+
+</section>
+
+<!-- All field -->
+ <section class="all-fields">
+
+    <div class="section-header">
+        <h3>Explorá mas canchas</h3>
+    </div>
+
+    <div class="fields-list" id="home-fields-container"></div>
+
+    <div class="see-more-wrapper">
+        <a href="pages/all-fields-page.html" class="btn-secondary">
+            Ver mas canchas
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+
+</section>
+
+
+
+<section class="owner-cta">
+
+    <div class="owner-cta-content">
+
+        <i class="fas fa-futbol owner-cta-icon"></i>
+
+        <h3>¿Tenés una cancha?</h3>
+
+        <p>
+            Publicala en Fulsap y aparecé junto a cientos de canchas que ya reciben visitas todos los días.
+        </p>
+
+        <div class="owner-price">
+
+            <span class="pricing-badge">
+                Plan Cancha
+            </span>
+
+            <div class="price-subscription">
+                $10.000
+                <small>/ mes</small>
+            </div>
+
+        </div>
+
+        <ul class="owner-benefits">
+            <li>Perfil completo con fotos</li>
+            <li>Contacto directo por WhatsApp</li>
+            <li>Aparición en búsquedas y filtros</li>
+            <li>Ubicación en el mapa</li>
+            <li>Actualización de información</li>
+        </ul>
+
+        <a href="pages/add-field.html" class="btn-primary">
+            Publicar mi cancha
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="home-faq">
+
+    <div class="section-header">
+        <h3>Preguntas frecuentes</h3>
+    </div>
+
+    <details>
+        <summary>¿Fulsap es gratis para los jugadores?</summary>
+
+        <p>
+            Sí. Buscar canchas, explorar perfiles y contactar establecimientos es completamente gratuito para los jugadores.
+        </p>
+    </details>
+
+    <details>
+        <summary>¿Cuánto cuesta publicar una cancha?</summary>
+
+        <p>
+            Publicar una cancha en Fulsap tiene un costo de $10.000 por mes e incluye perfil completo, fotos, contacto por WhatsApp y aparición en búsquedas.
+        </p>
+    </details>
+
+    <details>
+        <summary>¿Cómo agrego mi cancha?</summary>
+
+        <p>
+            Completá el formulario de publicación. Revisaremos la información y nos pondremos en contacto para activar tu perfil.
+        </p>
+    </details>
+
+    <details>
+        <summary>¿Fulsap procesa reservas o pagos?</summary>
+
+        <p>
+            No. Los acuerdos, reservas y pagos se realizan directamente entre los jugadores y cada cancha.
+        </p>
+    </details>
+
+    <details>
+        <summary>¿Cómo contacto una cancha?</summary>
+
+        <p>
+            Cada perfil incluye información de contacto para que puedas comunicarte directamente con el establecimiento, generalmente mediante WhatsApp.
+        </p>
+    </details>
+
+    <details>
+    <summary>¿La información de las canchas está actualizada?</summary>
+
+    <p>
+        Cada cancha muestra la fecha de su última actualización. Revisamos periódicamente la información publicada, pero los precios, horarios, servicios y disponibilidad pueden cambiar sin previo aviso. Para evitar inconvenientes, te recomendamos confirmar los detalles directamente con la cancha antes de realizar tu reserva.
+    </p>
+</details>
+
+</section>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+        <a href="index.html" class="footer-logo">Fulsap</a>
+
+        <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script type="module" src="assets/scripts/main.js"></script>
+</body>
+</html>

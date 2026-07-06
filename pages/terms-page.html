@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description"
+    content="Términos y condiciones de Fulsap. Información sobre el uso del directorio de canchas de fútbol, responsabilidades y condiciones del servicio.">
+    <meta property="og:title" content="Términos y Condiciones | Fulsap">
+    <meta property="og:description" content="Conocé los términos y condiciones para utilizar Fulsap.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://domain.com/pages/terms-page.html">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/terms-page.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fulsap - Términos y Condiciones</title>
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/terms-policy.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)">
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Leaflet CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
+
+<!-- Leaflet JS -->
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
+<!-- Routing Machine CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+ -->
+<!-- Routing Machine JS -->
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
+
+<!-- prevent theme flash on load -->
+<script>
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+})();
+</script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+
+        <!-- Logo -->
+        <a href="../index.html" class="logo">
+            <h1>Fulsap</h1>
+        </a>
+
+        <!-- Desktop Search -->
+        <div class="search desktop-search">
+            <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+
+                <li class="dropdown">
+                    <a href="#" class="quick-link">
+                        Enlaces rapidos <i class="fas fa-chevron-down arrow"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="../index.html"> Inicio</a></li>
+                        <li><a href="../pages/all-fields-page.html"> Todas las canchas</a></li>
+                        <li><a href="../pages/add-field.html"> Agregar cancha</a></li>
+                        <li><a href="../pages/terms-page.html"> Términos y condiciones</a></li>
+                        <li><a href="../pages/contact.html"> Contacto</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <button class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+
+        <!-- Mobile Controls -->
+        <div class="controls mobile-only">
+            <i class="fas fa-search" id="search-toggle"></i>
+
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="search mobile-search" id="mobile-search">
+            <input type="text" class="global-search" placeholder="Buscar...">
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/add-field.html">Agregar cancha</a></li>
+                <li><a href="../pages/terms-page.html">Términos y condiciones</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+
+                <li>
+                    <button class="theme-toggle mobile-theme">
+                        <i class="fas fa-moon"></i> Theme
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="privacy-hero">
+
+    <div class="privacy-hero-content">
+
+        <span class="privacy-badge">
+            <i class="fas fa-file-contract"></i>
+            Condiciones de uso
+        </span>
+
+        <h1>
+            Términos y Condiciones
+        </h1>
+
+        <p>
+            Leé las reglas, condiciones y responsabilidades para utilizar Fulsap de forma segura y transparente.
+        </p>
+
+        <div class="privacy-meta">
+            <span>
+                <i class="fas fa-calendar"></i>
+                Última actualización: 29 de junio de 2026
+            </span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTENT -->
+<section class="privacy-section">
+
+    <div class="privacy-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="privacy-sidebar">
+
+            <div class="privacy-sidebar-card">
+
+                <h3>
+                    Contenido
+                </h3>
+
+                <nav class="privacy-nav">
+                    <a href="#acceptance">Aceptación</a>
+                    <a href="#owner">Titular</a>
+                    <a href="#services">Servicios</a>
+                    <a href="#access">Acceso</a>
+                    <a href="#bookings">Reservas</a>
+                    <a href="#payments">Pagos</a>
+                    <a href="#conduct">Conducta</a>
+                    <a href="#liability">Responsabilidad</a>
+                    <a href="#changes">Modificaciones</a>
+                    <a href="#contact">Contacto</a>
+                </nav>
+
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+        <div class="privacy-content">
+
+            <!-- ACCEPTANCE -->
+            <div class="privacy-card" id="acceptance">
+
+                <h2>
+                    <i class="fas fa-circle-check"></i>
+                    Aceptación de los términos
+                </h2>
+
+                <p>
+                    Al acceder y utilizar Fulsap, aceptás cumplir con los presentes términos y condiciones.
+                    Si no estás de acuerdo con alguna parte de estas condiciones, deberás abstenerte de utilizar la plataforma.
+                </p>
+
+                <div class="privacy-alert">
+                    <i class="fas fa-info-circle"></i>
+
+                    <p>
+                        El uso continuo de Fulsap implica la aceptación automática de futuras actualizaciones o modificaciones de estos términos.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- OWNERSHIP -->
+               <div class="privacy-card" id="owner">
+
+                    <h2>
+                        <i class="fas fa-building"></i>
+                        Titular de la plataforma
+                    </h2>
+
+                    <p>
+                        Fulsap es una plataforma digital propiedad y operada por Zonofal.
+                    </p>
+
+                    <p>
+                        A los efectos de los presentes Términos y Condiciones, las referencias a
+                        "Fulsap", "nosotros", "nuestro" o "la plataforma" se entenderán realizadas
+                        a Zonofal, en su carácter de titular y responsable de la operación del sitio web.
+                    </p>
+
+                </div>
+
+            <!-- SERVICES -->
+            <div class="privacy-card" id="services">
+
+                <h2>
+                    <i class="fas fa-futbol"></i>
+                    Servicios ofrecidos
+                </h2>
+
+                <p>
+                    Fulsap brinda una plataforma digital para descubrir, comparar y contactar canchas de fútbol en Argentina.
+                </p>
+
+                <ul>
+                    <li>Explorar canchas disponibles.</li>
+                    <li>Consultar precios, horarios y ubicaciones.</li>
+                    <li>Ver la ubicación de las canchas.</li>
+                    <li>Contactar directamente al establecimiento.</li>
+                    <li>Comparar diferentes opciones.</li>
+                </ul>
+
+                <div class="privacy-grid">
+
+                    <div class="privacy-feature">
+                        <i class="fas fa-location-dot"></i>
+                        <h4>Ubicaciones</h4>
+                        <p>
+                            Encontrá canchas cercanas fácilmente.
+                        </p>
+                    </div>
+
+                    <div class="privacy-feature">
+                        <i class="fas fa-clock"></i>
+                        <h4>Reservas rápidas</h4>
+                        <p>
+                            Accedé rápidamente a la información de cada cancha.
+                        </p>
+                    </div>
+
+                    <div class="privacy-feature">
+                        <i class="fas fa-mobile-screen"></i>
+                        <h4>Acceso online</h4>
+                        <p>
+                            Gestioná todo desde cualquier dispositivo.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+                        <!-- ACCESS TO THE PLATFORM -->
+            <div class="privacy-card" id="access">
+
+                <h2>
+                    <i class="fas fa-users"></i>
+                    Acceso a la plataforma
+                </h2>
+
+                <p>
+                    Actualmente, Fulsap no requiere la creación de cuentas de usuario para navegar por el sitio web y consultar la información disponible.
+                </p>
+
+                <p>
+                    Algunas funcionalidades, como el envío de formularios o la publicación de información, podrán requerir que el usuario proporcione determinados datos de contacto. El usuario se compromete a proporcionar información veraz y actualizada cuando sea solicitada.
+                </p>
+
+            </div>
+
+            <!-- BOOKINGS -->
+            <div class="privacy-card" id="bookings">
+
+                <h2>
+                    <i class="fas fa-calendar-check"></i>
+                    Reservas y cancelaciones
+                </h2>
+
+                <p>
+                    Las reservas y cancelaciones son gestionadas directamente entre el usuario y la cancha correspondiente.
+
+                    Fulsap no participa en la confirmación, modificación o cancelación de reservas.
+                </p>
+
+                <ul>
+                    <li>Las cancelaciones pueden tener límites de tiempo.</li>
+                    <li>Algunas reservas pueden requerir señas o pagos anticipados.</li>
+                    <li>Los horarios reservados deben respetarse.</li>
+                </ul>
+
+                <div class="privacy-alert">
+                    <i class="fas fa-triangle-exclamation"></i>
+
+                    <p>
+                        Fulsap no garantiza disponibilidad permanente de horarios ni se responsabiliza por cancelaciones realizadas por terceros.
+                    </p>
+                </div>
+
+            </div>
+
+                        <!-- PAYMENTS -->
+            <div class="privacy-card" id="payments">
+
+                            <!-- RESERVATIONS AND PAYMENTS -->
+
+
+
+            <h2>
+                <i class="fas fa-futbol"></i>
+                Reservas y pagos
+            </h2>
+
+            <p>
+                Fulsap actúa únicamente como una plataforma informativa para facilitar el descubrimiento y contacto con canchas de fútbol. No procesa pagos, reservas ni transacciones económicas entre usuarios y propietarios de canchas.
+            </p>
+
+            <ul>
+                <li>Las reservas, precios, promociones y condiciones de uso son definidos por cada cancha o establecimiento.</li>
+                <li>Los pagos, cuando correspondan, se realizan directamente entre el usuario y el propietario o administrador de la cancha.</li>
+                <li>Fulsap no interviene en transacciones económicas ni garantiza la disponibilidad de horarios publicados.</li>
+                <li>Cualquier consulta, reclamo o inconveniente relacionado con reservas o pagos deberá ser gestionado directamente con la cancha correspondiente.</li>
+            </ul>
+
+        </div>
+
+            <!-- CONDUCT -->
+            <div class="privacy-card" id="conduct">
+
+                <h2>
+                    <i class="fas fa-scale-balanced"></i>
+                    Conducta del usuario
+                </h2>
+
+                <p>
+                    Los usuarios se comprometen a utilizar la plataforma de manera responsable y respetuosa.
+                </p>
+
+                <ul>
+                    <li>No realizar actividades ilegales o fraudulentas.</li>
+                    <li>No interferir con el funcionamiento del sitio.</li>
+                    <li>Respetar a otros usuarios y administradores.</li>
+                </ul>
+
+            </div>
+
+            <!-- LIABILITY -->
+            <div class="privacy-card" id="liability">
+
+                <h2>
+                    <i class="fas fa-shield-halved"></i>
+                    Limitación de responsabilidad
+                </h2>
+
+                <p>
+                    Fulsap actúa únicamente como un directorio informativo que facilita el contacto entre usuarios y establecimientos deportivos.
+                </p>
+
+                <div class="privacy-alert">
+                    <i class="fas fa-circle-info"></i>
+
+                    <p>
+                        Cada establecimiento es responsable de brindar correctamente sus servicios y condiciones.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CHANGES -->
+            <div class="privacy-card" id="changes">
+
+                <h2>
+                    <i class="fas fa-pen-to-square"></i>
+                    Modificaciones
+                </h2>
+
+                <p>
+                    Fulsap podrá actualizar estos términos y condiciones en cualquier momento para adaptarse a cambios legales, técnicos o funcionales.
+                </p>
+
+                <p>
+                    Las modificaciones entrarán en vigencia desde su publicación dentro del sitio web.
+                </p>
+
+            </div>
+
+            <!-- CONTACT -->
+            <div class="privacy-card" id="contact">
+
+                <h2>
+                    <i class="fas fa-envelope"></i>
+                    Contacto
+                </h2>
+
+                <p>
+                    Si tenés consultas sobre estos Términos y Condiciones o sobre el funcionamiento de Fulsap, podés comunicarte con Zonofal a través de los medios de contacto indicados.
+                </p>
+
+                <a href="mailto:email@fulsap.com.ar" class="privacy-contact-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Contactar soporte
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+<script type="module" src="../assets/scripts/main.js"></script>
+</body>
+</html>
