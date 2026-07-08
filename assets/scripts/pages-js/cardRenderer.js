@@ -1,4 +1,5 @@
 import { fields } from "../data/fields.js";
+import { icons } from "../utils/icons.js";
 
 function formatPrice(price) {
     return `$${price.toLocaleString()}`;
@@ -72,22 +73,22 @@ function createFeaturedCard(field) {
             <div class="card-body">
 
                 <h4>
-                    <i class="fa-regular fa-futbol"></i>
+                    ${icons.football}
                     ${field.name}
                 </h4>
 
                 <p class="location">
-                    <i class="fas fa-map-marker-alt"></i>
+                    ${icons.mapMarker}
                     ${field.location}
                 </p>
 
                 <p class="schedule">
-                    <i class="fa-regular fa-clock"></i>
+                    ${icons.clock}
                     ${field.schedule.week}
                 </p>
 
                 <div class="features">
-                    <i class="fas fa-star"></i>
+                    ${icons.star}
 
                     ${getFeatures(field)
                         .map(feature => `<span>${feature}</span>`)
@@ -97,7 +98,7 @@ function createFeaturedCard(field) {
                 <div class="card-footer">
 
                     <span class="price">
-                        <i class="fa-solid fa-dollar-sign"></i>
+                        ${icons.dollar}
                         ${formatPrice(field.priceFrom)} - ${formatPrice(field.priceTo)}
                     </span>
 
@@ -137,7 +138,7 @@ function createFieldCard(field) {
                 <div class="field-top">
 
                     <h4>
-                        <i class="fa-regular fa-futbol"></i>
+                        ${icons.football}
                         ${field.name}
                     </h4>
 
@@ -148,23 +149,23 @@ function createFieldCard(field) {
                 </div>
 
                 <p class="location">
-                    <i class="fas fa-map-marker-alt"></i>
+                    ${icons.mapMarker}
                     ${field.location}
                 </p>
 
                 <p class="price">
-                    <i class="fa-solid fa-dollar-sign"></i>
+                    ${icons.dollar}
                     ${formatPrice(field.priceFrom)} - ${formatPrice(field.priceTo)}
                 </p>
 
                 <p class="schedule">
-                    <i class="fa-regular fa-clock"></i>
+                    ${icons.clock}
                     ${field.schedule.week}
                 </p>
 
                 <div class="features">
 
-                    <i class="fas fa-star"></i>
+                    ${icons.star}
 
                     ${getFeatures(field)
                         .map(feature => `<span>${feature}</span>`)
