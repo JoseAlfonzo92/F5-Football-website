@@ -13,8 +13,12 @@ import { renderFeaturedFields, renderHomeFields } from "./pages-js/cardRenderer.
 import { initAddFieldForm } from "./components/addFieldForm.js";
 import { applyLiveRatings } from "./services/ratings.js";
 import { initHeroAnimations } from "./animations/heroAnimations.js";
+import { injectIcons } from "./utils/icons.js";
+
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+    injectIcons();
 
     await applyLiveRatings();
 

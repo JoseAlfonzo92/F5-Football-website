@@ -22,7 +22,7 @@
     <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)"> 
 
     <!-- font awesome cdn link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -74,7 +74,7 @@
 
                 <li class="dropdown">
                     <a href="#" class="quick-link">
-                        Enlaces rapidos <span class="arrow-icon"></span>
+                        Enlaces rapidos <span data-icon="arrow"></span>
                     </a>
 
                     <ul class="dropdown-menu">
@@ -88,7 +88,7 @@
 
                 <li>
                     <button class="theme-toggle">
-                        <i class="fas fa-moon"></i>
+                        <!-- <i class="fas fa-moon"></i> -->
                     </button>
                 </li>
 
@@ -97,7 +97,7 @@
 
         <!-- Mobile Controls -->
         <div class="controls mobile-only">
-            <i class="fas fa-search" id="search-toggle"></i>
+            <span data-icon="search" id="search-toggle"></span>
 
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
@@ -122,7 +122,7 @@
 
                 <li>
                     <button class="theme-toggle mobile-theme">
-                        <i class="fas fa-moon"></i> Theme
+                        <!-- <i class="fas fa-moon"></i> Theme -->
                     </button>
                 </li>
             </ul>
@@ -185,18 +185,18 @@
         <input type="checkbox" id="use-location-toggle">
         <span class="slider"></span>
     </label>
-    <span>Usar mi ubicación <i class="fas fa-map-marker-alt"></i> </span>
+    <span>Usar mi ubicación <span data-icon="mapMarker"></span> </span>
      </div>
   </div>
 
    <div class="view-toggle">
 
     <button id="grid-view-btn" class="view-btn active">
-        <i class="fas fa-th"></i> Lista
+        <span data-icon="table"></span> Lista
     </button>
 
     <button id="map-view-btn" class="view-btn">
-        <i class="fas fa-map"></i> Mapa
+        <span data-icon="map"></span> Mapa
     </button>
 
 </div>
@@ -252,10 +252,10 @@
             <h4>Seguinos</h4>
 
             <div class="social-icons">
-                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><span data-icon="instagram"></span></a>
+                <a href="https://www.facebook.com/" target="_blank"><span data-icon="facebook"></span></a>
+                <a href="https://x.com/" target="_blank"><span data-icon="xTwitter"></span></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><span data-icon="whatsapp"></span></a>
             </div>
         </div>
 

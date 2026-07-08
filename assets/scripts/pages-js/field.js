@@ -1,5 +1,6 @@
 import { fields } from "../data/fields.js";
 import { submitRating } from "../services/ratings.js";
+import { icons } from "../utils/icons.js";
 
 //  HELPER FUNCTIONS
 function renderFieldSizes(field) {
@@ -21,27 +22,53 @@ function renderAllowedBoots(field) {
     }
 
     const bootInfo = {
-        "FG": { label: "FG - Terreno Firme", desc: "Canchas de pasto natural", icon: "fas fa-leaf" },
-        "TF": { label: "TF - Pasto Artificial", desc: "Fibras cortas (Artificial)", icon: "fas fa-chess-board" },
-        "IN": { label: "IN - Indoor", desc: "Canchas cubiertas / lisas", icon: "fas fa-home" }
+        FG: {
+            label: "FG - Terreno Firme",
+            desc: "Canchas de pasto natural",
+            icon: "leaf"
+        },
+
+        TF: {
+            label: "TF - Pasto Artificial",
+            desc: "Fibras cortas (Artificial)",
+            icon: "board"
+        },
+
+        IN: {
+            label: "IN - Indoor",
+            desc: "Canchas cubiertas / lisas",
+            icon: "house"
+        }
     };
 
     let html = `<div class="boots-grid">`;
 
     field.allowedBoots.forEach(code => {
-        const info = bootInfo[code] || { label: code, desc: "", icon: "fas fa-shoe-prints" };
+
+        const info = bootInfo[code] || {
+            label: code,
+            desc: "",
+            icon: "shoePrints"
+        };
+
         html += `
             <div class="boot-card">
-                <div class="boot-icon"><i class="${info.icon}"></i></div>
+
+                <div class="boot-icon">
+                    ${icons[info.icon] ?? ""}
+                </div>
+
                 <div class="boot-content">
                     <strong>${info.label}</strong>
                     <small>${info.desc}</small>
                 </div>
+
             </div>
         `;
     });
 
     html += `</div>`;
+
     container.innerHTML = html;
 }
 
@@ -58,7 +85,7 @@ function renderAvailableJerseys(field) {
         <div class="jerseys-carousel-wrapper">
 
             <button class="jersey-arrow jersey-left" aria-label="Anterior">
-                <i class="fas fa-chevron-left"></i>
+                 ${icons.chevronLeft}
             </button>
 
             <div class="jerseys-carousel">
@@ -88,7 +115,7 @@ function renderAvailableJerseys(field) {
             </div>
 
             <button class="jersey-arrow jersey-right" aria-label="Siguiente">
-                <i class="fas fa-chevron-right"></i>
+                ${icons.chevronRight}
             </button>
 
         </div>
@@ -331,7 +358,7 @@ function renderSimilarFields(currentField) {
                 <h4>${f.name}</h4>
 
                 <p class="similar-location">
-                    <i class="fas fa-map-marker-alt"></i>
+                    ${icons.mapMarker}
                     ${f.location}
                 </p>
 
@@ -476,7 +503,7 @@ function updateRatingDisplay(rating, votes) {
     if (votes > 0) {
 
         ratingEl.innerHTML = `
-            <i class="fas fa-star"></i>
+            ${icons.star}
             ${Number(rating).toFixed(1)}
             <small>(
     ${votes}
@@ -688,22 +715,22 @@ function getLastUpdateText(dateString) {
 
 const BARBECUE_COOK_TYPES = {
     none: {
-        icon: "fa-solid fa-ban",
+        icon: "ban",
         text: "No está permitido hacer asado."
     },
 
     players: {
-        icon: "fa-solid fa-user-group",
+        icon: "userGroup",
         text: "Los jugadores cocinan por su cuenta."
     },
 
     venue: {
-        icon: "fa-solid fa-user-chef",
+        icon: "user",
         text: "El complejo cuenta con servicio de parrillero."
     },
 
     both: {
-        icon: "fa-solid fa-fire-flame-curved",
+        icon: "fire",
         text: "Podés cocinar por tu cuenta o contratar un parrillero."
     }
 };
@@ -717,15 +744,19 @@ function formatPrice(value) {
         : `<strong>$${value.toLocaleString("es-AR")}</strong>`;
 }
 
-function barbecueItem(icon, title, value) {
+function barbecueItem(iconName, title, value) {
     return `
         <div class="barbecue-item">
-            <i class="${icon}"></i>
+
+            <div class="barbecue-icon">
+                ${icons[iconName] ?? ""}
+            </div>
 
             <div class="barbecue-content">
                 <span class="barbecue-title">${title}</span>
                 <span class="barbecue-value">${value}</span>
             </div>
+
         </div>
     `;
 }
@@ -769,7 +800,7 @@ function renderBarbecue(field) {
         barbecue.cookType === "both"
     ) {
         html += barbecueItem(
-            "fa-solid fa-fire-flame-curved",
+            "fire",
             "Uso de la parrilla",
             formatPrice(barbecue.grillFee)
         );
@@ -782,7 +813,7 @@ function renderBarbecue(field) {
         barbecue.cookServiceFee != null
     ) {
         html += barbecueItem(
-            "fa-solid fa-fire-burner",
+            "fireBurner",
             "Servicio de parrillero",
             formatPrice(barbecue.cookServiceFee)
         );
@@ -794,7 +825,7 @@ function renderBarbecue(field) {
         for (const note of barbecue.notes) {
 
             html += barbecueItem(
-                "fa-solid fa-circle-info",
+                "circleInfo",
                 "Información",
                 note
             );
@@ -804,7 +835,6 @@ function renderBarbecue(field) {
     }
 
     container.innerHTML = html;
-
 }
 
 
@@ -888,7 +918,7 @@ export function initFieldPage() {
                 : "votos";
 
         dom.rating.innerHTML = `
-            <i class="fas fa-star"></i>
+            ${icons.star}
             ${field.rating.toFixed(1)}
             <small>(${field.votes} ${voteLabel})</small>
         `;
@@ -902,13 +932,13 @@ export function initFieldPage() {
     }
     }
     
-    if (dom.location) dom.location.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${field.location}`;
+    if (dom.location) dom.location.innerHTML = `${icons.mapMarker} ${field.location}`;
     if (dom.address) dom.address.textContent = field.address || "";
     if (dom.description) dom.description.textContent = field.description || "";
 
     if (dom.lastUpdate && field.lastUpdate) {
         dom.lastUpdate.innerHTML = `
-            <i class="fa-solid fa-arrows-rotate"></i>
+            ${icons.arrowsRotate}
             ${getLastUpdateText(field.lastUpdate)}
         `;
     }
@@ -940,7 +970,7 @@ export function initFieldPage() {
     const phoneLink = document.getElementById("booking-phone");
     if (phoneLink) {
         phoneLink.href = `tel:+${cleanPhone}`;
-        phoneLink.innerHTML = `<i class="fas fa-phone"></i> Llamar`;
+        phoneLink.innerHTML = `${icons.phone} Llamar`;
     }
 
     const whatsappBtn = document.getElementById("booking-whatsapp");
@@ -949,7 +979,7 @@ export function initFieldPage() {
         const sizesEl = document.getElementById("booking-sizes");
     if (sizesEl) {
         sizesEl.innerHTML = `
-            <i class="fas fa-users"></i>
+            ${icons.users}
             ${field.sizes.join(" / ")}
         `;
     }
@@ -958,7 +988,7 @@ export function initFieldPage() {
 
     if (surfaceEl) {
         surfaceEl.innerHTML = `
-            <i class="fas fa-shoe-prints"></i>
+            ${icons.shoePrints}
             ${field.surface.join(" / ")}
         `;
     }
@@ -993,7 +1023,9 @@ export function initFieldPage() {
     }
 
     // Loading state
-    distanceEl.innerHTML = "Calculando distancia...";
+    distanceEl.innerHTML = `
+    ${icons.userWalking}
+    <span>Calculando distancia...</span>`;
     distanceEl.style.display = "inline-flex";
 
     navigator.geolocation.getCurrentPosition(
@@ -1019,12 +1051,14 @@ export function initFieldPage() {
                 displayText = `Aprox. a ${Math.round(distanceKm)} km desde tu ubicación`;
             }
 
-            
             if (accuracy <= 100) {
                 displayText += ` (±${accuracy} m)`;
             }
 
-            distanceEl.innerHTML = displayText;
+            distanceEl.innerHTML = `
+                ${icons.userWalking}
+                <span>${displayText}</span>
+            `;
         },
         (err) => {
             console.warn("Geolocation error:", err);

@@ -961,7 +961,7 @@
 }
 
 .distance::before {
-    content: "\f554";
+
     font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", sans-serif;
     font-weight: 900;
     font-size: 1.1em;

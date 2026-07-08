@@ -51,6 +51,19 @@
 
     --transition-fast: 0.2s ease;
     --transition: 0.3s ease;
+
+
+    --icon-size-xs: 12px;
+    --icon-size-sm: 16px;
+    --icon-size-md: 20px;
+    --icon-size-lg: 24px;
+    --icon-size-xl: 32px;
+
+    --color-icon: var(--color-primary);
+    --color-icon-muted: var(--color-text-muted);
+    --color-icon-inverse: var(--color-text-buttons);
+
+    --icon-stroke: 2;
 }
 
 /* DARK THEME */
@@ -83,6 +96,98 @@
 
     --text-shadow-hero: 0 4px 18px rgba(0,0,0,0.95);
 }
+
+
+.icon-xs { width: var(--icon-size-xs); height: var(--icon-size-xs); }
+.icon-sm { width: var(--icon-size-sm); height: var(--icon-size-sm); }
+.icon-md { width: var(--icon-size-md); height: var(--icon-size-md); }
+.icon-lg { width: var(--icon-size-lg); height: var(--icon-size-lg); }
+.icon-xl { width: var(--icon-size-xl); height: var(--icon-size-xl); }
+
+.icon-primary { color: var(--color-primary); }
+.icon-muted { color: var(--color-icon-muted); }
+.icon-success { color: var(--color-success); }
+.icon-warning { color: var(--color-warning); }
+.icon-error { color: var(--color-error); }
+.icon-text { color: var(--color-text); }
+.icon-white { color: var(--color-icon-inverse); }
+
+
+[data-icon][data-size="xs"] svg {
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+}
+
+[data-icon][data-size="sm"] svg {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+}
+
+[data-icon][data-size="md"] svg {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+}
+
+[data-icon][data-size="lg"] svg {
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+}
+
+[data-icon][data-size="xl"] svg {
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
+}
+
+
+[data-icon][data-color="primary"] {
+    color: var(--color-primary);
+}
+
+[data-icon][data-color="muted"] {
+    color: var(--color-text-muted);
+}
+
+[data-icon][data-color="success"] {
+    color: var(--color-success);
+}
+
+[data-icon][data-color="warning"] {
+    color: var(--color-warning);
+}
+
+[data-icon][data-color="error"] {
+    color: var(--color-error);
+}
+
+[data-icon][data-color="text"] {
+    color: var(--color-text);
+}
+
+[data-icon][data-rotate="180"] svg {
+    transform: rotate(180deg);
+}
+
+[data-icon] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1;
+    color: var(--color-icon);
+}
+
+[data-icon] svg {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+
+    fill: currentColor;
+    display: block;
+
+    transition:
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
 
 /* RESET */
 * {
@@ -270,7 +375,7 @@ a {
     transform: rotate(180deg);
 } */
 
-.arrow-icon svg {
+.arrow svg {
     transition: transform 0.3s ease;
     
     width: 18px;
@@ -278,7 +383,7 @@ a {
 }
 
 /* rotation on hover (like dropdown behavior) */
-.dropdown:hover .arrow-icon svg {
+.dropdown:hover .arrow svg {
     transform: rotate(180deg);
 }
 
@@ -325,9 +430,7 @@ a {
     transform: rotate(180deg);
 }
 
-.theme-toggle {
-    font-size: var(--font-size-md);
-}
+
 
 .theme-toggle svg {
     width: 18px;
@@ -700,33 +803,46 @@ a {
     box-shadow: var(--shadow-md);
 }
 
-.sun svg,
-.moon svg,
-.arrow svg,
-.search svg,
-.chevronRight svg,
-.map-marker svg,
-.plus-circle svg,
-.trophy svg,
-.star svg,
-.football svg,
-.clock svg,
-.userGroup svg,
-.dollar svg,
-.filter svg,
-.users svg,
-.instagram svg,
-.facebook svg,
-.xTwitter svg,
-.whatsapp svg {
-  font-size: var(--font-size-3xl);
-  color: var(--color-primary);
-  margin-bottom: var(--space-md);
-  height: 18px;
-  width: 18px;
+.icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    fill: currentColor;
 }
 
+.theme-toggle {
+    color: var(--color-text);
+}
 
+.arrow {
+    color: var(--color-primary);
+}
+
+.whatsapp {
+    color: #25D366;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-sm {
+    width: 14px;
+    height: 14px;
+}
+
+.icon-lg {
+    width: 24px;
+    height: 24px;
+}
 
 .benefit-card h4 {
     color: var(--color-text);
@@ -1627,4 +1743,33 @@ a {
     .social-icons {
         justify-content: center;
     }
+}
+
+
+/* ICON SYSTEM */
+
+.icon {
+    display: inline-block;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+
+    flex-shrink: 0;
+
+    color: var(--color-icon);
+
+    fill: currentColor;
+
+    vertical-align: middle;
+
+    transition:
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    fill: currentColor;
 }

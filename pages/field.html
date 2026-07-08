@@ -62,7 +62,7 @@
 
                 <li class="dropdown">
                     <a href="#" class="quick-link">
-                        Enlaces rapidos <span class="arrow-icon"></span>
+                        Enlaces rapidos <span data-icon="arrow"></span>
                     </a>
 
                     <ul class="dropdown-menu">
@@ -76,7 +76,7 @@
 
                 <li>
                     <button class="theme-toggle">
-                        <i class="fas fa-moon"></i>
+                        <!-- <i class="fas fa-moon"></i> -->
                     </button>
                 </li>
 
@@ -85,7 +85,7 @@
 
         <!-- Mobile Controls -->
         <div class="controls mobile-only">
-            <i class="fas fa-search" id="search-toggle"></i>
+            <span data-icon="search" id="search-toggle"></span>
 
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
@@ -110,7 +110,7 @@
 
                 <li>
                     <button class="theme-toggle mobile-theme">
-                        <i class="fas fa-moon"></i> Theme
+                        <!-- <i class="fas fa-moon"></i> Theme -->
                     </button>
                 </li>
             </ul>
@@ -122,7 +122,7 @@
 <section class="field-detail">
 
     <a href="all-fields-page.html" class="back-link">
-        <i class="fas fa-arrow-left"></i> Volver a las canchas
+        <span data-icon="chevronLeft"></span> Volver a las canchas
     </a>
 
     <div class="field-content-grid">
@@ -134,13 +134,13 @@
             <div class="field-hero">
 
     <button class="hero-arrow hero-left" id="hero-left" aria-label="Anterior">
-        <i class="fas fa-chevron-left"></i>
+        <span data-icon="chevronLeft"></span>
     </button>
 
     <div class="field-hero-carousel" id="field-hero-carousel"></div>
 
     <button class="hero-arrow hero-right" id="hero-right" aria-label="Siguiente">
-        <i class="fas fa-chevron-right"></i>
+        <span data-icon="chevronRight"></span>
     </button>
 
     </div>
@@ -184,7 +184,7 @@
             
             <!-- PRECIOS -->
             <div class="card-section">
-                <h3><i class="fas fa-dollar-sign"></i> Precios</h3>
+                <h3><span data-icon="dollar"></span> Precios</h3>
 
                 <div class="price-row">
                     <span>Lunes a Viernes</span>
@@ -205,7 +205,7 @@
 
             <!-- HORARIOS -->
             <div class="card-section">
-                <h3><i class="fas fa-clock"></i> Horarios</h3>
+                <h3><span data-icon="clock"></span> Horarios</h3>
 
                 <div class="schedule-row">
                     <span>Lunes a Viernes</span>
@@ -220,19 +220,19 @@
 
             <!-- COMODIDADES -->
             <div class="card-section">
-                <h3><i class="fas fa-star"></i> Comodidades</h3>
+                <h3><span data-icon="star"></span> Comodidades</h3>
                 <div class="tags" id="features-container"></div>
             </div>
             
             <!-- FIELD SIZES -->
             <div class="card-section">
-                <h3><i class="fas fa-ruler-combined"></i> Tamaños Disponibles</h3>
+                <h3><span data-icon="rulerCombined"></span> Tamaños Disponibles</h3>
                 <div class="tags sizes-container" id="field-sizes-container"></div>
             </div>
 
             <!-- BOTINES PERMITIDOS -->
             <div class="card-section">
-                <h3><i class="fas fa-shoe-prints"></i> Botines Permitidos</h3>
+                <h3><span data-icon="shoePrints"></span> Botines Permitidos</h3>
                 <div class="boots-container" id="allowed-boots-container">
         
                 </div>
@@ -240,7 +240,7 @@
 
             <!-- CAMISETAS DISPONIBLES -->
             <div class="card-section">
-                <h3><i class="fas fa-tshirt"></i> Camisetas Disponibles</h3>
+                <h3><span data-icon="tshirt"></span> Camisetas Disponibles</h3>
                 <div class="jerseys-container" id="available-jerseys-container">
         
                 </div>
@@ -248,25 +248,28 @@
 
             <!-- BUFFET -->
             <div class="card-section">
-                <h3><i class="fas fa-utensils"></i> Buffet</h3>
+                <h3><span data-icon="utensils"></span> Buffet</h3>
                 <div class="tags" id="buffet-container"></div>
             </div>
 
             <div class="card-section">
-    <h3><i class="fas fa-fire"></i> Parrilla</h3>
+            <h3>
+                <span data-icon="fire"></span>
+                Parrilla
+            </h3>
 
-    <div id="barbecue-container" class="barbecue-info"></div>
-</div>
+            <div id="barbecue-container" class="barbecue-info"></div>
+        </div>
 
             <!-- INFO EXTRA -->
             <div class="card-section">
-                <h3><i class="fas fa-info-circle"></i> Información adicional</h3>
+                <h3><span data-icon="infoCircle"></span> Información adicional</h3>
                 <div class="info-list" id="extra-info-container"></div>
             </div>
 
             <!-- WEATHER 7 DAYS FORECAST -->
              <div class="card-section">
-                <h3><i class="fas fa-cloud-sun"></i> Pronóstico del clima</h3>
+                <h3><span data-icon="cloudSun"></span> Pronóstico del clima</h3>
                 <div id="weather-forecast-container" class="weather-forecast">
                     
                 </div>
@@ -274,7 +277,7 @@
 
             <!-- MAP -->
             <div class="card-section">
-                <h3><i class="fas fa-map"></i> Ubicación</h3>
+                <h3><span data-icon="map"></span> Ubicación</h3>
 
                 <div id="field-map" class="field-map"></div>
 
@@ -283,18 +286,18 @@
 
            <!-- Share field with friends on socials -->
             <div class="card-section">
-                <h3><i class="fas fa-share-alt"></i> Compartir cancha</h3>
+                <h3><span data-icon="shareNodes"></span> Compartir cancha</h3>
 
                 <div class="social-icons">
-                    <a href="#" id="share-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" id="share-facebook" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="#" id="share-twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                    <a href="#" id="share-messenger" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
-                    <a href="#" id="share-instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" id="share-whatsapp" target="_blank"><span data-icon="whatsapp"></span></a>
+                    <a href="#" id="share-facebook" target="_blank"><span data-icon="facebook"></span></a>
+                    <a href="#" id="share-twitter" target="_blank"><span data-icon="xTwitter"></span></a>
+                    <a href="#" id="share-messenger" target="_blank"><span data-icon="facebookMessenger"></span></a>
+                    <a href="#" id="share-instagram" target="_blank"><span data-icon="instagram"></span></a>
         
              <!-- Copy Link Button -->
                 <button id="copy-link-btn" class="copy-link-btn">
-                    <i class="fas fa-link"></i>
+                    <span data-icon="linkShare"></span>
                     <span>Copiar enlace</span>
                 </button>
             </div>
@@ -304,17 +307,17 @@
             <!-- similar fields carrousel gallery -->
             
             <div class="card-section">
-                        <h3><i class="fas fa-thumbs-up"></i> Canchas similares</h3>
+                        <h3><span data-icon="thumbsUp"></span> Canchas similares</h3>
     
                         <div class="similar-carousel-wrapper">
                             <button class="carousel-arrow arrow-left" id="similar-arrow-left" aria-label="Anterior">
-                            <i class="fas fa-chevron-left"></i>
+                            <span data-icon="chevronLeft"></span>
                             </button>
         
                         <div class="similar-fields-carousel" id="similar-fields-carousel"></div>
         
                         <button class="carousel-arrow arrow-right" id="similar-arrow-right" aria-label="Siguiente">
-                            <i class="fas fa-chevron-right"></i>
+                            <span data-icon="chevronRight"></span>
                         </button>
                         </div>
             </div>
@@ -326,12 +329,12 @@
             <div class="booking-box sticky">
              <!-- volver a las canchas -->
             <a href="../pages/all-fields-page.html" class="btn-secondary">
-                <i class="fas fa-arrow-left"></i> Volver a las canchas
+                <span data-icon="chevronLeft"></span> Volver a las canchas
             </a>
 
         <!-- WEATHER -->
             <div class="card-section">
-                <h3><i class="fas fa-cloud-sun"></i> Clima Actual</h3>
+                <h3><span data-icon="cloudSun"></span> Clima Actual</h3>
             <div id="weather-container" class="weather-widget">
             
                 <p class="loading-text">Cargando clima...</p>
@@ -347,7 +350,7 @@
                 </div>
 
                 <a id="booking-whatsapp" class="btn-primary" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i> Consultar disponibilidad
+                    <span data-icon="whatsapp"></span> Consultar disponibilidad
                 </a>
 
                 <a id="booking-phone" class="call-link"></a>
@@ -395,10 +398,10 @@
             <h4>Seguinos</h4>
 
             <div class="social-icons">
-                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><span data-icon="instagram"></span></a>
+                <a href="https://www.facebook.com/" target="_blank"><span data-icon="facebook"></span></a>
+                <a href="https://x.com/" target="_blank"><span data-icon="xTwitter"></span></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><span data-icon="whatsapp"></span></a>
             </div>
         </div>
 
