@@ -1066,9 +1066,6 @@ a {
     z-index: 2;
 }
 
-
-
-
 /* BODY */
 .card-body {
     padding: var(--space-md);
