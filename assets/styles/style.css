@@ -97,98 +97,6 @@
     --text-shadow-hero: 0 4px 18px rgba(0,0,0,0.95);
 }
 
-
-.icon-xs { width: var(--icon-size-xs); height: var(--icon-size-xs); }
-.icon-sm { width: var(--icon-size-sm); height: var(--icon-size-sm); }
-.icon-md { width: var(--icon-size-md); height: var(--icon-size-md); }
-.icon-lg { width: var(--icon-size-lg); height: var(--icon-size-lg); }
-.icon-xl { width: var(--icon-size-xl); height: var(--icon-size-xl); }
-
-.icon-primary { color: var(--color-primary); }
-.icon-muted { color: var(--color-icon-muted); }
-.icon-success { color: var(--color-success); }
-.icon-warning { color: var(--color-warning); }
-.icon-error { color: var(--color-error); }
-.icon-text { color: var(--color-text); }
-.icon-white { color: var(--color-icon-inverse); }
-
-
-[data-icon][data-size="xs"] svg {
-    width: var(--icon-size-xs);
-    height: var(--icon-size-xs);
-}
-
-[data-icon][data-size="sm"] svg {
-    width: var(--icon-size-sm);
-    height: var(--icon-size-sm);
-}
-
-[data-icon][data-size="md"] svg {
-    width: var(--icon-size-md);
-    height: var(--icon-size-md);
-}
-
-[data-icon][data-size="lg"] svg {
-    width: var(--icon-size-lg);
-    height: var(--icon-size-lg);
-}
-
-[data-icon][data-size="xl"] svg {
-    width: var(--icon-size-xl);
-    height: var(--icon-size-xl);
-}
-
-
-[data-icon][data-color="primary"] {
-    color: var(--color-primary);
-}
-
-[data-icon][data-color="muted"] {
-    color: var(--color-text-muted);
-}
-
-[data-icon][data-color="success"] {
-    color: var(--color-success);
-}
-
-[data-icon][data-color="warning"] {
-    color: var(--color-warning);
-}
-
-[data-icon][data-color="error"] {
-    color: var(--color-error);
-}
-
-[data-icon][data-color="text"] {
-    color: var(--color-text);
-}
-
-[data-icon][data-rotate="180"] svg {
-    transform: rotate(180deg);
-}
-
-[data-icon] {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    line-height: 1;
-    color: var(--color-icon);
-}
-
-[data-icon] svg {
-    width: var(--icon-size-sm);
-    height: var(--icon-size-sm);
-
-    fill: currentColor;
-    display: block;
-
-    transition:
-        color var(--transition-fast),
-        transform var(--transition-fast);
-}
-
-
 /* RESET */
 * {
     box-sizing: border-box;
@@ -365,25 +273,13 @@ a {
     background: var(--color-hover);
 }
 
-/* ARROW */
-/* .arrow {
-    transition: transform var(--transition);
-    color: var(--color-primary);
-}
-
-.dropdown:hover .arrow {
-    transform: rotate(180deg);
-} */
-
-.arrow svg {
-    transition: transform 0.3s ease;
-    
+.quick-link .icon {
     width: 18px;
     height: 18px;
+    transition: transform var(--transition);
 }
 
-/* rotation on hover (like dropdown behavior) */
-.dropdown:hover .arrow svg {
+.quick-link:hover .icon {
     transform: rotate(180deg);
 }
 
@@ -430,17 +326,11 @@ a {
     transform: rotate(180deg);
 }
 
-
-
 .theme-toggle svg {
     width: 18px;
     height: 18px;
     display: block;
 }
-
-
-
-
 
 /* VISIBILITY */
 .desktop-nav,
@@ -757,10 +647,18 @@ a {
     box-shadow: var(--shadow-md);
 }
 
-.quick-card i {
-    font-size: var(--font-size-2xl);
+.quick-card [data-icon] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
     color: var(--color-primary);
     margin-bottom: var(--space-md);
+}
+
+.quick-card [data-icon] .icon {
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
 }
 
 .quick-card h4 {
@@ -801,47 +699,6 @@ a {
     background: var(--color-hover);
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-}
-
-.icon {
-    width: 18px;
-    height: 18px;
-    display: block;
-    fill: currentColor;
-}
-
-.theme-toggle {
-    color: var(--color-text);
-}
-
-.arrow {
-    color: var(--color-primary);
-}
-
-.whatsapp {
-    color: #25D366;
-}
-
-.icon {
-    width: 18px;
-    height: 18px;
-    display: block;
-    flex-shrink: 0;
-}
-
-.icon {
-    width: 18px;
-    height: 18px;
-}
-
-.icon-sm {
-    width: 14px;
-    height: 14px;
-}
-
-.icon-lg {
-    width: 24px;
-    height: 24px;
 }
 
 .benefit-card h4 {
@@ -1208,6 +1065,8 @@ a {
     box-shadow: var(--shadow-sm);
     z-index: 2;
 }
+
+
 
 
 /* BODY */
@@ -1750,26 +1609,22 @@ a {
 
 .icon {
     display: inline-block;
-    width: var(--icon-size-sm);
-    height: var(--icon-size-sm);
-
-    flex-shrink: 0;
-
-    color: var(--color-icon);
+    width: 1em;
+    height: 1em;
 
     fill: currentColor;
+    stroke: currentColor;
+    stroke-width: var(--icon-stroke);
 
-    vertical-align: middle;
-
-    transition:
-        color var(--transition-fast),
-        transform var(--transition-fast);
+    flex-shrink: 0;
+    vertical-align: -0.125em;
 }
 
 .icon svg {
     width: 100%;
     height: 100%;
     display: block;
-
     fill: currentColor;
+    stroke: currentColor;
+    stroke-width: var(--icon-stroke);
 }

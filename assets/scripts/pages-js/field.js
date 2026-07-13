@@ -825,7 +825,7 @@ function renderBarbecue(field) {
         for (const note of barbecue.notes) {
 
             html += barbecueItem(
-                "circleInfo",
+                "infoCircle",
                 "Información",
                 note
             );
