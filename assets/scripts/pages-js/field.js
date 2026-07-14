@@ -800,7 +800,7 @@ function renderBarbecue(field) {
         barbecue.cookType === "both"
     ) {
         html += barbecueItem(
-            "fire",
+            "grill",
             "Uso de la parrilla",
             formatPrice(barbecue.grillFee)
         );
@@ -813,7 +813,7 @@ function renderBarbecue(field) {
         barbecue.cookServiceFee != null
     ) {
         html += barbecueItem(
-            "fireBurner",
+            "chef",
             "Servicio de parrillero",
             formatPrice(barbecue.cookServiceFee)
         );

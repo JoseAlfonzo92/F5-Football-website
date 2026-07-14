@@ -1350,3 +1350,129 @@
     color:var(--color-primary);
     font-weight:700;
 }
+
+/* USER LOCATION MARKER */
+
+.user-location-marker {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    animation: locationDrop .45s cubic-bezier(.2, 1.4, .3, 1);
+}
+
+.user-location-icon-svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    background: var(--color-primary);
+    color: var(--color-icon-inverse);
+
+    border: 3px solid var(--color-bg);
+    border-radius: 50%;
+
+    box-shadow: var(--shadow-md);
+
+    z-index: 2;
+}
+
+.user-location-icon-svg svg {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+}
+
+.user-location-pulse {
+    position: absolute;
+    inset: 0;
+
+    background: var(--color-primary);
+    border-radius: 50%;
+
+    opacity: .35;
+
+    animation: locationPulse 2s infinite;
+}
+
+/* POPUP */
+
+.user-popup .leaflet-popup-content-wrapper {
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-lg);
+
+    animation: popupIn var(--transition);
+}
+
+.user-popup .leaflet-popup-content {
+    margin: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.user-popup .leaflet-popup-tip {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+}
+
+/* ANIMATIONS  */
+
+@keyframes locationPulse {
+
+    0% {
+        transform: scale(.8);
+        opacity: .55;
+    }
+
+    70% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+
+}
+
+@keyframes locationDrop {
+
+    0% {
+        transform: translateY(-20px) scale(.4);
+        opacity: 0;
+    }
+
+    70% {
+        transform: translateY(4px) scale(1.08);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+@keyframes popupIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}

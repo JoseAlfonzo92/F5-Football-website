@@ -1,4 +1,5 @@
 import { fields } from "../data/fields.js";
+import { icons } from "../utils/icons.js";
 
 export function initFieldsMap() {
     const mapContainer = document.getElementById("map-container");
@@ -46,26 +47,18 @@ export function initFieldsMap() {
 
                 userMarker = L.marker(userLocation, {
                     icon: L.divIcon({
-                        className: 'user-location-icon',
+                        className: "user-location-icon",
                         html: `
-                            <div style="
-                                background: #1e88e5; 
-                                color: white; 
-                                border: 3px solid white; 
-                                border-radius: 50%; 
-                                width: 32px; 
-                                height: 32px; 
-                                display: flex; 
-                                align-items: center; 
-                                justify-content: center; 
-                                font-size: 21px; 
-                                box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.4);
-                            ">
-                                <i class="fas fa-person-walking"></i>
-                            </div>`,
+                            <div class="user-location-marker">
+                                <span class="user-location-pulse"></span>
+                                <span class="user-location-icon-svg">
+                                    ${icons.userWalking}
+                                </span>
+                            </div>
+                        `,
                         iconSize: [42, 42],
-                        iconAnchor: [21, 42],     
-                        popupAnchor: [0, -45]     
+                        iconAnchor: [21, 42],
+                        popupAnchor: [0, -45]
                     })
                 })
                 .addTo(map)
@@ -123,7 +116,7 @@ export function initFieldsMap() {
         }, 500);
     }
 
-    // MARKERS 
+    // MARKERS
     function renderMarkers() {
         clearMarkers();
         const bounds = [];
@@ -134,16 +127,75 @@ export function initFieldsMap() {
             const field = fieldMap.get(card.dataset.id);
             if (!field?.lat || !field?.lng) return;
 
+            const popupHTML = `
+                <a
+                    href="field.html?id=${field.id}"
+                    class="field-popup-link"
+                    aria-label="Ver detalles de ${field.name}"
+                >
+                    <div class="field-popup">
+
+                        <img
+                            src="${field.image}"
+                            alt="${field.name}"
+                            class="field-popup-image"
+                            loading="lazy"
+                        >
+
+                        <div class="field-popup-body">
+
+                            <h3 class="field-popup-title">
+                                ${field.name}
+                            </h3>
+
+                            <p class="field-popup-location">
+                                ${icons.mapMarker}
+                                ${field.zone}, ${field.city}
+                            </p>
+
+                            <p class="field-popup-type">
+                                ${icons.football}
+                                ${field.sizes?.join(" / ") || "Sin información"}
+                            </p>
+
+                            <p class="field-popup-surface">
+                                ${icons.shoePrints}
+                                ${field.surface?.[0] || "Sin información"}
+                            </p>
+
+                            <p class="field-popup-price">
+                                ${icons.dollar}
+                                Desde $${field.priceFrom.toLocaleString()}
+                            </p>
+
+                        </div>
+
+                    </div>
+                </a>
+            `;
+
             const marker = L.marker([field.lat, field.lng])
                 .addTo(map)
-                .bindPopup(`<strong>${field.name}</strong><br>${card.querySelector(".price")?.innerText || ""}`);
+                .bindPopup(popupHTML, {
+                    className: "field-popup-wrapper",
+                    maxWidth: 280
+                });
 
             marker.on("click", () => {
-                card.scrollIntoView({ behavior: "smooth", block: "center" });
-                card.style.boxShadow = "0 0 0 3px var(--color-primary)";
-                setTimeout(() => card.style.boxShadow = "", 1800);
+                card.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
 
-                if (userLocation) createRoute(field.lat, field.lng);
+                card.style.boxShadow = "0 0 0 3px var(--color-primary)";
+
+                setTimeout(() => {
+                    card.style.boxShadow = "";
+                }, 1800);
+
+                if (userLocation) {
+                    createRoute(field.lat, field.lng);
+                }
             });
 
             markers.push(marker);
@@ -151,7 +203,9 @@ export function initFieldsMap() {
         });
 
         if (bounds.length > 0) {
-            map.fitBounds(bounds, { padding: [60, 60] });
+            map.fitBounds(bounds, {
+                padding: [60, 60]
+            });
         }
     }
 

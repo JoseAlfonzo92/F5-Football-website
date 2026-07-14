@@ -1,3 +1,5 @@
+import { icons } from "../utils/icons.js";
+
 export function initFieldDetailMap() {
     const mapEl = document.getElementById("field-map");
     if (!mapEl) return;
@@ -57,28 +59,26 @@ export function initFieldDetailMap() {
             // USER LOCATION ICON
             userMarker = L.marker([userLat, userLng], {
                 icon: L.divIcon({
-                    className: 'user-location-icon',
+                    className: "user-location-icon",
                     html: `
-                        <div style="
-                            background: #3388ff; 
-                            color: white; 
-                            border: 3px solid white; 
-                            border-radius: 50%; 
-                            width: 40px; 
-                            height: 40px; 
-                            display: flex; 
-                            align-items: center; 
-                            justify-content: center; 
-                            font-size: 20px; 
-                            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-                        ">
-                            <i class="fas fa-person-walking"></i>
-                        </div>`,
-                    iconSize: [40, 40],
-                    iconAnchor: [20, 40]
+                        <div class="user-location-marker">
+                            <span class="user-location-pulse"></span>
+                            <span class="user-location-icon-svg">
+                                ${icons.userWalking}
+                            </span>
+                        </div>
+                    `,
+                    iconSize: [42, 42],
+                    iconAnchor: [21, 42],
+                    popupAnchor: [0, -45]
                 })
-            }).addTo(map)
-              .bindPopup("Tu ubicación actual");
+            })
+            .addTo(map)
+            .bindPopup("Tu ubicación actual", {
+                className: "user-popup",
+                closeButton: false,
+                offset: [0, -10]
+            });
 
             // Route
             routingControl = L.Routing.control({
