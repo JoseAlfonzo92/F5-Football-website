@@ -91,7 +91,7 @@ export function initFieldDetailMap() {
                 addWaypoints: false,
                 createMarker: () => null,
                 lineOptions: {
-                    styles: [{ color: '#3388ff', weight: 6, opacity: 0.85 }]
+                    styles: [{ color: 'var(--color-success)', weight: 6, opacity: 0.85 }]
                 },
                 show: false,
                 collapse: true

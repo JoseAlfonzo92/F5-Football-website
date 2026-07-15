@@ -90,15 +90,12 @@
     overflow: hidden;
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
-
-    
     transition:
         transform var(--transition-fast),
         box-shadow var(--transition-fast),
         opacity var(--transition),
         scale var(--transition),
         filter var(--transition);
-
     opacity: 1;
     scale: 1;
 }
@@ -236,16 +233,12 @@
     display: flex;
     align-items: center;
     gap: var(--space-xs);
-
     padding: var(--space-sm) var(--space-md);
-
     border: 1px solid var(--color-border);
     background: var(--color-bg);
     color: var(--color-text);
-
     border-radius: var(--border-radius-sm);
     cursor: pointer;
-
     transition: var(--transition-fast);
 }
 
@@ -266,7 +259,6 @@
     border-radius: var(--border-radius-md);
     overflow: hidden;
     margin-bottom: var(--space-lg);
-
     display: none; 
     background: var(--color-surface);
 }
@@ -341,21 +333,14 @@
     position: absolute;
     top: var(--space-sm);
     right: var(--space-sm);
-
     padding: var(--space-xs) var(--space-sm);
-
     background: var(--color-primary);
     color: var(--color-text-tags);
-
-
     border-radius: var(--border-radius-md);
-
     font-size: var(--font-size-xs);
     font-weight: 700;
     letter-spacing: 0.02em;
-
     box-shadow: var(--shadow-md);
-
     z-index: 2;
 }
 
@@ -380,7 +365,6 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-
     border-radius: var(--border-radius-md);
     margin-bottom: var(--space-sm);
 }
@@ -393,13 +377,8 @@
 
 .field-popup-title {
     margin: 0;
-
     color: var(--color-text);
-    font-size: clamp(
-        var(--font-size-sm),
-        2vw,
-        var(--font-size-md)
-    );
+    font-size: clamp( var(--font-size-sm), 2vw, var(--font-size-md));
     font-weight: 700;
     line-height: 1.3;
 }
@@ -408,21 +387,14 @@
     display: flex;
     align-items: center;
     gap: var(--space-xs);
-
     margin: 0;
-
     color: var(--color-text-muted);
-    font-size: clamp(
-        var(--font-size-xs),
-        1.6vw,
-        var(--font-size-sm)
-    );
+    font-size: clamp( var(--font-size-xs), 1.6vw, var(--font-size-sm));
     line-height: 1.35;
 }
 
 .field-popup-price {
     margin-top: var(--space-xs);
-
     color: var(--color-primary);
     font-size: var(--font-size-sm);
     font-weight: 700;
@@ -432,17 +404,12 @@
 
 .field-popup-wrapper .leaflet-popup-content-wrapper {
     position: relative;
-
     background: var(--color-bg);
     color: var(--color-text);
-
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
-
     box-shadow: var(--shadow-lg);
-
     overflow: visible;
-
     animation: popupIn var(--transition);
 }
 
@@ -460,51 +427,37 @@
 
 .field-popup-wrapper .leaflet-popup-close-button {
     position: absolute;
-
     top: -10px !important;
     right: -10px !important;
-
     display: flex !important;
     align-items: center;
     justify-content: center;
-
     width: 30px !important;
     height: 30px !important;
     padding: 0 !important;
-
     background-color: var(--color-surface) !important;
     background-image: none !important;
-
     border: 1px solid var(--color-border);
     border-radius: 50%;
-
     color: var(--color-text) !important;
-
     font-size: 18px !important;
     font-weight: 700;
     line-height: 1;
-
     text-decoration: none;
-
     opacity: 1 !important;
-
     box-shadow: var(--shadow-md);
-
     transition:
         background-color var(--transition-fast),
         color var(--transition-fast),
         transform var(--transition-fast),
         box-shadow var(--transition-fast);
-
     z-index: 1000;
 }
 
 .field-popup-wrapper .leaflet-popup-close-button:hover {
     background-color: var(--color-primary) !important;
     color: var(--color-text-buttons) !important;
-
     transform: scale(1.08);
-
     box-shadow: var(--shadow-lg);
 }
 
@@ -516,12 +469,9 @@
 
 .field-popup-link {
     display: block;
-
     color: inherit;
     text-decoration: none;
-
     border-radius: inherit;
-
     transition:
         transform var(--transition-fast),
         opacity var(--transition-fast);
@@ -557,18 +507,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 2rem;
     height: 2rem;
-
     background: var(--color-primary);
     color: var(--color-icon-inverse);
-
     border: 3px solid var(--color-bg);
     border-radius: 50%;
-
     box-shadow: var(--shadow-md);
-
     z-index: 2;
 }
 
@@ -580,12 +525,9 @@
 .user-location-pulse {
     position: absolute;
     inset: 0;
-
     background: var(--color-primary);
     border-radius: 50%;
-
     opacity: .35;
-
     animation: locationPulse 2s infinite;
 }
 
@@ -594,12 +536,9 @@
 .user-popup .leaflet-popup-content-wrapper {
     background: var(--color-surface);
     color: var(--color-text);
-
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
-
     box-shadow: var(--shadow-lg);
-
     animation: popupIn var(--transition);
 }
 

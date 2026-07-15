@@ -265,7 +265,7 @@
 
     </div>
 
-</div>
+    </div>
 
         <form class="add-field-form">
 
@@ -309,6 +309,18 @@
                         >
                     </div>
 
+                    <div class="form-group full-width">
+                    <label for="field-address">
+                        Dirección
+                    </label>
+
+                    <input
+                        type="text"
+                        id="field-address"
+                        placeholder="Ej: Av. Rivadavia 1234"
+                    >
+                    </div>
+
                     <div class="form-group">
                         <label for="field-type">Tipo principal</label>
 
@@ -343,6 +355,52 @@
                             rows="5"
                             placeholder="Contanos sobre la cancha, comodidades, estacionamiento, buffet, etc."
                         ></textarea>
+                    </div>
+
+                </div>
+
+            </div>
+
+        <!-- PRICING -->
+
+            <div class="form-block">
+
+                <h3>
+
+                    <span data-icon="dollar"></span>
+
+                    Precios
+
+                </h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="price-from">
+                            Precio desde
+                        </label>
+
+                        <input
+                            type="number"
+                            id="price-from"
+                            placeholder="8500"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="price-to">
+                            Precio hasta
+                        </label>
+
+                        <input
+                            type="number"
+                            id="price-to"
+                            placeholder="12000"
+                        >
+
                     </div>
 
                 </div>
@@ -418,7 +476,78 @@
 
                 </div>
 
+                    <div style="margin-top: 2rem;">
+
+                        <h4>Superficie</h4>
+
+                        <div class="checkbox-grid">
+
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="surface" value="Césped natural">
+                                <span>Césped natural</span>
+                            </label>
+
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="surface" value="Césped sintético">
+                                <span>Césped sintético</span>
+                            </label>
+
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="surface" value="Indoor - cancha techada (Futsal)">
+                                <span>Indoor (Futsal)</span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
             </div>
+
+                <!-- SCHEDULE -->
+
+                    <div class="form-block">
+
+                        <h3>
+
+                            <span data-icon="clock"></span>
+
+                            Horarios
+
+                        </h3>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="week-schedule">
+                                    Lunes a Viernes
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="week-schedule"
+                                    placeholder="09:00 - 23:00"
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="weekend-schedule">
+                                    Sábados y Domingos
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="weekend-schedule"
+                                    placeholder="08:00 - 00:00"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
             <!-- FEATURES -->
             <div class="form-block">
@@ -474,6 +603,92 @@
 
             </div>
 
+            <!-- BARBECUE -->
+
+<div class="form-block">
+
+    <h3>
+
+        <span data-icon="fire"></span>
+
+        Parrilla
+
+    </h3>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label for="cook-type">
+                Tipo
+            </label>
+
+            <select id="cook-type">
+
+                <option value="">
+                    No posee
+                </option>
+
+                <option value="grill">
+                    Solo parrilla
+                </option>
+
+                <option value="cook">
+                    Solo servicio de asador
+                </option>
+
+                <option value="both">
+                    Parrilla + Asador
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="grill-fee">
+                Precio parrilla
+            </label>
+
+            <input
+                type="number"
+                id="grill-fee"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="cook-service-fee">
+                Precio servicio de asador
+            </label>
+
+            <input
+                type="number"
+                id="cook-service-fee"
+            >
+
+        </div>
+
+        <div class="form-group full-width">
+
+            <label for="barbecue-notes">
+                Observaciones
+            </label>
+
+            <textarea
+                id="barbecue-notes"
+                rows="4"
+                placeholder="Una observación por línea"
+            ></textarea>
+
+        </div>
+
+    </div>
+
+</div>
+
             <!-- EXTRA INFO -->
             <div class="form-block">
 
@@ -495,6 +710,20 @@
                             placeholder="Ej: Empanadas, bebidas, hamburguesas..."
                         ></textarea>
                     </div>
+
+                    <div class="form-group">
+
+    <label for="available-jerseys">
+        Camisetas disponibles
+    </label>
+
+    <textarea
+        id="available-jerseys"
+        rows="4"
+        placeholder="Boca&#10;River&#10;Argentina&#10;Barcelona"
+    ></textarea>
+
+</div>
 
                     <div class="form-group">
                         <label for="extra-info">
@@ -542,8 +771,8 @@
             </div>
 
             <p class="form-disclaimer">
-    Al enviar esta solicitud aceptás que Fulsap se comunique con vos para validar la información y activar la publicación.
-</p>
+                Al enviar esta solicitud aceptás que Fulsap se comunique con vos para validar la información y activar la publicación.
+            </p>
 
             <!-- SUBMIT -->
             <button type="submit" class="btn-primary submit-btn">

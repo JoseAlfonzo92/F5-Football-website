@@ -105,7 +105,7 @@ export function initFieldsMap() {
             fitSelectedRoutes: true,
             createMarker: () => null,
             lineOptions: {
-                styles: [{ color: '#1e88e5', weight: 6, opacity: 0.8 }]
+                styles: [{ color: 'var(--color-primary)', weight: 6, opacity: 0.8 }]
             }
         }).addTo(map);
 

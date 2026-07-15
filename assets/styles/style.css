@@ -114,18 +114,16 @@ html {
     display: inline-block;
     width: 1em;
     height: 1em;
-
     fill: currentColor;
     stroke: currentColor;
     stroke-width: var(--icon-stroke);
-
     flex-shrink: 0;
     vertical-align: -0.125em;
 }
 
 .icon svg {
-    width: 100%;
-    height: 100%;
+    width: 1em;
+    height: 1em;
     display: block;
     fill: currentColor;
     stroke: currentColor;
@@ -261,18 +259,14 @@ a {
     position: absolute;
     right: 0;
     top: 200%;
-
     min-width: 220px;
     max-width: 90vw;
-
     display: flex;
     flex-direction: column;
-
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md);
-
     opacity: 0;
     transform: translateY(10px);
     visibility: hidden;
@@ -305,6 +299,7 @@ a {
 
 .quick-link:hover .icon {
     transform: rotate(180deg);
+    color: var(--color-success);
 }
 
 
@@ -315,14 +310,11 @@ a {
     padding: var(--space-sm);
     border-radius: 50%;
     cursor: pointer;
-
     color: var(--color-text);
     font-size: var(--font-size-md);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     transition: background var(--transition-fast),
                 transform var(--transition-fast),
                 color var(--transition-fast);
@@ -628,10 +620,6 @@ a {
         font-size:2.2rem;
     }
 
-    /* .btn-primary{
-        width:100%;
-        justify-content:center;
-    } */
 }
 
 @media (max-width: 480px) {
@@ -676,7 +664,6 @@ a {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-
     color: var(--color-primary);
     margin-bottom: var(--space-md);
 }
@@ -773,7 +760,6 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: var(--space-md);
-
     padding: var(--space-lg);
     margin: var(--space-lg) 0;
 }
@@ -782,18 +768,13 @@ a {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
-
     padding: var(--space-lg);
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     text-align: center;
-
     box-shadow: var(--shadow-sm);
-
     transition:
         transform var(--transition),
         box-shadow var(--transition),
@@ -837,13 +818,10 @@ a {
     max-width: 700px;
     margin: 0 auto;
     padding: 2.5rem;
-
     text-align: center;
-
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
-
     box-shadow: var(--shadow-md);
 }
 
@@ -862,7 +840,6 @@ a {
 .owner-cta-content > p {
     max-width: 500px;
     margin: 0 auto 2rem;
-
     color: var(--color-text-muted);
     line-height: 1.6;
 }
@@ -875,36 +852,26 @@ a {
 
 .pricing-badge {
     display: inline-block;
-
     padding: 0.45rem 1rem;
-
     background: var(--color-primary);
     color: var(--color-text-tags);
-
     border-radius: var(--border-radius-sm);
-
     font-size: var(--font-size-sm);
     font-weight: 600;
-
     margin-bottom: 1rem;
 }
 
 .price-subscription {
     color: var(--color-primary);
-
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
-
     line-height: 1;
 }
 
 .price-subscription small {
     display: block;
-
     margin-top: 0.5rem;
-
     color: var(--color-text-muted);
-
     font-size: var(--font-size-md);
     font-weight: 500;
 }
@@ -913,12 +880,9 @@ a {
 
 .owner-benefits {
     list-style: none;
-
     max-width: 420px;
-
     margin: 0 auto 2rem;
     padding: 0;
-
     display: grid;
     gap: 0.9rem;
 }
@@ -927,31 +891,22 @@ a {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-
     text-align: left;
-
     color: var(--color-text);
-
     font-size: var(--font-size-md);
 }
 
 .owner-benefits li::before {
     content: "✓";
-
     width: 24px;
     height: 24px;
-
     flex-shrink: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: var(--color-hover);
     color: var(--color-success);
-
     border-radius: 50%;
-
     font-size: 0.9rem;
     font-weight: 700;
 }
@@ -962,7 +917,6 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     min-width: 240px;
 }
 
@@ -1164,11 +1118,9 @@ a {
 .field-card {
     display: flex;
     gap: var(--space-md);
-
     background: var(--color-surface);
     border-radius: var(--border-radius-md);
     overflow: hidden;
-
     box-shadow: var(--shadow-sm);
     transition: transform var(--transition), box-shadow var(--transition);
 }
@@ -1181,20 +1133,16 @@ a {
 /* IMAGE */
 .field-image {
     position: relative;
-
     width: 180px;
     min-height: 140px;
-
     overflow: hidden;
     border-radius: var(--border-radius-md);
-
     flex-shrink: 0;
 }
 
 .field-image img {
     width: 100%;
     height: 100%;
-
     object-fit: cover;
     display: block;
 }
@@ -1204,18 +1152,13 @@ a {
     position: absolute;
     top: 12px;
     right: 12px;
-
     z-index: 2;
-
     background: var(--color-primary);
     color: var(--color-text-tags);
-
     display: inline-block;
     width: auto;
-
     padding: 4px 8px;
     font-size: var(--font-size-xs);
-
     border-radius: var(--border-radius-sm);
     box-shadow: var(--shadow-sm);
 }
@@ -1268,7 +1211,6 @@ a {
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-xs);
-
     margin-top: var(--space-sm);
 }
 
@@ -1294,15 +1236,11 @@ a {
 
 .btn-secondary {
     display: inline-block;
-
     padding: var(--space-sm) var(--space-md);
-
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-md);
-
     background: var(--color-primary);
     color: var(--color-text-buttons);
-
     transition: var(--transition);
 }
 
@@ -1337,13 +1275,9 @@ a {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-md);
-
     margin-bottom: var(--space-md);
-
     overflow: hidden;
-
     box-shadow: var(--shadow-sm);
-
     transition:
         background-color var(--transition),
         box-shadow var(--transition);
@@ -1355,20 +1289,14 @@ a {
 
 .home-faq summary {
     padding: var(--space-lg);
-
     cursor: pointer;
-
     font-size: var(--font-size-md);
     font-weight: 600;
-
     color: var(--color-text);
-
     list-style: none;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     transition: background-color var(--transition);
 }
 
@@ -1382,12 +1310,9 @@ a {
 
 .home-faq summary::after {
     content: "+";
-
     font-size: var(--font-size-xl);
     font-weight: 700;
-
     color: var(--color-primary);
-
     transition: transform var(--transition);
 }
 
@@ -1400,12 +1325,8 @@ a {
 }
 
 .home-faq details p {
-    padding:
-        0 var(--space-lg)
-        var(--space-lg);
-
+    padding: 0 var(--space-lg) var(--space-lg);
     color: var(--color-text-muted);
-
     font-size: var(--font-size-md);
     line-height: 1.7;
 }
@@ -1413,15 +1334,11 @@ a {
 .home-faq details p {
     max-height: 0;
     overflow: hidden;
-
     opacity: 0;
-
     padding: 0 var(--space-lg);
-
     color: var(--color-text-muted);
     font-size: var(--font-size-md);
     line-height: 1.7;
-
     transition:
         max-height 0.35s ease,
         opacity 0.25s ease,
@@ -1458,9 +1375,7 @@ a {
     }
 
     .home-faq details p {
-        padding:
-            0 var(--space-md)
-            var(--space-md);
+        padding: 0 var(--space-md) var(--space-md);
     }
 }
 
@@ -1488,7 +1403,6 @@ a {
     width: 90%;
     margin: auto;
     padding: var(--space-lg) 0;
-
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);

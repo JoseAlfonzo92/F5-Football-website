@@ -128,16 +128,11 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
-
     background: var(--color-primary);
     color: var(--color-text-buttons);
-
     padding: 12px 24px;
-
     border-radius: var(--border-radius-md);
-
     font-weight: 600;
-
     transition: var(--transition);
 }
 

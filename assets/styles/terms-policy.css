@@ -228,7 +228,7 @@
 .privacy-alert{
     display:flex;
     gap:14px;
-    align-items:flex-start;
+    align-items:center;
     margin-top:var(--space-lg);
     padding:18px;
     border-radius:var(--border-radius-lg);

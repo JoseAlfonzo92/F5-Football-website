@@ -1,3 +1,5 @@
+import { icons } from "../utils/icons.js";
+
 export function initAddFieldForm() {
     const form = document.querySelector('.add-field-form');
     if (!form) return;
@@ -170,26 +172,68 @@ export function initAddFieldForm() {
 
         const originalBtnText = submitBtn.innerHTML;
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `Subiendo imágenes... <i class="fas fa-spinner fa-spin"></i>`;
+        submitBtn.innerHTML = `Subiendo imágenes... <span class="spin">${icons.circleLoop}</span>`;
 
         try {
             const imageUrls = await uploadImagesToCloudinary();
 
             const formDataObj = {
-                nombre: document.getElementById('field-name').value.trim(),
-                whatsapp: document.getElementById('field-phone').value.trim(),
-                ubicacion: document.getElementById('field-location').value.trim(),
-                tipo: document.getElementById('field-type').value || 'No especificado',
-                descripcion: document.getElementById('field-description').value.trim(),
-                sizes: Array.from(document.querySelectorAll('input[name="sizes"]:checked')).map(i => i.value).join(', ') || 'Ninguno',
-                boots: Array.from(document.querySelectorAll('input[name="boots"]:checked')).map(i => i.value).join(', ') || 'Ninguno',
-                features: Array.from(document.querySelectorAll('input[name="features"]:checked')).map(i => i.value).join(', ') || 'Ninguna',
-                buffet: document.getElementById('buffet-items').value.trim(),
-                adicional: document.getElementById('extra-info').value.trim(),
-                fecha: new Date().toLocaleString('es-AR'),
-                imagesCount: imageUrls.length,
-                imageUrls: imageUrls.join('\n\n')
-            };
+            // Basic Information
+            nombre: document.getElementById('field-name').value.trim(),
+            whatsapp: document.getElementById('field-phone').value.trim(),
+            ubicacion: document.getElementById('field-location').value.trim(),
+            address: document.getElementById('field-address').value.trim(),
+            tipo: document.getElementById('field-type').value || 'No especificado',
+            descripcion: document.getElementById('field-description').value.trim(),
+
+            // Pricing
+            priceFrom: document.getElementById('price-from').value || 'No especificado',
+            priceTo: document.getElementById('price-to').value || 'No especificado',
+
+            // Field Configuration
+            sizes: Array.from(document.querySelectorAll('input[name="sizes"]:checked'))
+                .map(i => i.value)
+                .join(', ') || 'Ninguno',
+
+            boots: Array.from(document.querySelectorAll('input[name="boots"]:checked'))
+                .map(i => i.value)
+                .join(', ') || 'Ninguno',
+
+            surface: Array.from(document.querySelectorAll('input[name="surface"]:checked'))
+                .map(i => i.value)
+                .join(', ') || 'No especificada',
+
+            // Schedule
+            weekSchedule: document.getElementById('week-schedule').value.trim() || 'No especificado',
+            weekendSchedule: document.getElementById('weekend-schedule').value.trim() || 'No especificado',
+
+            // Features
+            features: Array.from(document.querySelectorAll('input[name="features"]:checked'))
+                .map(i => i.value)
+                .join(', ') || 'Ninguna',
+
+            // Buffet
+            buffet: document.getElementById('buffet-items').value.trim() || 'No especificado',
+
+            // Barbecue
+            cookType: document.getElementById('cook-type').value || 'No posee',
+            grillFee: document.getElementById('grill-fee').value || '0',
+            cookServiceFee: document.getElementById('cook-service-fee').value || '0',
+            barbecueNotes: document.getElementById('barbecue-notes').value.trim() || 'Ninguna',
+
+            // Jerseys
+            jerseys: document.getElementById('available-jerseys').value.trim() || 'No especificado',
+
+            // Additional Information
+            adicional: document.getElementById('extra-info').value.trim() || 'Ninguna',
+
+            // Images
+            imagesCount: imageUrls.length,
+            imageUrls: imageUrls.join('\n\n'),
+
+            // Metadata
+            fecha: new Date().toLocaleString('es-AR')
+        };
 
             await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formDataObj);
             

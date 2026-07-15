@@ -1,4 +1,5 @@
 import { fields } from "../data/fields.js";
+import { icons } from "../utils/icons.js";
 
 function getRatingDisplay(field) {
     if (!field.votes || field.votes === 0) {
@@ -49,7 +50,10 @@ export function renderFields() {
             <div class="field-content">
 
                 <div class="field-top">
-                    <h4>${field.name}</h4>
+                    <h4>
+                    ${icons.football}
+                    ${field.name}
+                    </h4>
 
                     <span class="rating">
                         ${getRatingDisplay(field)}
@@ -57,11 +61,12 @@ export function renderFields() {
                 </div>
 
                 <p class="location">
-                    <i class="fas fa-map-marker-alt"></i>
+                    ${icons.mapMarker}
                     ${field.location}
                 </p>
 
                 <p class="price">
+                    ${icons.dollar}
                     $${field.priceFrom.toLocaleString()} - $${field.priceTo.toLocaleString()}
                 </p>
 
