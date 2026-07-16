@@ -127,52 +127,58 @@ export function initFieldsMap() {
             const field = fieldMap.get(card.dataset.id);
             if (!field?.lat || !field?.lng) return;
 
-            const popupHTML = `
-                <a
-                    href="field.html?id=${field.id}"
-                    class="field-popup-link"
-                    aria-label="Ver detalles de ${field.name}"
-                >
-                    <div class="field-popup">
+    const popupHTML = `
+    <a
+        href="field.html?id=${field.id}"
+        class="field-popup-link"
+        aria-label="Ver detalles de ${field.name}"
+    >
+        <div class="field-popup">
 
-                        <img
-                            src="${field.image}"
-                            alt="${field.name}"
-                            class="field-popup-image"
-                            loading="lazy"
-                        >
+            <img
+                src="${field.image}"
+                alt="${field.name}"
+                class="field-popup-image"
+                loading="lazy"
+            >
 
-                        <div class="field-popup-body">
+            <div class="field-popup-body">
 
-                            <h3 class="field-popup-title">
-                                ${field.name}
-                            </h3>
+                <p class="field-popup-info">
 
-                            <p class="field-popup-location">
-                                ${icons.mapMarker}
-                                ${field.zone}, ${field.city}
-                            </p>
+                    <span class="field-popup-title">
+                        ${field.name}
+                    </span>
 
-                            <p class="field-popup-type">
-                                ${icons.football}
-                                ${field.sizes?.join(" / ") || "Sin información"}
-                            </p>
+                    <span class="field-popup-line">
+                        ${icons.mapMarker}
+                        ${field.zone}, ${field.city}
+                    </span>
 
-                            <p class="field-popup-surface">
-                                ${icons.shoePrints}
-                                ${field.surface?.[0] || "Sin información"}
-                            </p>
+                    <span class="field-popup-line">
+                        ${icons.football}
+                        ${field.sizes?.join(" / ") || "Sin información"}
 
-                            <p class="field-popup-price">
-                                ${icons.dollar}
-                                Desde $${field.priceFrom.toLocaleString()}
-                            </p>
+                        <span class="field-popup-dot">•</span>
 
-                        </div>
+                        ${icons.shoePrints}
+                        ${field.surface?.[0] || "Sin información"}
 
-                    </div>
-                </a>
-            `;
+                        <span class="field-popup-dot">•</span>
+
+                        ${icons.dollar}
+                        <span class="field-popup-price">
+                            $${field.priceFrom.toLocaleString()}
+                        </span>
+                    </span>
+
+                </p>
+
+            </div>
+
+        </div>
+    </a>
+`;
 
             const marker = L.marker([field.lat, field.lng])
                 .addTo(map)

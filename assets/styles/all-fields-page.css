@@ -358,46 +358,63 @@
     width: clamp(170px, 26vw, 220px);
     max-width: 100%;
     overflow: hidden;
+    transition: transform var(--transition-fast);
 }
 
 .field-popup-image {
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 2.4 / 1;
     object-fit: cover;
     border-radius: var(--border-radius-md);
     margin-bottom: var(--space-sm);
 }
 
 .field-popup-body {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space-xs) * .5);
+    margin-top: 0;
+}
+
+.field-popup-info {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: clamp(var(--font-size-xs), 1.6vw, var(--font-size-sm));
+    line-height: 1.45;
+    
 }
 
 .field-popup-title {
-    margin: 0;
+    display: block;
+    margin-bottom: var(--space-xs);
     color: var(--color-text);
-    font-size: clamp( var(--font-size-sm), 2vw, var(--font-size-md));
+    font-size: clamp(var(--font-size-sm), 2vw, var(--font-size-md));
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.25;
 }
 
-.field-popup-body p {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: clamp( var(--font-size-xs), 1.6vw, var(--font-size-sm));
-    line-height: 1.35;
+.field-popup-line + .field-popup-line {
+    margin-top: calc(var(--space-xs) * .5);
 }
 
 .field-popup-price {
-    margin-top: var(--space-xs);
     color: var(--color-primary);
-    font-size: var(--font-size-sm);
     font-weight: 700;
+}
+
+.field-popup-dot {
+    display: inline-block;
+    margin-inline: calc(var(--space-xs) * .75);
+    color: var(--color-text-muted);
+    opacity: .45;
+    font-weight: 700;
+}
+
+.field-popup-info svg {
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+    color: var(--color-icon);
+    vertical-align: -.125em;
+    margin-right: calc(var(--space-xs) * .5);
+    flex-shrink: 0;
 }
 
 /* LEAFLET POPUP */
@@ -432,15 +449,16 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 30px !important;
-    height: 30px !important;
+    width: calc(var(--icon-size-lg) + var(--space-sm));
+    height: calc(var(--icon-size-lg) + var(--space-sm));
+    font-size: var(--font-size-lg);
     padding: 0 !important;
     background-color: var(--color-surface) !important;
     background-image: none !important;
     border: 1px solid var(--color-border);
     border-radius: 50%;
     color: var(--color-text) !important;
-    font-size: 18px !important;
+    
     font-weight: 700;
     line-height: 1;
     text-decoration: none;

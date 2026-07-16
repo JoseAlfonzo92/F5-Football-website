@@ -129,6 +129,7 @@
 }
 
 .benefit-card{
+    text-align: left;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
@@ -448,6 +449,10 @@
 
     .benefit-card{
         padding:24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }
 
