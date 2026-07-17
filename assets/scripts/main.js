@@ -11,6 +11,7 @@ import { initLocationFilters } from "./data/locationFilters.js";
 import { renderFields } from "./pages-js/fieldsRenderer.js";
 import { renderFeaturedFields, renderHomeFields } from "./pages-js/cardRenderer.js";
 import { initAddFieldForm } from "./components/addFieldForm.js";
+import { initContactPageForm } from "./components/contactPageForm.js";
 import { applyLiveRatings } from "./services/ratings.js";
 import { initHeroAnimations } from "./animations/heroAnimations.js";
 import { injectIcons } from "./utils/icons.js";
@@ -54,5 +55,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("add-field-form")
     ) {
         initAddFieldForm();
+    }
+
+    // CONTACT PAGE
+    if (
+        document.querySelector(".contact-form") ||
+        document.getElementById("contact-form")
+    ) {
+        initContactPageForm();
     }
 });

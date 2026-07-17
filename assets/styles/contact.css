@@ -128,6 +128,19 @@
     transform: translateY(-1px);
 }
 
+.spin svg {
+  display: inline-block;
+  vertical-align: middle;
+  animation: spin 1s linear infinite;
+  width: 1em;   
+  height: 1em;  
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 
 @media (max-width: 768px) {
 
