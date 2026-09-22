@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description"
+    content="Términos y condiciones de Fulsap. Información sobre el uso del directorio de canchas de fútbol, responsabilidades y condiciones del servicio.">
+    <meta property="og:title" content="Términos y Condiciones | Fulsap">
+    <meta property="og:description" content="Conocé los términos y condiciones para utilizar Fulsap.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://domain.com/pages/terms-page.html">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/terms-page.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fulsap - Términos y Condiciones</title>
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/profile.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)">
+
+    <!-- font awesome cdn link -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+<!-- Leaflet CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
+
+<!-- Leaflet JS -->
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
+<!-- Routing Machine CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+ -->
+<!-- Routing Machine JS -->
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
+
+<!-- prevent theme flash on load -->
+<script>
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+})();
+</script>
+</head>
+<body>
+ <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <h1>Fulsap</h1>
+            </a>
+            
+            <!-- Desktop Search -->
+            <div class="search desktop-search">
+                <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="nav desktop-nav">
+                <ul>
+                    <li class="dropdown"><a href="#" class="quick-link">Enlaces rápidos <span data-icon="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../index.html">Inicio</a></li>
+                            <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                            <li><a href="all-teams.html">Todos los equipos</a></li>
+                            <li><a href="players.html">Jugadores</a></li>
+                            <li><a href="add-field.html">Agregar cancha</a></li>
+                            <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                             <li><a href="contact.html">Contacto</a></li>
+                            
+                             <!-- AUTH -->
+                            <li class="auth-nav-item" id="desktop-auth-nav"><a href="register.html">Registrarse</a></li>
+                            <li class="auth-nav-item" id="desktop-login-nav"><a href="login.html">Iniciar sesión</a></li>
+
+                            <li class="auth-nav-item" id="desktop-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                            <li class="auth-nav-item" id="desktop-logout-nav" hidden><button type="button" id="desktop-logout-button">Cerrar sesión</button></li>
+
+                        </ul>
+
+                    </li>
+                    <li><button class="theme-toggle"></button></li>
+               </ul>
+            </nav>
+
+            <!-- MOBILE -->
+            <div class="controls mobile-only">
+                <span data-icon="search" id="search-toggle"></span>
+                    <div class="menu-toggle" id="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+            </div>
+            
+            <!-- Mobile Search -->
+            <div class="search mobile-search" id="mobile-search">
+                <input type="text" class="global-search" placeholder="Buscar...">
+            </div>
+
+            <!-- Mobile Nav -->
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul>    
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                    <li><a href="all-teams.html">Todos los equipos</a></li>
+                    <li><a href="players.html">Jugadores</a></li>
+                    <li><a href="add-field.html">Agregar cancha</a></li>
+                    <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                    <li><a href="contact.html">Contacto</a></li>
+                    
+                    <!-- AUTH -->
+                    <li class="auth-nav-item" id="mobile-register-nav"><a href="register.html">Registrarse</a></li>
+                    <li class="auth-nav-item" id="mobile-login-nav"><a href="login.html">Iniciar sesión</a></li>
+                    <li class="auth-nav-item" id="mobile-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                    <li class="auth-nav-item" id="mobile-logout-nav" hidden><button type="button" id="mobile-logout-button">Cerrar sesión</button></li>
+
+                    <li><button class="theme-toggle mobile-theme"></button></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PROFILE -->
+
+<main class="profile-page">
+
+    <section class="profile-section">
+
+        <div class="profile-container">
+
+            <!-- PROFILE HEADER -->
+
+            <div class="profile-header">
+
+                <span
+                    data-icon="user"
+                    class="profile-icon"
+                ></span>
+
+                <div class="profile-header-info">
+
+                    <h2>Mi cuenta</h2>
+
+                    <p>
+                        Tu información de Fulsap.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                class="profile-message"
+                id="profile-message"
+                hidden
+                role="alert"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- LOADING -->
+
+            <div
+                class="profile-message"
+                id="profile-loading"
+            >
+                Cargando tu cuenta...
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                class="profile-message error"
+                id="profile-error"
+                hidden
+            >
+                No pudimos cargar tu información.
+            </div>
+
+
+            <!-- WELCOME -->
+
+<div
+    class="profile-welcome"
+    id="profile-welcome"
+    hidden
+>
+
+    <div class="profile-welcome-icon">
+        <span data-icon="user"></span>
+    </div>
+
+    <div class="profile-welcome-content">
+
+        <h3>
+            ¡Bienvenido a Fulsap!
+        </h3>
+
+        <p>
+            Nos alegra tenerte acá,
+            <strong id="welcome-display-name">—</strong>.
+        </p>
+
+        <p>
+            Tu cuenta te permitirá acceder a nuevas
+            funciones de Fulsap mientras seguís
+            disfrutando de las canchas y valoraciones
+            sin necesidad de iniciar sesión.
+        </p>
+
+        <button
+            type="button"
+            class="btn-primary"
+            id="welcome-continue"
+        >
+            Continuar a mi cuenta
+        </button>
+
+    </div>
+
+</div>
+
+
+            <!-- PROFILE VIEW -->
+
+            <div
+                class="profile-card"
+                id="profile-card"
+                hidden
+            >
+
+                <div class="profile-avatar">
+
+                    <span data-icon="user"></span>
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <div class="profile-field">
+
+                        <span class="profile-label">
+                            Nombre
+                        </span>
+
+                        <strong
+                            id="profile-display-name"
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <span class="profile-label">
+                            Nombre de usuario
+                        </span>
+
+                        <strong
+                            id="profile-username"
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <span class="profile-label">
+                            Correo electrónico
+                        </span>
+
+                        <strong
+                            id="profile-email"
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <span class="profile-label">
+                            Miembro desde
+                        </span>
+
+                        <strong
+                            id="profile-created-at"
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE ACTIONS -->
+
+                <div class="profile-actions">
+
+                    <button
+                        type="button"
+                        class="btn-primary profile-edit-button"
+                        id="profile-edit-button"
+                    >
+                        Editar perfil
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="profile-action"
+                        id="profile-logout-button"
+                    >
+                        Cerrar sesión
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAVED FIELDS -->
+
+<section
+    class="profile-saved-fields"
+    id="profile-saved-fields"
+>
+
+    <div class="profile-section-header">
+
+        <div>
+            <h3 class="profile-title">
+                Canchas guardadas
+            </h3>
+
+            <p class="profile-section-description">
+                Guardá tus canchas favoritas para encontrarlas rápidamente.
+            </p>
+        </div>
+
+        <span
+            data-icon="heart"
+            class="profile-section-icon"
+        ></span>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        class="profile-message"
+        id="saved-fields-loading"
+    >
+        Cargando tus canchas guardadas...
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+        class="saved-fields-empty"
+        id="saved-fields-empty"
+        hidden
+    >
+
+        <span
+            data-icon="heart"
+            class="saved-fields-empty-icon"
+        ></span>
+
+        <h4>
+            Todavía no guardaste ninguna cancha
+        </h4>
+
+        <p>
+            Cuando encuentres una cancha que te guste,
+            podés guardarla para verla acá más tarde.
+        </p>
+
+        <a
+            href="all-fields-page.html"
+            class="btn-primary"
+        >
+            Explorar canchas
+        </a>
+
+    </div>
+
+
+    <!-- SAVED FIELDS GRID -->
+
+    <div
+        class="saved-fields-grid"
+        id="saved-fields-grid"
+        hidden
+    >
+        <!-- Saved field cards will be rendered here -->
+    </div>
+
+</section>
+
+
+<!-- PLAYER PROFILE -->
+<section class="profile-section" id="profile-player">
+
+    <div class="profile-section-header">
+        <div>
+            <h2>Mi perfil de jugador</h2>
+            <p>
+                Completá tu información para que otros jugadores
+                y equipos puedan encontrarte.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- PLAYER PROFILE DISPLAY -->
+    <div id="player-profile-display">
+
+        <div class="profile-info">
+
+            <div class="profile-info-item">
+                <span class="profile-info-label">
+                    Posición
+                </span>
+                <strong
+                    id="player-profile-position"
+                >
+                    —
+                </strong>
+            </div>
+
+            <div class="profile-info-item">
+                <span class="profile-info-label">
+                    Zona / Barrio
+                </span>
+                <strong
+                    id="player-profile-zone"
+                >
+                    —
+                </strong>
+            </div>
+
+            <div class="profile-info-item">
+                <span class="profile-info-label">
+                    Nivel
+                </span>
+                <strong
+                    id="player-profile-level"
+                >
+                    —
+                </strong>
+            </div>
+
+            <div class="profile-info-item">
+                <span class="profile-info-label">
+                    Perfil público
+                </span>
+                <strong
+                    id="player-profile-public"
+                >
+                    Sí
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="profile-form-actions">
+
+            <button
+                type="button"
+                class="profile-button"
+                id="player-profile-edit"
+            >
+                Editar perfil
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PLAYER PROFILE EDIT FORM -->
+    <form
+        id="player-profile-form"
+        class="profile-edit-form"
+        hidden
+    >
+
+        <div class="profile-form-group">
+
+            <label for="player-position">
+                Posición
+            </label>
+
+            <select
+                id="player-position"
+                name="position"
+            >
+                <option value="">
+                    Seleccioná tu posición
+                </option>
+
+                <option value="Arquero">
+                    Arquero
+                </option>
+
+                <option value="Defensor">
+                    Defensor
+                </option>
+
+                <option value="Mediocampista">
+                    Mediocampista
+                </option>
+
+                <option value="Extremo">
+                    Extremo
+                </option>
+
+                <option value="Delantero">
+                    Delantero
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="profile-form-group">
+
+            <label for="player-zone">
+                Zona / Barrio
+            </label>
+
+            <input
+                type="text"
+                id="player-zone"
+                name="zone"
+                placeholder="Ej. Caballito"
+            >
+
+        </div>
+
+
+        <div class="profile-form-group">
+
+            <label for="player-level">
+                Nivel
+            </label>
+
+            <select
+                id="player-level"
+                name="level"
+            >
+                <option value="">
+                    Seleccioná tu nivel
+                </option>
+
+                <option value="Principiante">
+                    Principiante
+                </option>
+
+                <option value="Intermedio">
+                    Intermedio
+                </option>
+
+                <option value="Avanzado">
+                    Avanzado
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="profile-form-group">
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="player-is-public"
+                    name="is_public"
+                >
+
+                Mostrarme en la lista de jugadores
+            </label>
+
+            <small>
+                Si desactivás esta opción, tu perfil de jugador
+                no aparecerá públicamente.
+            </small>
+
+        </div>
+
+
+        <div class="profile-form-actions">
+
+            <button
+                type="submit"
+                class="profile-button"
+                id="player-profile-save"
+            >
+                Guardar información
+            </button>
+
+            <button
+                type="button"
+                class="profile-button"
+                id="player-profile-cancel"
+            >
+                Cancelar
+            </button>
+
+        </div>
+
+
+        <p
+            id="player-profile-message"
+            class="profile-message"
+            hidden
+        ></p>
+
+    </form>
+
+</section>
+
+<section class="profile-section player-availability-section">
+
+    <div class="profile-section-header">
+
+        <h3>
+            Mi disponibilidad
+        </h3>
+
+        <p>
+            Indicá cuándo estás disponible para jugar.
+        </p>
+
+    </div>
+
+
+    <form id="player-availability-form">
+
+        <div class="profile-form-grid">
+
+            <div class="form-group">
+
+                <label for="player-availability-date">
+                    Fecha
+                </label>
+
+                <input
+                    type="date"
+                    id="player-availability-date"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="player-availability-start">
+                    Desde
+                </label>
+
+                <input
+                    type="time"
+                    id="player-availability-start"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="player-availability-end">
+                    Hasta
+                </label>
+
+                <input
+                    type="time"
+                    id="player-availability-end"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="player-availability-zone">
+                    Zona
+                </label>
+
+                <input
+                    type="text"
+                    id="player-availability-zone"
+                    placeholder="Ej. Centro"
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn-primary"
+            id="player-availability-submit"
+        >
+            Agregar disponibilidad
+        </button>
+
+    </form>
+
+
+    <div
+        id="player-availability-message"
+        class="profile-message"
+        hidden
+    ></div>
+
+
+    <div
+        id="player-availability-list"
+        class="player-availability-list"
+    >
+    </div>
+
+</section>
+
+
+
+
+<!-- TEAM INVITATIONS -->
+
+<section
+    class="profile-section profile-invitations"
+    id="profile-invitations"
+>
+
+    <div class="profile-section-header">
+
+        <div>
+
+            <h3 class="profile-title">
+                Invitaciones a equipos
+            </h3>
+
+            <p class="profile-section-description">
+                Invitaciones de equipos que quieren que formes parte.
+            </p>
+
+        </div>
+
+        <span
+            data-icon="users"
+            class="profile-section-icon"
+        ></span>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        class="profile-message"
+        id="team-invitations-loading"
+    >
+        Cargando invitaciones...
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+        class="team-invitations-empty"
+        id="team-invitations-empty"
+        hidden
+    >
+
+        <p>
+            No tenés invitaciones pendientes.
+        </p>
+
+    </div>
+
+
+    <!-- INVITATIONS LIST -->
+
+    <div
+        class="team-invitations-list"
+        id="team-invitations-list"
+        hidden
+    >
+        <!-- Invitations will be rendered here -->
+    </div>
+
+</section>
+
+
+<!-- MY TEAMS -->
+
+<section
+    class="profile-teams"
+    id="profile-teams"
+>
+
+    <div class="profile-section-header">
+
+        <div>
+
+            <h3 class="profile-title">
+                Mis equipos
+            </h3>
+
+            <p class="profile-section-description">
+                Creá y administrá tus equipos para jugar partidos.
+            </p>
+
+        </div>
+
+        <span
+            data-icon="users"
+            class="profile-section-icon"
+        ></span>
+
+    </div>
+
+
+<div class="profile-teams-content">
+
+    <!-- LOADING -->
+
+    <div
+        class="profile-message"
+        id="profile-teams-loading"
+    >
+        Cargando tus equipos...
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+        class="saved-fields-empty"
+        id="profile-teams-empty"
+        hidden
+    >
+
+        <span
+            data-icon="users"
+            class="saved-fields-empty-icon"
+        ></span>
+
+        <h4>
+            Todavía no formás parte de ningún equipo
+        </h4>
+
+        <p>
+            Cuando formes parte de un equipo, vas a poder
+            verlo rápidamente desde acá.
+        </p>
+
+        <a
+            href="teams.html"
+            class="btn-primary"
+        >
+            Ver mis equipos
+        </a>
+
+    </div>
+
+
+    <!-- TEAMS CAROUSEL -->
+
+    <div
+        class="saved-fields-grid"
+        id="profile-teams-grid"
+        hidden
+    >
+        <!-- Team cards will be rendered here -->
+    </div>
+
+
+    <!-- ALL TEAMS BUTTON -->
+
+    <div class="profile-teams-actions">
+
+        <a
+            href="teams.html"
+            class="btn-primary"
+        >
+            Ver mis equipos
+        </a>
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+            <!-- EDIT PROFILE -->
+
+            <div
+                class="profile-edit"
+                id="profile-edit"
+                hidden
+            >
+
+                <h3 class="profile-title">
+                    Editar perfil
+                </h3>
+
+
+                <form id="profile-edit-form">
+
+                    <div class="form-group">
+
+                        <label for="edit-display-name">
+                            Nombre para mostrar
+                        </label>
+
+                        <input
+                            type="text"
+                            id="edit-display-name"
+                            name="display-name"
+                            maxlength="50"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="edit-username">
+                            Nombre de usuario
+                        </label>
+
+                        <input
+                            type="text"
+                            id="edit-username"
+                            name="username"
+                            maxlength="30"
+                            autocomplete="username"
+                            required
+                        >
+
+                        <small>
+                            Solo letras, números, puntos y guiones bajos.
+                        </small>
+
+                    </div>
+
+
+                    <div class="profile-actions">
+
+                        <button
+                            type="submit"
+                            class="btn-primary"
+                            id="profile-save"
+                        >
+                            Guardar cambios
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="profile-action"
+                            id="profile-cancel"
+                        >
+                            Cancelar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+    
+
+</main>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><span data-icon="instagram"></span></a>
+                <a href="https://www.facebook.com/" target="_blank"><span data-icon="facebook"></span></a>
+                <a href="https://x.com/" target="_blank"><span data-icon="xTwitter"></span></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><span data-icon="whatsapp"></span></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+<script type="module" src="../assets/scripts/main.js"></script>
+</body>
+</html>

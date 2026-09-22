@@ -1,14 +1,47 @@
-import { fields } from "../data/fields.js";
+import { supabase } from "../services/supabase.js";
 import { icons } from "../utils/icons.js";
 
-export function initFieldsMap() {
+export async function initFieldsMap() {
     const mapContainer = document.getElementById("map-container");
     if (!mapContainer) return;
+
+    const { data: fields, error } = await supabase
+    .from("fields")
+    .select(`
+        id,
+        name,
+        province,
+        city,
+        zone,
+        type,
+        price_from,
+        price_to,
+        latitude,
+        longitude,
+        image_url,
+        sizes,
+        surface
+    `)
+    .eq("is_active", true);
+
+if (error) {
+    console.error("FIELDS MAP QUERY ERROR:", error);
+    return;
+}
+
+
+const mappedFields = fields.map(field => ({
+    ...field,
+    lat: field.latitude,
+    lng: field.longitude,
+    image: field.image_url,
+    priceFrom: field.price_from
+}));
 
     const cards = Array.from(document.querySelectorAll(".fields-page-card"));
     const locationToggle = document.getElementById("use-location-toggle");
 
-    const fieldMap = new Map(fields.map(field => [field.id, field]));
+    const fieldMap = new Map(mappedFields.map(field => [field.id, field]));
 
     // Default view centered on Argentina
     const map = L.map("map-container").setView([-34.6037, -58.3816], 11);

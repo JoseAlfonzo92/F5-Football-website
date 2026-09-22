@@ -1,4 +1,4 @@
-import { fields } from "../data/fields.js";
+import { getFields } from "../pages-js/fieldsRenderer.js";
 
 // UNIQUE VALUES
 function unique(values) {
@@ -7,27 +7,25 @@ function unique(values) {
         .sort((a, b) => a.localeCompare(b));
 }
 
-// GET PROVINCES
-function getProvinces() {
+function getProvinces(fields) {
     return unique(fields.map(field => field.province));
 }
 
-// GET CITIES
-function getCities(province) {
-    const filtered = province 
+function getCities(fields, province) {
+    const filtered = province
         ? fields.filter(field => field.province === province)
         : fields;
-    
+
     return unique(filtered.map(field => field.city));
 }
 
-// GET ZONES
-function getZones(province, city) {
+function getZones(fields, province, city) {
     let filtered = fields;
 
     if (province) {
         filtered = filtered.filter(field => field.province === province);
     }
+
     if (city) {
         filtered = filtered.filter(field => field.city === city);
     }
@@ -35,12 +33,14 @@ function getZones(province, city) {
     return unique(filtered.map(field => field.zone));
 }
 
-export function initLocationFilters() {
+export async function initLocationFilters() {
     const provinceSelect = document.getElementById("filter-province");
     const citySelect = document.getElementById("filter-city");
     const zoneSelect = document.getElementById("filter-zone");
 
     if (!provinceSelect || !citySelect || !zoneSelect) return;
+
+    const fields = await getFields();
 
     // POPULATE SELECT
     function populateSelect(select, values = [], placeholder) {
@@ -63,9 +63,9 @@ export function initLocationFilters() {
     }
 
     // INITIAL LOAD
-    populateSelect(provinceSelect, getProvinces(), "Provincia");
-    populateSelect(citySelect, getCities(), "Ciudad");
-    populateSelect(zoneSelect, getZones(), "Zona");
+    populateSelect(provinceSelect, getProvinces(fields), "Provincia");
+    populateSelect(citySelect, getCities(fields), "Ciudad");
+    populateSelect(zoneSelect, getZones(fields), "Zona");
 
     // PROVINCE CHANGE
     provinceSelect.addEventListener("change", () => {
@@ -74,8 +74,8 @@ export function initLocationFilters() {
         citySelect.value = "";
         zoneSelect.value = "";
 
-        populateSelect(citySelect, getCities(province), "Ciudad");
-        populateSelect(zoneSelect, getZones(province), "Zona");
+        populateSelect(citySelect, getCities(fields, province), "Ciudad");
+populateSelect(zoneSelect, getZones(fields, province), "Zona");
 
         citySelect.disabled = false;
         zoneSelect.disabled = false;
@@ -90,7 +90,7 @@ export function initLocationFilters() {
 
         zoneSelect.value = "";
 
-        populateSelect(zoneSelect, getZones(province, city), "Zona");
+        populateSelect(zoneSelect, getZones(fields, province, city), "Zona");
         zoneSelect.disabled = false;
 
         if (window.updateFields) window.updateFields();

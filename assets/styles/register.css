@@ -1,0 +1,324 @@
+/* ============================================
+   AUTH / REGISTER PAGE
+   ============================================ */
+
+.auth-page {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    background: var(--color-bg);
+}
+
+.auth-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 460px;
+    padding: 32px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ============================================
+   AUTH HEADER
+   ============================================ */
+
+.auth-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.auth-header > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 56px;
+    height: 56px;
+
+    margin-bottom: var(--space-md);
+
+    color: var(--color-text-buttons);
+    background: var(--color-primary);
+
+    border-radius: 50%;
+
+    font-size: var(--icon-size-xl);
+}
+
+.auth-header h2 {
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+}
+
+.auth-header p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+}
+
+
+/* ============================================
+   AUTH FORM
+   ============================================ */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.form-group label {
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    color: var(--color-text);
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    outline: none;
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.form-group input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.form-group input:hover {
+    border-color: var(--color-primary);
+}
+
+.form-group input:focus {
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px var(--color-hover);
+}
+
+
+/* ============================================
+   PASSWORD VISIBILITY TOGGLE
+============================================ */
+
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-wrapper input {
+    width: 100%;
+    padding-right: calc(
+        var(--space-lg) + var(--icon-size-md)
+    );
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: var(--space-sm);
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: var(--color-icon-muted);
+
+    cursor: pointer;
+
+    border-radius: var(--border-radius-sm);
+
+    transition:
+        color var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+.password-toggle:hover {
+    color: var(--color-primary);
+    background-color: var(--color-hover);
+}
+
+.password-toggle:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.password-toggle [data-icon] {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle svg {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+
+    display: block;
+}
+
+
+/* ============================================
+   REGISTER BUTTON
+   ============================================ */
+
+.auth-submit {
+    width: 100%;
+    margin-top: var(--space-sm);
+
+    justify-content: center;
+    text-align: center;
+
+    border: none;
+    cursor: pointer;
+}
+
+.auth-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* ============================================
+   AUTH MESSAGE
+   ============================================ */
+
+.auth-message {
+    min-height: 20px;
+
+    margin-top: var(--space-xs);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+.auth-message:empty {
+    display: none;
+}
+
+.auth-message.success {
+    color: var(--color-success);
+}
+
+.auth-message.error {
+    color: var(--color-error);
+}
+
+.auth-message.warning {
+    color: var(--color-warning);
+}
+
+
+/* ============================================
+   AUTH FOOTER
+   ============================================ */
+
+.auth-footer {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+
+    border-top: 1px solid var(--color-border);
+
+    text-align: center;
+}
+
+.auth-footer p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+}
+
+.auth-footer a {
+    color: var(--color-primary);
+
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: color var(--transition-fast);
+}
+
+.auth-footer a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+
+/* ============================================
+   MOBILE
+   ============================================ */
+
+@media (max-width: 600px) {
+
+    .auth-page {
+        min-height: auto;
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    .auth-container {
+        padding: var(--space-lg);
+    }
+
+    .auth-header h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    .auth-header p {
+        font-size: var(--font-size-sm);
+    }
+
+}

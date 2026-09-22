@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta
-    name="description"
-    content="Explorá todas las canchas de fútbol publicadas en Fulsap. Buscá por provincia, ciudad, zona, precio, tipo de cancha o ubicación y encontrá la opción ideal para tu próximo partido.">
+    <meta name="description"
+    content="Términos y condiciones de Fulsap. Información sobre el uso del directorio de canchas de fútbol, responsabilidades y condiciones del servicio.">
+    <meta property="og:title" content="Términos y Condiciones | Fulsap">
+    <meta property="og:description" content="Conocé los términos y condiciones para utilizar Fulsap.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://domain.com/pages/terms-page.html">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/terms-page.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todas las Canchas de Fútbol en Argentina | Fulsap</title>
+    <title>Fulsap - Términos y Condiciones</title>
 
     <link rel="stylesheet" href="../assets/styles/style.css">
-    <link rel="stylesheet" href="../assets/styles/all-fields-page.css">
+    <link rel="stylesheet" href="../assets/styles/profile.css">
 
     <!-- Apple Touch icon (still useful for iOS) -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
@@ -19,22 +24,22 @@
 
     <!-- Theme‑specific favicons -->
     <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
-    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)"> 
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)">
 
     <!-- font awesome cdn link -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 
 <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
 
 <!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
 
 <!-- Routing Machine CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
-
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+ -->
 <!-- Routing Machine JS -->
-<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
 
 <!-- prevent theme flash on load -->
 <script>
@@ -55,7 +60,7 @@
 </script>
 </head>
 <body>
-   <!-- HEADER -->
+    <!-- HEADER -->
     <header class="header">
         <div class="container">
             <!-- Logo -->
@@ -133,90 +138,81 @@
             </nav>
         </div>
     </header>
+<!-- EMAIL CONFIRMED -->
 
-<section class="fields-page">
+<main class="auth-page">
 
-    <div class="fields-page-header">
-        <h3>Explorar Canchas</h3>
+    <section class="auth-section">
 
-        <!-- SEARCH + FILTER -->
-        <div class="fields-filters">
+        <div class="auth-container email-confirmed-container">
 
-    <input type="text" id="search-input" class="global-search" placeholder="Buscar por nombre, ciudad o zona...">
+            <div class="auth-header">
 
-     <select id="filter-province">
-       <option value="">Provincia</option>
-     </select>
+                <span
+                    data-icon="check"
+                    class="email-confirmed-icon"
+                ></span>
 
-    <select id="filter-city">
-        <option value="">Ciudad</option>
-    </select>
+                <h2>
+                    ¡Bienvenido a Fulsap!
+                </h2>
 
-    <select id="filter-zone">
-        <option value="">Zona</option>
-    </select>
+                <p>
+                    Tu correo electrónico fue confirmado correctamente.
+                </p>
 
-    <select id="filter-type">
-        <option value="">Tipo</option>
-        <option value="abierta">Abierta</option>
-        <option value="semi-techada">Semi techada</option>
-        <option value="techada">Techada</option>
-    </select>
+            </div>
 
 
-    <select id="sort-by">
-        <option value="">Ordenar</option>
+            <!-- USER INFO -->
 
-        <option value="rating">Mejor valoradas</option>
-        <option value="newest">Más recientes</option>
+            <div
+                class="email-confirmed-user"
+                id="email-confirmed-user"
+                hidden
+            >
 
-        <option value="price-low">Menor precio</option>
-        <option value="price-high">Mayor precio</option>
-    </select>
+                <p>
+                    Tu cuenta está lista,
+                    <strong id="confirmed-display-name">
+                        —
+                    </strong>.
+                </p>
 
-    <!-- CLEAR -->
-    <button id="clear-filters" class="btn-clear">
-        Limpiar filtros
-    </button>
+                <span id="confirmed-username">
+                    —
+                </span>
 
-    <!-- RESET ALL -->
-     <button id="reset-all" class="btn-reset-all">
-        Restablecer Todo
-    </button>
+            </div>
 
-    <div class="location-toggle">
-    <label class="switch">
-        <input type="checkbox" id="use-location-toggle">
-        <span class="slider"></span>
-    </label>
-    <span>Usar mi ubicación <span data-icon="mapMarker"></span> </span>
-     </div>
-  </div>
 
-   <div class="view-toggle">
+            <!-- ACTIONS -->
 
-    <button id="grid-view-btn" class="view-btn active">
-        <span data-icon="table"></span> Lista
-    </button>
+            <div class="email-confirmed-actions">
 
-    <button id="map-view-btn" class="view-btn">
-        <span data-icon="map"></span> Mapa
-    </button>
+                <a
+                    href="profile.html"
+                    class="btn-primary"
+                >
+                    Ir a mi cuenta
+                </a>
 
-</div>
-    </div>
 
-    <!-- GRID -->
-<div class="fields-page-list" id="fields-container"></div>
+                <a
+                    href="../index.html"
+                    class="profile-action"
+                >
+                    Explorar canchas
+                </a>
 
-    <!-- MAP -->
-<div id="map-container" class="map-container"></div>
+            </div>
 
-<p id="no-results" class="no-results">
-    No se encontraron canchas
-</p>
+        </div>
 
-</section>
+    </section>
+
+</main>
+
 
 <footer class="footer">
 

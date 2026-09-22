@@ -9,7 +9,7 @@
     <title>Todas las Canchas de Fútbol en Argentina | Fulsap</title>
 
     <link rel="stylesheet" href="../assets/styles/style.css">
-    <link rel="stylesheet" href="../assets/styles/all-fields-page.css">
+    <link rel="stylesheet" href="../assets/styles/player-page.css">
 
     <!-- Apple Touch icon (still useful for iOS) -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
@@ -134,89 +134,27 @@
         </div>
     </header>
 
-<section class="fields-page">
+<main>
 
-    <div class="fields-page-header">
-        <h3>Explorar Canchas</h3>
+    <section class="player-page">
 
-        <!-- SEARCH + FILTER -->
-        <div class="fields-filters">
+        <div
+            id="player-profile-container"
+            class="player-profile-container"
+        >
+        </div>
 
-    <input type="text" id="search-input" class="global-search" placeholder="Buscar por nombre, ciudad o zona...">
+        <p
+            id="player-not-found"
+            class="no-results"
+            hidden
+        >
+            No se encontró este jugador.
+        </p>
 
-     <select id="filter-province">
-       <option value="">Provincia</option>
-     </select>
+    </section>
 
-    <select id="filter-city">
-        <option value="">Ciudad</option>
-    </select>
-
-    <select id="filter-zone">
-        <option value="">Zona</option>
-    </select>
-
-    <select id="filter-type">
-        <option value="">Tipo</option>
-        <option value="abierta">Abierta</option>
-        <option value="semi-techada">Semi techada</option>
-        <option value="techada">Techada</option>
-    </select>
-
-
-    <select id="sort-by">
-        <option value="">Ordenar</option>
-
-        <option value="rating">Mejor valoradas</option>
-        <option value="newest">Más recientes</option>
-
-        <option value="price-low">Menor precio</option>
-        <option value="price-high">Mayor precio</option>
-    </select>
-
-    <!-- CLEAR -->
-    <button id="clear-filters" class="btn-clear">
-        Limpiar filtros
-    </button>
-
-    <!-- RESET ALL -->
-     <button id="reset-all" class="btn-reset-all">
-        Restablecer Todo
-    </button>
-
-    <div class="location-toggle">
-    <label class="switch">
-        <input type="checkbox" id="use-location-toggle">
-        <span class="slider"></span>
-    </label>
-    <span>Usar mi ubicación <span data-icon="mapMarker"></span> </span>
-     </div>
-  </div>
-
-   <div class="view-toggle">
-
-    <button id="grid-view-btn" class="view-btn active">
-        <span data-icon="table"></span> Lista
-    </button>
-
-    <button id="map-view-btn" class="view-btn">
-        <span data-icon="map"></span> Mapa
-    </button>
-
-</div>
-    </div>
-
-    <!-- GRID -->
-<div class="fields-page-list" id="fields-container"></div>
-
-    <!-- MAP -->
-<div id="map-container" class="map-container"></div>
-
-<p id="no-results" class="no-results">
-    No se encontraron canchas
-</p>
-
-</section>
+</main>
 
 <footer class="footer">
 

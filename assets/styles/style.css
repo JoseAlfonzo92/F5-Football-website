@@ -361,6 +361,124 @@ a {
     display: none;
 }
 
+/* ============================================
+   AUTH NAVIGATION
+   ============================================ */
+
+.auth-nav-item button {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+    font-weight: 400;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        color var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+.auth-nav-item button:hover {
+    color: var(--color-primary);
+}
+
+
+/* ============================================
+   LOGOUT BUTTON
+   ============================================ */
+
+#desktop-logout-button,
+#mobile-logout-button {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 100%;
+
+    border: none;
+    background: transparent;
+
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+
+    cursor: pointer;
+
+    transition:
+        color var(--transition-fast),
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+/* ============================================
+   DESKTOP LOGOUT
+   ============================================ */
+
+#desktop-logout-button {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+
+    padding: var(--space-md);
+
+    text-align: left;
+}
+
+
+/* ============================================
+   MOBILE LOGOUT
+   ============================================ */
+
+#mobile-logout-button {
+    display: block;
+
+    padding: var(--space-md);
+
+    text-align: right;
+}
+
+
+/* ============================================
+   HOVER
+   ============================================ */
+
+#desktop-logout-button:hover,
+#mobile-logout-button:hover {
+    color: var(--color-primary);
+    background-color: var(--color-hover);
+}
+
+
+/* ============================================
+   ACTIVE
+   ============================================ */
+
+#desktop-logout-button:active,
+#mobile-logout-button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================
+   KEYBOARD ACCESSIBILITY
+   ============================================ */
+
+#desktop-logout-button:focus-visible,
+#mobile-logout-button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--border-radius-sm);
+}
 /* MOBILE */
 @media (max-width: 768px) {
 
@@ -467,6 +585,7 @@ a {
         justify-content: flex-start;
 
     }
+    
 }
 
 
@@ -1544,4 +1663,96 @@ a {
     .social-icons {
         justify-content: center;
     }
+}
+
+
+/* ============================================
+   FAVORITE BUTTON
+   ============================================ */
+
+.card-image,
+.field-image {
+    position: relative;
+}
+
+
+.favorite-button {
+    position: absolute;
+
+    top: 12px;
+    left: 12px;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    color: #444;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.favorite-button:hover {
+    transform: scale(1.08);
+}
+
+
+.favorite-button:active {
+    transform: scale(0.94);
+}
+
+
+.favorite-button.is-favorite {
+    color: #e53935;
+}
+
+
+.favorite-button span {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1;
+}
+
+
+.favorite-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+
+/* ============================================
+   DARK THEME
+   ============================================ */
+
+[data-theme="dark"] .favorite-button {
+    background: rgba(30, 30, 30, 0.92);
+    color: #eee;
+}
+
+
+[data-theme="dark"] .favorite-button.is-favorite {
+    color: #ff6b6b;
 }

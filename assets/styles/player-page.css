@@ -1,0 +1,290 @@
+
+/* ============================================
+   PLAYER PAGE
+============================================ */
+
+.player-page {
+    width: 100%;
+    max-width: 900px;
+    min-height: 60vh;
+    margin: 0 auto;
+    padding: var(--space-lg);
+    color: var(--color-text);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-profile-container {
+    width: 100%;
+}
+
+.player-profile-card {
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+}
+
+.player-profile-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.player-profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 3px solid var(--color-primary);
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: 600;
+}
+
+.player-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.player-profile-identity {
+    min-width: 0;
+}
+
+.player-profile-identity h1 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-size: var(--font-size-2xl);
+}
+
+.player-profile-identity p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+}
+
+.player-profile-info {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.player-profile-detail {
+    padding: var(--space-md);
+    border-radius: var(--border-radius-md);
+    background: var(--color-surface);
+}
+
+.player-profile-label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.player-profile-value {
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+@media (max-width: 650px) {
+
+    .player-page {
+        padding: var(--space-md);
+    }
+
+    .player-profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .player-profile-info {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+#player-not-found {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+    text-align: center;
+}
+
+
+/* ============================================
+   PLAYER AVAILABILITY
+============================================ */
+
+.player-profile-availability {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.player-profile-availability h2 {
+    margin: 0 0 var(--space-md);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+
+/* ============================================
+   AVAILABILITY LIST
+============================================ */
+
+.player-profile-availability
+.player-availability-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+
+/* ============================================
+   AVAILABILITY CARD
+============================================ */
+
+.player-profile-availability
+.player-availability-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+
+    padding: var(--space-md);
+
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+}
+
+
+/* ============================================
+   STATUS
+============================================ */
+
+.player-availability-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.player-availability-status span {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: var(--color-success);
+}
+
+
+/* ============================================
+   INFO
+============================================ */
+
+.player-profile-availability
+.player-availability-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.player-profile-availability
+.player-availability-info strong {
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.player-profile-availability
+.player-availability-info span {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+
+.player-availability-empty {
+    margin: 0;
+
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+
+.player-invitation-section {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.player-invitation-section h2 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+.player-invitation-section p {
+    margin: 0 0 var(--space-md);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.player-invite-team {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+.player-invite-button {
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--border-radius-md);
+    background: var(--color-primary);
+    color: var(--color-bg);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.player-invite-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.player-invitation-message {
+    margin-top: var(--space-md) !important;
+    margin-bottom: 0 !important;
+}

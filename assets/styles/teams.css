@@ -1,0 +1,2607 @@
+/* ============================================================
+   TEAMS
+   Shared styles for:
+   - teams.html
+   - all-teams.html
+   - team.html
+   ============================================================ */
+
+
+/* ============================================================
+   COMMON
+   ============================================================ */
+.teams-page,
+.all-teams-page,
+.team-page {
+   width: 100%;
+}
+
+
+.teams-section,
+.all-teams-section,
+.team-section {
+    width: 100%;
+    padding: var(--space-lg) var(--space-md);
+}
+
+.teams-container,
+.all-teams-container,
+.team-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   COMMON MESSAGES
+   ============================================================ */
+.teams-message {
+    width: 100%;
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.teams-message.error {
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+.teams-message.success {
+    border-color: var(--color-success);
+    color: var(--color-success);
+}
+
+.teams-message.warning {
+    border-color: var(--color-warning);
+    color: var(--color-warning);
+}
+
+/* ============================================================
+   TEAMS PAGE HEADER
+   ============================================================ */
+.teams-header,
+.all-teams-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.teams-icon,
+.all-teams-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
+    color: var(--color-icon);
+}
+
+.teams-header-info,
+.all-teams-header-info {
+    min-width: 0;
+}
+
+.teams-header h2,
+.all-teams-header h1 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-size: var(--font-size-2xl);
+    line-height: 1.2;
+}
+
+.teams-header p,
+.all-teams-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.teams-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px var(--space-lg);
+    margin-bottom: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+}
+
+.teams-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
+    margin-bottom: var(--space-md);
+    color: var(--color-icon);
+}
+
+.teams-empty h3,
+.teams-empty h2 {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+.teams-empty p {
+    max-width: 520px;
+    margin: 0 0 var(--space-lg);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+/* ============================================================
+   MY TEAMS GRID
+   ============================================================ */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+/* ============================================================
+   MY TEAM CARD
+   ============================================================ */
+.team-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+}
+
+.team-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.team-card-content {
+    padding: var(--space-lg);
+}
+
+.team-card h3 {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+.team-card p {
+    margin: 0 0 var(--space-md);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+.team-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.team-card-meta span {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--color-hover);
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.team-card-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: auto;
+    padding: 0 var(--space-lg) var(--space-lg);
+}
+
+.team-card-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* ============================================================
+   CREATE TEAM
+   ============================================================ */
+.team-create {
+    width: 100%;
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.team-create-header {
+    margin-bottom: var(--space-lg);
+}
+
+.team-create-header h3 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+.team-create-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+/* ============================================================
+   ALL TEAMS SEARCH
+   ============================================================ */
+.all-teams-search {
+    position: relative;
+    width: 100%;
+    margin-bottom: var(--space-lg);
+}
+
+.all-teams-search input {
+    width: 100%;
+    min-height: 48px;
+    padding: var(--space-sm) var(--space-md) var(--space-sm) 48px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+    outline: none;
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.all-teams-search input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.all-teams-search input:focus {
+    border-color: var(--color-primary);
+    box-shadow:
+        0 0 0 3px
+        var(--color-hover);
+}
+
+.all-teams-search-icon {
+    position: absolute;
+    top: 50%;
+    left: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    color: var(--color-icon-muted);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* ============================================================
+   ALL TEAMS GRID
+   ============================================================ */
+.all-teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+}
+
+/* ============================================================
+   ALL TEAM CARD
+   ============================================================ */
+.all-team-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+}
+
+.all-team-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================================
+   ALL TEAM CARD HEADER / LOGO
+   ============================================================ */
+.all-team-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.all-team-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-bg);
+    color: var(--color-icon);
+}
+
+.all-team-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================================================
+   ALL TEAM CARD CONTENT
+   ============================================================ */
+.all-team-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--space-lg);
+}
+
+.all-team-card-content h2 {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    line-height: 1.3;
+}
+
+.all-team-description {
+    margin: 0 0 var(--space-md);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+.all-team-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.all-team-meta span {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--color-hover);
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.all-team-members {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: auto;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.all-team-members span:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    color: var(--color-icon);
+}
+
+/* ============================================================
+   ALL TEAM CARD ACTIONS
+   ============================================================ */
+.all-team-card-actions {
+    padding: 0 var(--space-lg) var(--space-lg);
+}
+
+.all-team-card-actions .team-card-button {
+    width: 100%;
+}
+
+/* ============================================================
+   TEAM DETAIL
+   ============================================================ */
+.team-detail-card {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================================
+   TEAM DETAIL HEADER
+   ============================================================ */
+.team-detail-header {
+
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-lg);
+
+    padding: var(--space-lg);
+
+    border-bottom: 1px solid var(--color-border);
+
+    background: var(--color-surface);
+
+}
+
+
+.team-detail-logo {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 110px;
+    height: 110px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    background: var(--color-bg);
+
+    color: var(--color-icon);
+
+}
+
+
+.team-detail-logo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.team-detail-info {
+
+    min-width: 0;
+
+}
+
+
+.team-detail-info h1 {
+
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-3xl);
+    line-height: 1.2;
+
+}
+
+
+.team-detail-description {
+
+    margin: 0 0 var(--space-md);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-md);
+
+    line-height: 1.6;
+
+}
+
+
+.team-detail-meta {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: var(--space-sm);
+
+}
+
+
+.team-detail-meta span {
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    background: var(--color-hover);
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+}
+
+
+/* ============================================================
+   TEAM DETAIL SECTIONS
+   ============================================================ */
+
+.team-detail-section {
+
+    padding: var(--space-lg);
+
+    border-bottom: 1px solid var(--color-border);
+
+}
+
+
+.team-detail-section:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.team-detail-section-header {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-md);
+
+    margin-bottom: var(--space-lg);
+
+}
+
+
+.team-detail-section-header h2 {
+
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-xl);
+
+}
+
+
+.team-detail-section-header p {
+
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+
+}
+
+
+.team-member-count {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 34px;
+    height: 34px;
+
+    padding: 0 var(--space-sm);
+
+    border-radius: 999px;
+
+    background: var(--color-hover);
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+
+}
+
+
+/* ============================================================
+   TEAM MEMBERS
+   ============================================================ */
+
+.team-members-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+
+    gap: var(--space-md);
+
+}
+
+
+.team-member-card {
+
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-md);
+
+    padding: var(--space-md);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-surface);
+
+    transition:
+        border-color var(--transition-fast),
+        background var(--transition-fast);
+
+}
+
+
+.team-member-card:hover {
+
+    border-color: var(--color-primary);
+
+    background: var(--color-hover);
+
+}
+
+
+.team-member-avatar {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    background: var(--color-bg);
+
+    color: var(--color-icon);
+
+}
+
+
+.team-member-avatar img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.team-member-info {
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+.team-member-info strong {
+
+    overflow: hidden;
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+
+.team-member-info span {
+
+    overflow: hidden;
+
+    margin-top: 2px;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-xs);
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+
+.team-member-role {
+
+    flex-shrink: 0;
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+
+}
+
+
+/* ============================================================
+   SMALL EMPTY STATES
+   ============================================================ */
+
+.team-empty-small {
+
+    padding: var(--space-lg);
+
+    border: 1px dashed var(--color-border);
+
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-surface);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+
+    text-align: center;
+
+}
+
+
+/* ============================================================
+   TEAM AVAILABILITY
+   ============================================================ */
+
+.team-availability-list {
+
+    display: grid;
+
+    gap: var(--space-md);
+
+}
+
+
+.team-availability-card {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-lg);
+
+    padding: var(--space-md);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-surface);
+
+    transition:
+        border-color var(--transition-fast),
+        background var(--transition-fast);
+
+}
+
+
+.team-availability-card:hover {
+
+    border-color: var(--color-primary);
+
+    background: var(--color-hover);
+
+}
+
+
+.team-availability-date {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-xs);
+
+    min-width: 0;
+
+}
+
+
+.team-availability-date strong {
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+
+    text-transform: capitalize;
+
+}
+
+
+.team-availability-date span {
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+}
+
+
+.team-availability-field {
+
+    flex-shrink: 0;
+
+    max-width: 45%;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+
+    text-align: right;
+
+}
+
+
+/* ============================================================
+   ADD AVAILABILITY
+   ============================================================ */
+
+.team-availability-create {
+
+    margin-top: var(--space-lg);
+
+    padding: var(--space-lg);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius-lg);
+
+    background: var(--color-surface);
+
+}
+
+
+.team-availability-create h3 {
+
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-lg);
+
+}
+
+
+.team-availability-create > p {
+
+    margin: 0 0 var(--space-lg);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+
+}
+
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+
+.team-create .form-group,
+.team-availability-create .form-group {
+
+    margin-bottom: var(--space-md);
+
+}
+
+
+.team-create label,
+.team-availability-create label {
+
+    display: block;
+
+    margin-bottom: var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+}
+
+
+.team-create input,
+.team-create textarea,
+.team-create select,
+.team-availability-create input,
+.team-availability-create select {
+
+    width: 100%;
+
+    padding: 11px var(--space-md);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-bg);
+
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    outline: none;
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+
+}
+
+
+.team-create textarea {
+
+    min-height: 100px;
+
+    resize: vertical;
+
+}
+
+
+.team-create input:focus,
+.team-create textarea:focus,
+.team-create select:focus,
+.team-availability-create input:focus,
+.team-availability-create select:focus {
+
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px
+        var(--color-hover);
+
+}
+
+
+.team-create input::placeholder,
+.team-create textarea::placeholder {
+
+    color: var(--color-text-muted);
+
+}
+
+
+/* ============================================================
+   PROFILE ACTIONS
+   ============================================================ */
+/* 
+.team-create .profile-actions,
+.team-availability-create .profile-actions {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: var(--space-sm);
+
+    margin-top: var(--space-lg);
+
+}
+
+
+.team-create .btn-primary,
+.team-availability-create .btn-primary {
+
+    cursor: pointer;
+
+}
+
+
+.team-create button:disabled,
+.team-availability-create button:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+ */
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+/* .sr-only {
+
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+
+} */
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .teams-section,
+    .all-teams-section,
+    .team-section {
+
+        padding:
+            var(--space-lg)
+            var(--space-sm);
+
+    }
+
+
+    .teams-header,
+    .all-teams-header {
+
+        align-items: flex-start;
+
+    }
+
+
+    .teams-header h2,
+    .all-teams-header h1 {
+
+        font-size: var(--font-size-xl);
+
+    }
+
+
+    .team-detail-header {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+
+    }
+
+
+    .team-detail-info {
+
+        width: 100%;
+
+    }
+
+
+    .team-detail-info h1 {
+
+        font-size: var(--font-size-2xl);
+
+    }
+
+
+    .team-detail-meta {
+
+        justify-content: center;
+
+    }
+
+
+    .team-detail-section {
+
+        padding: var(--space-md);
+
+    }
+
+
+    .team-detail-section-header {
+
+        align-items: flex-start;
+
+    }
+
+
+    .team-availability-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: var(--space-sm);
+
+    }
+
+
+    .team-availability-field {
+
+        max-width: 100%;
+
+        text-align: left;
+
+    }
+
+
+    .team-create .profile-actions,
+    .team-availability-create .profile-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .team-create .profile-actions button,
+    .team-availability-create .profile-actions button {
+
+        width: 100%;
+
+    }
+
+}
+
+
+.team-challenge-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+
+/* ============================================
+   WEEKLY TEAM SCHEDULE
+============================================ */
+
+/* ==========================================
+   TEAM WEEKLY SCHEDULE
+========================================== */
+
+.team-weekly-schedule {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(280px, 1fr)
+    );
+
+    gap: var(--space-md);
+
+    margin-top: var(--space-md);
+}
+
+
+/* ==========================================
+   SCHEDULE DAY CARD
+========================================== */
+
+.team-schedule-day {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-md);
+
+    padding: var(--space-lg);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.team-schedule-day:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--color-primary);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ==========================================
+   DAY HEADER
+========================================== */
+
+.team-schedule-day-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: var(--space-md);
+
+    padding-bottom: var(--space-md);
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.team-schedule-day-header strong {
+    color: var(--color-text);
+
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.team-schedule-day-header span {
+    max-width: 55%;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-xs);
+    line-height: 1.4;
+
+    text-align: right;
+    word-break: break-word;
+}
+
+
+/* ==========================================
+   SCHEDULE SLOTS
+========================================== */
+
+.team-schedule-slots {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-sm);
+}
+
+
+/* ==========================================
+   SCHEDULE SLOT
+========================================== */
+
+.team-schedule-slot {
+    display: flex;
+    align-items: center;
+
+    min-height: 42px;
+
+    padding: var(--space-sm) var(--space-md);
+
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.team-schedule-slot:hover {
+    background: var(--color-hover);
+
+    border-color: var(--color-primary);
+}
+
+
+/* ==========================================
+   SCHEDULE TIME
+========================================== */
+
+.team-schedule-time {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-sm);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+.team-schedule-time::before {
+    content: "🕐";
+
+    flex-shrink: 0;
+
+    font-size: var(--icon-size-sm);
+}
+
+
+/* ==========================================
+   LOADING / EMPTY STATES
+========================================== */
+
+#team-schedule-loading,
+#team-schedule-empty {
+    margin-top: var(--space-md);
+}
+
+
+/* ==========================================
+   ADD SCHEDULE
+========================================== */
+
+.team-schedule-create {
+    margin-top: var(--space-lg);
+
+    padding: var(--space-lg);
+
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.team-schedule-create h3 {
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-xl);
+    line-height: 1.3;
+}
+
+.team-schedule-create > p {
+    margin: 0 0 var(--space-lg);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   SCHEDULE FORM
+========================================== */
+
+#team-schedule-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-md);
+}
+
+
+/* ==========================================
+   FORM GROUP
+========================================== */
+
+#team-schedule-form .form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-xs);
+}
+
+#team-schedule-form .form-group label {
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   FORM CONTROLS
+========================================== */
+
+#team-schedule-form select,
+#team-schedule-form input[type="time"] {
+    width: 100%;
+
+    min-height: 42px;
+
+    padding: var(--space-sm) var(--space-md);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+}
+
+
+/* ==========================================
+   FORM FOCUS
+========================================== */
+
+#team-schedule-form select:focus,
+#team-schedule-form input[type="time"]:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px var(--color-hover);
+}
+
+
+/* ==========================================
+   FORM DISABLED
+========================================== */
+
+#team-schedule-form select:disabled,
+#team-schedule-form input[type="time"]:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.6;
+}
+
+
+/* ==========================================
+   FORM ACTIONS
+========================================== */
+
+#team-schedule-form .profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: var(--space-sm);
+
+    margin-top: var(--space-sm);
+}
+
+
+/* ==========================================
+   ADD SCHEDULE BUTTON
+========================================== */
+
+#add-schedule-button {
+    margin-top: var(--space-md);
+}
+
+/* ==========================================
+   SCHEDULE CANCEL BUTTON
+========================================== */
+
+#schedule-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: var(--space-sm);
+
+    padding: var(--space-sm) var(--space-md);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    color: var(--color-text-muted);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+/* Hover */
+
+#schedule-cancel:hover {
+    background: var(--color-surface);
+
+    border-color: var(--color-error);
+
+    color: var(--color-error);
+
+    box-shadow: var(--shadow-sm);
+
+    transform: translateY(-1px);
+}
+
+
+/* Active */
+
+#schedule-cancel:active {
+    transform: translateY(0);
+
+    box-shadow: none;
+}
+
+
+/* Focus */
+
+#schedule-cancel:focus {
+    outline: none;
+
+    border-color: var(--color-error);
+
+    box-shadow:
+        0 0 0 3px var(--color-hover);
+}
+
+
+/* Disabled */
+
+#schedule-cancel:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.6;
+
+    transform: none;
+}
+
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    #schedule-cancel {
+        width: 100%;
+    }
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .team-weekly-schedule {
+        grid-template-columns: 1fr;
+    }
+
+    .team-schedule-day {
+        padding: var(--space-md);
+    }
+
+    .team-schedule-create {
+        padding: var(--space-md);
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .team-schedule-day-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .team-schedule-day-header span {
+        max-width: 100%;
+
+        text-align: left;
+    }
+
+    #team-schedule-form .profile-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #team-schedule-form .profile-actions button {
+        width: 100%;
+    }
+
+    #add-schedule-button {
+        width: 100%;
+    }
+
+}
+
+/* ==========================================
+   ADD SCHEDULE BUTTON
+========================================== */
+
+#add-schedule-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: var(--space-sm);
+
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    color: var(--color-primary);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+/* Hover */
+
+#add-schedule-button:hover {
+    background: var(--color-primary);
+
+    border-color: var(--color-primary);
+
+    color: var(--color-text-buttons);
+
+    box-shadow: var(--shadow-sm);
+
+    transform: translateY(-1px);
+}
+
+
+/* Active */
+
+#add-schedule-button:active {
+    transform: translateY(0);
+
+    box-shadow: none;
+}
+
+
+/* Focus */
+
+#add-schedule-button:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px var(--color-hover);
+}
+
+
+/* Keyboard focus */
+
+#add-schedule-button:focus-visible {
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px var(--color-hover);
+}
+
+
+/* Disabled */
+
+#add-schedule-button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.6;
+
+    transform: none;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+    #add-schedule-button {
+        width: 100%;
+    }
+
+}
+
+
+
+
+/* ==========================================
+   TEAM CHALLENGES
+========================================== */
+
+.team-challenges-list {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(320px, 1fr)
+    );
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+
+/* ==========================================
+   CHALLENGE CARD
+========================================== */
+
+.team-challenge-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+
+    padding: var(--space-lg);
+
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.team-challenge-card:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--color-primary);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ==========================================
+   CHALLENGE HEADER
+========================================== */
+
+.team-challenge-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md);
+}
+
+.team-challenge-title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+
+    min-width: 0;
+}
+
+.team-challenge-title strong {
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    line-height: 1.3;
+
+    word-break: break-word;
+}
+
+.team-challenge-title span {
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+}
+
+
+/* ==========================================
+   CHALLENGE STATUS
+========================================== */
+
+.team-challenge-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+
+    flex-shrink: 0;
+
+    padding: var(--space-xs) var(--space-sm);
+
+    border-radius: 999px;
+
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.team-challenge-status-icon {
+    font-size: var(--font-size-xs);
+}
+
+
+/* Pending */
+
+.team-challenge-card[data-status="pending"]
+.team-challenge-status {
+    background: var(--color-hover);
+    color: var(--color-warning);
+}
+
+
+/* Accepted */
+
+.team-challenge-card[data-status="accepted"]
+.team-challenge-status {
+    background: var(--color-hover);
+    color: var(--color-success);
+}
+
+
+/* Rejected */
+
+.team-challenge-card[data-status="rejected"]
+.team-challenge-status {
+    background: var(--color-surface);
+    color: var(--color-error);
+}
+
+
+/* Cancelled */
+
+.team-challenge-card[data-status="cancelled"]
+.team-challenge-status {
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+}
+
+
+/* ==========================================
+   CHALLENGE DETAILS
+========================================== */
+
+.team-challenge-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+
+    padding-top: var(--space-md);
+
+    border-top: 1px solid var(--color-border);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+}
+
+.team-challenge-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+
+    line-height: 1.4;
+}
+
+.team-challenge-detail-icon {
+    flex-shrink: 0;
+
+    width: var(--icon-size-sm);
+
+    color: var(--color-icon);
+
+    font-size: var(--icon-size-sm);
+}
+
+.team-challenge-detail span:last-child {
+    min-width: 0;
+    word-break: break-word;
+}
+
+
+/* ==========================================
+   CHALLENGE MESSAGE
+========================================== */
+
+.team-challenge-message {
+    padding: var(--space-md);
+
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.team-challenge-message-label {
+    display: block;
+
+    margin-bottom: var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   CHALLENGE ACTIONS
+========================================== */
+
+.team-challenge-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+
+    padding-top: var(--space-sm);
+}
+
+
+/* ==========================================
+   CHALLENGE CREATE
+========================================== */
+
+.team-challenge-create {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.team-challenge-create h3 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    line-height: 1.3;
+}
+
+.team-challenge-create > p {
+    margin: 0 0 var(--space-lg);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   CHALLENGE FORM
+========================================== */
+
+#team-challenge-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+
+/* ==========================================
+   FORM GROUP
+========================================== */
+
+#team-challenge-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+#team-challenge-form .form-group label {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   FORM CONTROLS
+========================================== */
+
+#team-challenge-form select,
+#team-challenge-form input[type="time"],
+#team-challenge-form textarea {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+}
+
+#team-challenge-form select,
+#team-challenge-form input[type="time"] {
+    min-height: 42px;
+}
+
+#team-challenge-form textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+
+/* Focus */
+
+#team-challenge-form select:focus,
+#team-challenge-form input[type="time"]:focus,
+#team-challenge-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+
+/* Placeholder */
+
+#team-challenge-form textarea::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.8;
+}
+
+
+/* Disabled */
+
+#team-challenge-form select:disabled,
+#team-challenge-form input[type="time"]:disabled,
+#team-challenge-form textarea:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+
+/* ==========================================
+   SCHEDULE COMPARISON
+========================================== */
+
+.challenge-schedule-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+}
+
+
+/* ==========================================
+   SCHEDULE RECOMMENDATIONS
+========================================== */
+
+#challenge-schedule-recommendations {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+#challenge-schedule-recommendations h4 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+}
+
+#challenge-schedule-recommendations p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   SCHEDULE LIST
+========================================== */
+
+.challenge-schedule-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+
+/* ==========================================
+   SCHEDULE RECOMMENDATION CARD
+========================================== */
+
+.challenge-schedule-option {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    width: 100%;
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    color: var(--color-text);
+    text-align: left;
+    cursor: pointer;
+    transition:
+        border-color var(--transition-fast),
+        background var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.challenge-schedule-option:hover {
+    transform: translateY(-1px);
+    border-color: var(--color-primary);
+    background: var(--color-hover);
+    box-shadow: var(--shadow-sm);
+}
+
+.challenge-schedule-option:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+.challenge-schedule-option strong {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+}
+
+.challenge-schedule-option span {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}
+
+
+/* ==========================================
+   SCHEDULE EMPTY / NO MATCH
+========================================== */
+
+#challenge-schedule-empty,
+#challenge-schedule-no-match {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+#challenge-schedule-no-match {
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+}
+
+
+/* ==========================================
+   FORM ACTIONS
+========================================== */
+
+#team-challenge-form .profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+
+/* ==========================================
+   LOADING / EMPTY STATES
+========================================== */
+
+#team-challenges-loading,
+#team-challenges-empty {
+    margin-top: var(--space-md);
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .team-challenges-list {
+        grid-template-columns: 1fr;
+    }
+
+    .team-challenge-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .team-challenge-status {
+        align-self: flex-start;
+    }
+
+    .challenge-schedule-list {
+        grid-template-columns: 1fr;
+    }
+
+    .team-challenge-create {
+        padding: var(--space-md);
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .team-challenge-card {
+        padding: var(--space-md);
+    }
+
+    .team-challenge-create {
+        padding: var(--space-md);
+    }
+
+    #team-challenge-form .profile-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #team-challenge-form .profile-actions button {
+        width: 100%;
+    }
+
+}
+
+
+
+/* ============================================
+   TEAM MATCHES
+============================================ */
+
+.team-matches-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+
+/* ============================================
+   MATCH CARD
+============================================ */
+
+.team-match-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.team-match-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ============================================
+   MATCH TEAMS
+============================================ */
+
+.team-match-teams {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+
+.team-match-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    min-width: 0;
+    text-align: center;
+}
+
+
+.team-match-team strong {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+
+/* ============================================
+   TEAM LOGO / FALLBACK ICON
+============================================ */
+
+.team-match-team img,
+.team-match-team-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+}
+
+
+.team-match-team img {
+    display: block;
+    object-fit: cover;
+    border: 1px solid var(--color-border);
+}
+
+
+.team-match-team-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+    color: var(--color-icon-muted);
+    font-size: var(--icon-size-md);
+    border: 1px solid var(--color-border);
+}
+
+
+/* ============================================
+   VS
+============================================ */
+
+.team-match-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 var(--space-sm);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+}
+
+
+/* ============================================
+   SCORE
+============================================ */
+
+.team-match-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    min-width: 70px;
+}
+
+
+.team-match-score strong {
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    line-height: 1;
+    font-weight: 700;
+}
+
+
+.team-match-score span {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+
+/* ============================================
+   MATCH DETAILS
+============================================ */
+
+.team-match-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+
+.team-match-date,
+.team-match-field {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+
+/* ============================================
+   MATCH STATUS
+============================================ */
+.team-match-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+}
+
+
+.team-match-status-icon {
+    font-size: var(--font-size-xs);
+}
+
+
+/* ============================================
+   STATUS — SCHEDULED
+============================================ */
+
+.team-match-card[data-status="scheduled"]
+.team-match-status {
+    background: var(--color-hover);
+    color: var(--color-warning);
+}
+
+
+/* ============================================
+   STATUS — PLAYED
+============================================ */
+
+.team-match-card[data-status="played"]
+.team-match-status {
+    background: var(--color-hover);
+    color: var(--color-success);
+}
+
+
+/* ============================================
+   STATUS — CANCELLED
+============================================ */
+
+.team-match-card[data-status="cancelled"]
+.team-match-status {
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+}
+
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+
+#team-matches-empty {
+    margin-top: var(--space-md);
+}
+
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 600px) {
+
+    .team-matches-list {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+
+
+    .team-match-card {
+        padding: var(--space-md);
+    }
+
+
+    .team-match-team img,
+    .team-match-team-icon {
+        width: 46px;
+        height: 46px;
+    }
+
+
+    .team-match-team strong {
+        font-size: var(--font-size-xs);
+    }
+
+
+    .team-match-score strong {
+        font-size: var(--font-size-lg);
+    }
+
+}

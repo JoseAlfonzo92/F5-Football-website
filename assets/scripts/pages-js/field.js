@@ -1,8 +1,35 @@
-import { fields } from "../data/fields.js";
-import { submitRating } from "../services/ratings.js";
+import { supabase } from "../services/supabase.js";
+import { getRatings, submitRating } from "../services/ratings.js";
 import { icons } from "../utils/icons.js";
 
+import {
+    isFavorite,
+    toggleFavorite
+} from "../services/favorites.js";
+
+import {
+    getCurrentUser
+} from "../services/auth.js";
+
 //  HELPER FUNCTIONS
+
+function getFieldFavoriteButton(field) {
+    return `
+        <button
+            type="button"
+            class="favorite-button field-page-favorite"
+            data-field-id="${field.id}"
+            aria-label="Guardar ${field.name}"
+            aria-pressed="false"
+            hidden
+        >
+            <span data-icon="heart">
+                ${icons.heart || "♡"}
+            </span>
+        </button>
+    `;
+}
+
 function renderFieldSizes(field) {
     const container = document.getElementById("field-sizes-container");
     if (!container || !field.sizes?.length) return;
@@ -304,7 +331,7 @@ function getFieldTypeTag(type) {
     }
 }
 
-function renderSimilarFields(currentField) {
+function renderSimilarFields(currentField, fields) {
     const container = document.getElementById("similar-fields-carousel");
 
     if (!container) return;
@@ -838,13 +865,268 @@ function renderBarbecue(field) {
 }
 
 
+async function initFieldFavoriteButton(field) {
+
+    const button =
+        document.querySelector(".field-page-favorite");
+
+    if (!button) return;
+
+
+    const user =
+        await getCurrentUser();
+
+
+    // ----------------------------------------
+    // LOGGED OUT
+    // ----------------------------------------
+
+    if (!user) {
+
+        // Remove the favorite button completely.
+        button.remove();
+
+        return;
+    }
+
+
+    // ----------------------------------------
+    // LOAD FAVORITE STATE
+    // ----------------------------------------
+
+    try {
+
+        const favorite =
+            await isFavorite(field.id);
+
+        updateFieldFavoriteButton(
+            button,
+            favorite
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error loading favorite state:",
+            error
+        );
+    }
+
+
+    // ----------------------------------------
+    // CLICK
+    // ----------------------------------------
+
+    button.addEventListener(
+        "click",
+        async event => {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            if (button.disabled) {
+                return;
+            }
+
+
+            try {
+
+                button.disabled = true;
+
+
+                const favorite =
+                    await toggleFavorite(
+                        field.id
+                    );
+
+
+                updateFieldFavoriteButton(
+                    button,
+                    favorite
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Favorite error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "No pudimos actualizar tus canchas guardadas."
+                );
+
+
+            } finally {
+
+                button.disabled = false;
+            }
+        }
+    );
+}
+
+function updateFieldFavoriteButton(button, favorite) {
+
+    button.classList.toggle(
+        "is-favorite",
+        favorite
+    );
+
+    button.setAttribute(
+        "aria-pressed",
+        String(favorite)
+    );
+
+    button.setAttribute(
+        "aria-label",
+        favorite
+            ? "Quitar de mis canchas guardadas"
+            : "Guardar cancha"
+    );
+
+    const icon =
+        button.querySelector(
+            "[data-icon='heart']"
+        );
+
+    if (icon) {
+
+        icon.innerHTML =
+            favorite
+                ? "♥"
+                : "♡";
+    }
+}
+
+
+
+async function getField(fieldId) {
+    const [{ data: field, error }, ratings] = await Promise.all([
+        supabase
+            .from("fields")
+            .select(`
+                *,
+                field_jerseys (
+                    id,
+                    code,
+                    name,
+                    image_url
+                ),
+                field_schedule (
+                    id,
+                    day_of_week,
+                    opens_at,
+                    closes_at
+                )
+            `)
+            .eq("id", fieldId)
+            .single(),
+
+        getRatings()
+    ]);
+
+    if (error) {
+        console.error("FIELD QUERY ERROR:", error);
+        return null;
+    }
+
+    if (!field) {
+        console.error("Field not found:", fieldId);
+        return null;
+    }
+
+    const rating = ratings[fieldId];
+
+    return {
+        ...field,
+        location: [field.city, field.province].filter(Boolean).join(", "),
+        lat: field.latitude,
+        lng: field.longitude,
+        image: field.image_url,
+        priceFrom: field.price_from,
+        priceTo: field.price_to,
+        extraInfo: field.extra_info,
+        lastUpdate: field.last_update,
+        allowedBoots: field.allowed_boots,
+
+        rating: rating?.rating || 0,
+        votes: rating?.votes || 0,
+
+        availableJerseys: field.field_jerseys?.map(jersey => ({
+            code: jersey.code,
+            name: jersey.name,
+            image: jersey.image_url
+        })) || [],
+
+        schedule: {
+            week: field.field_schedule
+                ?.filter(day => day.day_of_week >= 1 && day.day_of_week <= 5)
+                .map(day => `${day.opens_at.slice(0, 5)} - ${day.closes_at.slice(0, 5)}`)[0] || "",
+            weekend: field.field_schedule
+                ?.filter(day => day.day_of_week === 0 || day.day_of_week === 6)
+                .map(day => `${day.opens_at.slice(0, 5)} - ${day.closes_at.slice(0, 5)}`)[0] || ""
+        },
+
+        barbecue: {
+            cookType: field.barbecue_cook_type,
+            grillAvailable: field.grill_available,
+            cookServiceAvailable: field.cook_service_available,
+            grillFee: field.grill_fee,
+            cookServiceFee: field.cook_service_fee,
+            notes: field.barbecue_notes || []
+        },
+
+        booking: {
+            phone: field.phone,
+            whatsapp: field.whatsapp
+        }
+    };
+}
+
+async function getSimilarFields(currentFieldId) {
+    const { data, error } = await supabase
+        .from("fields")
+        .select(`
+            id,
+            name,
+            province,
+            city,
+            zone,
+            type,
+            price_from,
+            price_to,
+            image_url,
+            is_active
+        `)
+        .eq("is_active", true)
+        .neq("id", currentFieldId);
+
+    if (error) {
+        console.error("SIMILAR FIELDS QUERY ERROR:", error);
+        return [];
+    }
+
+    return data.map(field => ({
+        ...field,
+        image: field.image_url,
+        priceFrom: field.price_from,
+        priceTo: field.price_to
+    }));
+}
+
+
 //  MAIN FUNCTION 
 
-export function initFieldPage() {
+export async function initFieldPage() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
 
-    const field = fields.find(f => f.id === id);
+    const field = await getField(id);
+
     if (!field) {
         console.error("Field not found:", id);
         return;
@@ -881,26 +1163,34 @@ export function initFieldPage() {
     };
 
         // Basic Info
-        if (dom.name) {
+    if (dom.name) {
 
-        let tag = "";
+    let tag = "";
 
-        switch (field.type) {
-            case "techada":
-                tag = '<span class="tag">Techada</span>';
-                break;
+    switch (field.type) {
+        case "techada":
+            tag = '<span class="tag">Techada</span>';
+            break;
 
-            case "semi-techada":
-                tag = '<span class="tag semi-techada">Semi techada</span>';
-                break;
+        case "semi-techada":
+            tag = '<span class="tag semi-techada">Semi techada</span>';
+            break;
 
-            case "abierta":
-                tag = '<span class="tag abierta">Abierta</span>';
-                break;
-        }
-
-        dom.name.innerHTML = `${field.name}${tag}`;
+        case "abierta":
+            tag = '<span class="tag abierta">Abierta</span>';
+            break;
     }
+
+    dom.name.innerHTML = `
+        <span class="field-name-text">
+            ${field.name}
+        </span>
+
+        ${tag}
+
+        ${getFieldFavoriteButton(field)}
+    `;
+}
     
     if (dom.image) {
         dom.image.loading = "lazy";
@@ -963,12 +1253,14 @@ export function initFieldPage() {
     renderFieldHeroCarousel(field);
     renderBarbecue(field)
 
+    
+
     // Booking
-    const cleanPhone = field.booking.phone.replace(/\D/g, "");
+    const cleanPhone = (field.booking.phone || field.booking.whatsapp || "").replace(/\D/g, "");
     const message = `Hola! Quiero consultar disponibilidad para ${field.name} (${field.location})`;
 
     const phoneLink = document.getElementById("booking-phone");
-    if (phoneLink) {
+    if (phoneLink && cleanPhone) {
         phoneLink.href = `tel:+${cleanPhone}`;
         phoneLink.innerHTML = `${icons.phone} Llamar`;
     }
@@ -1004,9 +1296,12 @@ export function initFieldPage() {
     if (dom.mapAddress) dom.mapAddress.textContent = field.address || "";
 
     // Non-critical features (delayed for better initial load)
-    setTimeout(() => {
+    setTimeout(async () => {
         loadWeather(field);
-        renderSimilarFields(field);
+
+        const similarFields = await getSimilarFields(field.id);
+        renderSimilarFields(field, similarFields);
+
         initShareButtons(field);
     }, 80);
 
@@ -1095,5 +1390,6 @@ export function initFieldPage() {
 
     //console.log("Initializing rating widget");
 
-    initRatingWidget(field);
+initRatingWidget(field);
+initFieldFavoriteButton(field);
 }

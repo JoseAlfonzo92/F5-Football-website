@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description"
+    content="Términos y condiciones de Fulsap. Información sobre el uso del directorio de canchas de fútbol, responsabilidades y condiciones del servicio.">
+    <meta property="og:title" content="Términos y Condiciones | Fulsap">
+    <meta property="og:description" content="Conocé los términos y condiciones para utilizar Fulsap.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://domain.com/pages/terms-page.html">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/terms-page.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fulsap - Términos y Condiciones</title>
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/teams.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)">
+
+    <!-- font awesome cdn link -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+<!-- Leaflet CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
+
+<!-- Leaflet JS -->
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
+<!-- Routing Machine CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+ -->
+<!-- Routing Machine JS -->
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
+
+<!-- prevent theme flash on load -->
+<script>
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+})();
+</script>
+</head>
+<body>
+   <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <h1>Fulsap</h1>
+            </a>
+            
+            <!-- Desktop Search -->
+            <div class="search desktop-search">
+                <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="nav desktop-nav">
+                <ul>
+                    <li class="dropdown"><a href="#" class="quick-link">Enlaces rápidos <span data-icon="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../index.html">Inicio</a></li>
+                            <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                            <li><a href="all-teams.html">Todos los equipos</a></li>
+                            <li><a href="players.html">Jugadores</a></li>
+                            <li><a href="add-field.html">Agregar cancha</a></li>
+                            <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                             <li><a href="contact.html">Contacto</a></li>
+                            
+                             <!-- AUTH -->
+                            <li class="auth-nav-item" id="desktop-auth-nav"><a href="register.html">Registrarse</a></li>
+                            <li class="auth-nav-item" id="desktop-login-nav"><a href="login.html">Iniciar sesión</a></li>
+
+                            <li class="auth-nav-item" id="desktop-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                            <li class="auth-nav-item" id="desktop-logout-nav" hidden><button type="button" id="desktop-logout-button">Cerrar sesión</button></li>
+
+                        </ul>
+
+                    </li>
+                    <li><button class="theme-toggle"></button></li>
+               </ul>
+            </nav>
+
+            <!-- MOBILE -->
+            <div class="controls mobile-only">
+                <span data-icon="search" id="search-toggle"></span>
+                    <div class="menu-toggle" id="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+            </div>
+            
+            <!-- Mobile Search -->
+            <div class="search mobile-search" id="mobile-search">
+                <input type="text" class="global-search" placeholder="Buscar...">
+            </div>
+
+            <!-- Mobile Nav -->
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul>    
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                    <li><a href="all-teams.html">Todos los equipos</a></li>
+                    <li><a href="players.html">Jugadores</a></li>
+                    <li><a href="add-field.html">Agregar cancha</a></li>
+                    <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                    <li><a href="contact.html">Contacto</a></li>
+                    
+                    <!-- AUTH -->
+                    <li class="auth-nav-item" id="mobile-register-nav"><a href="register.html">Registrarse</a></li>
+                    <li class="auth-nav-item" id="mobile-login-nav"><a href="login.html">Iniciar sesión</a></li>
+                    <li class="auth-nav-item" id="mobile-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                    <li class="auth-nav-item" id="mobile-logout-nav" hidden><button type="button" id="mobile-logout-button">Cerrar sesión</button></li>
+
+                    <li><button class="theme-toggle mobile-theme"></button></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+ <main class="team-page">
+
+    <section class="team-section">
+
+        <div class="team-container">
+
+            <!-- MESSAGE -->
+
+            <div
+                class="teams-message"
+                id="team-message"
+                hidden
+                role="alert"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- LOADING -->
+
+            <div
+                class="teams-message"
+                id="team-loading"
+            >
+                Cargando equipo...
+            </div>
+
+
+            <!-- TEAM DETAIL -->
+
+            <div
+                class="team-detail-card"
+                id="team-detail"
+                hidden
+            >
+
+                <!-- ==========================================
+                     TEAM HEADER
+                =========================================== -->
+
+                <div class="team-detail-header">
+
+                    <div
+                        class="team-detail-logo"
+                        id="team-logo"
+                    >
+                        <span data-icon="users"></span>
+                    </div>
+
+
+                    <div class="team-detail-info">
+
+                        <h1 id="team-name">
+                            —
+                        </h1>
+
+
+                        <p
+                            class="team-detail-description"
+                            id="team-description"
+                        ></p>
+
+
+                        <div class="team-detail-meta">
+
+                            <span id="team-zone">
+                                —
+                            </span>
+
+                            <span id="team-level">
+                                —
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     TEAM ACTIONS
+                =========================================== -->
+
+                <div
+                    class="team-detail-actions"
+                    id="team-detail-actions"
+                    hidden
+                >
+
+                    <!-- Challenge button -->
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        id="challenge-team-button"
+                    >
+                        Desafiar equipo
+                    </button>
+
+                </div>
+
+
+                <!-- ==========================================
+                     TEAM MEMBERS
+                =========================================== -->
+
+                <section class="team-detail-section">
+
+                    <div class="team-detail-section-header">
+
+                        <div>
+
+                            <h2>
+                                Jugadores
+                            </h2>
+
+                            <p>
+                                Integrantes del equipo.
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            id="team-member-count"
+                            class="team-member-count"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <!-- MEMBERS LOADING -->
+
+                    <div
+                        id="team-members-loading"
+                        class="teams-message"
+                    >
+                        Cargando jugadores...
+                    </div>
+
+
+                    <!-- MEMBERS EMPTY -->
+
+                    <div
+                        id="team-members-empty"
+                        class="team-empty-small"
+                        hidden
+                    >
+                        Todavía no hay jugadores en este equipo.
+                    </div>
+
+
+                    <!-- MEMBERS LIST -->
+
+                    <div
+                        id="team-members-list"
+                        class="team-members-list"
+                        hidden
+                    >
+                        <!-- Members rendered here -->
+                    </div>
+
+                </section>
+
+
+                <!-- ==========================================
+                     TEAM AVAILABILITY
+                =========================================== -->
+
+                <!-- ==========================================
+     TEAM WEEKLY SCHEDULE
+=========================================== -->
+
+<section class="team-detail-section" id="team-schedule-section">
+
+    <div class="team-detail-section-header">
+
+        <div>
+
+            <h2>
+                Horarios habituales
+            </h2>
+
+            <p>
+                Días y horarios en los que este equipo suele estar disponible para jugar.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCHEDULE LOADING -->
+
+    <div
+        id="team-schedule-loading"
+        class="teams-message"
+    >
+        Cargando horarios...
+    </div>
+
+
+    <!-- SCHEDULE EMPTY -->
+
+    <div
+        id="team-schedule-empty"
+        class="team-empty-small"
+        hidden
+    >
+        Este equipo todavía no tiene horarios habituales.
+    </div>
+
+
+    <!-- SCHEDULE LIST -->
+
+    <div
+        id="team-schedule-list"
+        class="team-weekly-schedule"
+        hidden
+    >
+        <!-- Weekly schedule rendered here -->
+    </div>
+
+
+    <!-- ======================================
+         ADD SCHEDULE
+    ======================================= -->
+
+    <div
+        id="team-schedule-create"
+        class="team-schedule-create"
+        hidden
+    >
+
+        <h3>
+            Agregar horario habitual
+        </h3>
+
+
+        <p>
+            Indicá qué día y horario suele estar disponible tu equipo.
+        </p>
+
+
+        <form id="team-schedule-form">
+
+            <!-- DAY -->
+
+            <div class="form-group">
+
+                <label for="schedule-day">
+                    Día
+                </label>
+
+                <select
+                    id="schedule-day"
+                    required
+                >
+
+                    <option value="">
+                        Seleccionar día
+                    </option>
+
+                    <option value="1">
+                        Lunes
+                    </option>
+
+                    <option value="2">
+                        Martes
+                    </option>
+
+                    <option value="3">
+                        Miércoles
+                    </option>
+
+                    <option value="4">
+                        Jueves
+                    </option>
+
+                    <option value="5">
+                        Viernes
+                    </option>
+
+                    <option value="6">
+                        Sábado
+                    </option>
+
+                    <option value="0">
+                        Domingo
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- START -->
+
+            <div class="form-group">
+
+                <label for="schedule-start">
+                    Desde
+                </label>
+
+                <input
+                    type="time"
+                    id="schedule-start"
+                    required
+                >
+
+            </div>
+
+
+            <!-- END -->
+
+            <div class="form-group">
+
+                <label for="schedule-end">
+                    Hasta
+                </label>
+
+                <input
+                    type="time"
+                    id="schedule-end"
+                    required
+                >
+
+            </div>
+
+
+            <!-- FIELD -->
+
+            <div class="form-group">
+
+                <label for="schedule-field">
+                    Cancha / ubicación
+                </label>
+
+                <select id="schedule-field">
+
+                    <option value="">
+                        Cualquier cancha
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="profile-actions">
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="schedule-submit"
+                >
+                    Agregar horario
+                </button>
+
+
+                <button
+                    type="button"
+                    class="profile-action"
+                    id="schedule-cancel"
+                >
+                    Cancelar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- ADD SCHEDULE BUTTON -->
+
+    <button
+        type="button"
+        class="profile-action"
+        id="add-schedule-button"
+        hidden
+    >
+        + Agregar horario
+    </button>
+
+</section>
+
+
+                <!-- ==========================================
+                     TEAM CHALLENGES
+                =========================================== -->
+
+                <section
+                    class="team-detail-section"
+                    id="team-challenges-section"
+                >
+
+                    <div class="team-detail-section-header">
+
+                        <div>
+
+                            <h2>
+                                Desafíos
+                            </h2>
+
+                            <p>
+                                Desafíos enviados y recibidos por este equipo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CHALLENGES LOADING -->
+
+                    <div
+                        id="team-challenges-loading"
+                        class="teams-message"
+                    >
+                        Cargando desafíos...
+                    </div>
+
+
+                    <!-- CHALLENGES EMPTY -->
+
+                    <div
+                        id="team-challenges-empty"
+                        class="team-empty-small"
+                        hidden
+                    >
+                        Este equipo todavía no tiene desafíos.
+                    </div>
+
+
+                    <!-- CHALLENGES LIST -->
+
+                    <div
+                        id="team-challenges-list"
+                        class="team-challenges-list"
+                        hidden
+                    >
+                        <!-- Challenges rendered here -->
+                    </div>
+
+
+                    <!-- ======================================
+                         CHALLENGE FORM
+                    ======================================= -->
+
+                    <!-- ======================================
+     CHALLENGE FORM
+======================================= -->
+
+<div
+    id="team-challenge-create"
+    class="team-challenge-create"
+    hidden
+>
+
+    <h3>
+        Desafiar a este equipo
+    </h3>
+
+    <p>
+        Compará los horarios de ambos equipos y elegí
+        una propuesta para el partido.
+    </p>
+
+
+    <form id="team-challenge-form">
+
+
+        <!-- YOUR TEAM -->
+
+        <div class="form-group">
+
+            <label for="challenge-team">
+                Tu equipo
+            </label>
+
+            <select
+                id="challenge-team"
+                required
+            >
+
+                <option value="">
+                    Seleccionar equipo
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SCHEDULE MATCHING -->
+
+        <div
+            id="challenge-schedule-comparison"
+            class="challenge-schedule-comparison"
+        >
+
+            <div
+                id="challenge-schedule-loading"
+                class="teams-message"
+                hidden
+            >
+                Comparando horarios...
+            </div>
+
+
+            <div
+                id="challenge-schedule-empty"
+                class="team-empty-small"
+                hidden
+            >
+                Seleccioná tu equipo para comparar los horarios.
+            </div>
+
+
+            <!-- RECOMMENDATIONS -->
+
+            <div
+                id="challenge-schedule-recommendations"
+                hidden
+            >
+
+                <h4>
+                    Horarios recomendados
+                </h4>
+
+                <p>
+                    Estos horarios coinciden con la disponibilidad
+                    habitual de ambos equipos.
+                </p>
+
+
+                <div
+                    id="challenge-schedule-list"
+                    class="challenge-schedule-list"
+                >
+                    <!-- Recommendations rendered by team.js -->
+                </div>
+
+            </div>
+
+
+            <!-- NO OVERLAP -->
+
+            <div
+                id="challenge-schedule-no-match"
+                class="team-empty-small"
+                hidden
+            >
+
+                No encontramos un horario habitual que coincida
+                entre ambos equipos.
+
+                <br>
+
+                Podés proponer igualmente otro horario.
+
+            </div>
+
+        </div>
+
+
+        <!-- SELECTED DAY -->
+
+        <div class="form-group">
+
+            <label for="challenge-day">
+                Día propuesto
+            </label>
+
+            <select
+                id="challenge-day"
+                required
+            >
+
+                <option value="">
+                    Seleccionar día
+                </option>
+
+                <option value="1">
+                    Lunes
+                </option>
+
+                <option value="2">
+                    Martes
+                </option>
+
+                <option value="3">
+                    Miércoles
+                </option>
+
+                <option value="4">
+                    Jueves
+                </option>
+
+                <option value="5">
+                    Viernes
+                </option>
+
+                <option value="6">
+                    Sábado
+                </option>
+
+                <option value="0">
+                    Domingo
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- START -->
+
+        <div class="form-group">
+
+            <label for="challenge-start">
+                Desde
+            </label>
+
+            <input
+                type="time"
+                id="challenge-start"
+                required
+            >
+
+        </div>
+
+
+        <!-- END -->
+
+        <div class="form-group">
+
+            <label for="challenge-end">
+                Hasta
+            </label>
+
+            <input
+                type="time"
+                id="challenge-end"
+                required
+            >
+
+        </div>
+
+
+        <!-- FIELD -->
+
+        <div class="form-group">
+
+            <label for="challenge-field">
+                Cancha / ubicación
+            </label>
+
+            <select
+                id="challenge-field"
+            >
+
+                <option value="">
+                    Cualquier cancha
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="form-group">
+
+            <label for="challenge-message">
+                Mensaje
+            </label>
+
+            <textarea
+                id="challenge-message"
+                maxlength="500"
+                rows="4"
+                placeholder="Escribí un mensaje para el otro equipo..."
+            ></textarea>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="profile-actions">
+
+            <button
+                type="submit"
+                class="btn-primary"
+                id="challenge-submit"
+            >
+                Enviar desafío
+            </button>
+
+
+            <button
+                type="button"
+                class="profile-action"
+                id="challenge-cancel"
+            >
+                Cancelar
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+                </section>
+
+
+                <!-- ==========================================
+                     MATCHES
+                =========================================== -->
+
+                <section
+                    class="team-detail-section"
+                    id="team-matches-section"
+                >
+
+                    <div class="team-detail-section-header">
+
+                        <div>
+
+                            <h2>
+                                Partidos
+                            </h2>
+
+                            <p>
+                                Partidos programados y anteriores.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MATCHES LOADING -->
+
+                    <div
+                        id="team-matches-loading"
+                        class="teams-message"
+                    >
+                        Cargando partidos...
+                    </div>
+
+
+                    <!-- MATCHES EMPTY -->
+
+                    <div
+                        id="team-matches-empty"
+                        class="team-empty-small"
+                        hidden
+                    >
+                        Este equipo todavía no tiene partidos.
+                    </div>
+
+
+                    <!-- MATCHES LIST -->
+
+                    <div
+                        id="team-matches-list"
+                        class="team-matches-list"
+                        hidden
+                    >
+                        <!-- Matches rendered here -->
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><span data-icon="instagram"></span></a>
+                <a href="https://www.facebook.com/" target="_blank"><span data-icon="facebook"></span></a>
+                <a href="https://x.com/" target="_blank"><span data-icon="xTwitter"></span></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><span data-icon="whatsapp"></span></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+<script type="module" src="../assets/scripts/main.js"></script>
+</body>
+</html>

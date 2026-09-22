@@ -9,7 +9,7 @@
     <title>Todas las Canchas de Fútbol en Argentina | Fulsap</title>
 
     <link rel="stylesheet" href="../assets/styles/style.css">
-    <link rel="stylesheet" href="../assets/styles/all-fields-page.css">
+    <link rel="stylesheet" href="../assets/styles/teams.css">
 
     <!-- Apple Touch icon (still useful for iOS) -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
@@ -134,89 +134,124 @@
         </div>
     </header>
 
-<section class="fields-page">
+<main class="all-teams-page">
 
-    <div class="fields-page-header">
-        <h3>Explorar Canchas</h3>
+    <section class="all-teams-section">
 
-        <!-- SEARCH + FILTER -->
-        <div class="fields-filters">
+        <div class="all-teams-container">
 
-    <input type="text" id="search-input" class="global-search" placeholder="Buscar por nombre, ciudad o zona...">
+            <!-- HEADER -->
 
-     <select id="filter-province">
-       <option value="">Provincia</option>
-     </select>
+            <div class="all-teams-header">
 
-    <select id="filter-city">
-        <option value="">Ciudad</option>
-    </select>
+                <span
+                    data-icon="users"
+                    class="all-teams-icon"
+                ></span>
 
-    <select id="filter-zone">
-        <option value="">Zona</option>
-    </select>
+                <div class="all-teams-header-info">
 
-    <select id="filter-type">
-        <option value="">Tipo</option>
-        <option value="abierta">Abierta</option>
-        <option value="semi-techada">Semi techada</option>
-        <option value="techada">Techada</option>
-    </select>
+                    <h1>
+                        Equipos
+                    </h1>
+
+                    <p>
+                        Encontrá equipos para jugar y preparate para el próximo partido.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-    <select id="sort-by">
-        <option value="">Ordenar</option>
+            <!-- SEARCH -->
 
-        <option value="rating">Mejor valoradas</option>
-        <option value="newest">Más recientes</option>
+            <div class="all-teams-search">
 
-        <option value="price-low">Menor precio</option>
-        <option value="price-high">Mayor precio</option>
-    </select>
+                <label
+                    for="teams-search"
+                    class="sr-only"
+                >
+                    Buscar equipo
+                </label>
 
-    <!-- CLEAR -->
-    <button id="clear-filters" class="btn-clear">
-        Limpiar filtros
-    </button>
+                <span
+                    data-icon="search"
+                    class="all-teams-search-icon"
+                ></span>
 
-    <!-- RESET ALL -->
-     <button id="reset-all" class="btn-reset-all">
-        Restablecer Todo
-    </button>
+                <input
+                    type="search"
+                    id="teams-search"
+                    placeholder="Buscar equipo..."
+                    autocomplete="off"
+                >
 
-    <div class="location-toggle">
-    <label class="switch">
-        <input type="checkbox" id="use-location-toggle">
-        <span class="slider"></span>
-    </label>
-    <span>Usar mi ubicación <span data-icon="mapMarker"></span> </span>
-     </div>
-  </div>
+            </div>
 
-   <div class="view-toggle">
 
-    <button id="grid-view-btn" class="view-btn active">
-        <span data-icon="table"></span> Lista
-    </button>
+            <!-- MESSAGE -->
 
-    <button id="map-view-btn" class="view-btn">
-        <span data-icon="map"></span> Mapa
-    </button>
+            <div
+                class="teams-message"
+                id="all-teams-message"
+                hidden
+                role="alert"
+                aria-live="polite"
+            ></div>
 
-</div>
-    </div>
 
-    <!-- GRID -->
-<div class="fields-page-list" id="fields-container"></div>
+            <!-- LOADING -->
 
-    <!-- MAP -->
-<div id="map-container" class="map-container"></div>
+            <div
+                class="teams-message"
+                id="all-teams-loading"
+            >
+                Cargando equipos...
+            </div>
 
-<p id="no-results" class="no-results">
-    No se encontraron canchas
-</p>
 
-</section>
+            <!-- EMPTY -->
+
+            <div
+                class="teams-empty"
+                id="all-teams-empty"
+                hidden
+            >
+
+                <span
+                    data-icon="users"
+                    class="teams-empty-icon"
+                ></span>
+
+                <h2>
+                    No encontramos equipos
+                </h2>
+
+                <p>
+                    Todavía no hay equipos que coincidan con tu búsqueda.
+                </p>
+
+            </div>
+
+
+            <!-- TEAMS GRID -->
+
+            <div
+                class="all-teams-grid"
+                id="all-teams-grid"
+                hidden
+            >
+
+                <!-- Teams rendered here -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
 
 <footer class="footer">
 

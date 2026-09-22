@@ -9,7 +9,7 @@
     <title>Todas las Canchas de Fútbol en Argentina | Fulsap</title>
 
     <link rel="stylesheet" href="../assets/styles/style.css">
-    <link rel="stylesheet" href="../assets/styles/all-fields-page.css">
+    <link rel="stylesheet" href="../assets/styles/players-page.css">
 
     <!-- Apple Touch icon (still useful for iOS) -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
@@ -55,7 +55,7 @@
 </script>
 </head>
 <body>
-   <!-- HEADER -->
+    <!-- HEADER -->
     <header class="header">
         <div class="container">
             <!-- Logo -->
@@ -134,89 +134,135 @@
         </div>
     </header>
 
-<section class="fields-page">
+<section class="players-page">
 
-    <div class="fields-page-header">
-        <h3>Explorar Canchas</h3>
+    <div class="players-page-header">
 
-        <!-- SEARCH + FILTER -->
-        <div class="fields-filters">
+        <h3>
+            Explorar Jugadores
+        </h3>
 
-    <input type="text" id="search-input" class="global-search" placeholder="Buscar por nombre, ciudad o zona...">
-
-     <select id="filter-province">
-       <option value="">Provincia</option>
-     </select>
-
-    <select id="filter-city">
-        <option value="">Ciudad</option>
-    </select>
-
-    <select id="filter-zone">
-        <option value="">Zona</option>
-    </select>
-
-    <select id="filter-type">
-        <option value="">Tipo</option>
-        <option value="abierta">Abierta</option>
-        <option value="semi-techada">Semi techada</option>
-        <option value="techada">Techada</option>
-    </select>
+        <p>
+            Encontrá jugadores de fútbol según su posición,
+            zona y nivel.
+        </p>
 
 
-    <select id="sort-by">
-        <option value="">Ordenar</option>
+        <!-- SEARCH + FILTERS -->
 
-        <option value="rating">Mejor valoradas</option>
-        <option value="newest">Más recientes</option>
+        <div class="players-filters">
 
-        <option value="price-low">Menor precio</option>
-        <option value="price-high">Mayor precio</option>
-    </select>
+            <input
+                type="text"
+                id="players-search"
+                class="global-search"
+                placeholder="Buscar por nombre o usuario..."
+            >
 
-    <!-- CLEAR -->
-    <button id="clear-filters" class="btn-clear">
-        Limpiar filtros
-    </button>
 
-    <!-- RESET ALL -->
-     <button id="reset-all" class="btn-reset-all">
-        Restablecer Todo
-    </button>
+            <select id="players-position-filter">
 
-    <div class="location-toggle">
-    <label class="switch">
-        <input type="checkbox" id="use-location-toggle">
-        <span class="slider"></span>
-    </label>
-    <span>Usar mi ubicación <span data-icon="mapMarker"></span> </span>
-     </div>
-  </div>
+                <option value="">
+                    Posición
+                </option>
 
-   <div class="view-toggle">
+                <option value="Arquero">
+                    Arquero
+                </option>
 
-    <button id="grid-view-btn" class="view-btn active">
-        <span data-icon="table"></span> Lista
-    </button>
+                <option value="Defensor">
+                    Defensor
+                </option>
 
-    <button id="map-view-btn" class="view-btn">
-        <span data-icon="map"></span> Mapa
-    </button>
+                <option value="Mediocampista">
+                    Mediocampista
+                </option>
 
-</div>
+                <option value="Extremo">
+                    Extremo
+                </option>
+
+                <option value="Delantero">
+                    Delantero
+                </option>
+
+            </select>
+
+
+            <input
+                type="text"
+                id="players-zone-filter"
+                placeholder="Zona o barrio..."
+            >
+
+
+            <select id="players-level-filter">
+
+                <option value="">
+                    Nivel
+                </option>
+
+                <option value="Principiante">
+                    Principiante
+                </option>
+
+                <option value="Intermedio">
+                    Intermedio
+                </option>
+
+                <option value="Avanzado">
+                    Avanzado
+                </option>
+
+            </select>
+
+
+            <!-- CLEAR -->
+
+            <button
+                id="players-clear-filters"
+                class="btn-clear"
+            >
+                Limpiar filtros
+            </button>
+
+        </div>
+
+
+        <!-- DIRECTORY INFO -->
+
+        <div class="players-directory-info">
+
+            <p id="players-count">
+                Jugadores encontrados: 0
+            </p>
+
+        </div>
+
     </div>
 
-    <!-- GRID -->
-<div class="fields-page-list" id="fields-container"></div>
 
-    <!-- MAP -->
-<div id="map-container" class="map-container"></div>
+    <!-- PLAYERS GRID -->
 
-<p id="no-results" class="no-results">
-    No se encontraron canchas
-</p>
+    <div
+        class="players-page-list"
+        id="players-container"
+    >
+    </div>
+
+
+    <!-- NO RESULTS -->
+
+    <p
+        id="players-no-results"
+        class="no-results"
+        hidden
+    >
+        No se encontraron jugadores.
+    </p>
 
 </section>
+
 
 <footer class="footer">
 

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta
-    name="description"
-    content="Explorá todas las canchas de fútbol publicadas en Fulsap. Buscá por provincia, ciudad, zona, precio, tipo de cancha o ubicación y encontrá la opción ideal para tu próximo partido.">
+    <meta name="description"
+    content="Términos y condiciones de Fulsap. Información sobre el uso del directorio de canchas de fútbol, responsabilidades y condiciones del servicio.">
+    <meta property="og:title" content="Términos y Condiciones | Fulsap">
+    <meta property="og:description" content="Conocé los términos y condiciones para utilizar Fulsap.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://domain.com/pages/terms-page.html">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/terms-page.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todas las Canchas de Fútbol en Argentina | Fulsap</title>
+    <title>Fulsap - Términos y Condiciones</title>
 
     <link rel="stylesheet" href="../assets/styles/style.css">
-    <link rel="stylesheet" href="../assets/styles/all-fields-page.css">
+    <link rel="stylesheet" href="../assets/styles/register.css">
 
     <!-- Apple Touch icon (still useful for iOS) -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
@@ -19,22 +24,22 @@
 
     <!-- Theme‑specific favicons -->
     <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
-    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)"> 
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)">
 
     <!-- font awesome cdn link -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 
 <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
 
 <!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
 
 <!-- Routing Machine CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
-
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+ -->
 <!-- Routing Machine JS -->
-<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
 
 <!-- prevent theme flash on load -->
 <script>
@@ -134,89 +139,113 @@
         </div>
     </header>
 
-<section class="fields-page">
+<main class="auth-page">
 
-    <div class="fields-page-header">
-        <h3>Explorar Canchas</h3>
+    <section class="auth-section">
 
-        <!-- SEARCH + FILTER -->
-        <div class="fields-filters">
+        <div class="auth-container">
 
-    <input type="text" id="search-input" class="global-search" placeholder="Buscar por nombre, ciudad o zona...">
+            <div class="auth-header">
 
-     <select id="filter-province">
-       <option value="">Provincia</option>
-     </select>
+                <span data-icon="login"></span>
 
-    <select id="filter-city">
-        <option value="">Ciudad</option>
-    </select>
+                <h2>Iniciar sesión</h2>
 
-    <select id="filter-zone">
-        <option value="">Zona</option>
-    </select>
+                <p>
+                    Ingresá a tu cuenta de Fulsap para acceder a las funciones de la comunidad.
+                </p>
 
-    <select id="filter-type">
-        <option value="">Tipo</option>
-        <option value="abierta">Abierta</option>
-        <option value="semi-techada">Semi techada</option>
-        <option value="techada">Techada</option>
-    </select>
+            </div>
 
+            <form id="login-form" class="auth-form">
 
-    <select id="sort-by">
-        <option value="">Ordenar</option>
+                <div class="form-group">
 
-        <option value="rating">Mejor valoradas</option>
-        <option value="newest">Más recientes</option>
+                    <label for="email">
+                        Correo electrónico
+                    </label>
 
-        <option value="price-low">Menor precio</option>
-        <option value="price-high">Mayor precio</option>
-    </select>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="tu@email.com"
+                        autocomplete="email"
+                        required
+                    >
 
-    <!-- CLEAR -->
-    <button id="clear-filters" class="btn-clear">
-        Limpiar filtros
-    </button>
+                </div>
 
-    <!-- RESET ALL -->
-     <button id="reset-all" class="btn-reset-all">
-        Restablecer Todo
-    </button>
+                <div class="form-group password-group">
 
-    <div class="location-toggle">
-    <label class="switch">
-        <input type="checkbox" id="use-location-toggle">
-        <span class="slider"></span>
-    </label>
-    <span>Usar mi ubicación <span data-icon="mapMarker"></span> </span>
-     </div>
-  </div>
+                    <label for="password">
+                        Contraseña
+                    </label>
 
-   <div class="view-toggle">
+                    <div class="password-input-wrapper">
 
-    <button id="grid-view-btn" class="view-btn active">
-        <span data-icon="table"></span> Lista
-    </button>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Tu contraseña"
+                            autocomplete="current-password"
+                            required
+                        >
 
-    <button id="map-view-btn" class="view-btn">
-        <span data-icon="map"></span> Mapa
-    </button>
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="password-toggle"
+                            aria-label="Mostrar contraseña"
+                            aria-pressed="false"
+                        >
+                            <span data-icon="eye"></span>
+                        </button>
 
-</div>
-    </div>
+                    </div>
 
-    <!-- GRID -->
-<div class="fields-page-list" id="fields-container"></div>
+                </div>
 
-    <!-- MAP -->
-<div id="map-container" class="map-container"></div>
+                <div class="auth-options">
 
-<p id="no-results" class="no-results">
-    No se encontraron canchas
-</p>
+                    <a href="#" id="forgot-password">
+                        ¿Olvidaste tu contraseña?
+                    </a>
 
-</section>
+                </div>
+
+                <div
+                    id="login-message"
+                    class="auth-message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+                <button
+                    type="submit"
+                    class="btn-primary auth-submit"
+                    id="login-button"
+                >
+                    Iniciar sesión
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+
+                <p>
+                    ¿Todavía no tenés una cuenta?
+                    <a href="register.html">Crear cuenta</a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
 
 <footer class="footer">
 

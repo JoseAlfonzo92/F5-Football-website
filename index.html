@@ -76,6 +76,7 @@
     </script>
 </head>
 <body>
+
   <header class="header">
     <div class="container">
 
@@ -101,9 +102,19 @@
                     <ul class="dropdown-menu">
                         <li><a href="index.html"> Inicio</a></li>
                         <li><a href="pages/all-fields-page.html"> Todas las canchas</a></li>
+                        <li><a href="pages/all-teams.html"> Todos los equipos</a></li>
+                        <li><a href="pages/players.html"> Jugadores</a></li>
                         <li><a href="pages/add-field.html"> Agregar cancha</a></li>
-                        <li><a href="pages/terms-page.html"> Términos y condiciones</a></li>
+                        <!-- <li><a href="pages/terms-page.html"> Términos y condiciones</a></li> -->
                         <li><a href="pages/contact.html"> Contacto</a></li>
+                        <li class="auth-nav-item" id="desktop-auth-nav"><a href="pages/register.html">Registrarse</a></li>
+                        <li class="auth-nav-item" id="desktop-login-nav"><a href="pages/login.html">Iniciar sesión</a></li>
+                        <li class="auth-nav-item" id="desktop-user-nav" hidden><a href="pages/profile.html">Mi cuenta</a></li>
+                        <li class="auth-nav-item" id="desktop-logout-nav" hidden>
+                            <button type="button" id="desktop-logout-button">
+                                Cerrar sesión
+                            </button>
+                        </li>
                     </ul>
                 </li>
 
@@ -139,10 +150,17 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="pages/all-teams.html">Todos los equipos</a></li>
+                <li><a href="pages/players.html">Jugadores</a></li>
                 <li><a href="pages/add-field.html">Agregar cancha</a></li>
-                <li><a href="pages/terms-page.html">Términos y condiciones</a></li>
+                <!-- <li><a href="pages/terms-page.html">Términos y condiciones</a></li> -->
                 <li><a href="pages/contact.html">Contacto</a></li>
-
+                <li class="auth-nav-item" id="mobile-register-nav"><a href="pages/register.html">Registrarse</a></li>
+                <li class="auth-nav-item" id="mobile-login-nav"><a href="pages/login.html">Iniciar sesión</a></li>
+                <li class="auth-nav-item" id="mobile-user-nav" hidden><a href="pages/profile.html">Mi cuenta</a></li>
+                <li class="auth-nav-item" id="mobile-logout-nav" hidden>
+                    <button type="button" id="mobile-logout-button">Cerrar sesión</button>
+                </li>
                 <li>
                     <button class="theme-toggle mobile-theme">
                         <!-- <i class="fas fa-moon"></i> --> 

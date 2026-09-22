@@ -1,4 +1,5 @@
 import { icons } from "../utils/icons.js";
+import { supabase } from "../services/supabase.js";
 
 export function initAddFieldForm() {
     const form = document.querySelector('.add-field-form');
@@ -9,7 +10,7 @@ export function initAddFieldForm() {
     let previewContainer = null;
     let selectedFiles = [];
 
-    //  CONFIG 
+    //  CONFIG  
     const EMAILJS_SERVICE_ID = 'service_f6r1tp1';
     const EMAILJS_TEMPLATE_ID = 'template_r6fzbhg';
     const EMAILJS_PUBLIC_KEY = 'uVpteypiD8hGJlJ42';
@@ -142,11 +143,15 @@ export function initAddFieldForm() {
     function validateForm() {
         const name = document.getElementById('field-name').value.trim();
         const phone = document.getElementById('field-phone').value.trim();
-        const location = document.getElementById('field-location').value.trim();
+        const province = document.getElementById('field-province').value.trim();
+        const city = document.getElementById('field-city').value.trim();
+        const zone = document.getElementById('field-zone').value.trim();
 
         if (!name) return "El nombre de la cancha es obligatorio.";
         if (!phone) return "El WhatsApp es obligatorio.";
-        if (!location) return "La ubicación es obligatoria.";
+        if (!province) return "La provincia es obligatoria.";
+        if (!city) return "La ciudad es obligatoria.";
+        if (!zone) return "La zona o barrio es obligatoria.";
 
         const cleanPhone = phone.replace(/\s+|\-|\(|\)/g, '');
         if (!/^\+?54?[0-9]{8,12}$/.test(cleanPhone)) {
@@ -177,12 +182,116 @@ export function initAddFieldForm() {
         try {
             const imageUrls = await uploadImagesToCloudinary();
 
+                        const sizes = Array.from(
+                document.querySelectorAll('input[name="sizes"]:checked')
+            ).map(i => i.value);
+
+            const allowedBoots = Array.from(
+                document.querySelectorAll('input[name="boots"]:checked')
+            ).map(i => i.value);
+
+            const surface = Array.from(
+                document.querySelectorAll('input[name="surface"]:checked')
+            ).map(i => i.value);
+
+            const features = Array.from(
+                document.querySelectorAll('input[name="features"]:checked')
+            ).map(i => i.value);
+
+            const barbecueNotes = document.getElementById('barbecue-notes').value
+                .split('\n')
+                .map(item => item.trim())
+                .filter(Boolean);
+
+            const buffet = document.getElementById('buffet-items').value
+                .split('\n')
+                .map(item => item.trim())
+                .filter(Boolean);
+
+            const availableJerseys = document.getElementById('available-jerseys').value
+                .split('\n')
+                .map(item => item.trim())
+                .filter(Boolean);
+
+            const extraInfo = document.getElementById('extra-info').value
+                .split('\n')
+                .map(item => item.trim())
+                .filter(Boolean);
+
+            const latitudeValue = document.getElementById('field-latitude').value.trim().replace(',', '.');
+            const longitudeValue = document.getElementById('field-longitude').value.trim().replace(',', '.');
+
+        const submissionData = {
+            name: document.getElementById('field-name').value.trim(),
+            whatsapp: document.getElementById('field-phone').value.trim(),
+            province: document.getElementById('field-province').value.trim(),
+            city: document.getElementById('field-city').value.trim(),
+            zone: document.getElementById('field-zone').value.trim(),
+            address: document.getElementById('field-address').value.trim(),
+
+            latitude: latitudeValue ? Number(latitudeValue) : null,
+            longitude: longitudeValue ? Number(longitudeValue) : null,
+            type: document.getElementById('field-type').value || null,
+            description: document.getElementById('field-description').value.trim() || null,
+
+            price_from: document.getElementById('price-from').value
+                ? Number(document.getElementById('price-from').value)
+                : null,
+
+            price_to: document.getElementById('price-to').value
+                ? Number(document.getElementById('price-to').value)
+                : null,
+
+            sizes,
+            allowed_boots: allowedBoots,
+            surface,
+
+            week_schedule: document.getElementById('week-schedule').value.trim() || null,
+            weekend_schedule: document.getElementById('weekend-schedule').value.trim() || null,
+
+            features,
+
+            cook_type: document.getElementById('cook-type').value || 'none',
+
+            grill_fee: document.getElementById('grill-fee').value
+                ? Number(document.getElementById('grill-fee').value)
+                : 0,
+
+            cook_service_fee: document.getElementById('cook-service-fee').value
+                ? Number(document.getElementById('cook-service-fee').value)
+                : 0,
+
+            barbecue_notes: barbecueNotes,
+
+            buffet,
+            available_jerseys: availableJerseys,
+            extra_info: extraInfo,
+
+            image_urls: imageUrls
+        };
+
+            const { error: submissionError } = await supabase
+                .from("field_submissions")
+                .insert(submissionData);
+
+            if (submissionError) {
+                console.error("FIELD SUBMISSION ERROR:", submissionError);
+                throw submissionError;
+            }
+
+            console.log("FIELD SUBMISSION CREATED");
+
             const formDataObj = {
             // Basic Information
             nombre: document.getElementById('field-name').value.trim(),
             whatsapp: document.getElementById('field-phone').value.trim(),
-            ubicacion: document.getElementById('field-location').value.trim(),
+            provincia: document.getElementById('field-province').value.trim(),
+            ciudad: document.getElementById('field-city').value.trim(),
+            zona: document.getElementById('field-zone').value.trim(),
             address: document.getElementById('field-address').value.trim(),
+
+            latitude: document.getElementById('field-latitude').value || 'No especificada',
+            longitude: document.getElementById('field-longitude').value || 'No especificada',
             tipo: document.getElementById('field-type').value || 'No especificado',
             descripcion: document.getElementById('field-description').value.trim(),
 
@@ -239,13 +348,17 @@ export function initAddFieldForm() {
             
             showSuccessMessage();
 
-        } catch (error) {
-            console.error(error);
+            }   catch (error) {
+            console.error("ADD FIELD SUBMISSION ERROR:", error);
+            console.error("ERROR MESSAGE:", error?.message);
+            console.error("ERROR DETAILS:", error?.details);
+            console.error("ERROR HINT:", error?.hint);
+
             alert('Error al enviar la solicitud. Por favor intenta nuevamente.');
         } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-        }
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
     }
 
     function showSuccessMessage() {

@@ -55,80 +55,84 @@
 </script>
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-
-        <!-- Logo -->
-        <a href="../index.html" class="logo">
-            <h1>Fulsap</h1>
-        </a>
-
-        <!-- Desktop Search -->
-        <div class="search desktop-search">
-            <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
-        </div>
-
-        <!-- Desktop Nav -->
-        <nav class="nav desktop-nav">
-            <ul>
-
-                <li class="dropdown">
-                    <a href="#" class="quick-link">
-                        Enlaces rapidos <span data-icon="arrow"></span>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li><a href="../index.html"> Inicio</a></li>
-                        <li><a href="../pages/all-fields-page.html"> Todas las canchas</a></li>
-                        <li><a href="../pages/add-field.html"> Agregar cancha</a></li>
-                        <li><a href="../pages/terms-page.html"> Términos y condiciones</a></li>
-                        <li><a href="../pages/contact.html"> Contacto</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <button class="theme-toggle">
-                        <!-- <i class="fas fa-moon"></i> -->
-                    </button>
-                </li>
-
-            </ul>
-        </nav>
-
-        <!-- Mobile Controls -->
-        <div class="controls mobile-only">
-            <span data-icon="search" id="search-toggle"></span>
-
-            <div class="menu-toggle" id="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+  <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <h1>Fulsap</h1>
+            </a>
+            
+            <!-- Desktop Search -->
+            <div class="search desktop-search">
+                <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
             </div>
+
+            <!-- Desktop Nav -->
+            <nav class="nav desktop-nav">
+                <ul>
+                    <li class="dropdown"><a href="#" class="quick-link">Enlaces rápidos <span data-icon="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../index.html">Inicio</a></li>
+                            <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                            <li><a href="all-teams.html">Todos los equipos</a></li>
+                            <li><a href="players.html">Jugadores</a></li>
+                            <li><a href="add-field.html">Agregar cancha</a></li>
+                            <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                             <li><a href="contact.html">Contacto</a></li>
+                            
+                             <!-- AUTH -->
+                            <li class="auth-nav-item" id="desktop-auth-nav"><a href="register.html">Registrarse</a></li>
+                            <li class="auth-nav-item" id="desktop-login-nav"><a href="login.html">Iniciar sesión</a></li>
+
+                            <li class="auth-nav-item" id="desktop-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                            <li class="auth-nav-item" id="desktop-logout-nav" hidden><button type="button" id="desktop-logout-button">Cerrar sesión</button></li>
+
+                        </ul>
+
+                    </li>
+                    <li><button class="theme-toggle"></button></li>
+               </ul>
+            </nav>
+
+            <!-- MOBILE -->
+            <div class="controls mobile-only">
+                <span data-icon="search" id="search-toggle"></span>
+                    <div class="menu-toggle" id="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+            </div>
+            
+            <!-- Mobile Search -->
+            <div class="search mobile-search" id="mobile-search">
+                <input type="text" class="global-search" placeholder="Buscar...">
+            </div>
+
+            <!-- Mobile Nav -->
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul>    
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                    <li><a href="all-teams.html">Todos los equipos</a></li>
+                    <li><a href="players.html">Jugadores</a></li>
+                    <li><a href="add-field.html">Agregar cancha</a></li>
+                    <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                    <li><a href="contact.html">Contacto</a></li>
+                    
+                    <!-- AUTH -->
+                    <li class="auth-nav-item" id="mobile-register-nav"><a href="register.html">Registrarse</a></li>
+                    <li class="auth-nav-item" id="mobile-login-nav"><a href="login.html">Iniciar sesión</a></li>
+                    <li class="auth-nav-item" id="mobile-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                    <li class="auth-nav-item" id="mobile-logout-nav" hidden><button type="button" id="mobile-logout-button">Cerrar sesión</button></li>
+
+                    <li><button class="theme-toggle mobile-theme"></button></li>
+
+                </ul>
+            </nav>
         </div>
-
-        <!-- Mobile Search -->
-        <div class="search mobile-search" id="mobile-search">
-            <input type="text" class="global-search" placeholder="Buscar...">
-        </div>
-
-        <!-- Mobile Menu -->
-        <nav class="mobile-nav" id="mobile-nav">
-            <ul>
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
-                <li><a href="../pages/add-field.html">Agregar cancha</a></li>
-                <li><a href="../pages/terms-page.html">Términos y condiciones</a></li>
-                <li><a href="../pages/contact.html">Contacto</a></li>
-
-                <li>
-                    <button class="theme-toggle mobile-theme">
-                        <!-- <i class="fas fa-moon"></i> Theme -->
-                    </button>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    </header>
 
 
 
@@ -300,26 +304,64 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="field-location">Ubicación</label>
+    <label for="field-province">Provincia</label>
 
-                        <input
-                            type="text"
-                            id="field-location"
-                            placeholder="Ciudad / Barrio"
-                        >
-                    </div>
+    <input
+        type="text"
+        id="field-province"
+        placeholder="Provincia"
+    >
+</div>
 
-                    <div class="form-group full-width">
-                    <label for="field-address">
-                        Dirección
-                    </label>
+<div class="form-group">
+    <label for="field-city">Ciudad</label>
 
-                    <input
-                        type="text"
-                        id="field-address"
-                        placeholder="Ej: Av. Rivadavia 1234"
-                    >
-                    </div>
+    <input
+        type="text"
+        id="field-city"
+        placeholder="Ciudad"
+    >
+</div>
+
+<div class="form-group">
+    <label for="field-zone">Zona / Barrio</label>
+
+    <input
+        type="text"
+        id="field-zone"
+        placeholder="Zona o barrio"
+    >
+</div>
+
+<div class="form-group">
+    <label for="field-address">Dirección</label>
+
+    <input
+        type="text"
+        id="field-address"
+        placeholder="Dirección de la cancha"
+    >
+</div>
+
+      <div class="form-group">
+    <label for="field-latitude">Latitud</label>
+    <input
+        type="text"
+        id="field-latitude"
+        placeholder="Ej: -33.3017"
+        inputmode="decimal"
+    >
+</div>
+
+<div class="form-group">
+    <label for="field-longitude">Longitud</label>
+    <input
+        type="text"
+        id="field-longitude"
+        placeholder="Ej: -66.3378"
+        inputmode="decimal"
+    >
+</div>
 
                     <div class="form-group">
                         <label for="field-type">Tipo principal</label>

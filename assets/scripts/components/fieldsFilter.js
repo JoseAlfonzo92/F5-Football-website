@@ -1,12 +1,13 @@
-import { fields } from "../data/fields.js";
+import { getFields } from "../pages-js/fieldsRenderer.js";
 
-export function initFieldsFilter() {
+export async function initFieldsFilter() {
     const container = document.getElementById("fields-container");
     if (!container) return;
 
     const cards = Array.from(document.querySelectorAll(".fields-page-card"));
     const searchInputs = Array.from(document.querySelectorAll(".global-search"));
 
+    const fields = await getFields();
     const fieldMap = new Map(fields.map(field => [field.id, field]));
 
     // HELPERS
