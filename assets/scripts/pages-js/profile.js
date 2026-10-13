@@ -1,4 +1,5 @@
-import { getCurrentUser, signOut } from "../services/auth.js";
+import { getCurrentUser } from "../services/auth.js";
+import { supabase } from "../services/supabase.js";
 import { getUserTeams } from "./teams.js";
 import { getCurrentProfile, getCurrentPlayerProfile, isUsernameAvailable, updateProfile, updatePlayerProfile} from "../services/profiles.js";
 
@@ -10,9 +11,9 @@ import { getFields } from "./fieldsRenderer.js";
 
 let currentPlayerProfile = null;
 let currentPlayerAvailability = [];
-/* ============================================
-   HELPERS
-   ============================================ */
+
+
+//HELPERS
 
 function getElement(id) {
     return document.getElementById(id);
@@ -52,66 +53,8 @@ function hideMessage() {
     element.hidden = true;
 }
 
-/* ============================================
-   WELCOME
-   ============================================ */
 
-/* function showWelcome(profile) {
-
-    const welcome =
-        getElement("profile-welcome");
-
-    const welcomeName =
-        getElement("welcome-display-name");
-
-    const profileCard =
-        getElement("profile-card");
-
-
-    if (!welcome) return;
-
-
-    if (welcomeName) {
-
-        welcomeName.textContent =
-            profile.display_name ||
-            profile.username ||
-            "usuario";
-    }
-
-
-    welcome.hidden = false;
-
-
-    if (profileCard) {
-        profileCard.hidden = true;
-    }
-}
-
-
-function hideWelcome() {
-
-    const welcome =
-        getElement("profile-welcome");
-
-    const profileCard =
-        getElement("profile-card");
-
-
-    if (welcome) {
-        welcome.hidden = true;
-    }
-
-
-    if (profileCard) {
-        profileCard.hidden = false;
-    }
-} */
-
-
-/* ============================================
-   DISPLAY PROFILE
-   ============================================ */
+// DISPLAY PROFILE
 
 function renderProfile(profile) {
 
@@ -176,7 +119,7 @@ if (profileCard) {
     }
 
 
-    /* EDIT INPUTS */
+    // EDIT INPUTS
 
     const editDisplayName =
         getElement("edit-display-name");
@@ -200,9 +143,7 @@ if (profileCard) {
 }
 
 
-/* ============================================
-   RENDER PLAYER PROFILE
-============================================ */
+// RENDER PLAYER PROFILE
 
 function renderPlayerProfile(playerProfile) {
 
@@ -245,7 +186,7 @@ function renderPlayerProfile(playerProfile) {
     }
 
 
-    /* NO PLAYER PROFILE YET */
+    // NO PLAYER PROFILE YET 
 
     if (!playerProfile) {
 
@@ -263,7 +204,7 @@ function renderPlayerProfile(playerProfile) {
     }
 
 
-    /* LOAD FORM VALUES */
+    // LOAD FORM VALUES 
 
     positionInput.value =
         playerProfile.position || "";
@@ -278,7 +219,7 @@ function renderPlayerProfile(playerProfile) {
         playerProfile.is_public !== false;
 
 
-    /* LOAD DISPLAY VALUES */
+    // LOAD DISPLAY VALUES 
 
     positionDisplay.textContent =
         playerProfile.position || "No especificada";
@@ -297,9 +238,7 @@ function renderPlayerProfile(playerProfile) {
 
 
 
-/* ============================================
-   SAVE PLAYER PROFILE
-============================================ */
+//SAVE PLAYER PROFILE
 
 async function handlePlayerProfileSubmit(event) {
 
@@ -379,28 +318,28 @@ async function handlePlayerProfileSubmit(event) {
         );
 
 
-        /* UPDATE DISPLAY */
+        // UPDATE DISPLAY
 
         renderPlayerProfile(
             updatedPlayerProfile
         );
 
 
-        /* SHOW DISPLAY */
+        // SHOW DISPLAY
 
         if (display) {
             display.hidden = false;
         }
 
 
-        /* HIDE FORM */
+        // HIDE FORM 
 
         if (form) {
             form.hidden = true;
         }
 
 
-        /* MESSAGE */
+        // MESSAGE
 
         if (message) {
 
@@ -436,9 +375,7 @@ async function handlePlayerProfileSubmit(event) {
 }
 
 
-/* ============================================
-   EDIT PLAYER PROFILE
-============================================ */
+// EDIT PLAYER PROFILE
 
 function handleEditPlayerProfile() {
 
@@ -466,9 +403,7 @@ function handleEditPlayerProfile() {
 }
 
 
-/* ============================================
-   CANCEL PLAYER PROFILE EDIT
-============================================ */
+// CANCEL PLAYER PROFILE EDIT
 
 function handleCancelPlayerProfile() {
 
@@ -482,7 +417,7 @@ function handleCancelPlayerProfile() {
         getElement("player-profile-message");
 
 
-    /* RESTORE SAVED VALUES */
+    // RESTORE SAVED VALUES
 
     if (currentPlayerProfile) {
 
@@ -497,14 +432,14 @@ function handleCancelPlayerProfile() {
     }
 
 
-    /* SHOW DISPLAY */
+    // SHOW DISPLAY
 
     if (display) {
         display.hidden = false;
     }
 
 
-    /* HIDE FORM */
+    // HIDE FORM
 
     if (form) {
         form.hidden = true;
@@ -518,9 +453,7 @@ function handleCancelPlayerProfile() {
 
 
 
-/* ============================================
-   VIEW MODE
-   ============================================ */
+// VIEW MODE
 
 function showViewMode() {
 
@@ -542,9 +475,7 @@ function showViewMode() {
 }
 
 
-/* ============================================
-   EDIT MODE
-   ============================================ */
+// EDIT MODE
 
 function showEditMode() {
 
@@ -566,9 +497,7 @@ function showEditMode() {
 }
 
 
-/* ============================================
-   VALIDATE USERNAME
-   ============================================ */
+// VALIDATE USERNAME
 
 function validateUsername(username) {
 
@@ -600,9 +529,7 @@ function validateUsername(username) {
 }
 
 
-/* ============================================
-   SAVE PROFILE
-   ============================================ */
+// SAVE PROFILE
 
 async function handleProfileSubmit(event) {
 
@@ -640,7 +567,7 @@ async function handleProfileSubmit(event) {
     }
 
 
-    /* VALIDATE DISPLAY NAME */
+    // VALIDATE DISPLAY NAME
 
     if (!displayName) {
 
@@ -664,7 +591,7 @@ async function handleProfileSubmit(event) {
     }
 
 
-    /* VALIDATE USERNAME */
+    // VALIDATE USERNAME
 
     const usernameError =
         validateUsername(username);
@@ -691,7 +618,7 @@ async function handleProfileSubmit(event) {
         }
 
 
-        /* CHECK USERNAME */
+        // CHECK USERNAME
 
         const available =
             await isUsernameAvailable(
@@ -711,7 +638,7 @@ async function handleProfileSubmit(event) {
         }
 
 
-        /* UPDATE */
+        // UPDATE
 
         const updatedProfile =
             await updateProfile({
@@ -761,9 +688,7 @@ async function handleProfileSubmit(event) {
 }
 
 
-/* ============================================
-   SAVED FIELDS
-   ============================================ */
+// SAVED FIELDS
 
 async function renderSavedFields(favoriteIds) {
 
@@ -795,9 +720,7 @@ const favoriteFields =
     );
 
 
-    /* ----------------------------------------
-       EMPTY STATE
-       ---------------------------------------- */
+    // EMPTY STATE
 
     if (!favoriteFields.length) {
 
@@ -808,9 +731,7 @@ const favoriteFields =
     }
 
 
-    /* ----------------------------------------
-       RENDER CAROUSEL
-       ---------------------------------------- */
+    // RENDER CAROUSEL
 
     empty.hidden = true;
     grid.hidden = false;
@@ -939,16 +860,12 @@ const favoriteFields =
     grid.innerHTML = html;
 
 
-    /* ----------------------------------------
-       INITIALIZE FAVORITE BUTTONS
-       ---------------------------------------- */
+    // INITIALIZE FAVORITE BUTTONS
 
     initSavedFieldFavoriteButtons();
 
 
-    /* ----------------------------------------
-       CAROUSEL CONTROLS
-       ---------------------------------------- */
+    // CAROUSEL CONTROLS
 
     const carousel =
         grid.querySelector(
@@ -1001,9 +918,7 @@ const favoriteFields =
         );
 
 
-        /* ------------------------------------
-           ARROW VISIBILITY
-           ------------------------------------ */
+        // ARROW VISIBILITY
 
         const updateArrows = () => {
 
@@ -1069,9 +984,7 @@ const favoriteFields =
 }
 
 
-/* ============================================
-   MY TEAMS
-============================================ */
+// MY TEAMS
 
 function renderProfileTeams(userTeams) {
 
@@ -1117,9 +1030,7 @@ function renderProfileTeams(userTeams) {
             }));
 
 
-    /* ----------------------------------------
-       EMPTY STATE
-    ---------------------------------------- */
+    // EMPTY STATE
 
     if (!teams.length) {
 
@@ -1130,9 +1041,7 @@ function renderProfileTeams(userTeams) {
     }
 
 
-    /* ----------------------------------------
-       RENDER CAROUSEL
-    ---------------------------------------- */
+    // RENDER CAROUSEL
 
     empty.hidden = true;
     grid.hidden = false;
@@ -1282,9 +1191,7 @@ function renderProfileTeams(userTeams) {
     grid.innerHTML = html;
 
 
-    /* ----------------------------------------
-       CAROUSEL CONTROLS
-    ---------------------------------------- */
+    // CAROUSEL CONTROLS
 
     const carousel =
         grid.querySelector(
@@ -1340,9 +1247,7 @@ function renderProfileTeams(userTeams) {
     );
 
 
-    /* ----------------------------------------
-       ARROW VISIBILITY
-    ---------------------------------------- */
+    // ARROW VISIBILITY
 
     const updateArrows = () => {
 
@@ -1402,9 +1307,7 @@ function renderProfileTeams(userTeams) {
 }
 
 
-/* ============================================
-   SAVED FIELD FAVORITE BUTTONS
-   ============================================ */
+// SAVED FIELD FAVORITE BUTTONS
 
 function initSavedFieldFavoriteButtons() {
 
@@ -1532,10 +1435,7 @@ function initSavedFieldFavoriteButtons() {
 }
 
 
-/* ============================================
-   TEAM INVITATIONS
-============================================ */
-
+// TEAM INVITATIONS
 let currentTeamInvitations = [];
 
 
@@ -1861,10 +1761,68 @@ function initTeamInvitations() {
 }
 
 
+async function renderFieldOwnerSection(userId) {
 
-/* ============================================
-   INITIALIZE
-   ============================================ */
+    const section =
+        getElement("profile-field-owner-section");
+
+    if (!section) return;
+
+    const {
+        data,
+        error
+    } = await supabase
+        .from("fields")
+        .select("id")
+        .eq("owner_id", userId)
+        .limit(1);
+
+    if (error) {
+        console.error(
+            "Error checking owned fields:",
+            error
+        );
+
+        return;
+    }
+
+    const hasOwnedField =
+        data?.length > 0;
+
+    if (hasOwnedField) {
+
+        section.innerHTML = `
+            <div class="profile-section-header">
+
+                <h2>Mis canchas</h2>
+
+            </div>
+
+            <div class="profile-card">
+
+                <p>
+                    Administrá tus canchas, horarios y reservas desde Fulsap.
+                </p>
+
+                <div class="profile-actions">
+
+                    <a
+                        href="field-owner.html"
+                        class="profile-action primary"
+                    >
+                        Administrar mis canchas
+                    </a>
+
+                </div>
+
+            </div>
+        `;
+
+    }
+}
+
+
+// INITIALIZE
 
 export async function initProfilePage() {
 
@@ -1893,8 +1851,8 @@ export async function initProfilePage() {
         const profile =
             await getCurrentProfile();
 
-currentPlayerProfile =
-    await getCurrentPlayerProfile();
+         currentPlayerProfile =
+        await getCurrentPlayerProfile();
 
 
         if (!profile) {
@@ -1917,111 +1875,65 @@ currentPlayerProfile =
 
         renderProfile(profile);
 
-renderPlayerProfile(
-    currentPlayerProfile
-);
+    renderPlayerProfile(
+        currentPlayerProfile
+    );
 
-        
-/* ========================================
-   TEAM INVITATIONS
-======================================== */
 
-initTeamInvitations();
+    await renderFieldOwnerSection(
+        user.id
+    );
+            
+    // TEAM INVITATIONS
 
-await loadTeamInvitations(
-    user.id
-);
+    initTeamInvitations();
 
-        /* ========================================
-   LOAD SAVED FIELDS
-   ======================================== */
-
-const favoriteIds =
-    await getFavoriteFields();
-
-await renderSavedFields(
-    favoriteIds
-);
-
-/* ========================================
-   LOAD MY TEAMS
-======================================== */
-
-const userTeams =
-    await getUserTeams(
+    await loadTeamInvitations(
         user.id
     );
 
-renderProfileTeams(
-    userTeams
-);
+    //   LOAD SAVED FIELDS
 
-        /* ========================================
-   WELCOME
-   ======================================== */
+    const favoriteIds =
+        await getFavoriteFields();
 
-const welcomeSeenKey =
-    `fulsap_welcome_seen_${user.id}`;
-
-const welcomeSeen =
-    localStorage.getItem(
-        welcomeSeenKey
+    await renderSavedFields(
+        favoriteIds
     );
 
+    // LOAD MY TEAMS
 
-/* if (!welcomeSeen) {
+    const userTeams =
+        await getUserTeams(
+            user.id
+        );
 
-    showWelcome(profile);
-
-} else {
-
-    const profileCard =
-        getElement("profile-card");
-
-    if (profileCard) {
-        profileCard.hidden = false;
-    }
-} */
-
-/* const welcomeContinue =
-    getElement("welcome-continue");
-
-
-if (welcomeContinue) {
-
-    welcomeContinue.addEventListener(
-        "click",
-        () => {
-
-            localStorage.setItem(
-                `fulsap_welcome_seen_${user.id}`,
-                "true"
-            );
-
-            hideWelcome();
-
-        }
+    renderProfileTeams(
+        userTeams
     );
-}
- */
-        if (loading) {
-            loading.hidden = true;
-        }
+
+    //WELCOME
+
+    const welcomeSeenKey =
+        `fulsap_welcome_seen_${user.id}`;
+
+    const welcomeSeen =
+        localStorage.getItem(
+            welcomeSeenKey
+        );
 
 
-        if (errorMessage) {
-            errorMessage.hidden = true;
-        }
+            if (loading) {
+                loading.hidden = true;
+            }
 
 
- /*        if (localStorage.getItem(`fulsap_welcome_seen_${user.id}`)) {
-
-    showViewMode();
-
-} */
+            if (errorMessage) {
+                errorMessage.hidden = true;
+            }
 
 
-        /* EDIT */
+         // EDIT 
 
         if (editButton) {
 
@@ -2032,7 +1944,7 @@ if (welcomeContinue) {
         }
 
 
-        /* CANCEL */
+        // CANCEL 
 
         if (cancelButton) {
 
@@ -2043,68 +1955,68 @@ if (welcomeContinue) {
         }
 
 
-       /* SAVE */
+       // SAVE
 
-if (form) {
+        if (form) {
 
-    form.addEventListener(
-        "submit",
-        handleProfileSubmit
-    );
-}
-
-
-/* SAVE PLAYER PROFILE */
-const playerProfileForm =
-    getElement("player-profile-form");
-
-if (playerProfileForm) {
-
-    console.log(
-        "PLAYER PROFILE FORM LISTENER ATTACHED"
-    );
-
-    playerProfileForm.addEventListener(
-        "submit",
-        handlePlayerProfileSubmit
-    );
-}
+            form.addEventListener(
+                "submit",
+                handleProfileSubmit
+            );
+        }
 
 
-/* EDIT PLAYER PROFILE */
+        // SAVE PLAYER PROFILE 
+        const playerProfileForm =
+            getElement("player-profile-form");
 
-const playerProfileEditButton =
-    getElement("player-profile-edit");
+        if (playerProfileForm) {
 
-if (playerProfileEditButton) {
+            console.log(
+                "PLAYER PROFILE FORM LISTENER ATTACHED"
+            );
 
-    console.log(
-        "PLAYER PROFILE EDIT LISTENER ATTACHED"
-    );
-
-    playerProfileEditButton.addEventListener(
-        "click",
-        handleEditPlayerProfile
-    );
-}
+            playerProfileForm.addEventListener(
+                "submit",
+                handlePlayerProfileSubmit
+            );
+        }
 
 
-/* CANCEL PLAYER PROFILE EDIT */
+        // EDIT PLAYER PROFILE
 
-const playerProfileCancelButton =
-    getElement("player-profile-cancel");
+        const playerProfileEditButton =
+            getElement("player-profile-edit");
 
-if (playerProfileCancelButton) {
+        if (playerProfileEditButton) {
 
-    console.log(
-        "PLAYER PROFILE CANCEL LISTENER ATTACHED"
-    );
+            console.log(
+                "PLAYER PROFILE EDIT LISTENER ATTACHED"
+            );
 
-    playerProfileCancelButton.addEventListener(
-        "click",
-        handleCancelPlayerProfile
-    );
-}
+            playerProfileEditButton.addEventListener(
+                "click",
+                handleEditPlayerProfile
+            );
+        }
+
+
+        // CANCEL PLAYER PROFILE EDIT
+
+        const playerProfileCancelButton =
+            getElement("player-profile-cancel");
+
+        if (playerProfileCancelButton) {
+
+            console.log(
+                "PLAYER PROFILE CANCEL LISTENER ATTACHED"
+            );
+
+            playerProfileCancelButton.addEventListener(
+                "click",
+                handleCancelPlayerProfile
+            );
+        }
 
     } catch (error) {
 
@@ -2131,7 +2043,7 @@ if (playerProfileCancelButton) {
     const logoutButton =
     getElement("profile-logout-button");
 
-if (logoutButton) {
+    if (logoutButton) {
 
     logoutButton.addEventListener(
         "click",
@@ -2165,13 +2077,13 @@ if (logoutButton) {
                 showMessage(
                     "No pudimos cerrar tu sesión. Intentá nuevamente.",
                     "error"
-                );
+                    );
+                }
             }
-        }
-    );
-}
+        );
+    }
 
-initPlayerAvailability();
+    initPlayerAvailability();
 }
 
 
@@ -2286,218 +2198,216 @@ async function handlePlayerAvailabilitySubmit(
 }
 
 
-async function handlePlayerAvailabilityCancel(
-    availabilityId
-) {
+    async function handlePlayerAvailabilityCancel(
+        availabilityId
+    ) {
 
-    if (!availabilityId) {
-        return;
+        if (!availabilityId) {
+            return;
+        }
+
+
+        try {
+
+            await cancelPlayerAvailability(
+                availabilityId
+            );
+
+            await loadPlayerAvailability();
+
+
+        } catch (error) {
+
+            console.error(
+                "Error cancelling player availability:",
+                error
+            );
+
+        }
     }
 
 
-    try {
+    function initPlayerAvailability() {
 
-        await cancelPlayerAvailability(
-            availabilityId
-        );
+        const form =
+            document.querySelector(
+                "#player-availability-form"
+            );
 
-        await loadPlayerAvailability();
-
-
-    } catch (error) {
-
-        console.error(
-            "Error cancelling player availability:",
-            error
-        );
-
-    }
-}
+        const list =
+            document.querySelector(
+                "#player-availability-list"
+            );
 
 
-function initPlayerAvailability() {
+        if (form) {
 
-    const form =
-        document.querySelector(
-            "#player-availability-form"
-        );
+            form.addEventListener(
+                "submit",
+                handlePlayerAvailabilitySubmit
+            );
 
-    const list =
-        document.querySelector(
-            "#player-availability-list"
-        );
+        }
 
 
-    if (form) {
+        if (list) {
 
-        form.addEventListener(
-            "submit",
-            handlePlayerAvailabilitySubmit
-        );
+            list.addEventListener(
+                "click",
+                async event => {
 
-    }
+                    const button =
+                        event.target.closest(
+                            ".player-availability-cancel"
+                        );
+
+                    if (!button) {
+                        return;
+                    }
 
 
-    if (list) {
+                    const availabilityId =
+                        button.dataset.availabilityId;
 
-        list.addEventListener(
-            "click",
-            async event => {
 
-                const button =
-                    event.target.closest(
-                        ".player-availability-cancel"
+                    button.disabled = true;
+
+
+                    await handlePlayerAvailabilityCancel(
+                        availabilityId
                     );
 
-                if (!button) {
-                    return;
                 }
+            );
+
+        }
 
 
-                const availabilityId =
-                    button.dataset.availabilityId;
-
-
-                button.disabled = true;
-
-
-                await handlePlayerAvailabilityCancel(
-                    availabilityId
-                );
-
-            }
-        );
+        loadPlayerAvailability();
 
     }
 
 
-    loadPlayerAvailability();
+    // PLAYER AVAILABILITY
 
-}
+    async function loadPlayerAvailability() {
 
+        const list =
+            document.querySelector(
+                "#player-availability-list"
+            );
 
-/* ============================================
-   PLAYER AVAILABILITY
-============================================ */
+        if (!list) {
+            return;
+        }
 
-async function loadPlayerAvailability() {
+        try {
 
-    const list =
-        document.querySelector(
-            "#player-availability-list"
-        );
+            currentPlayerAvailability =
+                await getCurrentPlayerAvailability();
 
-    if (!list) {
-        return;
-    }
+            renderPlayerAvailability();
 
-    try {
+        } catch (error) {
 
-        currentPlayerAvailability =
-            await getCurrentPlayerAvailability();
+            console.error(
+                "Error loading player availability:",
+                error
+            );
 
-        renderPlayerAvailability();
-
-    } catch (error) {
-
-        console.error(
-            "Error loading player availability:",
-            error
-        );
-
-    }
-}
-
-
-function renderPlayerAvailability() {
-
-    const list =
-        document.querySelector(
-            "#player-availability-list"
-        );
-
-    if (!list) {
-        return;
+        }
     }
 
 
-    if (!currentPlayerAvailability.length) {
+    function renderPlayerAvailability() {
 
-        list.innerHTML = `
-            <p class="no-results">
-                No tenés disponibilidades cargadas.
-            </p>
-        `;
+        const list =
+            document.querySelector(
+                "#player-availability-list"
+            );
 
-        return;
-    }
-
-
-    list.innerHTML =
-        currentPlayerAvailability
-            .map(availability => {
-
-                const date =
-                    new Date(
-                        `${availability.available_date}T00:00:00`
-                    );
-
-                const formattedDate =
-                    date.toLocaleDateString(
-                        "es-AR",
-                        {
-                            weekday: "long",
-                            day: "numeric",
-                            month: "long"
-                        }
-                    );
+        if (!list) {
+            return;
+        }
 
 
-                return `
+        if (!currentPlayerAvailability.length) {
 
-                    <article
-                        class="player-availability-card"
-                    >
+            list.innerHTML = `
+                <p class="no-results">
+                    No tenés disponibilidades cargadas.
+                </p>
+            `;
 
-                        <div
-                            class="player-availability-info"
-                        >
+            return;
+        }
 
-                            <strong>
-                                ${formattedDate}
-                            </strong>
 
-                            <span>
-                                ${availability.start_time.slice(0, 5)}
-                                -
-                                ${availability.end_time.slice(0, 5)}
-                            </span>
+        list.innerHTML =
+            currentPlayerAvailability
+                .map(availability => {
 
-                            ${
-                                availability.zone
-                                    ? `
-                                        <span>
-                                            ${availability.zone}
-                                        </span>
-                                      `
-                                    : ""
+                    const date =
+                        new Date(
+                            `${availability.available_date}T00:00:00`
+                        );
+
+                    const formattedDate =
+                        date.toLocaleDateString(
+                            "es-AR",
+                            {
+                                weekday: "long",
+                                day: "numeric",
+                                month: "long"
                             }
+                        );
 
-                        </div>
 
+                    return `
 
-                        <button
-                            type="button"
-                            class="btn-clear player-availability-cancel"
-                            data-availability-id="${availability.id}"
+                        <article
+                            class="player-availability-card"
                         >
-                            Cancelar
-                        </button>
 
-                    </article>
+                            <div
+                                class="player-availability-info"
+                            >
 
-                `;
+                                <strong>
+                                    ${formattedDate}
+                                </strong>
 
-            })
-            .join("");
-}
+                                <span>
+                                    ${availability.start_time.slice(0, 5)}
+                                    -
+                                    ${availability.end_time.slice(0, 5)}
+                                </span>
+
+                                ${
+                                    availability.zone
+                                        ? `
+                                            <span>
+                                                ${availability.zone}
+                                            </span>
+                                        `
+                                        : ""
+                                }
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="btn-clear player-availability-cancel"
+                                data-availability-id="${availability.id}"
+                            >
+                                Cancelar
+                            </button>
+
+                        </article>
+
+                    `;
+
+                })
+                .join("");
+    }

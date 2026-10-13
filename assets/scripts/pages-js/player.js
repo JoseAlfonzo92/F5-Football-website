@@ -1,53 +1,22 @@
-import {
-    getPublicPlayers
-} from "../services/profiles.js";
+import { getPublicPlayers } from "../services/profiles.js";
+import { getPlayerAvailability } from "../services/player-availability.js";
+import { getCurrentUser } from "../services/auth.js";
+import { getCaptainTeams, createTeamInvitation } from "./team.js";
 
-import {
-    getPlayerAvailability
-} from "../services/player-availability.js";
 
-import {
-    getCurrentUser
-} from "../services/auth.js";
-
-import {
-    getCaptainTeams,
-    createTeamInvitation
-} from "./team.js";
-/* ============================================
-   INIT PLAYER PAGE
-============================================ */
-
+//INIT PLAYER PAGE
 export async function initPlayerPage() {
 
-    const container =
-        document.querySelector(
-            "#player-profile-container"
-        );
-
-    const notFound =
-        document.querySelector(
-            "#player-not-found"
-        );
-
+    const container = document.querySelector("#player-profile-container");
+    const notFound = document.querySelector("#player-not-found");
 
     if (!container) {
         return;
     }
 
-
-    /* ============================================
-       GET PLAYER ID FROM URL
-    ============================================ */
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-    const playerId =
-        params.get("id");
-
+    //GET PLAYER ID FROM URL
+    const params = new URLSearchParams(window.location.search);
+    const playerId = params.get("id");
 
     if (!playerId) {
 
@@ -58,19 +27,11 @@ export async function initPlayerPage() {
         return;
     }
 
-
-    
-
-    /* ============================================
-       LOAD PUBLIC PLAYERS
-    ============================================ */
-
+    //LOAD PUBLIC PLAYERS
     try {
 
-        const players =
-            await getPublicPlayers();
-
-
+        const players = await getPublicPlayers();
+        
         const player =
             players.find(
                 item =>
@@ -94,25 +55,25 @@ export async function initPlayerPage() {
 
 
         const currentUser =
-    await getCurrentUser();
+            await getCurrentUser();
 
-let captainTeams = [];
+        let captainTeams = [];
 
-if (currentUser) {
-    captainTeams =
-        await getCaptainTeams(
-            currentUser.id
+        if (currentUser) {
+            captainTeams =
+                await getCaptainTeams(
+                    currentUser.id
+                );
+        }
+
+        console.log(
+            "PLAYER INVITATION CONTEXT:",
+            {
+                playerId: player.user_id,
+                currentUserId: currentUser?.id,
+                captainTeams
+            }
         );
-}
-
-console.log(
-    "PLAYER INVITATION CONTEXT:",
-    {
-        playerId: player.user_id,
-        currentUserId: currentUser?.id,
-        captainTeams
-    }
-);
 
         const profile =
             player.profiles;
@@ -134,19 +95,15 @@ console.log(
                 .toUpperCase();
 
 
-        /* ============================================
-           RENDER PLAYER
-        ============================================ */
-
-
+        //RENDER PLAYER
         let invitationHtml = "";
 
-if (
-    currentUser &&
-    currentUser.id !== player.user_id &&
-    captainTeams.length
-) {
-    if (captainTeams.length === 1) {
+        if (
+            currentUser &&
+            currentUser.id !== player.user_id &&
+            captainTeams.length
+        ) {
+            if (captainTeams.length === 1) {
         invitationHtml = `
             <div class="player-invitation-section">
                 <h2>Invitar a este jugador</h2>
@@ -382,44 +339,33 @@ if (
     }
 
 
-    ${invitationHtml}
+             ${invitationHtml}
 
-</div>
+             </div>
 
             </article>
 
         `;
 
 
-        const inviteButton =
-    document.querySelector(
-        "#player-invite-button"
-    );
+        const inviteButton = document.querySelector("#player-invite-button");
+        const inviteTeamSelect = document.querySelector("#player-invite-team");
+        const invitationMessage = document.querySelector("#player-invitation-message");
 
-const inviteTeamSelect =
-    document.querySelector(
-        "#player-invite-team"
-    );
-
-const invitationMessage =
-    document.querySelector(
-        "#player-invitation-message"
-    );
-
-if (inviteTeamSelect && inviteButton) {
-    inviteTeamSelect.addEventListener(
-        "change",
-        () => {
-            inviteButton.disabled =
-                !inviteTeamSelect.value;
+        if (inviteTeamSelect && inviteButton) {
+            inviteTeamSelect.addEventListener(
+                "change",
+                () => {
+                    inviteButton.disabled =
+                        !inviteTeamSelect.value;
+                }
+            );
         }
-    );
-}
 
-if (inviteButton) {
-    inviteButton.addEventListener(
-        "click",
-        async () => {
+        if (inviteButton) {
+            inviteButton.addEventListener(
+                "click",
+                async () => {
             const teamId =
                 inviteTeamSelect?.value ||
                 inviteButton.dataset.teamId;
@@ -459,8 +405,8 @@ if (inviteButton) {
 
                 if (invitationMessage) {
                     if (
-    error?.code === "INVITATION_PENDING"
-) {
+                error?.code === "INVITATION_PENDING"
+                ) {
                         invitationMessage.textContent =
                             "Ya existe una invitación pendiente para este jugador.";
                     } else {
@@ -474,10 +420,10 @@ if (inviteButton) {
                 inviteButton.disabled = false;
                 inviteButton.textContent =
                     "Invitar a mi equipo";
+                }
             }
-        }
-    );
-}
+        );
+    }
 
 
     } catch (error) {

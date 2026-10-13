@@ -34,9 +34,7 @@ function getFieldTypeTag(type) {
 }
 
 
-/* ============================================
-   FAVORITE BUTTON
-   ============================================ */
+// FAVORITE BUTTON
 
 function getFavoriteButton(field) {
 
@@ -56,9 +54,7 @@ function getFavoriteButton(field) {
 }
 
 
-/* ============================================
-   UPDATE FAVORITE BUTTON
-   ============================================ */
+// UPDATE FAVORITE BUTTON
 
 function updateFavoriteButton(
     button,
@@ -97,9 +93,7 @@ function updateFavoriteButton(
 }
 
 
-/* ============================================
-   INITIALIZE FAVORITES
-   ============================================ */
+    // INITIALIZE FAVORITES
 
 async function initFavoriteButtons() {
 
@@ -116,9 +110,7 @@ async function initFavoriteButtons() {
         await getCurrentUser();
 
 
-    /* ----------------------------------------
-       LOGGED OUT
-       ---------------------------------------- */
+    // LOGGED OUT
 
     if (!user) {
 
@@ -131,9 +123,7 @@ async function initFavoriteButtons() {
     }
 
 
-    /* ----------------------------------------
-       LOAD FAVORITES
-       ---------------------------------------- */
+    // LOAD FAVORITES
 
     for (const button of buttons) {
 
@@ -160,9 +150,7 @@ async function initFavoriteButtons() {
     }
 
 
-    /* ----------------------------------------
-       CLICK EVENTS
-       ---------------------------------------- */
+    // CLICK EVENTS
 
     buttons.forEach(button => {
 
@@ -268,9 +256,7 @@ export async function getFields() {
 }
 
 
-/* ============================================
-   RENDER FIELDS
-   ============================================ */
+// RENDER FIELDS
 
 export async function renderFields() {
 

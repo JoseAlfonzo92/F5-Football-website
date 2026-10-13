@@ -1,9 +1,7 @@
 import { getCurrentUser } from "../services/auth.js";
 import { supabase } from "../services/supabase.js";
 
-/* ============================================
-   HELPERS
-   ============================================ */
+// HELPERS
 
 function getElement(id) {
     return document.getElementById(id);
@@ -37,9 +35,7 @@ function hideMessage() {
 }
 
 
-/* ============================================
-   LOAD USER TEAMS
-   ============================================ */
+//   LOAD USER TEAMS
 
 export async function getUserTeams(userId) {
 
@@ -84,9 +80,7 @@ export async function getUserTeams(userId) {
 }
 
 
-/* ============================================
-   RENDER TEAMS
-   ============================================ */
+  // RENDER TEAMS
 
 function renderTeams(teamMemberships) {
 
@@ -110,9 +104,7 @@ function renderTeams(teamMemberships) {
     }
 
 
-    /* ----------------------------------------
-       EMPTY STATE
-       ---------------------------------------- */
+    // EMPTY STATE
 
     if (!teamMemberships.length) {
 
@@ -123,9 +115,7 @@ function renderTeams(teamMemberships) {
     }
 
 
-    /* ----------------------------------------
-       TEAMS
-       ---------------------------------------- */
+    // TEAMS
 
     empty.hidden = true;
     grid.hidden = false;
@@ -265,9 +255,7 @@ function renderTeams(teamMemberships) {
 }
 
 
-/* ============================================
-   CREATE TEAM
-   ============================================ */
+//   CREATE TEAM
 
 async function handleCreateTeam(event) {
 
@@ -303,9 +291,7 @@ async function handleCreateTeam(event) {
         getElement("team-create-submit");
 
 
-    /* ----------------------------------------
-       VALIDATION
-       ---------------------------------------- */
+    // VALIDATION
 
     if (!name) {
 
@@ -353,9 +339,7 @@ async function handleCreateTeam(event) {
         }
 
 
-        /* ----------------------------------------
-           CREATE TEAM
-           ---------------------------------------- */
+        // CREATE TEAM
 
         const {
             data: team,
@@ -387,36 +371,7 @@ async function handleCreateTeam(event) {
         }
 
 
-        /* ----------------------------------------
-           ADD CREATOR AS CAPTAIN
-           ---------------------------------------- */
-
-       /*  const {
-            error: memberError
-        } = await supabase
-            .from("team_members")
-            .insert({
-
-                team_id:
-                    team.id,
-
-                user_id:
-                    user.id,
-
-                role:
-                    "captain"
-
-            });
-
-
-        if (memberError) {
-            throw memberError;
-        }
- */
-
-        /* ----------------------------------------
-           RESET FORM
-           ---------------------------------------- */
+        // RESET FORM
 
         const form =
             getElement("team-create-form");
@@ -430,9 +385,7 @@ async function handleCreateTeam(event) {
         showCreateTeam(false);
 
 
-        /* ----------------------------------------
-           RELOAD
-           ---------------------------------------- */
+        // RELOAD
 
         const teams =
             await getUserTeams(user.id);
@@ -475,9 +428,7 @@ async function handleCreateTeam(event) {
 }
 
 
-/* ============================================
-   CREATE TEAM UI
-   ============================================ */
+// CREATE TEAM UI
 
 function showCreateTeam(show) {
 
@@ -510,9 +461,7 @@ function showCreateTeam(show) {
 }
 
 
-/* ============================================
-   INITIALIZE
-   ============================================ */
+// INITIALIZE
 
 export async function initTeamsPage() {
 
@@ -544,7 +493,7 @@ export async function initTeamsPage() {
         renderTeams(teams);
 
 
-        /* CREATE */
+        // CREATE
 
         const createButton =
             getElement("create-team-button");
@@ -559,7 +508,7 @@ export async function initTeamsPage() {
         }
 
 
-        /* CANCEL */
+        // CANCEL
 
         const cancelButton =
             getElement("team-create-cancel");
@@ -574,7 +523,7 @@ export async function initTeamsPage() {
         }
 
 
-        /* FORM */
+        // FORM
 
         const form =
             getElement("team-create-form");

@@ -1,9 +1,19 @@
 import { icons } from "../utils/icons.js";
 import { supabase } from "../services/supabase.js";
+import { getCurrentUser } from "../services/auth.js";
 
-export function initAddFieldForm() {
+export async function initAddFieldForm() {
+
     const form = document.querySelector('.add-field-form');
     if (!form) return;
+
+    const user = await getCurrentUser();
+
+    if (!user) {
+        window.location.href =
+            "login.html?redirect=add-field.html";
+        return;
+    }
 
     const submitBtn = form.querySelector('.submit-btn');
     const fileInput = document.getElementById('field-images');
@@ -169,6 +179,22 @@ export function initAddFieldForm() {
     async function handleSubmit(e) {
         e.preventDefault();
 
+        const {
+            data: { user },
+            error: authError
+        } = await supabase.auth.getUser();
+
+        if (authError) {
+            console.error("AUTH ERROR:", authError);
+            alert("No se pudo verificar tu sesión. Por favor inicia sesión nuevamente.");
+            return;
+        }
+
+        if (!user) {
+            alert("Debes iniciar sesión para publicar una cancha.");
+            return;
+        }
+
         const error = validateForm();
         if (error) {
             alert(error);
@@ -222,6 +248,9 @@ export function initAddFieldForm() {
             const longitudeValue = document.getElementById('field-longitude').value.trim().replace(',', '.');
 
         const submissionData = {
+            submitted_by: user.id,
+
+
             name: document.getElementById('field-name').value.trim(),
             whatsapp: document.getElementById('field-phone').value.trim(),
             province: document.getElementById('field-province').value.trim(),

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta name="description"
-    content="Términos y condiciones de Fulsap. Información sobre el uso del directorio de canchas de fútbol, responsabilidades y condiciones del servicio.">
-    <meta property="og:title" content="Términos y Condiciones | Fulsap">
-    <meta property="og:description" content="Conocé los términos y condiciones para utilizar Fulsap.">
+    <meta name="description" content="Perfil de usuario de Fulsap. Gestioná tus datos personales, reservas, favoritos y preferencias para encontrar y reservar canchas de fútbol.">
+    <meta property="og:title" content="Mi Perfil | Fulsap">
+    <meta property="og:description" content="Consultá y actualizá tu información personal y tus preferencias en Fulsap.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://domain.com/pages/terms-page.html">
-    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
-    <link rel="canonical" href="https://domain.com/pages/terms-page.html">
+    <meta property="og:url" content="https://domain.com/pages/profile.html">
+    <meta property="og:image" content="https://domain.com/assets/images/profile-og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/profile.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fulsap - Términos y Condiciones</title>
+    <title>Fulsap - Mi Perfil</title>
 
     <link rel="stylesheet" href="../assets/styles/style.css">
     <link rel="stylesheet" href="../assets/styles/profile.css">
@@ -60,7 +59,7 @@
 </script>
 </head>
 <body>
- <!-- HEADER -->
+   <!-- HEADER -->
     <header class="header">
         <div class="container">
             <!-- Logo -->
@@ -80,8 +79,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="../index.html">Inicio</a></li>
                             <li><a href="all-fields-page.html">Todas las canchas</a></li>
-                            <li><a href="all-teams.html">Todos los equipos</a></li>
-                            <li><a href="players.html">Jugadores</a></li>
+                            <li class="account-required-nav" id="desktop-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                            <li class="account-required-nav" id="desktop-players-nav"><a href="players.html">Jugadores</a></li>
                             <li><a href="add-field.html">Agregar cancha</a></li>
                             <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
                              <li><a href="contact.html">Contacto</a></li>
@@ -120,8 +119,8 @@
                 <ul>    
                     <li><a href="../index.html">Inicio</a></li>
                     <li><a href="all-fields-page.html">Todas las canchas</a></li>
-                    <li><a href="all-teams.html">Todos los equipos</a></li>
-                    <li><a href="players.html">Jugadores</a></li>
+                    <li class="account-required-nav" id="mobile-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                    <li class="account-required-nav" id="mobile-players-nav"><a href="players.html">Jugadores</a></li>
                     <li><a href="add-field.html">Agregar cancha</a></li>
                     <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
                     <li><a href="contact.html">Contacto</a></li>
@@ -145,7 +144,6 @@
 
     <section class="profile-section">
 
-        <div class="profile-container">
 
             <!-- PROFILE HEADER -->
 
@@ -201,47 +199,47 @@
             </div>
 
 
-            <!-- WELCOME -->
+                        <!-- WELCOME -->
 
-<div
-    class="profile-welcome"
-    id="profile-welcome"
-    hidden
->
+                    <div
+                        class="profile-welcome"
+                        id="profile-welcome"
+                        hidden
+                    >
 
-    <div class="profile-welcome-icon">
-        <span data-icon="user"></span>
-    </div>
+                <div class="profile-welcome-icon">
+                    <span data-icon="user"></span>
+                </div>
 
-    <div class="profile-welcome-content">
+                <div class="profile-welcome-content">
 
-        <h3>
-            ¡Bienvenido a Fulsap!
-        </h3>
+                    <h3>
+                        ¡Bienvenido a Fulsap!
+                    </h3>
 
-        <p>
-            Nos alegra tenerte acá,
-            <strong id="welcome-display-name">—</strong>.
-        </p>
+                    <p>
+                        Nos alegra tenerte acá,
+                        <strong id="welcome-display-name">—</strong>.
+                    </p>
 
-        <p>
-            Tu cuenta te permitirá acceder a nuevas
-            funciones de Fulsap mientras seguís
-            disfrutando de las canchas y valoraciones
-            sin necesidad de iniciar sesión.
-        </p>
+                    <p>
+                        Tu cuenta te permitirá acceder a nuevas
+                        funciones de Fulsap mientras seguís
+                        disfrutando de las canchas y valoraciones
+                        sin necesidad de iniciar sesión.
+                    </p>
 
-        <button
-            type="button"
-            class="btn-primary"
-            id="welcome-continue"
-        >
-            Continuar a mi cuenta
-        </button>
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        id="welcome-continue"
+                    >
+                        Continuar a mi cuenta
+                    </button>
 
-    </div>
+                </div>
 
-</div>
+            </div>
 
 
             <!-- PROFILE VIEW -->
@@ -348,595 +346,8 @@
 
             </div>
 
-
-            <!-- SAVED FIELDS -->
-
-<section
-    class="profile-saved-fields"
-    id="profile-saved-fields"
->
-
-    <div class="profile-section-header">
-
-        <div>
-            <h3 class="profile-title">
-                Canchas guardadas
-            </h3>
-
-            <p class="profile-section-description">
-                Guardá tus canchas favoritas para encontrarlas rápidamente.
-            </p>
-        </div>
-
-        <span
-            data-icon="heart"
-            class="profile-section-icon"
-        ></span>
-
-    </div>
-
-
-    <!-- LOADING -->
-
-    <div
-        class="profile-message"
-        id="saved-fields-loading"
-    >
-        Cargando tus canchas guardadas...
-    </div>
-
-
-    <!-- EMPTY STATE -->
-
-    <div
-        class="saved-fields-empty"
-        id="saved-fields-empty"
-        hidden
-    >
-
-        <span
-            data-icon="heart"
-            class="saved-fields-empty-icon"
-        ></span>
-
-        <h4>
-            Todavía no guardaste ninguna cancha
-        </h4>
-
-        <p>
-            Cuando encuentres una cancha que te guste,
-            podés guardarla para verla acá más tarde.
-        </p>
-
-        <a
-            href="all-fields-page.html"
-            class="btn-primary"
-        >
-            Explorar canchas
-        </a>
-
-    </div>
-
-
-    <!-- SAVED FIELDS GRID -->
-
-    <div
-        class="saved-fields-grid"
-        id="saved-fields-grid"
-        hidden
-    >
-        <!-- Saved field cards will be rendered here -->
-    </div>
-
-</section>
-
-
-<!-- PLAYER PROFILE -->
-<section class="profile-section" id="profile-player">
-
-    <div class="profile-section-header">
-        <div>
-            <h2>Mi perfil de jugador</h2>
-            <p>
-                Completá tu información para que otros jugadores
-                y equipos puedan encontrarte.
-            </p>
-        </div>
-    </div>
-
-
-    <!-- PLAYER PROFILE DISPLAY -->
-    <div id="player-profile-display">
-
-        <div class="profile-info">
-
-            <div class="profile-info-item">
-                <span class="profile-info-label">
-                    Posición
-                </span>
-                <strong
-                    id="player-profile-position"
-                >
-                    —
-                </strong>
-            </div>
-
-            <div class="profile-info-item">
-                <span class="profile-info-label">
-                    Zona / Barrio
-                </span>
-                <strong
-                    id="player-profile-zone"
-                >
-                    —
-                </strong>
-            </div>
-
-            <div class="profile-info-item">
-                <span class="profile-info-label">
-                    Nivel
-                </span>
-                <strong
-                    id="player-profile-level"
-                >
-                    —
-                </strong>
-            </div>
-
-            <div class="profile-info-item">
-                <span class="profile-info-label">
-                    Perfil público
-                </span>
-                <strong
-                    id="player-profile-public"
-                >
-                    Sí
-                </strong>
-            </div>
-
-        </div>
-
-
-        <div class="profile-form-actions">
-
-            <button
-                type="button"
-                class="profile-button"
-                id="player-profile-edit"
-            >
-                Editar perfil
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- PLAYER PROFILE EDIT FORM -->
-    <form
-        id="player-profile-form"
-        class="profile-edit-form"
-        hidden
-    >
-
-        <div class="profile-form-group">
-
-            <label for="player-position">
-                Posición
-            </label>
-
-            <select
-                id="player-position"
-                name="position"
-            >
-                <option value="">
-                    Seleccioná tu posición
-                </option>
-
-                <option value="Arquero">
-                    Arquero
-                </option>
-
-                <option value="Defensor">
-                    Defensor
-                </option>
-
-                <option value="Mediocampista">
-                    Mediocampista
-                </option>
-
-                <option value="Extremo">
-                    Extremo
-                </option>
-
-                <option value="Delantero">
-                    Delantero
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="profile-form-group">
-
-            <label for="player-zone">
-                Zona / Barrio
-            </label>
-
-            <input
-                type="text"
-                id="player-zone"
-                name="zone"
-                placeholder="Ej. Caballito"
-            >
-
-        </div>
-
-
-        <div class="profile-form-group">
-
-            <label for="player-level">
-                Nivel
-            </label>
-
-            <select
-                id="player-level"
-                name="level"
-            >
-                <option value="">
-                    Seleccioná tu nivel
-                </option>
-
-                <option value="Principiante">
-                    Principiante
-                </option>
-
-                <option value="Intermedio">
-                    Intermedio
-                </option>
-
-                <option value="Avanzado">
-                    Avanzado
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="profile-form-group">
-
-            <label>
-                <input
-                    type="checkbox"
-                    id="player-is-public"
-                    name="is_public"
-                >
-
-                Mostrarme en la lista de jugadores
-            </label>
-
-            <small>
-                Si desactivás esta opción, tu perfil de jugador
-                no aparecerá públicamente.
-            </small>
-
-        </div>
-
-
-        <div class="profile-form-actions">
-
-            <button
-                type="submit"
-                class="profile-button"
-                id="player-profile-save"
-            >
-                Guardar información
-            </button>
-
-            <button
-                type="button"
-                class="profile-button"
-                id="player-profile-cancel"
-            >
-                Cancelar
-            </button>
-
-        </div>
-
-
-        <p
-            id="player-profile-message"
-            class="profile-message"
-            hidden
-        ></p>
-
-    </form>
-
-</section>
-
-<section class="profile-section player-availability-section">
-
-    <div class="profile-section-header">
-
-        <h3>
-            Mi disponibilidad
-        </h3>
-
-        <p>
-            Indicá cuándo estás disponible para jugar.
-        </p>
-
-    </div>
-
-
-    <form id="player-availability-form">
-
-        <div class="profile-form-grid">
-
-            <div class="form-group">
-
-                <label for="player-availability-date">
-                    Fecha
-                </label>
-
-                <input
-                    type="date"
-                    id="player-availability-date"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="player-availability-start">
-                    Desde
-                </label>
-
-                <input
-                    type="time"
-                    id="player-availability-start"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="player-availability-end">
-                    Hasta
-                </label>
-
-                <input
-                    type="time"
-                    id="player-availability-end"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="player-availability-zone">
-                    Zona
-                </label>
-
-                <input
-                    type="text"
-                    id="player-availability-zone"
-                    placeholder="Ej. Centro"
-                >
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="btn-primary"
-            id="player-availability-submit"
-        >
-            Agregar disponibilidad
-        </button>
-
-    </form>
-
-
-    <div
-        id="player-availability-message"
-        class="profile-message"
-        hidden
-    ></div>
-
-
-    <div
-        id="player-availability-list"
-        class="player-availability-list"
-    >
-    </div>
-
-</section>
-
-
-
-
-<!-- TEAM INVITATIONS -->
-
-<section
-    class="profile-section profile-invitations"
-    id="profile-invitations"
->
-
-    <div class="profile-section-header">
-
-        <div>
-
-            <h3 class="profile-title">
-                Invitaciones a equipos
-            </h3>
-
-            <p class="profile-section-description">
-                Invitaciones de equipos que quieren que formes parte.
-            </p>
-
-        </div>
-
-        <span
-            data-icon="users"
-            class="profile-section-icon"
-        ></span>
-
-    </div>
-
-
-    <!-- LOADING -->
-
-    <div
-        class="profile-message"
-        id="team-invitations-loading"
-    >
-        Cargando invitaciones...
-    </div>
-
-
-    <!-- EMPTY STATE -->
-
-    <div
-        class="team-invitations-empty"
-        id="team-invitations-empty"
-        hidden
-    >
-
-        <p>
-            No tenés invitaciones pendientes.
-        </p>
-
-    </div>
-
-
-    <!-- INVITATIONS LIST -->
-
-    <div
-        class="team-invitations-list"
-        id="team-invitations-list"
-        hidden
-    >
-        <!-- Invitations will be rendered here -->
-    </div>
-
-</section>
-
-
-<!-- MY TEAMS -->
-
-<section
-    class="profile-teams"
-    id="profile-teams"
->
-
-    <div class="profile-section-header">
-
-        <div>
-
-            <h3 class="profile-title">
-                Mis equipos
-            </h3>
-
-            <p class="profile-section-description">
-                Creá y administrá tus equipos para jugar partidos.
-            </p>
-
-        </div>
-
-        <span
-            data-icon="users"
-            class="profile-section-icon"
-        ></span>
-
-    </div>
-
-
-<div class="profile-teams-content">
-
-    <!-- LOADING -->
-
-    <div
-        class="profile-message"
-        id="profile-teams-loading"
-    >
-        Cargando tus equipos...
-    </div>
-
-
-    <!-- EMPTY STATE -->
-
-    <div
-        class="saved-fields-empty"
-        id="profile-teams-empty"
-        hidden
-    >
-
-        <span
-            data-icon="users"
-            class="saved-fields-empty-icon"
-        ></span>
-
-        <h4>
-            Todavía no formás parte de ningún equipo
-        </h4>
-
-        <p>
-            Cuando formes parte de un equipo, vas a poder
-            verlo rápidamente desde acá.
-        </p>
-
-        <a
-            href="teams.html"
-            class="btn-primary"
-        >
-            Ver mis equipos
-        </a>
-
-    </div>
-
-
-    <!-- TEAMS CAROUSEL -->
-
-    <div
-        class="saved-fields-grid"
-        id="profile-teams-grid"
-        hidden
-    >
-        <!-- Team cards will be rendered here -->
-    </div>
-
-
-    <!-- ALL TEAMS BUTTON -->
-
-    <div class="profile-teams-actions">
-
-        <a
-            href="teams.html"
-            class="btn-primary"
-        >
-            Ver mis equipos
-        </a>
-
-    </div>
-
-</div>
-
-
-</section>
-
-
-            <!-- EDIT PROFILE -->
+            
+              <!-- EDIT PROFILE -->
 
             <div
                 class="profile-edit"
@@ -1016,9 +427,634 @@
 
             </div>
 
+
+
+        </section>
+
+
+
+<section
+    id="profile-field-owner-section"
+    class="profile-section"
+>
+
+                    <div class="profile-section-header">
+
+                    <h2>¿Tenés una cancha?</h2>
+
+                    </div>
+
+                    <div class="profile-card">
+
+                    <p>
+                        Publicá y administrá tus canchas en Fulsap.
+                    </p>
+
+                    <div class="profile-actions">
+
+                        <a
+                            href="field-owner.html"
+                            class="profile-action primary"
+                        >
+                            Quiero ser dueño de una cancha
+                        </a>
+
+                    </div>
+
+                    </div>
+
+            </section>
+
+
+
+            <!-- SAVED FIELDS -->
+
+    <section
+    class="profile-saved-fields"
+    id="profile-saved-fields"
+    >
+
+    <div class="profile-section-header">
+
+        <div>
+            <h3 class="profile-title">
+                Canchas guardadas
+            </h3>
+
+            <p class="profile-section-description">
+                Guardá tus canchas favoritas para encontrarlas rápidamente.
+            </p>
         </div>
 
+        <span
+            data-icon="heart"
+            class="profile-section-icon"
+        ></span>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        class="profile-message"
+        id="saved-fields-loading"
+    >
+        Cargando tus canchas guardadas...
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+        class="saved-fields-empty"
+        id="saved-fields-empty"
+        hidden
+    >
+
+        <span
+            data-icon="heart"
+            class="saved-fields-empty-icon"
+        ></span>
+
+        <h4>
+            Todavía no guardaste ninguna cancha
+        </h4>
+
+        <p>
+            Cuando encuentres una cancha que te guste,
+            podés guardarla para verla acá más tarde.
+        </p>
+
+        <a
+            href="all-fields-page.html"
+            class="btn-primary"
+        >
+            Explorar canchas
+        </a>
+
+    </div>
+
+
+    <!-- SAVED FIELDS GRID -->
+
+    <div
+        class="saved-fields-grid"
+        id="saved-fields-grid"
+        hidden
+    >
+        <!-- Saved field cards will be rendered here -->
+    </div>
+
     </section>
+
+
+            <!-- PLAYER PROFILE -->
+            <section class="profile-section" id="profile-player">
+
+                <div class="profile-section-header">
+                    <div>
+                        <h2>Mi perfil de jugador</h2>
+                        <p>
+                            Completá tu información para que otros jugadores
+                            y equipos puedan encontrarte.
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- PLAYER PROFILE DISPLAY -->
+                <div id="player-profile-display">
+
+                    <div class="profile-info">
+
+                        <div class="profile-info-item">
+                            <span class="profile-info-label">
+                                Posición
+                            </span>
+                            <strong
+                                id="player-profile-position"
+                            >
+                                —
+                            </strong>
+                        </div>
+
+                        <div class="profile-info-item">
+                            <span class="profile-info-label">
+                                Zona / Barrio
+                            </span>
+                            <strong
+                                id="player-profile-zone"
+                            >
+                                —
+                            </strong>
+                        </div>
+
+                        <div class="profile-info-item">
+                            <span class="profile-info-label">
+                                Nivel
+                            </span>
+                            <strong
+                                id="player-profile-level"
+                            >
+                                —
+                            </strong>
+                        </div>
+
+                        <div class="profile-info-item">
+                            <span class="profile-info-label">
+                                Perfil público
+                            </span>
+                            <strong
+                                id="player-profile-public"
+                            >
+                                Sí
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-form-actions">
+
+                        <button
+                            type="button"
+                            class="profile-button"
+                            id="player-profile-edit"
+                        >
+                            Editar perfil
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PLAYER PROFILE EDIT FORM -->
+                <form
+                    id="player-profile-form"
+                    class="profile-edit-form"
+                    hidden
+                >
+
+                    <div class="profile-form-group">
+
+                        <label for="player-position">
+                            Posición
+                        </label>
+
+                        <select
+                            id="player-position"
+                            name="position"
+                        >
+                            <option value="">
+                                Seleccioná tu posición
+                            </option>
+
+                            <option value="Arquero">
+                                Arquero
+                            </option>
+
+                            <option value="Defensor">
+                                Defensor
+                            </option>
+
+                            <option value="Mediocampista">
+                                Mediocampista
+                            </option>
+
+                            <option value="Extremo">
+                                Extremo
+                            </option>
+
+                            <option value="Delantero">
+                                Delantero
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="profile-form-group">
+
+                        <label for="player-zone">
+                            Zona / Barrio
+                        </label>
+
+                        <input
+                            type="text"
+                            id="player-zone"
+                            name="zone"
+                            placeholder="Ej. Caballito"
+                        >
+
+                    </div>
+
+
+                    <div class="profile-form-group">
+
+                        <label for="player-level">
+                            Nivel
+                        </label>
+
+                        <select
+                            id="player-level"
+                            name="level"
+                        >
+                            <option value="">
+                                Seleccioná tu nivel
+                            </option>
+
+                            <option value="Principiante">
+                                Principiante
+                            </option>
+
+                            <option value="Intermedio">
+                                Intermedio
+                            </option>
+
+                            <option value="Avanzado">
+                                Avanzado
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="profile-form-group">
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="player-is-public"
+                                name="is_public"
+                            >
+
+                            Mostrarme en la lista de jugadores
+                        </label>
+
+                        <small>
+                            Si desactivás esta opción, tu perfil de jugador
+                            no aparecerá públicamente.
+                        </small>
+
+                    </div>
+
+
+                    <div class="profile-form-actions">
+
+                        <button
+                            type="submit"
+                            class="profile-button"
+                            id="player-profile-save"
+                        >
+                            Guardar información
+                        </button>
+
+                        <button
+                            type="button"
+                            class="profile-button"
+                            id="player-profile-cancel"
+                        >
+                            Cancelar
+                        </button>
+
+                    </div>
+
+
+                    <p
+                        id="player-profile-message"
+                        class="profile-message"
+                        hidden
+                    ></p>
+
+                </form>
+
+            </section>
+
+            <section class="profile-section player-availability-section">
+
+                <div class="profile-section-header">
+
+                    <h3>
+                        Mi disponibilidad
+                    </h3>
+
+                    <p>
+                        Indicá cuándo estás disponible para jugar.
+                    </p>
+
+                </div>
+
+
+                <form id="player-availability-form">
+
+                    <div class="profile-form-grid">
+
+                        <div class="form-group">
+
+                            <label for="player-availability-date">
+                                Fecha
+                            </label>
+
+                            <input
+                                type="date"
+                                id="player-availability-date"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="player-availability-start">
+                                Desde
+                            </label>
+
+                            <input
+                                type="time"
+                                id="player-availability-start"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="player-availability-end">
+                                Hasta
+                            </label>
+
+                            <input
+                                type="time"
+                                id="player-availability-end"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="player-availability-zone">
+                                Zona
+                            </label>
+
+                            <input
+                                type="text"
+                                id="player-availability-zone"
+                                placeholder="Ej. Centro"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                        id="player-availability-submit"
+                    >
+                        Agregar disponibilidad
+                    </button>
+
+                </form>
+
+
+                <div
+                    id="player-availability-message"
+                    class="profile-message"
+                    hidden
+                ></div>
+
+
+                <div
+                    id="player-availability-list"
+                    class="player-availability-list"
+                >
+                </div>
+
+            </section>
+
+
+
+
+            <!-- TEAM INVITATIONS -->
+
+            <section
+                class="profile-section profile-invitations"
+                id="profile-invitations"
+            >
+
+                <div class="profile-section-header">
+
+                    <div>
+
+                        <h3 class="profile-title">
+                            Invitaciones a equipos
+                        </h3>
+
+                        <p class="profile-section-description">
+                            Invitaciones de equipos que quieren que formes parte.
+                        </p>
+
+                    </div>
+
+                    <span
+                        data-icon="users"
+                        class="profile-section-icon"
+                    ></span>
+
+                </div>
+
+
+                <!-- LOADING -->
+
+                <div
+                    class="profile-message"
+                    id="team-invitations-loading"
+                >
+                    Cargando invitaciones...
+                </div>
+
+
+                <!-- EMPTY STATE -->
+
+                <div
+                    class="team-invitations-empty"
+                    id="team-invitations-empty"
+                    hidden
+                >
+
+                    <p>
+                        No tenés invitaciones pendientes.
+                    </p>
+
+                </div>
+
+
+                <!-- INVITATIONS LIST -->
+
+                <div
+                    class="team-invitations-list"
+                    id="team-invitations-list"
+                    hidden
+                >
+                    <!-- Invitations will be rendered here -->
+                </div>
+
+            </section>
+
+
+            <!-- MY TEAMS -->
+
+            <section
+                class="profile-teams"
+                id="profile-teams"
+            >
+
+                <div class="profile-section-header">
+
+                    <div>
+
+                        <h3 class="profile-title">
+                            Mis equipos
+                        </h3>
+
+                        <p class="profile-section-description">
+                            Creá y administrá tus equipos para jugar partidos.
+                        </p>
+
+                    </div>
+
+                    <span
+                        data-icon="users"
+                        class="profile-section-icon"
+                    ></span>
+
+                </div>
+
+
+            <div class="profile-teams-content">
+
+                <!-- LOADING -->
+
+                <div
+                    class="profile-message"
+                    id="profile-teams-loading"
+                >
+                    Cargando tus equipos...
+                </div>
+
+
+                <!-- EMPTY STATE -->
+
+                <div
+                    class="saved-fields-empty"
+                    id="profile-teams-empty"
+                    hidden
+                >
+
+                    <span
+                        data-icon="users"
+                        class="saved-fields-empty-icon"
+                    ></span>
+
+                    <h4>
+                        Todavía no formás parte de ningún equipo
+                    </h4>
+
+                    <p>
+                        Cuando formes parte de un equipo, vas a poder
+                        verlo rápidamente desde acá.
+                    </p>
+
+                    <a
+                        href="teams.html"
+                        class="btn-primary"
+                    >
+                        Ver mis equipos
+                    </a>
+
+                </div>
+
+
+                <!-- TEAMS CAROUSEL -->
+
+                <div
+                    class="saved-fields-grid"
+                    id="profile-teams-grid"
+                    hidden
+                >
+                    <!-- Team cards will be rendered here -->
+                </div>
+
+
+                <!-- ALL TEAMS BUTTON -->
+
+                <div class="profile-teams-actions">
+
+                    <a
+                        href="teams.html"
+                        class="btn-primary"
+                    >
+                        Ver mis equipos
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            </section>
+
+
+          
     
 
 </main>

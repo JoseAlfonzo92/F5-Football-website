@@ -7,6 +7,12 @@ export function initRegisterPage() {
 
     if (!form) return;
 
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const redirect =
+        params.get("redirect");
+
     const message = document.getElementById("register-message");
 
 
@@ -104,7 +110,8 @@ export function initRegisterPage() {
                 email,
                 password,
                 username,
-                displayName
+                displayName,
+                redirect
             });
 
 

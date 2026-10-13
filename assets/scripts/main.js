@@ -25,10 +25,23 @@ import { initTeamPage } from "./pages-js/team.js";
 import { initAllTeamsPage } from "./pages-js/allTeams.js";
 import { initPlayersPage } from "./pages-js/players.js";
 import { initPlayerPage } from "./pages-js/player.js";
-
+import { initFieldOwnerPage } from "./pages-js/fieldOwner.js";
+import { initEditFieldPage } from "./pages-js/editField.js";
+import { getPublishFieldUrl } from "./services/auth.js";
 
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+    async function initPublishFieldButton() {
+
+        const button =
+            document.getElementById("publish-field-button");
+
+        if (!button) return;
+
+        button.href =
+            await getPublishFieldUrl();
+    }
 
     injectIcons();
 
@@ -42,31 +55,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     initGlobalSearch();
     initHeroAnimations();
     initAuthNav();
+    await initPublishFieldButton();
+
     await renderFeaturedFields();
-await renderHomeFields();
+    await renderHomeFields();
 
     // FIELDS PAGE
     if (document.querySelector("#fields-container")) {
 
-    await renderFields();
-    await initLocationFilters();
-    await initFieldsFilter();
-    await initFieldsMap();
-}
+        await renderFields();
+        await initLocationFilters();
+        await initFieldsFilter();
+        await initFieldsMap();
+    }
 
     // FIELD DETAIL PAGE
-    if (document.querySelector("#field-name")) {
-
-    await initFieldPage();
-    initFieldDetailMap();
-}
+    if (document.querySelector(".field-detail")) {
+        await initFieldPage();
+        initFieldDetailMap();
+    }
 
     // ADD FIELD FORM PAGE
     if (
         document.querySelector(".add-field-form") ||
         document.getElementById("add-field-form")
     ) {
-        initAddFieldForm();
+        await initAddFieldForm();
     }
 
     // CONTACT PAGE
@@ -93,35 +107,52 @@ await renderHomeFields();
     }
 
     // TEAMS PAGE
-if (document.querySelector("#teams-grid")) {
-    initTeamsPage();
-}
+    if (document.querySelector("#teams-grid")) {
+        initTeamsPage();
+    }
 
-// TEAM DETAIL PAGE
-if (document.querySelector("#team-detail")) {
-    initTeamPage();
-}
+    // TEAM DETAIL PAGE
+    if (document.querySelector("#team-detail")) {
+        initTeamPage();
+    }
 
-// ALL TEAMS PAGE
-if (document.querySelector("#all-teams-grid")) {
+    // ALL TEAMS PAGE
+    if (document.querySelector("#all-teams-grid")) {
 
-    initAllTeamsPage();
+        initAllTeamsPage();
 
-}
+    }
 
-// PLAYERS PAGE
-if (document.querySelector("#players-container")) {
-    initPlayersPage();
-}
+    // PLAYERS PAGE
+    if (document.querySelector("#players-container")) {
+        initPlayersPage();
+    }
 
-// PLAYER PAGE
-if (
-    document.querySelector(
-        "#player-profile-container"
-    )
-) {
-    initPlayerPage();
-}
+    // PLAYER PAGE
+    if (
+        document.querySelector(
+            "#player-profile-container"
+        )
+    ) {
+        initPlayerPage();
+    }
+
+    if (
+        document.getElementById(
+            "field-owner-page"
+        )
+    ) {
+
+        await initFieldOwnerPage();
+
+    }
+
+    // EDIT FIELD PAGE
+    if (
+        document.querySelector("#edit-field-form")
+    ) {
+        await initEditFieldPage();
+    }
 
     // EMAIL CONFIRMED PAGE
     if (
@@ -129,4 +160,6 @@ if (
     ) {
         initEmailConfirmedPage();
     }
+
+ 
 });

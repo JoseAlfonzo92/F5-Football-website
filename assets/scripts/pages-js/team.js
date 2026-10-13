@@ -5,9 +5,7 @@ import { icons } from "../utils/icons.js";
 
 let fields = [];
 
-/* ============================================
-   HELPERS
-   ============================================ */
+// HELPERS
 
 function getElement(id) {
 
@@ -33,9 +31,7 @@ function hideMessage() {
 
 }
 
-/* ============================================
-   LOAD TEAMS FOR CHALLENGES
-   ============================================ */
+// LOAD TEAMS FOR CHALLENGES
 
 async function getChallengeTeams(challenges) {
 
@@ -94,9 +90,7 @@ async function getChallengeTeams(challenges) {
 }
 
 
-/* ============================================
-   GET USER'S CAPTAIN TEAMS
-============================================ */
+// GET USER'S CAPTAIN TEAMS
 
 export async function getCaptainTeams(userId) {
 
@@ -134,9 +128,7 @@ export async function getCaptainTeams(userId) {
 }
 
 
-/* ============================================
-   RENDER CHALLENGER TEAMS
-============================================ */
+// RENDER CHALLENGER TEAMS
 
 function renderChallengeTeams(
     captainTeams,
@@ -182,9 +174,7 @@ function renderChallengeTeams(
 }
 
 
-/* ============================================
-   GET TEAM ID
-   ============================================ */
+// GET TEAM ID
 
 function getTeamIdFromUrl() {
 
@@ -198,9 +188,7 @@ function getTeamIdFromUrl() {
 }
 
 
-/* ============================================
-   LOAD TEAM
-   ============================================ */
+// LOAD TEAM
 
 async function getTeam(teamId) {
 
@@ -240,9 +228,7 @@ async function getTeam(teamId) {
 }
 
 
-/* ============================================
-   LOAD MEMBERS
-   ============================================ */
+// LOAD MEMBERS
 
 async function getTeamMembers(teamId) {
 
@@ -289,9 +275,7 @@ async function getTeamMembers(teamId) {
 }
 
 
-/* ============================================
-   LOAD AVAILABILITY
-   ============================================ */
+// LOAD AVAILABILITY
 
 async function getTeamAvailability(teamId) {
 
@@ -336,9 +320,7 @@ async function getTeamAvailability(teamId) {
 }
 
 
-/* ============================================
-   LOAD TEAM WEEKLY SCHEDULE
-============================================ */
+// LOAD TEAM WEEKLY SCHEDULE
 async function getTeamSchedule(teamId) {
 
     const {
@@ -379,9 +361,7 @@ async function getTeamSchedule(teamId) {
 }
 
 
-/* ============================================
-   COMPARE TEAM WEEKLY SCHEDULES
-============================================ */
+// COMPARE TEAM WEEKLY SCHEDULES
 function normalizeTime(time) {
 
     if (!time) {
@@ -785,9 +765,7 @@ function findScheduleMatches(
 }
 
 
-/* ============================================
-   SCHEDULE RECOMMENDATIONS
-============================================ */
+// SCHEDULE RECOMMENDATIONS
 function getScheduleRecommendationContainer() {
 
     let container =
@@ -1105,9 +1083,7 @@ function renderScheduleRecommendations(
 }
 
 
-/* ============================================
-   DAY NAMES
-============================================ */
+// DAY NAMES
 
 const dayNames = {
 
@@ -1127,10 +1103,7 @@ const dayNames = {
 
 };
 
-
-/* ============================================
-   TIME HELPERS
-============================================ */
+// TIME HELPERS
 
 function timeToMinutes(time) {
 
@@ -1163,9 +1136,7 @@ function minutesToTime(minutes) {
 
 }
 
-/* ============================================
-   SHOW SCHEDULE CREATOR
-============================================ */
+// SHOW SCHEDULE CREATOR
 
 function showScheduleCreator(show) {
 
@@ -1191,11 +1162,7 @@ function showScheduleCreator(show) {
 
 }
 
-
-
-/* ============================================
-   CREATE WEEKLY SCHEDULE
-============================================ */
+// CREATE WEEKLY SCHEDULE
 
 async function handleScheduleSubmit(
     event,
@@ -1412,10 +1379,7 @@ async function handleScheduleSubmit(
 
 }
 
-
-/* ============================================
-   RENDER TEAM WEEKLY SCHEDULE
-============================================ */
+// RENDER TEAM WEEKLY SCHEDULE
 
 function renderTeamSchedule(schedule) {
 
@@ -1601,9 +1565,7 @@ function renderTeamSchedule(schedule) {
 
 }
 
-/* ============================================
-   LOAD TEAM CHALLENGES
-   ============================================ */
+// LOAD TEAM CHALLENGES
 
 async function getTeamChallenges(teamId) {
 
@@ -1650,10 +1612,7 @@ async function getTeamChallenges(teamId) {
 
 }
 
-
-/* ============================================
-   LOAD TEAM MATCHES
-============================================ */
+// LOAD TEAM MATCHES
 
 async function getTeamMatches(teamId) {
 
@@ -1706,9 +1665,7 @@ async function getTeamMatches(teamId) {
 
 }
 
- /* ============================================
-    RECORD TEAM MATCH RESULT
- ============================================ */
+ // RECORD TEAM MATCH RESULT
 
  async function recordTeamMatchResult(
      matchId,
@@ -1729,9 +1686,7 @@ async function getTeamMatches(teamId) {
 
      try {
 
-         /* ----------------------------------------
-            GET CURRENT USER
-         ---------------------------------------- */
+         // GET CURRENT USER
 
          const {
              data: {
@@ -1751,9 +1706,7 @@ async function getTeamMatches(teamId) {
          }
 
 
-         /* ----------------------------------------
-            CHECK CAPTAIN
-         ---------------------------------------- */
+         // CHECK CAPTAIN
 
          const captain =
              await isCaptain(
@@ -1773,9 +1726,7 @@ async function getTeamMatches(teamId) {
          }
 
 
-         /* ----------------------------------------
-            VALIDATE SCORES
-         ---------------------------------------- */
+         // VALIDATE SCORES
 
          const home =
              Number(homeScore);
@@ -1800,9 +1751,7 @@ async function getTeamMatches(teamId) {
          }
 
 
-         /* ----------------------------------------
-            UPDATE MATCH
-         ---------------------------------------- */
+         // UPDATE MATCH
 
          const {
              error
@@ -1860,10 +1809,7 @@ async function getTeamMatches(teamId) {
 
  }
 
-
-/* ============================================
-   CANCEL TEAM MATCH
-   ============================================ */
+ // CANCEL TEAM MATCH
 
 async function cancelTeamMatch(
     matchId,
@@ -1957,10 +1903,7 @@ async function cancelTeamMatch(
 
 }
 
-
-/* ============================================
-   LOAD MATCH TEAMS
-============================================ */
+// LOAD MATCH TEAMS
 
 async function getMatchTeams(matches) {
 
@@ -2014,9 +1957,7 @@ async function getMatchTeams(matches) {
 }
 
 
-/* ============================================
-   RENDER TEAM MATCHES
-============================================ */
+// RENDER TEAM MATCHES
 
 function renderMatches(
     matches,
@@ -2046,25 +1987,19 @@ function renderMatches(
             "team-matches-list"
         );
 
-    /* ----------------------------------------
-       HIDE LOADING
-    ---------------------------------------- */
+    // HIDE LOADING
 
     if (loading) {
         loading.hidden = true;
     }
 
-    /* ----------------------------------------
-       CHECK ELEMENTS
-    ---------------------------------------- */
+    // CHECK ELEMENTS
 
     if (!list || !empty) {
         return;
     }
 
-    /* ----------------------------------------
-       EMPTY STATE
-    ---------------------------------------- */
+    // EMPTY STATE
 
     if (!matches.length) {
 
@@ -2078,9 +2013,7 @@ function renderMatches(
     empty.hidden = true;
     list.hidden = false;
 
-    /* ----------------------------------------
-       STATUS LABELS
-    ---------------------------------------- */
+    // STATUS LABELS
 
     const statusLabels = {
 
@@ -2108,9 +2041,7 @@ function renderMatches(
 
     };
 
-    /* ----------------------------------------
-       BUILD MATCH CARDS
-    ---------------------------------------- */
+    // BUILD MATCH CARDS
 
     list.innerHTML =
         matches
@@ -2134,9 +2065,7 @@ function renderMatches(
                     awayTeam?.name ||
                     "Equipo";
 
-                /* --------------------------------
-                   DAY
-                -------------------------------- */
+                // DAY
 
                 const dayName =
                     dayNames[
@@ -2146,9 +2075,7 @@ function renderMatches(
                     ] ||
                     "Día a definir";
 
-                /* --------------------------------
-                   TIME
-                -------------------------------- */
+                // TIME
 
                 const startTime =
                     match.start_time
@@ -2170,9 +2097,7 @@ function renderMatches(
                         ? `${startTime}–${endTime}`
                         : "Horario a definir";
 
-                /* --------------------------------
-                   FIELD
-                -------------------------------- */
+                // FIELD
 
                 const field =
                     match.field_id
@@ -2191,9 +2116,7 @@ function renderMatches(
                     field?.name ||
                     "Cancha a definir";
 
-                /* --------------------------------
-                   STATUS
-                -------------------------------- */
+                // STATUS
 
                 const status =
                     statusLabels[
@@ -2208,9 +2131,7 @@ function renderMatches(
                     ] ||
                     "⚪";
 
-                /* --------------------------------
-                   SCORE
-                -------------------------------- */
+                // SCORE
 
                 let scoreDisplay = "";
 
@@ -2236,39 +2157,37 @@ function renderMatches(
 
                let matchActions = "";
 
-if (
-    isCaptain &&
-    match.status === "scheduled"
-) {
+                if (
+                    isCaptain &&
+                    match.status === "scheduled"
+                ) {
 
-    matchActions = `
-        <div class="team-match-actions">
+            matchActions = `
+                <div class="team-match-actions">
 
-            <button
-                type="button"
-                class="team-match-result-button"
-                data-match-id="${match.id}"
-            >
-                Registrar resultado
-            </button>
+                    <button
+                        type="button"
+                        class="team-match-result-button"
+                        data-match-id="${match.id}"
+                    >
+                        Registrar resultado
+                    </button>
 
-            <button
-                type="button"
-                class="team-match-cancel-button"
-                data-match-id="${match.id}"
-            >
-                Cancelar partido
-            </button>
+                    <button
+                        type="button"
+                        class="team-match-cancel-button"
+                        data-match-id="${match.id}"
+                    >
+                        Cancelar partido
+                    </button>
 
-        </div>
-    `;
+                </div>
+            `;
 
-}
+        }
 
 
-                /* --------------------------------
-                   CARD
-                -------------------------------- */
+                // CARD
 
                 return `
 
@@ -2401,10 +2320,7 @@ if (
 
 }
 
-
-/* ============================================
-   REFRESH TEAM MATCHES
-============================================ */
+// REFRESH TEAM MATCHES
 
 async function refreshTeamMatches(teamId) {
 
@@ -2452,10 +2368,7 @@ async function refreshTeamMatches(teamId) {
 
 }
 
-
-/* ============================================
-   RENDER TEAM
-   ============================================ */
+// RENDER TEAM
 
 function renderTeam(team) {
 
@@ -2556,10 +2469,7 @@ function renderTeam(team) {
 
 }
 
-
-/* ============================================
-   RENDER MEMBERS
-   ============================================ */
+// RENDER MEMBERS
 
 function renderMembers(members) {
 
@@ -2693,10 +2603,7 @@ function renderMembers(members) {
 
 }
 
-
-/* ============================================
-   RENDER AVAILABILITY
-   ============================================ */
+// RENDER AVAILABILITY
 
 function renderAvailability(availability) {
 
@@ -2809,10 +2716,7 @@ function renderAvailability(availability) {
 
 }
 
-
-/* ============================================
-   RENDER CHALLENGES
-============================================ */
+// RENDER CHALLENGES
 
 function renderChallenges(
     challenges,
@@ -2836,27 +2740,21 @@ function renderChallenges(
         );
 
 
-    /* ----------------------------------------
-       HIDE LOADING
-    ---------------------------------------- */
+    // HIDE LOADING
 
     if (loading) {
         loading.hidden = true;
     }
 
 
-    /* ----------------------------------------
-       CHECK ELEMENTS
-    ---------------------------------------- */
+    // CHECK ELEMENTS
 
     if (!list || !empty) {
         return;
     }
 
 
-    /* ----------------------------------------
-       EMPTY STATE
-    ---------------------------------------- */
+    // EMPTY STATE
 
     if (!challenges.length) {
 
@@ -2872,9 +2770,7 @@ function renderChallenges(
     list.hidden = false;
 
 
-    /* ----------------------------------------
-       DAY LABELS
-    ---------------------------------------- */
+    // DAY LABELS
 
     const dayLabels = {
 
@@ -2889,9 +2785,7 @@ function renderChallenges(
     };
 
 
-    /* ----------------------------------------
-       STATUS LABELS
-    ---------------------------------------- */
+    // STATUS LABELS
 
     const statusLabels = {
 
@@ -2913,9 +2807,7 @@ function renderChallenges(
     };
 
 
-    /* ----------------------------------------
-       STATUS ICONS
-    ---------------------------------------- */
+    // STATUS ICONS
 
     const statusIcons = {
 
@@ -2937,9 +2829,7 @@ function renderChallenges(
     };
 
 
-    /* ----------------------------------------
-       FORMAT TIME
-    ---------------------------------------- */
+    // FORMAT TIME
 
     function formatTime(time) {
 
@@ -2954,17 +2844,13 @@ function renderChallenges(
     }
 
 
-    /* ----------------------------------------
-       BUILD CHALLENGE CARDS
-    ---------------------------------------- */
+    // BUILD CHALLENGE CARDS
 
     list.innerHTML =
         challenges
             .map(challenge => {
 
-                /* --------------------------------
-                   DETERMINE DIRECTION
-                -------------------------------- */
+                // DETERMINE DIRECTION
 
                 const isIncoming =
                     String(
@@ -2996,9 +2882,7 @@ function renderChallenges(
                         : "Desafío enviado a";
 
 
-                /* --------------------------------
-                   DAY
-                -------------------------------- */
+                // DAY
 
                 const dayName =
                     dayLabels[
@@ -3009,9 +2893,7 @@ function renderChallenges(
                     "Día a definir";
 
 
-                /* --------------------------------
-                   TIME
-                -------------------------------- */
+                // TIME
 
                 const startTime =
                     formatTime(
@@ -3032,9 +2914,7 @@ function renderChallenges(
                         : "Horario a definir";
 
 
-                /* --------------------------------
-                   FIELD
-                -------------------------------- */
+                // FIELD
 
                 const field =
                     challenge.proposed_field_id
@@ -3055,9 +2935,7 @@ function renderChallenges(
                     "Cancha a definir";
 
 
-                /* --------------------------------
-                   STATUS
-                -------------------------------- */
+                // STATUS
 
                 const status =
                     statusLabels[
@@ -3074,9 +2952,7 @@ function renderChallenges(
                     "⚪";
 
 
-                /* --------------------------------
-                   ACTIONS
-                -------------------------------- */
+                // ACTIONS
 
                 let actions = "";
 
@@ -3086,9 +2962,7 @@ function renderChallenges(
                     "pending"
                 ) {
 
-                    /* ----------------------------
-                       INCOMING
-                    ---------------------------- */
+                    // INCOMING
 
                     if (isIncoming) {
 
@@ -3122,9 +2996,7 @@ function renderChallenges(
                     }
 
 
-                    /* ----------------------------
-                       OUTGOING
-                    ---------------------------- */
+                    // OUTGOING
 
                     else {
 
@@ -3151,9 +3023,7 @@ function renderChallenges(
                 }
 
 
-                /* --------------------------------
-                   CARD
-                -------------------------------- */
+                // CARD
 
                 return `
 
@@ -3239,9 +3109,7 @@ function renderChallenges(
             .join("");
 
 
-    /* ========================================
-       ACCEPT
-    ======================================== */
+    // ACCEPT
 
     list
         .querySelectorAll(
@@ -3271,9 +3139,7 @@ function renderChallenges(
         });
 
 
-    /* ========================================
-       REJECT
-    ======================================== */
+    // REJECT
 
     list
         .querySelectorAll(
@@ -3303,9 +3169,7 @@ function renderChallenges(
         });
 
 
-    /* ========================================
-       CANCEL
-    ======================================== */
+    // CANCEL
 
     list
         .querySelectorAll(
@@ -3347,16 +3211,7 @@ function renderChallenges(
 
 }
 
-
-
-
-/* ============================================
-   RESPOND TO CHALLENGE
-============================================ */
-
-/* ============================================
-   RESPOND / CANCEL CHALLENGE
-============================================ */
+// RESPOND / CANCEL CHALLENGE
 
 async function handleChallengeResponse(
     challengeId,
@@ -3368,9 +3223,7 @@ async function handleChallengeResponse(
 
     try {
 
-        /* ----------------------------------------
-           CURRENT USER
-        ---------------------------------------- */
+        // CURRENT USER
 
         const user =
             await getCurrentUser();
@@ -3388,9 +3241,7 @@ async function handleChallengeResponse(
         }
 
 
-        /* ----------------------------------------
-           LOAD CHALLENGE
-        ---------------------------------------- */
+        // LOAD CHALLENGE
 
         const {
             data: challenge,
@@ -3421,10 +3272,7 @@ async function handleChallengeResponse(
 
         }
 
-
-        /* ----------------------------------------
-           CANCEL VALIDATION
-        ---------------------------------------- */
+        // CANCEL VALIDATION
 
         if (
             newStatus === "cancelled" &&
@@ -3440,10 +3288,7 @@ async function handleChallengeResponse(
 
         }
 
-
-        /* ----------------------------------------
-           UPDATE CHALLENGE
-        ---------------------------------------- */
+        // UPDATE CHALLENGE
 
         const updateData = {
 
@@ -3459,9 +3304,8 @@ async function handleChallengeResponse(
         };
 
 
-        /*
-         * Record who cancelled the challenge.
-         */
+        // Record who cancelled the challenge.
+         
 
         if (newStatus === "cancelled") {
 
@@ -3484,9 +3328,7 @@ async function handleChallengeResponse(
         }
 
 
-        /* ----------------------------------------
-           APPLY ANTI-SPAM COOLDOWN
-        ---------------------------------------- */
+        // APPLY ANTI-SPAM COOLDOWN
 
         if (newStatus === "cancelled") {
 
@@ -3554,10 +3396,7 @@ async function handleChallengeResponse(
 
         }
 
-
-        /* ----------------------------------------
-           RELOAD CHALLENGES
-        ---------------------------------------- */
+        // RELOAD CHALLENGES
 
         const challenges =
             await getTeamChallenges(
@@ -3578,9 +3417,7 @@ async function handleChallengeResponse(
         );
 
 
-        /* ----------------------------------------
-           SUCCESS MESSAGE
-        ---------------------------------------- */
+        // SUCCESS MESSAGE
 
         const messages = {
 
@@ -3621,12 +3458,7 @@ async function handleChallengeResponse(
 
 }
 
-
-
-
-/* ============================================
-   LOAD FIELD OPTIONS
-============================================ */
+// LOAD FIELD OPTIONS
 
 function renderFieldOptions() {
 
@@ -3650,10 +3482,8 @@ function renderFieldOptions() {
 
     fields.forEach(field => {
 
-        
-         // TEAM AVAILABILITY
+        // TEAM AVAILABILITY
          
-
         if (availabilitySelect) {
 
             const option =
@@ -3674,9 +3504,7 @@ function renderFieldOptions() {
 
         }
 
-
-        
-         // TEAM WEEKLY SCHEDULE
+        // TEAM WEEKLY SCHEDULE
          
 
         if (scheduleSelect) {
@@ -3699,9 +3527,7 @@ function renderFieldOptions() {
 
         }
 
-
-        
-         // CHALLENGE PROPOSED FIELD
+        // CHALLENGE PROPOSED FIELD
          
 
         if (challengeFieldSelect) {
@@ -3729,11 +3555,7 @@ function renderFieldOptions() {
 }
 
 
-
-
-/* ============================================
-   CHECK CAPTAIN
-   ============================================ */
+// CHECK CAPTAIN
 
 async function isCaptain(
     teamId,
@@ -3768,9 +3590,7 @@ async function isCaptain(
 }
 
 
-/* ============================================
-   CREATE TEAM INVITATION
-   ============================================ */
+// CREATE TEAM INVITATION
 
 export async function createTeamInvitation(
     teamId,
@@ -3830,9 +3650,7 @@ export async function createTeamInvitation(
 }
 
 
-/* ============================================
-   TEAM INVITATIONS
-============================================ */
+    //TEAM INVITATIONS
 
 export async function getPendingTeamInvitations(
     userId
@@ -3927,9 +3745,7 @@ export async function rejectTeamInvitation(
 
 
 
-/* ============================================
-   SHOW AVAILABILITY CREATOR
-   ============================================ */
+// SHOW AVAILABILITY CREATOR
 
 function showAvailabilityCreator(show) {
 
@@ -3955,9 +3771,8 @@ function showAvailabilityCreator(show) {
 
 }
 
-/* ============================================
-   SHOW CHALLENGE CREATOR
-============================================ */
+// SHOW CHALLENGE CREATOR
+
 
 function showChallengeCreator(show) {
 
@@ -3973,9 +3788,7 @@ function showChallengeCreator(show) {
 }
 
 
-/* ============================================
-   POPULATE CHALLENGE AVAILABILITY
-============================================ */
+// POPULATE CHALLENGE AVAILABILITY
 
 function renderChallengeAvailability(
     availability
@@ -4035,24 +3848,17 @@ function renderChallengeAvailability(
 }
 
 
-
-/* ============================================
-   REALTIME TEAM CHALLENGES
-============================================ */
+//   REALTIME TEAM CHALLENGES
 
 let teamChallengesChannel = null;
 let teamMatchesChannel = null;
 
 
-/* --------------------------------------------
-   SUBSCRIBE TO CHALLENGE UPDATES
--------------------------------------------- */
+// SUBSCRIBE TO CHALLENGE UPDATES
 
 function subscribeToTeamChallenges(teamId) {
 
-    /* ----------------------------------------
-       REMOVE PREVIOUS SUBSCRIPTION
-    ---------------------------------------- */
+    // REMOVE PREVIOUS SUBSCRIPTION
 
     if (teamChallengesChannel) {
 
@@ -4070,9 +3876,7 @@ function subscribeToTeamChallenges(teamId) {
     }
 
 
-    /* ----------------------------------------
-       CREATE CHANNEL
-    ---------------------------------------- */
+    //   CREATE CHANNEL
 
     teamChallengesChannel =
         supabase
@@ -4081,9 +3885,7 @@ function subscribeToTeamChallenges(teamId) {
             )
 
 
-            /* --------------------------------
-               INSERTS
-            -------------------------------- */
+            // INSERTS
 
             .on(
                 "postgres_changes",
@@ -4123,9 +3925,7 @@ function subscribeToTeamChallenges(teamId) {
             )
 
 
-            /* --------------------------------
-               UPDATES
-            -------------------------------- */
+            //   UPDATES
 
             .on(
                 "postgres_changes",
@@ -4171,9 +3971,7 @@ function subscribeToTeamChallenges(teamId) {
             )
 
 
-            /* --------------------------------
-               DELETE
-            -------------------------------- */
+            // DELETE
 
             .on(
                 "postgres_changes",
@@ -4213,9 +4011,7 @@ function subscribeToTeamChallenges(teamId) {
             )
 
 
-            /* --------------------------------
-               SUBSCRIBE
-            -------------------------------- */
+            //   SUBSCRIBE
 
             .subscribe(
                 status => {
@@ -4231,15 +4027,11 @@ function subscribeToTeamChallenges(teamId) {
 }
 
 
-/* ============================================
-   REALTIME TEAM MATCHES
-============================================ */
+// REALTIME TEAM MATCHES
 
 function subscribeToTeamMatches(teamId) {
 
-    /* ----------------------------------------
-       REMOVE PREVIOUS SUBSCRIPTION
-    ---------------------------------------- */
+    // REMOVE PREVIOUS SUBSCRIPTION
 
     if (teamMatchesChannel) {
 
@@ -4255,9 +4047,7 @@ function subscribeToTeamMatches(teamId) {
         return;
     }
 
-    /* ----------------------------------------
-       CREATE CHANNEL
-    ---------------------------------------- */
+    //   CREATE CHANNEL
 
     teamMatchesChannel =
         supabase
@@ -4265,9 +4055,7 @@ function subscribeToTeamMatches(teamId) {
                 `team-matches-${teamId}`
             )
 
-            /* --------------------------------
-               INSERTS
-            -------------------------------- */
+            // INSERTS
 
             .on(
                 "postgres_changes",
@@ -4308,9 +4096,7 @@ function subscribeToTeamMatches(teamId) {
                 }
             )
 
-            /* --------------------------------
-               UPDATES
-            -------------------------------- */
+            // UPDATES
 
             .on(
                 "postgres_changes",
@@ -4351,9 +4137,7 @@ function subscribeToTeamMatches(teamId) {
                 }
             )
 
-            /* --------------------------------
-               DELETES
-            -------------------------------- */
+            // DELETES
 
             .on(
                 "postgres_changes",
@@ -4389,9 +4173,7 @@ function subscribeToTeamMatches(teamId) {
                 }
             )
 
-            /* --------------------------------
-               SUBSCRIBE
-            -------------------------------- */
+            // SUBSCRIBE
 
             .subscribe(
                 status => {
@@ -4406,9 +4188,7 @@ function subscribeToTeamMatches(teamId) {
 
 }
 
-/* ============================================
-   REFRESH TEAM CHALLENGES
-============================================ */
+// REFRESH TEAM CHALLENGES
 
 async function refreshTeamChallenges(teamId) {
 
@@ -4445,9 +4225,7 @@ async function refreshTeamChallenges(teamId) {
 }
 
 
-/* ============================================
-   CREATE CHALLENGE
-============================================ */
+// CREATE CHALLENGE
 
 async function handleChallengeSubmit(
     event,
@@ -4459,9 +4237,7 @@ async function handleChallengeSubmit(
 
     hideMessage();
 
-/* ----------------------------------------
-   CHECK CHALLENGE COOLDOWN
----------------------------------------- */
+//   CHECK CHALLENGE COOLDOWN
 
 const user =
     await getCurrentUser();
@@ -4536,11 +4312,7 @@ if (cooldown?.cooldown_until) {
 
 }
 
-
-
-    /* ----------------------------------------
-       GET PROPOSED MATCH DETAILS
-    ---------------------------------------- */
+    //   GET PROPOSED MATCH DETAILS
 
     const proposedDayOfWeek =
         getElement(
@@ -4578,9 +4350,7 @@ if (cooldown?.cooldown_until) {
         );
 
 
-    /* ----------------------------------------
-       VALIDATION
-    ---------------------------------------- */
+    // VALIDATION
 
     if (
         proposedDayOfWeek === "" ||
@@ -4614,9 +4384,7 @@ if (cooldown?.cooldown_until) {
     }
 
 
-    /* ----------------------------------------
-       SEND CHALLENGE
-    ---------------------------------------- */
+    //   SEND CHALLENGE
 
     try {
 
@@ -4681,9 +4449,7 @@ if (cooldown?.cooldown_until) {
         }
 
 
-        /* ----------------------------------------
-           RESET FORM
-        ---------------------------------------- */
+        // RESET FORM
 
         const form =
             getElement(
@@ -4699,18 +4465,14 @@ if (cooldown?.cooldown_until) {
         showChallengeCreator(false);
 
 
-  /* ----------------------------------------
-   RELOAD CHALLENGES
----------------------------------------- */
+  // RELOAD CHALLENGES
 
-await refreshTeamChallenges(
-    challengerTeamId
-);
+    await refreshTeamChallenges(
+        challengerTeamId
+    );
 
 
-        /* ----------------------------------------
-           SUCCESS
-        ---------------------------------------- */
+        // SUCCESS
 
         showMessage(
             "El desafío fue enviado correctamente.",
@@ -4761,12 +4523,7 @@ await refreshTeamChallenges(
 
 }
 
-
-
-
-/* ============================================
-   CREATE AVAILABILITY
-   ============================================ */
+// CREATE AVAILABILITY
 
 async function handleAvailabilitySubmit(
     event,
@@ -4934,9 +4691,274 @@ async function handleAvailabilitySubmit(
 }
 
 
-/* ============================================
-   INITIALIZE
-   ============================================ */
+//   FIELD REQUEST
+
+async function hasFieldRequestConflict(
+    fieldId,
+    requestedDate,
+    startTime,
+    endTime
+) {
+
+    const {
+        data,
+        error
+    } = await supabase
+        .from("field_requests")
+        .select(`
+            id,
+            start_time,
+            end_time
+        `)
+        .eq("field_id", fieldId)
+        .eq("requested_date", requestedDate)
+        .eq("status", "accepted")
+        .lt("start_time", endTime)
+        .gt("end_time", startTime);
+
+    if (error) {
+
+        console.error(
+            "FIELD REQUEST CONFLICT CHECK ERROR:",
+            error
+        );
+
+        throw error;
+    }
+
+    return (data || []).length > 0;
+}
+
+
+async function hasFieldMaintenanceConflict(
+    fieldId,
+    requestedDate,
+    startTime,
+    endTime
+) {
+    const {
+        data,
+        error
+    } = await supabase
+        .from("field_maintenance")
+        .select("id")
+        .eq("field_id", fieldId)
+        .eq("maintenance_date", requestedDate)
+        .lt("start_time", endTime)
+        .gt("end_time", startTime);
+
+    if (error) {
+        console.error(
+            "FIELD MAINTENANCE CONFLICT CHECK ERROR:",
+            error
+        );
+
+        throw error;
+    }
+
+    return (data || []).length > 0;
+}
+
+
+async function handleFieldRequestSubmit(
+    event,
+    teamId
+) {
+
+    event.preventDefault();
+
+    const feedback =
+        getElement("field-request-feedback");
+
+    const submitButton =
+        getElement("field-request-submit");
+
+    const fieldId =
+        getElement("field-request-field")?.value;
+
+    const requestedDate =
+        getElement("field-request-date")?.value;
+
+    const startTime =
+        getElement("field-request-start")?.value;
+
+    const endTime =
+        getElement("field-request-end")?.value;
+
+    const message =
+        getElement("field-request-message")?.value
+        .trim();
+
+
+    if (
+        !fieldId ||
+        !requestedDate ||
+        !startTime ||
+        !endTime
+    ) {
+
+        if (feedback) {
+
+            feedback.textContent =
+                "Completá la cancha, fecha y horario.";
+
+            feedback.hidden = false;
+        }
+
+        return;
+    }
+
+
+    if (endTime <= startTime) {
+
+        if (feedback) {
+
+            feedback.textContent =
+                "El horario de finalización debe ser posterior al horario de inicio.";
+
+            feedback.hidden = false;
+        }
+
+        return;
+    }
+
+
+    try {
+
+        if (submitButton) {
+            submitButton.disabled = true;
+        }
+
+        if (feedback) {
+            feedback.hidden = true;
+        }
+
+
+        const conflict =
+            await hasFieldRequestConflict(
+                fieldId,
+                requestedDate,
+                startTime,
+                endTime
+            );
+
+
+        if (conflict) {
+
+            throw new Error(
+                "Ya existe una reserva confirmada que se superpone con ese horario."
+            );
+        }
+
+
+        const maintenanceConflict =
+    await hasFieldMaintenanceConflict(
+        fieldId,
+        requestedDate,
+        startTime,
+        endTime
+    );
+
+if (maintenanceConflict) {
+    throw new Error(
+        "Ese horario no está disponible porque la cancha tiene un bloqueo de mantenimiento."
+    );
+}
+
+
+        console.log(
+            "CREATING FIELD REQUEST:",
+            {
+                teamId,
+                fieldId,
+                requestedDate,
+                startTime,
+                endTime,
+                message
+            }
+        );
+
+
+        const {
+            data,
+            error
+        } = await supabase
+            .from("field_requests")
+            .insert({
+                field_id: fieldId,
+                team_id: teamId,
+                requested_date: requestedDate,
+                start_time: startTime,
+                end_time: endTime,
+                message: message || null,
+                status: "pending"
+            })
+            .select()
+            .single();
+
+
+        if (error) {
+
+            console.error(
+                "FIELD REQUEST INSERT ERROR:",
+                error
+            );
+
+            throw error;
+        }
+
+
+        console.log(
+            "FIELD REQUEST CREATED:",
+            data
+        );
+
+
+        if (feedback) {
+
+            feedback.textContent =
+                "Solicitud enviada correctamente. El dueño de la cancha deberá responderla.";
+
+            feedback.hidden = false;
+        }
+
+
+        const form =
+            getElement("team-field-request-form");
+
+        if (form) {
+            form.reset();
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "FIELD REQUEST ERROR:",
+            error
+        );
+
+
+        if (feedback) {
+
+            feedback.textContent =
+                error.message ||
+                "No pudimos enviar la solicitud.";
+
+            feedback.hidden = false;
+        }
+
+    } finally {
+
+        if (submitButton) {
+            submitButton.disabled = false;
+        }
+    }
+}
+
+
+
+// INITIALIZE
 
 export async function initTeamPage() {
 
@@ -4986,9 +5008,7 @@ export async function initTeamPage() {
 
         fields = await getFields();
 
-        /* ----------------------------------------
-           LOAD TEAM
-        ---------------------------------------- */
+        // LOAD TEAM
 
         const team =
             await getTeam(teamId);
@@ -4997,9 +5017,7 @@ export async function initTeamPage() {
         renderTeam(team);
 
 
-        /* ----------------------------------------
-           LOAD MEMBERS
-        ---------------------------------------- */
+        // LOAD MEMBERS
 
         const members =
             await getTeamMembers(
@@ -5012,9 +5030,7 @@ export async function initTeamPage() {
         );
 
 
-        /* ----------------------------------------
-           LOAD AVAILABILITY
-        ---------------------------------------- */
+        // LOAD AVAILABILITY
 
         const availability =
             await getTeamAvailability(
@@ -5026,9 +5042,7 @@ export async function initTeamPage() {
             availability
         );
 
-                /* ----------------------------------------
-        LOAD WEEKLY SCHEDULE
-        ---------------------------------------- */
+        // LOAD WEEKLY SCHEDULE
 
         const schedule =
             await getTeamSchedule(
@@ -5041,9 +5055,7 @@ export async function initTeamPage() {
         );
 
 
-                /* ----------------------------------------
-           LOAD CHALLENGES
-        ---------------------------------------- */
+         // LOAD CHALLENGES
 
         const challenges =
             await getTeamChallenges(
@@ -5064,9 +5076,7 @@ export async function initTeamPage() {
         );
 
 
-                /* ----------------------------------------
-        LOAD MATCHES
-        ---------------------------------------- */
+        // LOAD MATCHES
 
         const matches =
             await getTeamMatches(
@@ -5085,31 +5095,20 @@ export async function initTeamPage() {
     userIsCaptain
 );
 
-/* MATCH ACTION BUTTONS */
-const matchesList =
-    getElement(
-        "team-matches-list"
-    );
+    // MATCH ACTION BUTTONS 
+    const matchesList =
+        getElement(
+            "team-matches-list"
+        );
 
-if (matchesList) {
+    if (matchesList) {
 
-  /*   console.log(
-    "MATCH ACTION LISTENER ATTACHED"
-); */
 
     matchesList.addEventListener(
         "click",
         async event => {
 
-   /*          console.log("MATCH CLICK:", {
-    target: event.target,
-    closestButton: event.target.closest("button"),
-    action: event.target.closest("button")?.dataset.action
-}); */
-
-/* ----------------------------------------
-   SAVE MATCH RESULT
----------------------------------------- */
+     // SAVE MATCH RESULT
 
 const saveResultButton =
     event.target.closest(
@@ -5163,38 +5162,33 @@ if (saveResultButton) {
     awayScore
 );
 
-/* console.log("SAVE RESULT HANDLER FINISHED"); */
 
     return;
 }
 
 
-/* ----------------------------------------
-   CANCEL RESULT ENTRY
----------------------------------------- */
+    // CANCEL RESULT ENTRY
 
-const cancelResultButton =
-    event.target.closest(
-        ".team-match-cancel-result-button"
-    );
-
-if (cancelResultButton) {
-
-    const resultForm =
-        cancelResultButton.closest(
-            ".team-match-result-form"
+    const cancelResultButton =
+        event.target.closest(
+            ".team-match-cancel-result-button"
         );
 
-    if (resultForm) {
-        resultForm.remove();
+    if (cancelResultButton) {
+
+        const resultForm =
+            cancelResultButton.closest(
+                ".team-match-result-form"
+            );
+
+        if (resultForm) {
+            resultForm.remove();
+        }
+
+        return;
     }
 
-    return;
-}
-
-            /* ----------------------------------------
-               CANCEL MATCH
-            ---------------------------------------- */
+            // CANCEL MATCH
 
             const cancelButton =
                 event.target.closest(
@@ -5216,9 +5210,7 @@ if (cancelResultButton) {
             }
 
 
-            /* ----------------------------------------
-               RECORD MATCH RESULT
-            ---------------------------------------- */
+            // RECORD MATCH RESULT
 
             const resultButton =
                 event.target.closest(
@@ -5238,159 +5230,281 @@ if (cancelResultButton) {
                     }
                 );
 
-                /*
-                 * Temporary test only.
-                 *
-                 * We will replace this with
-                 * the score-entry UI in the next step.
-                 */
+                
 
-                /* ----------------------------------------
-   SHOW SCORE ENTRY UI
----------------------------------------- */
+    // SHOW SCORE ENTRY UI
 
-const matchCard =
-    resultButton.closest(
-        ".team-match-card"
-    );
+    const matchCard =
+        resultButton.closest(
+            ".team-match-card"
+        );
 
-if (!matchCard) {
-    return;
-}
+    if (!matchCard) {
+        return;
+    }
 
-const existingForm =
-    matchCard.querySelector(
-        ".team-match-result-form"
-    );
+    const existingForm =
+        matchCard.querySelector(
+            ".team-match-result-form"
+        );
 
-if (existingForm) {
-    return;
-}
+    if (existingForm) {
+        return;
+    }
 
-const teamsContainer =
-    matchCard.querySelector(
-        ".team-match-teams"
-    );
+    const teamsContainer =
+        matchCard.querySelector(
+            ".team-match-teams"
+        );
 
-if (!teamsContainer) {
-    return;
-}
+    if (!teamsContainer) {
+        return;
+    }
 
-const resultForm =
-    document.createElement(
-        "div"
-    );
+    const resultForm =
+        document.createElement(
+            "div"
+        );
 
-resultForm.className =
-    "team-match-result-form";
+    resultForm.className =
+        "team-match-result-form";
 
-resultForm.innerHTML = `
-    <div class="team-match-score-inputs">
+    resultForm.innerHTML = `
+        <div class="team-match-score-inputs">
 
-        <div class="team-match-score-input">
-            <label>
-                Local
-            </label>
+            <div class="team-match-score-input">
+                <label>
+                    Local
+                </label>
 
-            <input
-                type="number"
-                class="team-match-home-score"
-                min="0"
-                step="1"
-                value="0"
-            >
+                <input
+                    type="number"
+                    class="team-match-home-score"
+                    min="0"
+                    step="1"
+                    value="0"
+                >
+            </div>
+
+            <span class="team-match-score-separator">
+                –
+            </span>
+
+            <div class="team-match-score-input">
+                <label>
+                    Visitante
+                </label>
+
+                <input
+                    type="number"
+                    class="team-match-away-score"
+                    min="0"
+                    step="1"
+                    value="0"
+                >
+            </div>
+
         </div>
 
-        <span class="team-match-score-separator">
-            –
-        </span>
+        <div class="team-match-result-form-actions">
 
-        <div class="team-match-score-input">
-            <label>
-                Visitante
-            </label>
-
-            <input
-                type="number"
-                class="team-match-away-score"
-                min="0"
-                step="1"
-                value="0"
+            <button
+                type="button"
+                class="team-match-save-result-button"
+                data-match-id="${matchId}"
             >
+                Guardar resultado
+            </button>
+
+            <button
+                type="button"
+                class="team-match-cancel-result-button"
+            >
+                Cancelar
+            </button>
+
         </div>
+    `;
 
-    </div>
+    teamsContainer.insertAdjacentElement(
+        "afterend",
+        resultForm
+    );
 
-    <div class="team-match-result-form-actions">
-
-        <button
-            type="button"
-            class="team-match-save-result-button"
-            data-match-id="${matchId}"
-        >
-            Guardar resultado
-        </button>
-
-        <button
-            type="button"
-            class="team-match-cancel-result-button"
-        >
-            Cancelar
-        </button>
-
-    </div>
-`;
-
-teamsContainer.insertAdjacentElement(
-    "afterend",
-    resultForm
-);
+                }
 
             }
+        );
 
-        }
-    );
+    }
 
-}
-
-                /* ----------------------------------------
-        SUBSCRIBE TO CHALLENGE UPDATES
-        ---------------------------------------- */
+      // SUBSCRIBE TO CHALLENGE UPDATES
 
         subscribeToTeamChallenges(
             teamId
         );
 
 
-        /* ----------------------------------------
-        SUBSCRIBE TO MATCH UPDATES
-        ---------------------------------------- */
+        // SUBSCRIBE TO MATCH UPDATES
 
         subscribeToTeamMatches(
             teamId
         );
 
-        /* ----------------------------------------
-           FIELD OPTIONS
-        ---------------------------------------- */
+        // FIELD OPTIONS
 
         renderFieldOptions();
 
 
-               /* ----------------------------------------
-           CHECK CAPTAIN
-        ---------------------------------------- */
+  // FIELD REQUEST VISIBILITY
 
-        /* const captain =
-            await isCaptain(
-                teamId,
-                user.id
-            ); */
+const fieldRequestSection =
+    getElement("team-field-request-section");
+
+if (fieldRequestSection) {
+
+    fieldRequestSection.hidden =
+        !userIsCaptain;
+}
 
 
-        /* ----------------------------------------
-           LOAD USER'S CAPTAIN TEAMS
-        ---------------------------------------- */
+// FIELD REQUEST FORM
+
+const fieldRequestButton =
+    getElement("show-field-request-button");
+
+const fieldRequestForm =
+    getElement("team-field-request-form");
+
+const fieldRequestCancel =
+    getElement("cancel-field-request");
+
+const fieldRequestField =
+    getElement("field-request-field");
+
+const fieldRequestDate =
+    getElement("field-request-date");
+
+const fieldRequestFeedback =
+    getElement("field-request-feedback");
+
+
+// Populate field selector
+
+if (fieldRequestField) {
+
+    fields.forEach(field => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = field.id;
+        option.textContent = field.name;
+
+        fieldRequestField.appendChild(
+            option
+        );
+    });
+}
+
+
+// Minimum date = today in Argentina
+
+if (fieldRequestDate) {
+
+    const argentinaToday =
+        new Intl.DateTimeFormat(
+            "en-CA",
+            {
+                timeZone:
+                    "America/Argentina/Buenos_Aires"
+            }
+        ).format(
+            new Date()
+        );
+
+    fieldRequestDate.min =
+        argentinaToday;
+}
+
+
+// Show form
+
+if (
+    userIsCaptain &&
+    fieldRequestButton &&
+    fieldRequestForm
+) {
+
+    fieldRequestButton.addEventListener(
+        "click",
+        () => {
+
+            fieldRequestForm.hidden =
+                false;
+
+            fieldRequestButton.hidden =
+                true;
+
+            if (fieldRequestFeedback) {
+                fieldRequestFeedback.hidden =
+                    true;
+            }
+        }
+    );
+}
+
+
+// Cancel
+
+if (
+    userIsCaptain &&
+    fieldRequestCancel &&
+    fieldRequestForm
+) {
+
+    fieldRequestCancel.addEventListener(
+        "click",
+        () => {
+
+            fieldRequestForm.reset();
+
+            fieldRequestForm.hidden =
+                true;
+
+            if (fieldRequestButton) {
+                fieldRequestButton.hidden =
+                    false;
+            }
+
+            if (fieldRequestFeedback) {
+                fieldRequestFeedback.hidden =
+                    true;
+            }
+        }
+    );
+}
+
+
+// Submit
+
+if (
+    userIsCaptain &&
+    fieldRequestForm
+) {
+
+    fieldRequestForm.addEventListener(
+        "submit",
+        event =>
+            handleFieldRequestSubmit(
+                event,
+                teamId
+            )
+    );
+}
+
+        // CHECK CAPTAIN
+        // LOAD USER'S CAPTAIN TEAMS
 
         const captainTeams =
             await getCaptainTeams(
@@ -5415,9 +5529,7 @@ teamsContainer.insertAdjacentElement(
         );
 
 
-                    /* ----------------------------------------
-        COMPARE WEEKLY SCHEDULES
-        ---------------------------------------- */
+       // COMPARE WEEKLY SCHEDULES
 
         const challengeTeamSelect =
             getElement(
@@ -5540,9 +5652,7 @@ teamsContainer.insertAdjacentElement(
         }
 
 
-        /* ----------------------------------------
-           CHALLENGE BUTTON
-        ---------------------------------------- */
+        // CHALLENGE BUTTON
 
         const challengeButton =
             getElement(
@@ -5727,9 +5837,7 @@ teamsContainer.insertAdjacentElement(
 
             }
 
-                        /* ----------------------------------------
-            WEEKLY SCHEDULE
-            ---------------------------------------- */
+            // WEEKLY SCHEDULE
 
             const scheduleButton =
                 getElement(

@@ -46,7 +46,7 @@
     </script>
 </head>
 <body>
-  <!-- HEADER -->
+    <!-- HEADER -->
     <header class="header">
         <div class="container">
             <!-- Logo -->
@@ -66,8 +66,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="../index.html">Inicio</a></li>
                             <li><a href="all-fields-page.html">Todas las canchas</a></li>
-                            <li><a href="all-teams.html">Todos los equipos</a></li>
-                            <li><a href="players.html">Jugadores</a></li>
+                            <li class="account-required-nav" id="desktop-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                            <li class="account-required-nav" id="desktop-players-nav"><a href="players.html">Jugadores</a></li>
                             <li><a href="add-field.html">Agregar cancha</a></li>
                             <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
                              <li><a href="contact.html">Contacto</a></li>
@@ -106,8 +106,8 @@
                 <ul>    
                     <li><a href="../index.html">Inicio</a></li>
                     <li><a href="all-fields-page.html">Todas las canchas</a></li>
-                    <li><a href="all-teams.html">Todos los equipos</a></li>
-                    <li><a href="players.html">Jugadores</a></li>
+                    <li class="account-required-nav" id="mobile-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                    <li class="account-required-nav" id="mobile-players-nav"><a href="players.html">Jugadores</a></li>
                     <li><a href="add-field.html">Agregar cancha</a></li>
                     <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
                     <li><a href="contact.html">Contacto</a></li>
@@ -166,6 +166,33 @@
                 
             </div>
 
+                        <!-- AVAILABILITY STATUS -->
+            <!-- AVAILABILITY STATUS -->
+<div class="card-section field-availability-status">
+    <h3>
+        <span data-icon="circleCheck"></span>
+        Estado de la cancha
+    </h3>
+
+    <div class="availability-status">
+        <span
+            class="availability-status-indicator"
+            id="availability-status-indicator"
+        ></span>
+
+        <div>
+            <strong id="availability-status-text">
+                Consultando disponibilidad...
+            </strong>
+
+            <div
+                class="availability-countdown"
+                id="availability-countdown"
+            ></div>
+        </div>
+    </div>
+</div>
+
             <div class="card-section">
 
                 <div class="field-rating-box">
@@ -223,6 +250,20 @@
                     <strong id="schedule-weekend"></strong>
                 </div>
             </div>
+
+            <!-- DISPONIBILIDAD -->
+<div class="card-section">
+    <h3>
+        <span data-icon="calendar"></span>
+        Disponibilidad
+    </h3>
+
+    <div id="field-availability-content">
+        <p class="loading-text">
+            Consultando disponibilidad...
+        </p>
+    </div>
+</div>
 
             <!-- COMODIDADES -->
             <div class="card-section">

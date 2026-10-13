@@ -1,59 +1,44 @@
-import {
-    getCurrentUser,
-    signOut,
-    onAuthStateChange
-} from "../services/auth.js";
+import { getCurrentUser, signOut, onAuthStateChange } from "../services/auth.js";
+import { getCurrentProfile } from "../services/profiles.js";
 
-import {
-    getCurrentProfile
-} from "../services/profiles.js";
-
-/* ============================================
-   UPDATE AUTH UI
-   ============================================ */
+// UPDATE AUTH UI
 
 function updateAuthUI(profile) {
 
     const loggedIn = Boolean(profile);
 
+    // ACCOUNT-REQUIRED NAVIGATION
 
-    /* ========================================
-       DESKTOP
-       ======================================== */
+    const accountRequiredNavItems = [
+        "desktop-teams-nav",
+        "desktop-players-nav",
+        "mobile-teams-nav",
+        "mobile-players-nav"
+    ];
 
-    const desktopRegister =
-        document.getElementById("desktop-auth-nav");
+    accountRequiredNavItems.forEach((id) => {
+        const item = document.getElementById(id);
 
-    const desktopLogin =
-        document.getElementById("desktop-login-nav");
+        if (item) {
+            item.hidden = !loggedIn;
+        }
+    });
 
-    const desktopUser =
-        document.getElementById("desktop-user-nav");
+    //DESKTOP
 
-    const desktopLogout =
-        document.getElementById("desktop-logout-nav");
+    const desktopRegister = document.getElementById("desktop-auth-nav");
+    const desktopLogin = document.getElementById("desktop-login-nav");
+    const desktopUser = document.getElementById("desktop-user-nav");
+    const desktopLogout = document.getElementById("desktop-logout-nav");
 
+    //MOBILE
 
-    /* ========================================
-       MOBILE
-       ======================================== */
+    const mobileRegister = document.getElementById("mobile-register-nav");
+    const mobileLogin = document.getElementById("mobile-login-nav");
+    const mobileUser = document.getElementById("mobile-user-nav");
+    const mobileLogout = document.getElementById("mobile-logout-nav");
 
-    const mobileRegister =
-        document.getElementById("mobile-register-nav");
-
-    const mobileLogin =
-        document.getElementById("mobile-login-nav");
-
-    const mobileUser =
-        document.getElementById("mobile-user-nav");
-
-    const mobileLogout =
-        document.getElementById("mobile-logout-nav");
-
-
-    /* ========================================
-       DESKTOP UI
-       ======================================== */
+    //DESKTOP UI
 
     if (desktopRegister) {
 
@@ -73,8 +58,7 @@ function updateAuthUI(profile) {
 
         if (loggedIn) {
 
-            const link =
-                desktopUser.querySelector("a");
+            const link = desktopUser.querySelector("a");
 
             if (link) {
 
@@ -93,9 +77,7 @@ function updateAuthUI(profile) {
     }
 
 
-    /* ========================================
-       MOBILE UI
-       ======================================== */
+    //MOBILE UI
 
     if (mobileRegister) {
 
@@ -115,8 +97,7 @@ function updateAuthUI(profile) {
 
         if (loggedIn) {
 
-            const link =
-                mobileUser.querySelector("a");
+            const link = mobileUser.querySelector("a");
 
             if (link) {
 
@@ -136,19 +117,14 @@ function updateAuthUI(profile) {
 }
 
 
-/* ============================================
-   REFRESH AUTH UI
-   ============================================ */
+// REFRESH AUTH UI
 
 async function refreshAuthUI() {
 
-    const user =
-        await getCurrentUser();
+    const user = await getCurrentUser();
 
 
-    /* ----------------------------------------
-       LOGGED OUT
-       ---------------------------------------- */
+    // LOGGED OUT
 
     if (!user) {
 
@@ -158,12 +134,9 @@ async function refreshAuthUI() {
     }
 
 
-    /* ----------------------------------------
-       LOGGED IN
-       ---------------------------------------- */
+    // LOGGED IN
 
-    const profile =
-        await getCurrentProfile();
+    const profile = await getCurrentProfile();
 
 
     if (!profile) {
@@ -180,9 +153,7 @@ async function refreshAuthUI() {
 }
 
 
-/* ============================================
-   LOGOUT
-   ============================================ */
+// LOGOUT
 
 async function handleLogout() {
 
@@ -192,8 +163,12 @@ async function handleLogout() {
 
         updateAuthUI(null);
 
-        window.location.href =
-            "index.html";
+        const isNestedPage =
+            window.location.pathname.includes("/pages/");
+
+        window.location.href = isNestedPage
+            ? "../index.html"
+            : "index.html";
 
     } catch (error) {
 
@@ -209,28 +184,15 @@ async function handleLogout() {
 }
 
 
-/* ============================================
-   INITIALIZE
-   ============================================ */
+// INITIALIZE
 
 export function initAuthNav() {
 
 
-    /* ----------------------------------------
-       LOGOUT BUTTONS
-       ---------------------------------------- */
+    //LOGOUT BUTTONS
 
-    const desktopLogoutButton =
-        document.getElementById(
-            "desktop-logout-button"
-        );
-
-
-    const mobileLogoutButton =
-        document.getElementById(
-            "mobile-logout-button"
-        );
-
+    const desktopLogoutButton = document.getElementById("desktop-logout-button");
+    const mobileLogoutButton = document.getElementById("mobile-logout-button");
 
     if (desktopLogoutButton) {
 
@@ -250,16 +212,12 @@ export function initAuthNav() {
     }
 
 
-    /* ----------------------------------------
-       INITIAL SESSION
-       ---------------------------------------- */
+    // INITIAL SESSION
 
     refreshAuthUI();
 
 
-    /* ----------------------------------------
-       AUTH STATE CHANGES
-       ---------------------------------------- */
+    // AUTH STATE CHANGES
 
     onAuthStateChange(
         async (event, session) => {

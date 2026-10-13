@@ -1,14 +1,18 @@
-
-import {
-    getPublicPlayers
-} from "../services/profiles.js";
+import { getPublicPlayers } from "../services/profiles.js";
+import { getCurrentUser } from "../services/auth.js";
 
 
-/* ============================================
-   INIT PLAYERS PAGE
-============================================ */
+    // INIT PLAYERS PAGE
 
 export async function initPlayersPage() {
+
+    const user = await getCurrentUser();
+
+if (!user) {
+    window.location.href =
+        "login.html?redirect=players.html";
+    return;
+}
 
     const playersContainer =
         document.querySelector("#players-container");
@@ -43,9 +47,7 @@ export async function initPlayersPage() {
     let players = [];
 
 
-    /* ============================================
-       LOAD PUBLIC PLAYERS
-    ============================================ */
+    // LOAD PUBLIC PLAYERS
 
     try {
 
@@ -68,9 +70,7 @@ export async function initPlayersPage() {
     }
 
 
-    /* ============================================
-       RENDER PLAYERS
-    ============================================ */
+    // RENDER PLAYERS
 
     function renderPlayers(playersToRender) {
 
@@ -263,9 +263,7 @@ card.addEventListener(
     }
 
 
-    /* ============================================
-       FILTER PLAYERS
-    ============================================ */
+    // FILTER PLAYERS
 
     function filterPlayers() {
 
@@ -347,9 +345,7 @@ card.addEventListener(
     }
 
 
-    /* ============================================
-       FILTER EVENTS
-    ============================================ */
+    // FILTER EVENTS
 
     searchInput?.addEventListener(
         "input",
@@ -375,9 +371,7 @@ card.addEventListener(
     );
 
 
-    /* ============================================
-       CLEAR FILTERS
-    ============================================ */
+    // CLEAR FILTERS
 
     clearFiltersButton?.addEventListener(
         "click",
@@ -406,13 +400,11 @@ card.addEventListener(
     );
 
 
-    /* ============================================
-       INITIAL RENDER
-    ============================================ */
+    // INITIAL RENDER
 
     renderPlayers(players);
 
 }
 
 
-initPlayersPage();
+// initPlayersPage();

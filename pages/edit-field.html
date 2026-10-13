@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description"
+    content="Editá los datos de tu cancha en Fulsap: nombre, ubicación, precios, horarios y servicios disponibles.">
+    <meta property="og:title" content="Editar cancha | Fulsap">
+    <meta property="og:description" content="Actualizá la información de tu cancha en Fulsap y mantené tus datos siempre al día.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://domain.com/pages/edit-field.html">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/edit-field.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fulsap - Editar cancha</title>
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/profile.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)">
+
+    <!-- font awesome cdn link -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+<!-- Leaflet CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
+
+<!-- Leaflet JS -->
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
+<!-- Routing Machine CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+ -->
+<!-- Routing Machine JS -->
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
+
+<!-- prevent theme flash on load -->
+<script>
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+})();
+</script>
+</head>
+<body>
+   <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <h1>Fulsap</h1>
+            </a>
+            
+            <!-- Desktop Search -->
+            <div class="search desktop-search">
+                <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="nav desktop-nav">
+                <ul>
+                    <li class="dropdown"><a href="#" class="quick-link">Enlaces rápidos <span data-icon="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../index.html">Inicio</a></li>
+                            <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                            <li class="account-required-nav" id="desktop-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                            <li class="account-required-nav" id="desktop-players-nav"><a href="players.html">Jugadores</a></li>
+                            <li><a href="add-field.html">Agregar cancha</a></li>
+                            <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                             <li><a href="contact.html">Contacto</a></li>
+                            
+                             <!-- AUTH -->
+                            <li class="auth-nav-item" id="desktop-auth-nav"><a href="register.html">Registrarse</a></li>
+                            <li class="auth-nav-item" id="desktop-login-nav"><a href="login.html">Iniciar sesión</a></li>
+
+                            <li class="auth-nav-item" id="desktop-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                            <li class="auth-nav-item" id="desktop-logout-nav" hidden><button type="button" id="desktop-logout-button">Cerrar sesión</button></li>
+
+                        </ul>
+
+                    </li>
+                    <li><button class="theme-toggle"></button></li>
+               </ul>
+            </nav>
+
+            <!-- MOBILE -->
+            <div class="controls mobile-only">
+                <span data-icon="search" id="search-toggle"></span>
+                    <div class="menu-toggle" id="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+            </div>
+            
+            <!-- Mobile Search -->
+            <div class="search mobile-search" id="mobile-search">
+                <input type="text" class="global-search" placeholder="Buscar...">
+            </div>
+
+            <!-- Mobile Nav -->
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul>    
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                    <li class="account-required-nav" id="mobile-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                    <li class="account-required-nav" id="mobile-players-nav"><a href="players.html">Jugadores</a></li>
+                    <li><a href="add-field.html">Agregar cancha</a></li>
+                    <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                    <li><a href="contact.html">Contacto</a></li>
+                    
+                    <!-- AUTH -->
+                    <li class="auth-nav-item" id="mobile-register-nav"><a href="register.html">Registrarse</a></li>
+                    <li class="auth-nav-item" id="mobile-login-nav"><a href="login.html">Iniciar sesión</a></li>
+                    <li class="auth-nav-item" id="mobile-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                    <li class="auth-nav-item" id="mobile-logout-nav" hidden><button type="button" id="mobile-logout-button">Cerrar sesión</button></li>
+
+                    <li><button class="theme-toggle mobile-theme"></button></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<main class="edit-field-page">
+
+        <section class="edit-field-section">
+
+            <div class="edit-field-header">
+
+                <h1>
+                    Editar cancha
+                </h1>
+
+                <p>
+                    Actualizá la información de tu cancha.
+                </p>
+
+            </div>
+
+
+            <div
+                id="edit-field-loading"
+                class="edit-field-loading"
+            >
+                Cargando cancha...
+            </div>
+
+
+            <div
+                id="edit-field-error"
+                class="edit-field-error"
+                style="display: none;"
+            >
+            </div>
+
+
+            <form
+                id="edit-field-form"
+                style="display: none;"
+            >
+
+                <div id="edit-field-fields">
+
+    <div class="form-group">
+        <label for="edit-field-name">
+            Nombre de la cancha
+        </label>
+
+        <input
+            type="text"
+            id="edit-field-name"
+            name="name"
+            required
+        >
+    </div>
+
+
+    <div class="form-group">
+        <label for="edit-field-description">
+            Descripción
+        </label>
+
+        <textarea
+            id="edit-field-description"
+            name="description"
+            rows="4"
+        ></textarea>
+    </div>
+
+
+    <div class="form-group">
+        <label for="edit-field-address">
+            Dirección
+        </label>
+
+        <input
+            type="text"
+            id="edit-field-address"
+            name="address"
+        >
+    </div>
+
+
+    <div class="form-group">
+        <label for="edit-field-city">
+            Ciudad
+        </label>
+
+        <input
+            type="text"
+            id="edit-field-city"
+            name="city"
+        >
+    </div>
+
+
+    <div class="form-group">
+        <label for="edit-field-province">
+            Provincia
+        </label>
+
+        <input
+            type="text"
+            id="edit-field-province"
+            name="province"
+        >
+    </div>
+
+
+    <div class="form-group">
+        <label for="edit-field-zone">
+            Zona
+        </label>
+
+        <input
+            type="text"
+            id="edit-field-zone"
+            name="zone"
+        >
+    </div>
+
+
+    <div class="form-group">
+        <label for="edit-field-phone">
+            Teléfono
+        </label>
+
+        <input
+            type="tel"
+            id="edit-field-phone"
+            name="phone"
+        >
+    </div>
+
+
+    <div class="form-group">
+        <label for="edit-field-whatsapp">
+            WhatsApp
+        </label>
+
+        <input
+            type="tel"
+            id="edit-field-whatsapp"
+            name="whatsapp"
+        >
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-price-from">
+            Precio desde
+        </label>
+
+        <input
+            type="number"
+            id="edit-field-price-from"
+            name="price_from"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-price-to">
+            Precio hasta
+        </label>
+
+        <input
+            type="number"
+            id="edit-field-price-to"
+            name="price_to"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-type">
+            Tipo de cancha
+        </label>
+
+        <input
+            type="text"
+            id="edit-field-type"
+            name="type"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-surface">
+            Superficie
+        </label>
+
+        <input
+            type="text"
+            id="edit-field-surface"
+            name="surface"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-sizes">
+            Tamaños de cancha
+        </label>
+
+        <input
+            type="text"
+            id="edit-field-sizes"
+            name="sizes"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-features">
+            Características
+        </label>
+
+        <textarea
+            id="edit-field-features"
+            name="features"
+            rows="3"
+        ></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-extra-info">
+            Información adicional
+        </label>
+
+        <textarea
+            id="edit-field-extra-info"
+            name="extra_info"
+            rows="3"
+        ></textarea>
+
+    </div>
+
+</div>
+
+<div class="edit-field-subsection">
+
+    <div class="edit-field-subsection-header">
+        <h3>Horarios</h3>
+        <p>
+            Indicá los horarios en los que la cancha está disponible para recibir reservas.
+        </p>
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Lunes a Viernes
+        </label>
+
+        <div class="schedule-edit-row">
+
+            <div>
+                <label for="edit-field-week-open">
+                    Apertura
+                </label>
+
+                <input
+                    type="time"
+                    id="edit-field-week-open"
+                    name="week_open"
+                >
+            </div>
+
+            <div>
+                <label for="edit-field-week-close">
+                    Cierre
+                </label>
+
+                <input
+                    type="time"
+                    id="edit-field-week-close"
+                    name="week_close"
+                >
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Sábados y Domingos
+        </label>
+
+        <div class="schedule-edit-row">
+
+            <div>
+                <label for="edit-field-weekend-open">
+                    Apertura
+                </label>
+
+                <input
+                    type="time"
+                    id="edit-field-weekend-open"
+                    name="weekend_open"
+                >
+            </div>
+
+            <div>
+                <label for="edit-field-weekend-close">
+                    Cierre
+                </label>
+
+                <input
+                    type="time"
+                    id="edit-field-weekend-close"
+                    name="weekend_close"
+                >
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="edit-field-subsection">
+
+    <div class="edit-field-subsection-header">
+        <h3>Asado y parrilla</h3>
+        <p>
+            Información sobre parrilla, asado y servicio de cocina.
+        </p>
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-barbecue-cook-type">
+            ¿Quién cocina?
+        </label>
+
+        <select
+            id="edit-field-barbecue-cook-type"
+            name="barbecue_cook_type"
+        >
+            <option value="none">
+                No hay servicio de cocina
+            </option>
+
+            <option value="players">
+                Cocinan los jugadores
+            </option>
+
+            <option value="venue">
+                Cocina el lugar
+            </option>
+
+            <option value="both">
+                Jugadores o lugar
+            </option>
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-grill-available">
+            Parrilla disponible
+        </label>
+
+        <select
+            id="edit-field-grill-available"
+            name="grill_available"
+        >
+            <option value="false">
+                No
+            </option>
+
+            <option value="true">
+                Sí
+            </option>
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-cook-service-available">
+            Servicio de cocina disponible
+        </label>
+
+        <select
+            id="edit-field-cook-service-available"
+            name="cook_service_available"
+        >
+            <option value="false">
+                No
+            </option>
+
+            <option value="true">
+                Sí
+            </option>
+        </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-grill-fee">
+            Precio de la parrilla
+        </label>
+
+        <input
+            type="number"
+            id="edit-field-grill-fee"
+            name="grill_fee"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-cook-service-fee">
+            Precio del servicio de cocina
+        </label>
+
+        <input
+            type="number"
+            id="edit-field-cook-service-fee"
+            name="cook_service_fee"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="edit-field-barbecue-notes">
+            Información sobre el asado
+        </label>
+
+        <textarea
+            id="edit-field-barbecue-notes"
+            name="barbecue_notes"
+            rows="3"
+        ></textarea>
+
+    </div>
+
+</div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Guardar cambios
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><span data-icon="instagram"></span></a>
+                <a href="https://www.facebook.com/" target="_blank"><span data-icon="facebook"></span></a>
+                <a href="https://x.com/" target="_blank"><span data-icon="xTwitter"></span></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><span data-icon="whatsapp"></span></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+<script type="module" src="../assets/scripts/main.js"></script>
+</body>
+</html>

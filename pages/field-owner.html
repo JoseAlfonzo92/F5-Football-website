@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="description"
+    content="Panel de dueño de cancha en Fulsap. Administrá tus canchas, reservas, solicitudes y mantenimiento desde un solo lugar.">
+    <meta property="og:title" content="Panel de dueño de cancha | Fulsap">
+    <meta property="og:description" content="Publicá y administrá tus canchas en Fulsap con reservas, solicitudes y control del calendario.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://domain.com/pages/field-owner.html">
+    <meta property="og:image" content="https://domain.com/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://domain.com/pages/field-owner.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fulsap - Panel de dueño de cancha</title>
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/profile.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)">
+
+    <!-- font awesome cdn link -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+<!-- Leaflet CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
+
+<!-- Leaflet JS -->
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
+<!-- Routing Machine CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+ -->
+<!-- Routing Machine JS -->
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
+
+<!-- prevent theme flash on load -->
+<script>
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+})();
+</script>
+</head>
+<body>
+   <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <h1>Fulsap</h1>
+            </a>
+            
+            <!-- Desktop Search -->
+            <div class="search desktop-search">
+                <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="nav desktop-nav">
+                <ul>
+                    <li class="dropdown"><a href="#" class="quick-link">Enlaces rápidos <span data-icon="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../index.html">Inicio</a></li>
+                            <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                            <li class="account-required-nav" id="desktop-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                            <li class="account-required-nav" id="desktop-players-nav"><a href="players.html">Jugadores</a></li>
+                            <li><a href="add-field.html">Agregar cancha</a></li>
+                            <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                             <li><a href="contact.html">Contacto</a></li>
+                            
+                             <!-- AUTH -->
+                            <li class="auth-nav-item" id="desktop-auth-nav"><a href="register.html">Registrarse</a></li>
+                            <li class="auth-nav-item" id="desktop-login-nav"><a href="login.html">Iniciar sesión</a></li>
+
+                            <li class="auth-nav-item" id="desktop-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                            <li class="auth-nav-item" id="desktop-logout-nav" hidden><button type="button" id="desktop-logout-button">Cerrar sesión</button></li>
+
+                        </ul>
+
+                    </li>
+                    <li><button class="theme-toggle"></button></li>
+               </ul>
+            </nav>
+
+            <!-- MOBILE -->
+            <div class="controls mobile-only">
+                <span data-icon="search" id="search-toggle"></span>
+                    <div class="menu-toggle" id="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+            </div>
+            
+            <!-- Mobile Search -->
+            <div class="search mobile-search" id="mobile-search">
+                <input type="text" class="global-search" placeholder="Buscar...">
+            </div>
+
+            <!-- Mobile Nav -->
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul>    
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                    <li class="account-required-nav" id="mobile-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                    <li class="account-required-nav" id="mobile-players-nav"><a href="players.html">Jugadores</a></li>
+                    <li><a href="add-field.html">Agregar cancha</a></li>
+                    <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                    <li><a href="contact.html">Contacto</a></li>
+                    
+                    <!-- AUTH -->
+                    <li class="auth-nav-item" id="mobile-register-nav"><a href="register.html">Registrarse</a></li>
+                    <li class="auth-nav-item" id="mobile-login-nav"><a href="login.html">Iniciar sesión</a></li>
+                    <li class="auth-nav-item" id="mobile-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                    <li class="auth-nav-item" id="mobile-logout-nav" hidden><button type="button" id="mobile-logout-button">Cerrar sesión</button></li>
+
+                    <li><button class="theme-toggle mobile-theme"></button></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<main id="field-owner-page" class="field-owner-page">
+
+    <!-- PAGE HEADER -->
+    <section class="field-owner-hero">
+
+        <div class="field-owner-hero-content">
+
+            <span data-icon="building" class="field-owner-hero-icon"></span>
+
+            <div>
+                <h1>Panel de dueño de cancha</h1>
+
+                <p>
+                    Publicá y administrá tus canchas en Fulsap
+                    desde un solo lugar.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MY FIELDS -->
+    <section class="field-owner-section">
+
+    <div class="field-owner-section-header">
+        <div>
+            <h2>Mis canchas</h2>
+            <p>Acá vas a encontrar las canchas que tengas asociadas a tu cuenta.</p>
+        </div>
+
+        <span
+            data-icon="building"
+            class="field-owner-section-icon"
+        ></span>
+    </div>
+
+
+    <!-- APPROVED / OWNED FIELDS -->
+
+    <div
+        class="field-owner-fields"
+        id="field-owner-fields"
+    ></div>
+
+
+    <!-- PENDING / REJECTED SUBMISSIONS -->
+
+    <div
+        class="field-owner-submissions"
+        id="field-owner-submissions"
+    ></div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+        class="field-owner-empty"
+        id="field-owner-empty"
+    >
+        <span
+            data-icon="building"
+            class="field-owner-empty-icon"
+        ></span>
+
+        <h3>Todavía no tenés ninguna cancha</h3>
+
+        <p>
+            Publicá tu primera cancha para que los jugadores
+            puedan encontrarla en Fulsap.
+        </p>
+
+       <a
+    href="../pages/add-field.html"
+    class="btn-primary"
+    id="field-owner-add-button"
+>
+    + Publicar mi primera cancha
+</a>
+    </div>
+
+</section>
+
+
+<!-- ============================================
+     TEAM REQUESTS
+============================================ -->
+<section
+    class="field-owner-section"
+    id="field-owner-requests-section"
+>
+
+    <div class="field-owner-section-header">
+        <h2>Solicitudes de equipos</h2>
+
+        <p>
+            Equipos que quieren jugar en una de tus canchas.
+        </p>
+    </div>
+
+    <div
+        id="field-owner-requests"
+        class="field-owner-requests"
+    ></div>
+
+    <div
+        id="field-owner-requests-empty"
+        class="field-owner-empty"
+        hidden
+    >
+        <p>No tenés solicitudes pendientes.</p>
+    </div>
+
+</section>
+
+
+<!-- ============================================
+     MANUAL RESERVATION
+============================================ -->
+<section
+    class="field-owner-section"
+    id="field-owner-manual-reservation-section"
+>
+
+    <div class="field-owner-section-header">
+
+        <div>
+
+            <h2>Agregar reserva</h2>
+
+            <p>
+                Registrá una reserva realizada fuera de Fulsap,
+                por ejemplo por WhatsApp o teléfono.
+            </p>
+
+        </div>
+
+        <span
+            data-icon="calendar"
+            class="field-owner-section-icon"
+        ></span>
+
+    </div>
+
+
+    <form
+        id="field-owner-manual-reservation-form"
+        class="field-owner-manual-reservation-form"
+    >
+
+        <!-- FIELD -->
+
+        <div class="form-group">
+
+            <label for="manual-reservation-field">
+                Cancha
+            </label>
+
+            <select
+                id="manual-reservation-field"
+                name="field_id"
+                required
+            >
+                <option value="">
+                    Seleccioná una cancha
+                </option>
+            </select>
+
+        </div>
+
+
+        <!-- DATE -->
+
+        <div class="form-group">
+
+            <label for="manual-reservation-date">
+                Fecha
+            </label>
+
+            <input
+                type="date"
+                id="manual-reservation-date"
+                name="requested_date"
+                required
+            >
+
+        </div>
+
+
+        <!-- TIME -->
+
+        <div class="manual-reservation-time-row">
+
+            <div class="form-group">
+
+                <label for="manual-reservation-start">
+                    Desde
+                </label>
+
+                <input
+                    type="time"
+                    id="manual-reservation-start"
+                    name="start_time"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="manual-reservation-end">
+                    Hasta
+                </label>
+
+                <input
+                    type="time"
+                    id="manual-reservation-end"
+                    name="end_time"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- CUSTOMER -->
+
+        <div class="form-group">
+
+            <label for="manual-reservation-customer">
+                Nombre del cliente
+            </label>
+
+            <input
+                type="text"
+                id="manual-reservation-customer"
+                name="customer_name"
+                placeholder="Ej. Juan Pérez"
+            >
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+            <label for="manual-reservation-phone">
+                Teléfono
+            </label>
+
+            <input
+                type="tel"
+                id="manual-reservation-phone"
+                name="customer_phone"
+                placeholder="Ej. 2664000000"
+            >
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="form-group">
+
+            <label for="manual-reservation-message">
+                Nota
+            </label>
+
+            <textarea
+                id="manual-reservation-message"
+                name="message"
+                rows="3"
+                placeholder="Ej. Reserva realizada por WhatsApp"
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn-primary"
+            id="manual-reservation-submit"
+        >
+            Agregar reserva
+        </button>
+
+
+        <p
+            id="manual-reservation-feedback"
+            class="manual-reservation-feedback"
+            hidden
+        ></p>
+
+    </form>
+
+</section>
+
+
+
+
+
+<!-- ============================================
+     CONFIRMED RESERVATIONS
+============================================ -->
+<section
+    class="field-owner-section"
+    id="field-owner-reservations-section"
+>
+    <div class="field-owner-section-header">
+        <div>
+            <h2>Reservas confirmadas</h2>
+            <p>
+                Horarios ocupados en tus canchas.
+            </p>
+        </div>
+
+        <span
+            data-icon="calendar"
+            class="field-owner-section-icon"
+        ></span>
+    </div>
+
+    <div
+        id="field-owner-reservations"
+        class="field-owner-reservations"
+    ></div>
+
+    <div
+        id="field-owner-reservations-empty"
+        class="field-owner-empty"
+        hidden
+    >
+        <p>No tenés reservas confirmadas.</p>
+    </div>
+</section>
+
+
+<!-- MAINTENANCE BLOCKS -->
+<section
+    class="field-owner-section"
+    id="field-owner-maintenance-section"
+>
+    <div class="field-owner-section-header">
+        <div>
+            <h2>Bloqueos de mantenimiento</h2>
+            <p>
+                Bloqueá horarios en los que tus canchas no estarán disponibles.
+            </p>
+        </div>
+
+        <span
+            data-icon="wrench"
+            class="field-owner-section-icon"
+        ></span>
+    </div>
+
+    <form
+        id="field-maintenance-form"
+        class="field-owner-form"
+    >
+
+        <div class="form-group">
+            <label for="maintenance-field">
+                Cancha
+            </label>
+
+            <select
+                id="maintenance-field"
+                required
+            >
+                <option value="">
+                    Seleccioná una cancha
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="maintenance-date">
+                Fecha
+            </label>
+
+            <input
+                type="date"
+                id="maintenance-date"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="maintenance-start">
+                Desde
+            </label>
+
+            <input
+                type="time"
+                id="maintenance-start"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="maintenance-end">
+                Hasta
+            </label>
+
+            <input
+                type="time"
+                id="maintenance-end"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="maintenance-reason">
+                Motivo
+            </label>
+
+            <textarea
+                id="maintenance-reason"
+                rows="3"
+                placeholder="Ej.: mantenimiento de iluminación"
+            ></textarea>
+        </div>
+
+        <div
+            id="field-maintenance-error"
+            class="form-error"
+            hidden
+        ></div>
+
+        <button
+            type="submit"
+            id="create-field-maintenance"
+        >
+            Bloquear horario
+        </button>
+
+    </form>
+
+    <div
+        id="field-maintenance-list"
+        class="field-owner-maintenance-list"
+    ></div>
+
+    <div
+        id="field-maintenance-empty"
+        class="field-owner-empty"
+        hidden
+    >
+        <p>No tenés bloqueos de mantenimiento.</p>
+    </div>
+
+</section>
+
+    <!-- HOW IT WORKS -->
+    <section class="field-owner-section field-owner-how-it-works">
+
+        <div class="field-owner-section-header">
+
+            <div>
+                <h2>¿Cómo funciona?</h2>
+
+                <p>
+                    Publicar y administrar tu cancha es simple.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="field-owner-steps">
+
+            <!-- STEP 1 -->
+            <article class="field-owner-step">
+
+                <span class="field-owner-step-number">
+                    1
+                </span>
+
+                <div>
+                    <h3>Publicá tu cancha</h3>
+
+                    <p>
+                        Completá la información básica de tu cancha
+                        y enviá la solicitud.
+                    </p>
+                </div>
+
+            </article>
+
+
+            <!-- STEP 2 -->
+            <article class="field-owner-step">
+
+                <span class="field-owner-step-number">
+                    2
+                </span>
+
+                <div>
+                    <h3>Completá la información</h3>
+
+                    <p>
+                        Agregá horarios, precios, fotos, contacto
+                        y los servicios disponibles.
+                    </p>
+                </div>
+
+            </article>
+
+
+            <!-- STEP 3 -->
+            <article class="field-owner-step">
+
+                <span class="field-owner-step-number">
+                    3
+                </span>
+
+                <div>
+                    <h3>Administrá tu cancha</h3>
+
+                    <p>
+                        Una vez aprobada, vas a poder mantener
+                        actualizada la información de tu cancha.
+                    </p>
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- OWNER BENEFITS -->
+    <section class="field-owner-section field-owner-benefits">
+
+        <div class="field-owner-section-header">
+
+            <div>
+                <h2>Tu cancha en Fulsap</h2>
+
+                <p>
+                    Ayudá a más jugadores a encontrar dónde jugar.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="field-owner-benefits-grid">
+
+            <article class="field-owner-benefit">
+
+                <span
+                    data-icon="search"
+                    class="field-owner-benefit-icon">
+                </span>
+
+                <h3>Más visibilidad</h3>
+
+                <p>
+                    Tu cancha puede aparecer cuando los jugadores
+                    buscan dónde jugar.
+                </p>
+
+            </article>
+
+
+            <article class="field-owner-benefit">
+
+                <span
+                    data-icon="calendar"
+                    class="field-owner-benefit-icon">
+                </span>
+
+                <h3>Información actualizada</h3>
+
+                <p>
+                    Mantené horarios, precios y datos de contacto
+                    siempre actualizados.
+                </p>
+
+            </article>
+
+
+            <article class="field-owner-benefit">
+
+                <span
+                    data-icon="whatsapp"
+                    class="field-owner-benefit-icon">
+                </span>
+
+                <h3>Contacto directo</h3>
+
+                <p>
+                    Los jugadores pueden comunicarse directamente
+                    con tu cancha.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+</main>
+
+
+<!-- EDIT CONFIRMED RESERVATION MODAL -->
+<div
+    id="field-reservation-edit-modal"
+    class="field-owner-modal"
+    hidden
+>
+    <div class="field-owner-modal-content">
+
+        <button
+            type="button"
+            id="close-field-reservation-edit"
+            class="field-owner-modal-close"
+            aria-label="Cerrar"
+        >
+            ×
+        </button>
+
+        <h3>Editar reserva</h3>
+
+        <form id="field-reservation-edit-form">
+
+            <input
+                type="hidden"
+                id="edit-reservation-id"
+            >
+
+            <div class="form-group">
+                <label for="edit-reservation-date">
+                    Fecha
+                </label>
+
+                <input
+                    type="date"
+                    id="edit-reservation-date"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="edit-reservation-start">
+                    Desde
+                </label>
+
+                <input
+                    type="time"
+                    id="edit-reservation-start"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="edit-reservation-end">
+                    Hasta
+                </label>
+
+                <input
+                    type="time"
+                    id="edit-reservation-end"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="edit-reservation-message">
+                    Mensaje
+                </label>
+
+                <textarea
+                    id="edit-reservation-message"
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <div
+                id="field-reservation-edit-error"
+                class="form-error"
+                hidden
+            ></div>
+
+            <div class="field-owner-modal-actions">
+
+                <button
+                    type="button"
+                    id="cancel-field-reservation-edit"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    id="save-field-reservation-edit"
+                >
+                    Guardar cambios
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+<!-- FIELD MAINTENANCE EDIT MODAL -->
+<div
+    id="field-maintenance-edit-modal"
+    class="field-owner-modal"
+    hidden
+>
+    <div class="field-owner-modal-content">
+
+        <div class="field-owner-modal-header">
+            <h2>Editar bloqueo de mantenimiento</h2>
+
+            <button
+                type="button"
+                class="field-owner-modal-close"
+                id="close-field-maintenance-edit-modal"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+        </div>
+
+        <form id="field-maintenance-edit-form">
+
+            <div class="form-group">
+                <label for="edit-maintenance-date">
+                    Fecha
+                </label>
+
+                <input
+                    type="date"
+                    id="edit-maintenance-date"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="edit-maintenance-start">
+                    Desde
+                </label>
+
+                <input
+                    type="time"
+                    id="edit-maintenance-start"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="edit-maintenance-end">
+                    Hasta
+                </label>
+
+                <input
+                    type="time"
+                    id="edit-maintenance-end"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="edit-maintenance-reason">
+                    Motivo
+                </label>
+
+                <textarea
+                    id="edit-maintenance-reason"
+                    rows="3"
+                    placeholder="Ej.: mantenimiento de iluminación"
+                ></textarea>
+            </div>
+
+            <div
+                id="edit-field-maintenance-error"
+                class="form-error"
+                hidden
+            ></div>
+
+            <div class="field-owner-modal-actions">
+
+                <button
+                    type="button"
+                    id="cancel-field-maintenance-edit"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    id="save-field-maintenance-edit"
+                >
+                    Guardar cambios
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><span data-icon="instagram"></span></a>
+                <a href="https://www.facebook.com/" target="_blank"><span data-icon="facebook"></span></a>
+                <a href="https://x.com/" target="_blank"><span data-icon="xTwitter"></span></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><span data-icon="whatsapp"></span></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+<script type="module" src="../assets/scripts/main.js"></script>
+</body>
+</html>

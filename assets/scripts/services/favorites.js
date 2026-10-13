@@ -1,9 +1,7 @@
 import { supabase } from "./supabase.js";
 
 
-/* ============================================
-   GET CURRENT USER
-   ============================================ */
+// GET CURRENT USER
 
 async function getCurrentUser() {
 
@@ -24,9 +22,7 @@ async function getCurrentUser() {
 }
 
 
-/* ============================================
-   CHECK IF FIELD IS FAVORITE
-   ============================================ */
+// CHECK IF FIELD IS FAVORITE
 
 export async function isFavorite(fieldId) {
 
@@ -65,9 +61,7 @@ export async function isFavorite(fieldId) {
 }
 
 
-/* ============================================
-   GET USER FAVORITE FIELDS
-   ============================================ */
+// GET USER FAVORITE FIELDS
 
 export async function getFavoriteFields() {
 
@@ -106,9 +100,7 @@ export async function getFavoriteFields() {
 }
 
 
-/* ============================================
-   TOGGLE FAVORITE
-   ============================================ */
+// TOGGLE FAVORITE
 
 export async function toggleFavorite(fieldId) {
 
@@ -146,9 +138,7 @@ export async function toggleFavorite(fieldId) {
     }
 
 
-    /* ----------------------------------------
-       REMOVE FAVORITE
-       ---------------------------------------- */
+    // REMOVE FAVORITE
 
     if (existingFavorite) {
 
@@ -175,9 +165,7 @@ export async function toggleFavorite(fieldId) {
     }
 
 
-    /* ----------------------------------------
-       ADD FAVORITE
-       ---------------------------------------- */
+    // ADD FAVORITE
 
     const {
         error

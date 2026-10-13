@@ -1,20 +1,14 @@
 import { supabase } from "../services/supabase.js";
+import { getCurrentUser } from "../services/auth.js";
 
-
-/* ============================================
-   HELPERS
-   ============================================ */
-
+//HELPERS
 function getElement(id) {
 
     return document.getElementById(id);
 
 }
 
-
-/* ============================================
-   LOAD TEAMS
-   ============================================ */
+//LOAD TEAMS
 
 async function getTeams() {
 
@@ -57,11 +51,7 @@ async function getTeams() {
 
 }
 
-
-/* ============================================
-   LEVEL LABEL
-   ============================================ */
-
+//LEVEL LABEL
 function getLevelLabel(level) {
 
     const labels = {
@@ -86,21 +76,12 @@ function getLevelLabel(level) {
 
 }
 
-
-/* ============================================
-   RENDER TEAMS
-   ============================================ */
-
+//RENDER TEAMS
 function renderTeams(teams) {
 
-    const grid =
-        getElement("all-teams-grid");
-
-    const empty =
-        getElement("all-teams-empty");
-
-    const loading =
-        getElement("all-teams-loading");
+    const grid = getElement("all-teams-grid");
+    const empty = getElement("all-teams-empty");
+    const loading = getElement("all-teams-loading");
 
 
     if (loading) {
@@ -239,11 +220,7 @@ function renderTeams(teams) {
         .join("");
 
 
-    /*
-     * Icons are injected by main.js.
-     * Dispatching this event allows the icon
-     * system to react if necessary.
-     */
+
 
     document.dispatchEvent(
         new CustomEvent("teams-rendered")
@@ -252,16 +229,12 @@ function renderTeams(teams) {
 }
 
 
-/* ============================================
-   SEARCH
-   ============================================ */
+//SEARCH
 
 function initTeamSearch(teams) {
 
-    const input =
-        getElement("teams-search");
-
-
+    const input = getElement("teams-search");
+    
     if (!input) {
 
         return;
@@ -322,11 +295,16 @@ function initTeamSearch(teams) {
 }
 
 
-/* ============================================
-   INITIALIZE
-   ============================================ */
+//INITIALIZE
 
 export async function initAllTeamsPage() {
+    const user = await getCurrentUser();
+
+    if (!user) {
+        window.location.href =
+            "login.html?redirect=all-teams.html";
+        return;
+    }
 
     try {
 

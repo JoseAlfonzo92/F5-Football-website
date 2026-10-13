@@ -133,9 +133,7 @@ function getFieldTypeTag(type, className = "tag") {
     }
 }
 
-/* ============================================
-   FAVORITE BUTTON
-   ============================================ */
+//FAVORITE BUTTON
 
 function getFavoriteButton(field) {
 
@@ -197,11 +195,11 @@ function createFeaturedCard(field) {
                     height="250"
                 >
 
-<div
-    class="favorite-slot"
-    data-field-id="${field.id}"
-    data-field-name="${field.name}"
-></div>
+                <div
+                    class="favorite-slot"
+                    data-field-id="${field.id}"
+                    data-field-name="${field.name}"
+                ></div>
 
                 ${getFieldTypeTag(
                     field.type,
@@ -274,24 +272,24 @@ function createFieldCard(field) {
 
            <div class="field-image">
 
-    <img
-        src="${field.image}"
-        alt="${field.name}"
-        loading="lazy"
-        decoding="async"
-        width="300"
-        height="200"
-    >
+            <img
+                src="${field.image}"
+                alt="${field.name}"
+                loading="lazy"
+                decoding="async"
+                width="300"
+                height="200"
+            >
 
-    <div
-    class="favorite-slot"
-    data-field-id="${field.id}"
-    data-field-name="${field.name}"
-></div>
+            <div
+            class="favorite-slot"
+            data-field-id="${field.id}"
+            data-field-name="${field.name}"
+        ></div>
 
-    ${getFieldTypeTag(field.type, "tag")}
+            ${getFieldTypeTag(field.type, "tag")}
 
-</div>
+        </div>
 
             <div class="field-content">
 
@@ -339,20 +337,13 @@ function createFieldCard(field) {
     `;
 }
 
-/* ============================================
-   INITIALIZE FAVORITE BUTTONS
-   ============================================ */
+//INITIALIZE FAVORITE BUTTONS
 
 async function initFavoriteButtons() {
 
-    /*
-       ----------------------------------------
-       CHECK AUTHENTICATION
-       ----------------------------------------
-    */
+    //CHECK AUTHENTICATION
 
-    const user =
-        await getCurrentUser();
+    const user = await getCurrentUser();
 
 
     /*
@@ -371,11 +362,8 @@ async function initFavoriteButtons() {
     }
 
 
-    /*
-       ----------------------------------------
-       CREATE FAVORITE BUTTONS
-       ----------------------------------------
-    */
+    // CREATE FAVORITE BUTTONS
+      
 
     const slots =
         document.querySelectorAll(
@@ -385,23 +373,20 @@ async function initFavoriteButtons() {
 
     slots.forEach(slot => {
 
-        const fieldId =
-            slot.dataset.fieldId;
+                const fieldId =
+                    slot.dataset.fieldId;
 
 
-slot.innerHTML =
-    getFavoriteButton({
-        id: fieldId,
-        name: slot.dataset.fieldName || "cancha"
-    });
-    });
+        slot.innerHTML =
+            getFavoriteButton({
+                id: fieldId,
+                name: slot.dataset.fieldName || "cancha"
+            });
+            });
 
 
-    /*
-       ----------------------------------------
-       GET CREATED BUTTONS
-       ----------------------------------------
-    */
+    // GET CREATED BUTTONS
+      
 
     const buttons =
         document.querySelectorAll(
@@ -414,11 +399,8 @@ slot.innerHTML =
     }
 
 
-    /*
-       ----------------------------------------
-       LOAD CURRENT FAVORITES
-       ----------------------------------------
-    */
+    // LOAD CURRENT FAVORITES
+      
 
     for (const button of buttons) {
 
@@ -448,11 +430,8 @@ slot.innerHTML =
     }
 
 
-    /*
-       ----------------------------------------
-       BUTTON EVENTS
-       ----------------------------------------
-    */
+    // BUTTON EVENTS
+      
 
     buttons.forEach(button => {
 
@@ -514,9 +493,7 @@ slot.innerHTML =
 }
 
 
-/* ============================================
-   UPDATE FAVORITE BUTTON
-   ============================================ */
+// UPDATE FAVORITE BUTTON
 
 function updateFavoriteButton(
     button,

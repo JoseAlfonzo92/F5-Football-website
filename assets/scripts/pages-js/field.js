@@ -549,12 +549,8 @@ function updateRatingDisplay(rating, votes) {
 
 function initRatingWidget(field) {
 
-    //console.log("Rating widget started", field.id);
-
     const stars =
         document.querySelectorAll(".vote-stars button");
-
-    //console.log("Stars found:", stars.length);
 
     if (!stars.length) return;
 
@@ -877,9 +873,8 @@ async function initFieldFavoriteButton(field) {
         await getCurrentUser();
 
 
-    // ----------------------------------------
+
     // LOGGED OUT
-    // ----------------------------------------
 
     if (!user) {
 
@@ -890,9 +885,9 @@ async function initFieldFavoriteButton(field) {
     }
 
 
-    // ----------------------------------------
+
     // LOAD FAVORITE STATE
-    // ----------------------------------------
+
 
     try {
 
@@ -913,9 +908,9 @@ async function initFieldFavoriteButton(field) {
     }
 
 
-    // ----------------------------------------
+
     // CLICK
-    // ----------------------------------------
+
 
     button.addEventListener(
         "click",
@@ -1087,39 +1082,970 @@ async function getField(fieldId) {
     };
 }
 
-async function getSimilarFields(currentFieldId) {
-    const { data, error } = await supabase
-        .from("fields")
+
+async function getFieldAvailability(fieldId) {
+
+    if (!fieldId) return [];
+
+    const timeZone =
+        "America/Argentina/Buenos_Aires";
+
+    const now = new Date();
+
+    /*
+        Get today's date in Argentina.
+        Example: 2026-10-01
+    */
+    const todayString =
+        now.toLocaleDateString(
+            "en-CA",
+            {
+                timeZone
+            }
+        );
+
+    /*
+        Use UTC only for calendar-date arithmetic.
+        This avoids the browser's local timezone
+        affecting the date range.
+    */
+    const [
+        year,
+        month,
+        day
+    ] = todayString
+        .split("-")
+        .map(Number);
+
+    const todayUTC =
+        new Date(
+            Date.UTC(
+                year,
+                month - 1,
+                day
+            )
+        );
+
+    // Seven calendar days including today.
+    
+    const endDateUTC =
+        new Date(todayUTC);
+
+    endDateUTC.setUTCDate(
+        endDateUTC.getUTCDate() + 6
+    );
+
+    const endDate =
+        endDateUTC
+            .toISOString()
+            .slice(0, 10);
+
+    /*
+        Current time in Argentina.
+        Used later to hide reservations
+        that already finished today.
+    */
+    const currentTime =
+        now.toLocaleTimeString(
+            "en-GB",
+            {
+                timeZone,
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }
+        );
+
+    const {
+        data,
+        error
+    } = await supabase
+        .from("field_requests")
         .select(`
             id,
-            name,
-            province,
-            city,
-            zone,
-            type,
-            price_from,
-            price_to,
-            image_url,
-            is_active
+            requested_date,
+            start_time,
+            end_time,
+            status
         `)
-        .eq("is_active", true)
-        .neq("id", currentFieldId);
+        .eq("field_id", fieldId)
+        .eq("status", "accepted")
+        .gte("requested_date", todayString)
+        .lte("requested_date", endDate)
+        .order("requested_date", {
+            ascending: true
+        })
+        .order("start_time", {
+            ascending: true
+        });
 
     if (error) {
-        console.error("SIMILAR FIELDS QUERY ERROR:", error);
+
+        console.error(
+            "FIELD AVAILABILITY QUERY ERROR:",
+            error
+        );
+
         return [];
     }
 
-    return data.map(field => ({
-        ...field,
-        image: field.image_url,
-        priceFrom: field.price_from,
-        priceTo: field.price_to
-    }));
+    /*
+        Remove reservations that have already ended today.
+
+        Future dates are kept automatically.
+    */
+    const upcomingRequests =
+        (data || []).filter(request => {
+
+            if (
+                request.requested_date ===
+                todayString
+            ) {
+                return (
+                    request.end_time >
+                    currentTime
+                );
+            }
+
+            return true;
+        });
+
+    console.log(
+        "FIELD AVAILABILITY:",
+        {
+            today: todayString,
+            until: endDate,
+            currentTime,
+            requests: upcomingRequests
+        }
+    );
+
+    return upcomingRequests;
 }
 
 
-//  MAIN FUNCTION 
+async function getFieldMaintenance(fieldId) {
+    if (!fieldId) {
+        return [];
+    }
+
+    const timeZone =
+        "America/Argentina/Buenos_Aires";
+
+    const now = new Date();
+
+    const todayString =
+        now.toLocaleDateString(
+            "en-CA",
+            {
+                timeZone
+            }
+        );
+
+    const [
+        year,
+        month,
+        day
+    ] = todayString
+        .split("-")
+        .map(Number);
+
+    const todayUTC =
+        new Date(
+            Date.UTC(
+                year,
+                month - 1,
+                day
+            )
+        );
+
+    const endDateUTC =
+        new Date(todayUTC);
+
+    endDateUTC.setUTCDate(
+        endDateUTC.getUTCDate() + 6
+    );
+
+    const endDate =
+        endDateUTC
+            .toISOString()
+            .slice(0, 10);
+
+    const {
+        data,
+        error
+    } = await supabase
+        .from("field_maintenance")
+        .select(`
+            id,
+            field_id,
+            maintenance_date,
+            start_time,
+            end_time,
+            reason
+        `)
+        .eq("field_id", fieldId)
+        .gte("maintenance_date", todayString)
+        .lte("maintenance_date", endDate)
+        .order("maintenance_date", {
+            ascending: true
+        })
+        .order("start_time", {
+            ascending: true
+        });
+
+    if (error) {
+        console.error(
+            "FIELD MAINTENANCE QUERY ERROR:",
+            error
+        );
+
+        return [];
+    }
+
+    return data || [];
+}
+
+
+function renderFieldAvailability(
+    availability,
+    maintenance = []
+) {
+
+    const container =
+        document.getElementById(
+            "field-availability-content"
+        );
+
+    if (!container) return;
+
+    if (!availability?.length && !maintenance?.length) {
+
+    container.innerHTML = `
+        <p class="text-muted">
+            No hay reservas ni bloqueos de mantenimiento
+            en los próximos días.
+        </p>
+    `;
+
+    return;
+}
+
+    const timeZone =
+        "America/Argentina/Buenos_Aires";
+
+    const now = new Date();
+
+    const todayString =
+        now.toLocaleDateString(
+            "en-CA",
+            {
+                timeZone
+            }
+        );
+
+    const grouped = {};
+
+    /*
+        Group reservations by date.
+    */
+    /*
+    Group reservations by date.
+    */
+    availability.forEach(request => {
+
+        const date =
+            request.requested_date;
+
+        if (!grouped[date]) {
+            grouped[date] = [];
+        }
+
+        grouped[date].push({
+            type: "reservation",
+            start_time: request.start_time,
+            end_time: request.end_time
+        });
+    });
+
+
+    // Group maintenance blocks by date.
+    
+    maintenance.forEach(block => {
+
+        const date =
+            block.maintenance_date;
+
+        if (!grouped[date]) {
+            grouped[date] = [];
+        }
+
+        grouped[date].push({
+            type: "maintenance",
+            start_time: block.start_time,
+            end_time: block.end_time
+        });
+    });
+
+
+    // Sort all blocked periods chronologically.
+
+    Object.values(grouped).forEach(slots => {
+
+        slots.sort((a, b) =>
+            a.start_time.localeCompare(
+                b.start_time
+            )
+        );
+    });
+
+    let html = "";
+
+    Object.entries(grouped)
+        .forEach(([date, slots], index) => {
+
+            const [
+                year,
+                month,
+                day
+            ] = date
+                .split("-")
+                .map(Number);
+
+            const dateObject =
+                new Date(
+                    Date.UTC(
+                        year,
+                        month - 1,
+                        day
+                    )
+                );
+
+            const formattedDate =
+                new Intl.DateTimeFormat(
+                    "es-AR",
+                    {
+                        timeZone: "UTC",
+                        weekday: "long",
+                        day: "numeric",
+                        month: "long"
+                    }
+                ).format(dateObject);
+
+            const isToday =
+                date === todayString;
+
+            /*
+                Today is expanded automatically.
+                Future dates start collapsed.
+            */
+            const isExpanded =
+                isToday;
+
+            const occupiedCount =
+    slots.filter(
+        slot => slot.type === "reservation"
+    ).length;
+
+    const maintenanceCount =
+        slots.filter(
+            slot => slot.type === "maintenance"
+        ).length;
+
+    const summaryParts = [];
+
+    if (occupiedCount > 0) {
+        summaryParts.push(
+            occupiedCount === 1
+                ? "1 horario ocupado"
+                : `${occupiedCount} horarios ocupados`
+        );
+    }
+
+    if (maintenanceCount > 0) {
+        summaryParts.push(
+            maintenanceCount === 1
+                ? "1 mantenimiento"
+                : `${maintenanceCount} mantenimientos`
+        );
+    }
+
+    const slotsLabel =
+        summaryParts.join(" · ");
+
+            html += `
+                <div
+                    class="availability-day ${isExpanded ? "expanded" : ""}"
+                    data-availability-day
+                >
+
+                    <button
+                        type="button"
+                        class="availability-day-header"
+                        aria-expanded="${isExpanded}"
+                    >
+
+                        <div class="availability-day-info">
+
+                            <h4>
+                                ${isToday ? "Hoy · " : ""}
+                                ${formattedDate}
+                            </h4>
+
+                            <span class="availability-day-summary">
+                                ${slotsLabel}
+                            </span>
+
+                        </div>
+
+                        <span
+                            class="availability-day-arrow"
+                            aria-hidden="true"
+                        >
+                            ›
+                        </span>
+
+                    </button>
+
+                    <div class="availability-slots">
+    <div class="availability-slots-inner">
+
+            `;
+
+                slots.forEach(slot => {
+
+        const start =
+            slot.start_time.slice(0, 5);
+
+        const end =
+            slot.end_time.slice(0, 5);
+
+        if (slot.type === "maintenance") {
+
+            html += `
+                <div class="availability-slot maintenance">
+
+                    <span class="availability-slot-time">
+                        ${start} - ${end}
+                    </span>
+
+                    <span class="availability-slot-status">
+                        Mantenimiento
+                    </span>
+
+                </div>
+            `;
+
+            return;
+        }
+
+        html += `
+            <div class="availability-slot occupied">
+
+                <span class="availability-slot-time">
+                    ${start} - ${end}
+                </span>
+
+                <span class="availability-slot-status">
+                    Ocupada
+                </span>
+
+            </div>
+        `;
+    });
+
+                html += `
+                                            </div>
+                    </div>
+                    </div>
+                `;
+            });
+
+    container.innerHTML = html;
+
+    // Toggle individual days.
+    
+    container
+        .querySelectorAll(
+            "[data-availability-day]"
+        )
+        .forEach(day => {
+
+            const header =
+                day.querySelector(
+                    ".availability-day-header"
+                );
+
+            if (!header) return;
+
+            header.addEventListener(
+                "click",
+                () => {
+
+                    const expanded =
+                        day.classList.toggle(
+                            "expanded"
+                        );
+
+                    header.setAttribute(
+                        "aria-expanded",
+                        expanded
+                    );
+                }
+            );
+        });
+}
+
+
+async function getCurrentFieldStatus(fieldId, field) {
+
+    if (!fieldId || !field) {
+        return {
+            status: "unknown"
+        };
+    }
+
+    const timeZone =
+        "America/Argentina/Buenos_Aires";
+
+    const now = new Date();
+
+    const date =
+        now.toLocaleDateString("en-CA", {
+            timeZone
+        });
+
+    const time =
+        now.toLocaleTimeString("en-GB", {
+            timeZone,
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+
+    /// 1. CHECK ACCEPTED REQUEST
+     
+
+    const {
+        data: activeRequests,
+        error
+    } = await supabase
+        .from("field_requests")
+        .select(`
+            id,
+            requested_date,
+            start_time,
+            end_time,
+            status
+        `)
+        .eq("field_id", fieldId)
+        .eq("status", "accepted")
+        .eq("requested_date", date)
+        .lte("start_time", time)
+        .gt("end_time", time)
+        .limit(1);
+
+    if (error) {
+
+        console.error(
+            "CURRENT FIELD STATUS ERROR:",
+            error
+        );
+
+        return {
+            status: "unknown"
+        };
+    }
+
+
+    // 2. OCCUPIED TAKES PRIORITY
+     
+
+    if (activeRequests?.length) {
+
+        return {
+            status: "occupied",
+            request: activeRequests[0]
+        };
+    }
+
+
+    // 3. CHECK MAINTENANCE
+ 
+
+    const {
+        data: maintenance,
+        error: maintenanceError
+    } = await supabase
+        .from("field_maintenance")
+        .select(`
+            id,
+            maintenance_date,
+            start_time,
+            end_time,
+            reason
+        `)
+        .eq("field_id", fieldId)
+        .eq("maintenance_date", date)
+        .order("start_time", {
+            ascending: true
+        });
+
+    if (maintenanceError) {
+
+        console.error(
+            "CURRENT FIELD MAINTENANCE QUERY ERROR:",
+            maintenanceError
+        );
+    }
+
+    const currentTime =
+        time.slice(0, 8);
+
+    const activeMaintenance =
+        (maintenance || []).find(block =>
+            currentTime >= block.start_time &&
+            currentTime < block.end_time
+        );
+
+    if (activeMaintenance) {
+
+        return {
+            status: "maintenance",
+            maintenance: activeMaintenance
+        };
+    }
+
+
+    // 3. GET CURRENT DAY
+     
+
+    const weekday =
+        new Intl.DateTimeFormat("en-US", {
+            timeZone,
+            weekday: "short"
+        }).format(now);
+
+    const dayMap = {
+        Sun: 0,
+        Mon: 1,
+        Tue: 2,
+        Wed: 3,
+        Thu: 4,
+        Fri: 5,
+        Sat: 6
+    };
+
+    const dayOfWeek =
+        dayMap[weekday];
+
+
+    // 4. FIND TODAY'S SCHEDULE
+     
+
+    const schedule =
+        field.field_schedule || [];
+
+    const todaySchedule =
+        schedule.filter(
+            day => day.day_of_week === dayOfWeek
+        );
+
+
+    // 5. NO SCHEDULE = CLOSED
+     
+
+    if (!todaySchedule.length) {
+
+        return {
+            status: "closed"
+        };
+    }
+
+
+    // 6. CHECK WHETHER WE ARE WITHIN HOURS
+     
+    const isOpen =
+        todaySchedule.some(day => {
+
+            const opens =
+                day.opens_at.slice(0, 8);
+
+            const closes =
+                day.closes_at.slice(0, 8);
+
+            // Normal schedule
+            if (opens <= closes) {
+
+                return (
+                    currentTime >= opens &&
+                    currentTime < closes
+                );
+            }
+
+            // Overnight schedule
+            return (
+                currentTime >= opens ||
+                currentTime < closes
+            );
+        });
+
+
+    if (isOpen) {
+
+        return {
+            status: "available"
+        };
+    }
+
+
+    // 7. OUTSIDE OPERATING HOURS
+     
+
+    return {
+        status: "closed"
+    };
+}
+
+
+    function renderCurrentFieldStatus(result) {
+
+        const text =
+            document.getElementById(
+                "availability-status-text"
+            );
+
+        const indicator =
+            document.getElementById(
+                "availability-status-indicator"
+            );
+
+        const countdown =
+            document.getElementById(
+                "availability-countdown"
+            );
+
+        if (!text || !indicator || !countdown) return;
+
+        indicator.classList.remove(
+        "available",
+        "occupied",
+        "maintenance",
+        "closed",
+        "unknown"
+        );
+
+        countdown.textContent = "";
+
+        if (result.status === "occupied") {
+
+            text.textContent = "Ocupada";
+
+            indicator.classList.add("occupied");
+
+            if (result.request) {
+                startFieldCountdown(
+                    result.request.end_time
+                );
+            }
+
+            return;
+        }
+
+    if (result.status === "maintenance") {
+
+        text.textContent = "Mantenimiento";
+
+        indicator.classList.add("maintenance");
+
+        if (result.maintenance) {
+            startFieldCountdown(
+                result.maintenance.end_time
+            );
+        }
+
+        return;
+    }
+
+        if (result.status === "available") {
+
+            text.textContent = "Disponible";
+
+            indicator.classList.add("available");
+
+            return;
+        }
+
+        if (result.status === "closed") {
+
+            text.textContent = "Cerrada";
+
+            indicator.classList.add("closed");
+
+            return;
+        }
+
+        text.textContent =
+            "Disponibilidad no disponible";
+
+        indicator.classList.add("unknown");
+    }
+
+
+    let fieldCountdownInterval = null;
+
+    function startFieldCountdown(endTime) {
+
+        const countdown =
+            document.getElementById(
+                "availability-countdown"
+            );
+
+        if (!countdown || !endTime) return;
+
+        if (fieldCountdownInterval) {
+            clearInterval(fieldCountdownInterval);
+        }
+
+        function updateCountdown() {
+
+            const timeZone =
+                "America/Argentina/Buenos_Aires";
+
+            const now = new Date();
+
+            const argentinaDateTime =
+                new Intl.DateTimeFormat(
+                    "en-CA",
+                    {
+                        timeZone,
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hourCycle: "h23"
+                    }
+                ).formatToParts(now);
+
+            const parts = {};
+
+            argentinaDateTime.forEach(part => {
+                if (part.type !== "literal") {
+                    parts[part.type] = part.value;
+                }
+            });
+
+            const currentSeconds =
+                (
+                    Number(parts.hour) * 3600 +
+                    Number(parts.minute) * 60 +
+                    Number(parts.second)
+                );
+
+            const [
+                endHour,
+                endMinute,
+                endSecond = 0
+            ] = endTime
+                .split(":")
+                .map(Number);
+
+            const endSeconds =
+                endHour * 3600 +
+                endMinute * 60 +
+                endSecond;
+
+            let remainingSeconds =
+                endSeconds -
+                currentSeconds;
+
+            /*
+            * If the end time has passed, the
+            * current status is no longer active.
+            */
+            if (remainingSeconds <= 0) {
+
+                countdown.textContent = "";
+
+                clearInterval(
+                    fieldCountdownInterval
+                );
+
+                window.location.reload();
+
+                return;
+            }
+
+            const hours =
+                Math.floor(
+                    remainingSeconds / 3600
+                );
+
+            const minutes =
+                Math.floor(
+                    (remainingSeconds % 3600) / 60
+                );
+
+            const seconds =
+                remainingSeconds % 60;
+
+            const formattedHours =
+                String(hours).padStart(2, "0");
+
+            const formattedMinutes =
+                String(minutes).padStart(2, "0");
+
+            const formattedSeconds =
+                String(seconds).padStart(2, "0");
+
+            countdown.textContent =
+                `Termina en ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        updateCountdown();
+
+        fieldCountdownInterval =
+            setInterval(
+                updateCountdown,
+                1000
+            );
+    }
+
+    async function getSimilarFields(currentFieldId) {
+        const { data, error } = await supabase
+            .from("fields")
+            .select(`
+                id,
+                name,
+                province,
+                city,
+                zone,
+                type,
+                price_from,
+                price_to,
+                image_url,
+                is_active
+            `)
+            .eq("is_active", true)
+            .neq("id", currentFieldId);
+
+        if (error) {
+            console.error("SIMILAR FIELDS QUERY ERROR:", error);
+            return [];
+        }
+
+        return data.map(field => ({
+            ...field,
+            image: field.image_url,
+            priceFrom: field.price_from,
+            priceTo: field.price_to
+        }));
+    }
+
+
+    //  MAIN FUNCTION 
 
 export async function initFieldPage() {
     const params = new URLSearchParams(window.location.search);
@@ -1159,7 +2085,11 @@ export async function initFieldPage() {
         extraInfo: document.getElementById("extra-info-container"),
         mapEl: document.getElementById("field-map"),
         mapAddress: document.getElementById("map-address"),
-        lastUpdate: document.getElementById("field-last-update")
+        lastUpdate: document.getElementById("field-last-update"),
+        availabilityStatus: document.getElementById("field-availability-status"),
+        availabilityStatusIndicator: document.getElementById("availability-status-indicator"),
+        availabilityStatusText: document.getElementById("availability-status-text"),
+        availabilityContent: document.getElementById("field-availability-content")
     };
 
         // Basic Info
@@ -1240,6 +2170,41 @@ export async function initFieldPage() {
 
     if (dom.scheduleWeek) dom.scheduleWeek.textContent = field.schedule.week;
     if (dom.scheduleWeekend) dom.scheduleWeekend.textContent = field.schedule.weekend;
+
+    // Field availability
+    if (dom.availabilityContent) {
+
+        const availability =
+        await getFieldAvailability(field.id);
+
+    const maintenance =
+        await getFieldMaintenance(field.id);
+
+    console.log(
+        "FIELD MAINTENANCE:",
+        maintenance
+    );
+
+    renderFieldAvailability(
+        availability,
+        maintenance
+    );
+    }
+
+
+    // Current field status
+    if (dom.availabilityStatusText) {
+
+        const currentStatus =
+        await getCurrentFieldStatus(
+            field.id,
+            field
+        );
+
+        renderCurrentFieldStatus(currentStatus);
+    }
+
+ 
 
     // Lists
     if (dom.features) dom.features.innerHTML = field.features?.map(f => `<span>${f}</span>`).join("") || "";
@@ -1387,9 +2352,7 @@ export async function initFieldPage() {
     }
 
     showDistanceToField(field);
+    initRatingWidget(field);
+    initFieldFavoriteButton(field);
 
-    //console.log("Initializing rating widget");
-
-initRatingWidget(field);
-initFieldFavoriteButton(field);
 }

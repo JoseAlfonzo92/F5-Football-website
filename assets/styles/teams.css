@@ -121,6 +121,10 @@
     background: var(--color-surface);
 }
 
+.teams-empty[hidden] {
+    display: none;
+}
+
 .teams-empty-icon {
     display: flex;
     align-items: center;
@@ -2604,4 +2608,263 @@
         font-size: var(--font-size-lg);
     }
 
+}
+
+
+/* ============================================
+   FIELD REQUEST
+============================================ */
+
+#team-field-request-section {
+    position: relative;
+}
+
+
+/* ============================================
+   REQUEST HEADER
+============================================ */
+
+#team-field-request-section .team-section-header {
+    margin-bottom: var(--space-lg);
+}
+
+#team-field-request-section .team-section-header h2 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+}
+
+#team-field-request-section .team-section-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+
+/* ============================================
+   SECTION ICON
+============================================ */
+
+#team-field-request-section .team-section-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
+
+    color: var(--color-icon);
+    flex-shrink: 0;
+}
+
+
+/* ============================================
+   SHOW REQUEST BUTTON
+============================================ */
+
+#show-field-request-button {
+    margin-top: var(--space-sm);
+}
+
+
+/* ============================================
+   REQUEST FORM
+============================================ */
+
+#team-field-request-form {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* ============================================
+   FORM GROUPS
+============================================ */
+
+#team-field-request-form .form-group {
+    margin-bottom: var(--space-md);
+}
+
+#team-field-request-form .form-group:last-of-type {
+    margin-bottom: var(--space-lg);
+}
+
+#team-field-request-form label {
+    display: block;
+
+    margin-bottom: var(--space-xs);
+
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+
+/* ============================================
+   INPUTS
+============================================ */
+
+#team-field-request-form input,
+#team-field-request-form select,
+#team-field-request-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: var(--space-sm) var(--space-md);
+
+    color: var(--color-text);
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+
+/* ============================================
+   INPUT FOCUS
+============================================ */
+
+#team-field-request-form input:focus,
+#team-field-request-form select:focus,
+#team-field-request-form textarea:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px var(--color-hover);
+}
+
+
+/* ============================================
+   TEXTAREA
+============================================ */
+
+#team-field-request-form textarea {
+    min-height: 90px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+#team-field-request-form textarea::placeholder,
+#team-field-request-form input::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.8;
+}
+
+
+/* ============================================
+   TIME ROW
+============================================ */
+
+#team-field-request-form .manual-reservation-time-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+}
+
+
+/* ============================================
+   ACTIONS
+============================================ */
+
+#team-field-request-form .profile-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+
+    margin-top: var(--space-lg);
+}
+
+
+/* ============================================
+   SUBMIT BUTTON
+============================================ */
+
+#field-request-submit {
+    min-width: 160px;
+}
+
+#field-request-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+
+/* ============================================
+   FEEDBACK
+============================================ */
+
+#field-request-feedback {
+    margin: var(--space-md) 0 0;
+
+    padding: var(--space-sm) var(--space-md);
+
+    color: var(--color-text);
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+
+/* ============================================
+   DATE / TIME CONTROLS
+============================================ */
+
+#team-field-request-form input[type="date"],
+#team-field-request-form input[type="time"] {
+    min-height: 42px;
+}
+
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media (max-width: 600px) {
+
+    #team-field-request-form {
+        padding: var(--space-md);
+    }
+
+    #team-field-request-form .manual-reservation-time-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    #team-field-request-form .profile-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #team-field-request-form .profile-actions button {
+        width: 100%;
+    }
+
+    #field-request-submit {
+        min-width: 0;
+    }
 }

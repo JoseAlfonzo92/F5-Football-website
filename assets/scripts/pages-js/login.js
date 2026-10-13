@@ -1,6 +1,4 @@
-import {
-    signIn
-} from "../services/auth.js";
+import { signIn } from "../services/auth.js";
 
 
 export function initLoginPage() {
@@ -9,12 +7,16 @@ export function initLoginPage() {
 
     if (!form) return;
 
-    const message =
-        document.getElementById("login-message");
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get("redirect");
+    const message = document.getElementById("login-message");
+    const button = document.getElementById("login-button");
+    const registerLink = document.querySelector(".auth-footer a");
 
-    const button =
-        document.getElementById("login-button");
-
+    if (registerLink && redirect) {
+        registerLink.href =
+            `register.html?redirect=${encodeURIComponent(redirect)}`;
+    }
 
     form.addEventListener("submit", async (event) => {
 
@@ -66,10 +68,10 @@ export function initLoginPage() {
              * to their community/team dashboard.
              */
 
-            setTimeout(() => {
+              setTimeout(() => {
 
                 window.location.href =
-                    "../index.html";
+                    redirect || "../index.html";
 
             }, 800);
 
@@ -101,12 +103,8 @@ export function initLoginPage() {
 
     // PASSWORD VISIBILITY
 
-    const passwordInput =
-        document.getElementById("password");
-
-    const passwordToggle =
-        document.getElementById("password-toggle");
-
+    const passwordInput = document.getElementById("password");
+    const passwordToggle = document.getElementById("password-toggle");
 
     if (
         passwordInput &&

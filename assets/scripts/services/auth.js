@@ -16,6 +16,17 @@ export async function getCurrentUser() {
     return user;
 }
 
+export async function getPublishFieldUrl() {
+
+    const user = await getCurrentUser();
+
+    if (user) {
+        return "pages/add-field.html";
+    }
+
+    return "pages/login.html?redirect=add-field.html";
+}
+
 // GET CURRENT SESSION
 export async function getCurrentSession() {
 
@@ -37,11 +48,16 @@ export async function signUp({
     email,
     password,
     username,
-    displayName
+    displayName,
+    redirect
 }) {
 
     const confirmationRedirect =
-        `${window.location.origin}/F5%20Futbol%205/pages/email-confirmed.html`;
+    `${window.location.origin}/F5%20Futbol%205/pages/email-confirmed.html${
+        redirect
+            ? `?redirect=${encodeURIComponent(redirect)}`
+            : ""
+    }`;
 
 
     const {
@@ -112,31 +128,6 @@ export async function signOut() {
     }
 }
 
-// GET CURRENT PROFILE
-/* export async function getCurrentProfile() {
-
-    const user = await getCurrentUser();
-
-    if (!user) {
-        return null;
-    }
-
-    const {
-        data,
-        error
-    } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-
-    if (error) {
-        console.error("Error getting profile:", error);
-        return null;
-    }
-
-    return data;
-} */
 
 // AUTH STATE LISTENER
 export function onAuthStateChange(callback) {

@@ -6,20 +6,28 @@
     min-height: calc(100vh - 80px);
     padding: var(--space-lg) 0;
     background: var(--color-bg);
+    color: var(--color-text);
 }
 
-.profile-section {
+
+/* ============================================
+   PROFILE SECTIONS
+   ============================================ */
+
+.profile-section,
+.profile-saved-fields,
+.profile-teams {
     width: 90%;
     max-width: 900px;
-    margin: 0 auto;
-}
+    margin: 0 auto var(--space-lg);
+    padding: var(--space-lg);
 
-.profile-container {
     background: var(--color-surface);
+
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
+
     box-shadow: var(--shadow-md);
-    padding: var(--space-lg);
 }
 
 
@@ -31,13 +39,204 @@
     display: flex;
     align-items: center;
     gap: var(--space-lg);
+
     padding-bottom: var(--space-lg);
+
     border-bottom: 1px solid var(--color-border);
 }
 
+.profile-icon {
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: var(--color-primary);
+}
+
+.profile-header-info {
+    min-width: 0;
+}
+
+.profile-header-info h2 {
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+    font-size: var(--font-size-2xl);
+}
+
+.profile-header-info p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+
+/* ============================================
+   PROFILE MESSAGE
+   ============================================ */
+
+.profile-message {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+
+    border-radius: var(--border-radius-md);
+
+    color: var(--color-text);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+
+    font-size: var(--font-size-sm);
+}
+
+.profile-message.success {
+    color: var(--color-success);
+
+    background: color-mix(
+        in srgb,
+        var(--color-success) 10%,
+        var(--color-bg)
+    );
+
+    border-color: var(--color-success);
+}
+
+.profile-message.error {
+    color: var(--color-error);
+
+    background: color-mix(
+        in srgb,
+        var(--color-error) 10%,
+        var(--color-bg)
+    );
+
+    border-color: var(--color-error);
+}
+
+.profile-message[hidden] {
+    display: none !important;
+}
+
+
+/* ============================================
+   PROFILE LOADING
+   ============================================ */
+
+#profile-loading {
+    display: block;
+
+    color: var(--color-text-muted);
+
+    text-align: center;
+}
+
+
+/* ============================================
+   WELCOME
+   ============================================ */
+
+.profile-welcome {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-welcome[hidden] {
+    display: none;
+}
+
+.profile-welcome-icon {
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--color-hover);
+    color: var(--color-primary);
+}
+
+.profile-welcome-content {
+    min-width: 0;
+}
+
+.profile-welcome-content h3 {
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-xl);
+}
+
+.profile-welcome-content p {
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+}
+
+.profile-welcome-content p:last-of-type {
+    margin-bottom: var(--space-md);
+}
+
+
+/* ============================================
+   PROFILE CARD
+   ============================================ */
+
+.profile-card {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-lg);
+
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-card[hidden] {
+    display: none;
+}
+
+
+/* ============================================
+   PROFILE AVATAR
+   ============================================ */
+
 .profile-avatar {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
 
     display: flex;
     align-items: center;
@@ -62,85 +261,37 @@
 }
 
 
-.profile-header-info {
-    min-width: 0;
-}
-
-.profile-header-info h2 {
-    margin: 0 0 var(--space-xs);
-    color: var(--color-text);
-    font-size: var(--font-size-2xl);
-}
-
-.profile-username {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
-}
-
-
-/* ============================================
-   PROFILE CONTENT
-   ============================================ */
-
-.profile-content {
-    padding-top: var(--space-lg);
-}
-
-.profile-title {
-    margin: 0 0 var(--space-lg);
-    color: var(--color-text);
-    font-size: var(--font-size-xl);
-}
-
-
 /* ============================================
    PROFILE INFORMATION
    ============================================ */
 
 .profile-info {
+    flex: 1;
+
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
     gap: var(--space-md);
 }
 
-.profile-info-item {
-    padding: var(--space-md);
+.profile-field {
+    display: flex;
+    flex-direction: column;
 
-    background: var(--color-bg);
-
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
-
-    transition:
-        border-color var(--transition-fast),
-        background-color var(--transition-fast),
-        box-shadow var(--transition-fast);
+    gap: var(--space-xs);
 }
 
-.profile-info-item:hover {
-    background: var(--color-hover);
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-sm);
-}
-
-.profile-info-label {
-    display: block;
-
-    margin-bottom: var(--space-xs);
-
+.profile-label {
     color: var(--color-text-muted);
 
     font-size: var(--font-size-sm);
 }
 
-.profile-info-value {
-    display: block;
-
+.profile-field strong {
     color: var(--color-text);
 
     font-size: var(--font-size-md);
-    font-weight: 500;
+    font-weight: 600;
 
     overflow-wrap: anywhere;
 }
@@ -153,6 +304,7 @@
 .profile-actions {
     display: flex;
     align-items: center;
+
     gap: var(--space-md);
 
     margin-top: var(--space-lg);
@@ -161,11 +313,30 @@
     border-top: 1px solid var(--color-border);
 }
 
+.profile-card .profile-actions {
+    flex-direction: column;
+    align-items: stretch;
+
+    margin-top: 0;
+    padding-top: 0;
+
+    border-top: none;
+
+    flex-shrink: 0;
+}
+
+
+/* ============================================
+   PROFILE ACTION BUTTON
+   ============================================ */
+
 .profile-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-sm);
+
+    min-height: 42px;
 
     padding: var(--space-sm) var(--space-md);
 
@@ -178,6 +349,8 @@
     font-family: var(--font-main);
     font-size: var(--font-size-sm);
 
+    text-decoration: none;
+
     cursor: pointer;
 
     transition:
@@ -189,7 +362,9 @@
 
 .profile-action:hover {
     color: var(--color-primary);
+
     background: var(--color-hover);
+
     border-color: var(--color-primary);
 }
 
@@ -203,10 +378,13 @@
 }
 
 
-/* PRIMARY ACTION */
+/* ============================================
+   PRIMARY PROFILE ACTION
+   ============================================ */
 
 .profile-action.primary {
     border-color: var(--color-primary);
+
     background: var(--color-primary);
     color: var(--color-text-buttons);
 }
@@ -214,72 +392,59 @@
 .profile-action.primary:hover {
     background: var(--color-primary-hover);
     border-color: var(--color-primary-hover);
+
     color: var(--color-text-buttons);
 }
 
 
 /* ============================================
-   PROFILE MESSAGE
+   PRIMARY BUTTON
    ============================================ */
 
-.profile-message {
-    display: none;
-
-    margin-bottom: var(--space-lg);
-    padding: var(--space-md);
-
-    border-radius: var(--border-radius-md);
-
-    font-size: var(--font-size-sm);
-}
-
-.profile-message.success {
-    display: block;
-
-    color: var(--color-success);
-
-    background: color-mix(
-        in srgb,
-        var(--color-success) 10%,
-        var(--color-bg)
-    );
-
-    border: 1px solid var(--color-success);
-}
-
-.profile-message.error {
-    display: block;
-
-    color: var(--color-error);
-
-    background: color-mix(
-        in srgb,
-        var(--color-error) 10%,
-        var(--color-bg)
-    );
-
-    border: 1px solid var(--color-error);
-}
-
-
-/* ============================================
-   PROFILE LOADING
-   ============================================ */
-
-.profile-loading {
-    display: flex;
+.btn-primary {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    min-height: 200px;
+    min-height: 42px;
 
-    color: var(--color-text-muted);
-    font-size: var(--font-size-md);
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
-/* Keep hidden profile messages hidden */
-.profile-message[hidden] {
-    display: none !important;
+.btn-primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 
@@ -290,21 +455,23 @@
 .profile-edit {
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
 
+    margin: var(--space-lg) auto 0;
     padding: var(--space-lg);
 
-    background: var(--color-surface);
+    background: var(--color-bg);
+
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
 
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
 
     animation: profileEditIn 0.25s ease;
 }
 
-
-/* TITLE */
+.profile-edit[hidden] {
+    display: none;
+}
 
 .profile-title {
     margin: 0 0 var(--space-lg);
@@ -318,25 +485,23 @@
 }
 
 
-/* FORM */
+/* ============================================
+   EDIT PROFILE FORM
+   ============================================ */
 
 #profile-edit-form {
     display: flex;
     flex-direction: column;
+
     gap: var(--space-lg);
 }
-
-
-/* FORM GROUP */
 
 #profile-edit-form .form-group {
     display: flex;
     flex-direction: column;
+
     gap: var(--space-sm);
 }
-
-
-/* LABEL */
 
 #profile-edit-form label {
     color: var(--color-text);
@@ -345,15 +510,16 @@
     font-weight: 600;
 }
 
-
-/* INPUT */
-
 #profile-edit-form input {
     width: 100%;
+    box-sizing: border-box;
+
+    min-height: 42px;
 
     padding: var(--space-sm) var(--space-md);
 
-    border: 1px solid var(--color-border-search-box);
+    border: 1px solid var(--color-border);
+
     border-radius: var(--border-radius-md);
 
     background: var(--color-bg);
@@ -370,17 +536,11 @@
         box-shadow var(--transition-fast);
 }
 
-
-/* INPUT HOVER */
-
 #profile-edit-form input:hover {
     border-color: var(--color-primary);
 
     background: var(--color-hover);
 }
-
-
-/* INPUT FOCUS */
 
 #profile-edit-form input:focus {
     border-color: var(--color-primary);
@@ -396,15 +556,9 @@
         );
 }
 
-
-/* INPUT INVALID */
-
 #profile-edit-form input:invalid:not(:placeholder-shown) {
     border-color: var(--color-error);
 }
-
-
-/* HELP TEXT */
 
 #profile-edit-form small {
     color: var(--color-text-muted);
@@ -415,29 +569,25 @@
 
 
 /* ============================================
-   PROFILE ACTIONS
+   EDIT PROFILE BUTTONS
    ============================================ */
 
 .profile-edit .profile-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-
     margin-top: var(--space-sm);
+    padding-top: 0;
+
+    border-top: none;
 }
 
-
-/* SAVE BUTTON */
-
-#profile-save {
+#profile-save,
+#profile-cancel {
     flex: 1;
 
     min-height: 42px;
+}
 
-    padding: var(--space-sm) var(--space-md);
-
-    border: none;
-    border-radius: var(--border-radius-md);
+#profile-save {
+    border: 1px solid var(--color-primary);
 
     background: var(--color-primary);
     color: var(--color-text-buttons);
@@ -454,34 +604,23 @@
         box-shadow var(--transition-fast);
 }
 
-
 #profile-save:hover {
     background: var(--color-primary-hover);
 
     box-shadow: var(--shadow-sm);
 }
 
-
-#profile-save:active {
+#profile-save:active,
+#profile-cancel:active {
     transform: translateY(1px);
 }
-
 
 #profile-save:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
-
-/* CANCEL BUTTON */
-
 #profile-cancel {
-    flex: 1;
-
-    min-height: 42px;
-
-    padding: var(--space-sm) var(--space-md);
-
     border: 1px solid var(--color-border);
 
     border-radius: var(--border-radius-md);
@@ -491,7 +630,6 @@
 
     font-family: var(--font-main);
     font-size: var(--font-size-md);
-    font-weight: 500;
 
     cursor: pointer;
 
@@ -502,7 +640,6 @@
         transform var(--transition-fast);
 }
 
-
 #profile-cancel:hover {
     background: var(--color-hover);
 
@@ -512,18 +649,1279 @@
 }
 
 
-#profile-cancel:active {
+/* ============================================
+   SECTION HEADERS
+   ============================================ */
+
+.profile-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-md);
+
+    margin-bottom: var(--space-lg);
+}
+
+.profile-section-header h2,
+.profile-section-header h3 {
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-xl);
+}
+
+.profile-section-header p,
+.profile-section-description {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.profile-section-icon {
+    flex-shrink: 0;
+
+    color: var(--color-primary);
+}
+
+
+/* ============================================
+   FIELD OWNER
+   ============================================ */
+
+.profile-section .profile-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-section .profile-card > p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    line-height: 1.6;
+}
+
+.profile-section .profile-card:not(#profile-card) {
+    justify-content: space-between;
+}
+
+
+/* =========================================================
+   SAVED FIELDS
+========================================================= */
+
+.profile-saved-fields {
+    width: min(100% - 32px, 1000px);
+    margin: 0 auto;
+    padding: var(--space-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.profile-saved-fields .profile-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.profile-saved-fields .profile-title {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.profile-saved-fields .profile-section-description {
+    margin: var(--space-xs) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.profile-saved-fields .profile-section-icon {
+    flex: 0 0 auto;
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+    color: var(--color-primary);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#saved-fields-loading {
+    padding: var(--space-md) 0;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+/*
+   IMPORTANT:
+   The [hidden] attribute always wins.
+
+   This prevents the empty state from appearing when
+   saved fields exist.
+*/
+
+.saved-fields-empty[hidden] {
+    display: none !important;
+}
+
+.saved-fields-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 240px;
+    padding: var(--space-lg);
+
+    text-align: center;
+
+    background: var(--color-bg);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius-md);
+}
+
+.saved-fields-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+    margin-bottom: var(--space-md);
+
+    color: var(--color-primary);
+    font-size: var(--icon-size-xl);
+}
+
+.saved-fields-empty h4 {
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+}
+
+.saved-fields-empty p {
+    max-width: 420px;
+    margin: 0 0 var(--space-lg);
+
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+.saved-fields-empty .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 0 var(--space-lg);
+
+    color: var(--color-text-buttons);
+    background: var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    transition:
+        background var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.saved-fields-empty .btn-primary:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SAVED FIELDS GRID / CAROUSEL
+========================================================= */
+
+.saved-fields-grid {
+    width: 100%;
+}
+
+.saved-fields-carousel-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+
+    width: 100%;
+}
+
+
+/* The actual horizontal scrolling area */
+
+.saved-fields-carousel {
+    display: flex;
+    flex: 1;
+
+    gap: var(--space-md);
+
+    width: 100%;
+    min-width: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+    scrollbar-color:
+        var(--color-border)
+        transparent;
+
+    padding: 4px 2px 12px;
+}
+
+
+/* Hide ugly scrollbar on WebKit */
+
+.saved-fields-carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.saved-fields-carousel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.saved-fields-carousel::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 999px;
+}
+
+.saved-fields-carousel::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
+
+
+/* =========================================================
+   SAVED FIELD CARD
+========================================================= */
+
+.saved-field-card {
+    position: relative;
+
+    flex: 0 0 calc((100% - var(--space-md)) / 2);
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    color: var(--color-text);
+    text-decoration: none;
+
+    box-shadow: var(--shadow-sm);
+
+    scroll-snap-align: start;
+
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.saved-field-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* =========================================================
+   CARD IMAGE
+========================================================= */
+
+.saved-field-image {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 10;
+
+    overflow: hidden;
+
+    background: var(--color-surface);
+}
+
+.saved-field-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform var(--transition);
+}
+
+.saved-field-card:hover .saved-field-image img {
+    transform: scale(1.03);
+}
+
+
+/* =========================================================
+   FAVORITE BUTTON
+========================================================= */
+
+.saved-field-favorite {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    color: var(--color-primary);
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+
+    box-shadow: var(--shadow-sm);
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.saved-field-favorite:hover {
+    transform: scale(1.08);
+    background: var(--color-hover);
+}
+
+.saved-field-favorite span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: var(--icon-size-md);
+    line-height: 1;
+}
+
+
+/* =========================================================
+   FIELD TYPE
+========================================================= */
+
+.saved-field-type {
+    position: absolute;
+    left: var(--space-sm);
+    bottom: var(--space-sm);
+
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 26px;
+    padding: 0 var(--space-sm);
+
+    color: var(--color-text-tags);
+    background: var(--color-primary);
+
+    border-radius: var(--border-radius-sm);
+
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.saved-field-content {
+    padding: var(--space-md);
+}
+
+.saved-field-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+}
+
+.saved-field-top h4 {
+    min-width: 0;
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    line-height: 1.35;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+.saved-field-rating {
+    flex: 0 0 auto;
+
+    color: var(--color-warning);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.saved-field-location {
+    margin: var(--space-sm) 0 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.saved-field-price {
+    margin: var(--space-sm) 0 0;
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CAROUSEL ARROWS
+========================================================= */
+
+.saved-fields-arrow {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    color: var(--color-text);
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+
+    box-shadow: var(--shadow-sm);
+
+    font-size: 28px;
+    font-family: inherit;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.saved-fields-arrow:hover:not(:disabled) {
+    color: var(--color-text-buttons);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+
+    transform: scale(1.05);
+}
+
+.saved-fields-arrow:disabled {
+    cursor: default;
+    opacity: 0.35;
+}
+
+
+/*
+   Your JS currently writes inline opacity/visibility.
+   Keep those values working, but make hidden arrows
+   actually disappear when JS sets visibility.
+*/
+
+.saved-fields-arrow[style*="visibility: hidden"] {
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .profile-saved-fields {
+        width: min(100% - 24px, 1000px);
+        padding: var(--space-md);
+    }
+
+    .profile-saved-fields .profile-section-header {
+        margin-bottom: var(--space-md);
+    }
+
+    .saved-field-card {
+        flex: 0 0 calc(50% - (var(--space-md) / 2));
+    }
+
+    .saved-fields-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .profile-saved-fields {
+        width: calc(100% - 16px);
+        padding: var(--space-md);
+        border-radius: var(--border-radius-md);
+    }
+
+    .profile-saved-fields .profile-section-header {
+        align-items: flex-start;
+    }
+
+    .profile-saved-fields .profile-title {
+        font-size: var(--font-size-lg);
+    }
+
+    .profile-saved-fields .profile-section-description {
+        font-size: var(--font-size-xs);
+    }
+
+    /*
+       On mobile the arrows sit outside the scrolling area,
+       while each card gets most of the available width.
+    */
+
+    .saved-fields-carousel-wrapper {
+        gap: var(--space-xs);
+    }
+
+    .saved-fields-carousel {
+        gap: var(--space-sm);
+    }
+
+    .saved-field-card {
+        flex: 0 0 82%;
+    }
+
+    .saved-field-content {
+        padding: var(--space-sm);
+    }
+
+    .saved-field-top h4 {
+        font-size: var(--font-size-sm);
+    }
+
+    .saved-field-location,
+    .saved-field-price,
+    .saved-field-rating {
+        font-size: var(--font-size-xs);
+    }
+
+    .saved-fields-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 22px;
+    }
+
+    .saved-fields-empty {
+        min-height: 220px;
+        padding: var(--space-md);
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .profile-saved-fields {
+        width: calc(100% - 12px);
+        padding: var(--space-sm);
+    }
+
+    .saved-fields-carousel-wrapper {
+        gap: 2px;
+    }
+
+    .saved-fields-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 20px;
+    }
+
+    .saved-field-card {
+        flex-basis: 86%;
+    }
+
+}
+
+
+/* ============================================
+   PLAYER PROFILE
+   ============================================ */
+
+#profile-player {
+    width: 90%;
+    max-width: 900px;
+}
+
+#player-profile-display {
+    width: 100%;
+}
+
+#player-profile-display .profile-info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: var(--space-md);
+}
+
+#player-profile-display .profile-info-item {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-xs);
+
+    padding: var(--space-md);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+#player-profile-display .profile-info-item:hover {
+    background: var(--color-hover);
+
+    border-color: var(--color-primary);
+
+    box-shadow: var(--shadow-md);
+}
+
+#player-profile-display .profile-info-label {
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+}
+
+#player-profile-display .profile-info-item strong {
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+
+/* ============================================
+   PLAYER PROFILE ACTIONS
+   ============================================ */
+
+#profile-player .profile-form-actions {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-sm);
+
+    margin-top: var(--space-lg);
+}
+
+#profile-player .profile-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+#profile-player .profile-button:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+
+    box-shadow: var(--shadow-sm);
+}
+
+#profile-player .profile-button:active {
     transform: translateY(1px);
 }
 
 
 /* ============================================
-   KEYBOARD ACCESSIBILITY
+   PLAYER PROFILE FORM
+   ============================================ */
+
+#profile-player .profile-edit-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-lg);
+
+    width: 100%;
+
+    margin-top: var(--space-lg);
+}
+
+#profile-player .profile-edit-form[hidden],
+#player-profile-display[hidden] {
+    display: none;
+}
+
+#profile-player .profile-form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-sm);
+}
+
+#profile-player .profile-form-group label {
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+#profile-player .profile-form-group input[type="text"],
+#profile-player .profile-form-group select {
+    width: 100%;
+    box-sizing: border-box;
+
+    min-height: 44px;
+
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    outline: none;
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+#profile-player .profile-form-group input[type="text"]:hover,
+#profile-player .profile-form-group select:hover {
+    border-color: var(--color-primary);
+}
+
+#profile-player .profile-form-group input[type="text"]:focus,
+#profile-player .profile-form-group select:focus {
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--color-primary) 15%,
+            transparent
+        );
+}
+
+#profile-player .profile-form-group input[type="text"]::placeholder {
+    color: var(--color-text-muted);
+}
+
+
+/* ============================================
+   PLAYER PROFILE CHECKBOX
+   ============================================ */
+
+#profile-player .profile-form-group label:has(
+    input[type="checkbox"]
+) {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-sm);
+
+    cursor: pointer;
+}
+
+#profile-player #player-is-public {
+    width: 17px;
+    height: 17px;
+
+    margin: 0;
+
+    accent-color: var(--color-primary);
+
+    cursor: pointer;
+}
+
+#profile-player .profile-form-group small {
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-xs);
+    line-height: 1.5;
+}
+
+
+/* ============================================
+   PLAYER PROFILE MESSAGE
+   ============================================ */
+
+#profile-player #player-profile-message {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+#profile-player #player-profile-message:not([hidden]) {
+    margin-top: var(--space-sm);
+}
+
+
+/* ============================================
+   PLAYER AVAILABILITY
+   ============================================ */
+
+.player-availability-section {
+    width: 90%;
+    max-width: 900px;
+
+    margin: 0 auto var(--space-lg);
+}
+
+#player-availability-form {
+    margin-top: var(--space-lg);
+}
+
+#player-availability-form .profile-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr
+        1fr
+        1fr
+        1.2fr;
+
+    gap: var(--space-md);
+
+    align-items: end;
+}
+
+#player-availability-form .form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-xs);
+}
+
+#player-availability-form label {
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+#player-availability-form input {
+    width: 100%;
+    box-sizing: border-box;
+
+    min-height: 44px;
+
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    outline: none;
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+#player-availability-form input:focus {
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--color-primary) 15%,
+            transparent
+        );
+}
+
+#player-availability-submit {
+    margin-top: var(--space-md);
+}
+
+
+/* ============================================
+   AVAILABILITY LIST
+   ============================================ */
+
+.player-availability-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-md);
+
+    width: 100%;
+
+    margin-top: var(--space-lg);
+}
+
+
+/* ============================================
+   AVAILABILITY CARD
+   ============================================ */
+
+.player-availability-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    gap: var(--space-md);
+
+    padding: var(--space-md);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.player-availability-card:hover {
+    background: var(--color-hover);
+
+    border-color: var(--color-primary);
+
+    box-shadow: var(--shadow-md);
+}
+
+.player-availability-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-xs);
+
+    min-width: 0;
+}
+
+.player-availability-info strong {
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+.player-availability-info span {
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+}
+
+.player-availability-cancel {
+    flex-shrink: 0;
+}
+
+
+/* ============================================
+   AVAILABILITY MESSAGE
+   ============================================ */
+
+#player-availability-message {
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+}
+
+#player-availability-message[hidden] {
+    display: none !important;
+}
+
+
+/* ============================================
+   TEAM INVITATIONS
+   ============================================ */
+
+.profile-invitations {
+    width: 90%;
+    max-width: 900px;
+}
+
+.team-invitations-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-md);
+}
+
+.team-invitations-list[hidden],
+.team-invitations-empty[hidden] {
+    display: none;
+}
+
+.team-invitations-empty {
+    padding: var(--space-lg);
+
+    text-align: center;
+
+    background: var(--color-bg);
+
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius-lg);
+}
+
+.team-invitations-empty p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+}
+
+
+/* ============================================
+   MY TEAMS
+   ============================================ */
+
+.profile-teams {
+    width: 90%;
+    max-width: 900px;
+}
+
+.profile-teams-content {
+    width: 100%;
+}
+
+.profile-teams-actions {
+    display: flex;
+    justify-content: center;
+
+    margin-top: var(--space-lg);
+}
+
+
+/* ============================================
+   EMAIL CONFIRMED
+   ============================================ */
+
+.email-confirmed-container {
+    text-align: center;
+
+    margin: 100px auto;
+}
+
+.email-confirmed-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto var(--space-md);
+
+    border-radius: 50%;
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+
+    font-size: var(--font-size-xl);
+}
+
+.email-confirmed-container .auth-header {
+    margin-bottom: var(--space-lg);
+}
+
+.email-confirmed-container .auth-header h2 {
+    margin-bottom: var(--space-sm);
+}
+
+.email-confirmed-container .auth-header p {
+    max-width: 520px;
+
+    margin: 0 auto;
+
+    line-height: 1.6;
+}
+
+.email-confirmed-user {
+    width: 100%;
+
+    margin: var(--space-lg) auto;
+    padding: var(--space-md);
+
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+
+    text-align: center;
+}
+
+.email-confirmed-user p {
+    margin: 0 0 var(--space-xs);
+
+    line-height: 1.5;
+}
+
+.email-confirmed-user strong {
+    font-weight: 700;
+}
+
+.email-confirmed-user span {
+    display: block;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+}
+
+.email-confirmed-actions {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: var(--space-sm);
+
+    margin-top: var(--space-lg);
+}
+
+.email-confirmed-actions .btn-primary,
+.email-confirmed-actions .profile-action {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+
+/* ============================================
+   ACCESSIBILITY
    ============================================ */
 
 #profile-save:focus-visible,
 #profile-cancel:focus-visible,
-#profile-edit-form input:focus-visible {
+#profile-edit-form input:focus-visible,
+#profile-player .profile-button:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
@@ -544,40 +1942,12 @@
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
 
 /* ============================================
-   MOBILE
-   ============================================ */
-
-@media (max-width: 600px) {
-
-    .profile-edit {
-        padding: var(--space-md);
-
-        border-radius: var(--border-radius-md);
-    }
-
-
-    .profile-title {
-        font-size: var(--font-size-lg);
-    }
-
-
-    .profile-edit .profile-actions {
-        flex-direction: column;
-        gap: var(--space-sm);
-    }
-
-
-    #profile-save,
-    #profile-cancel {
-        width: 100%;
-    }
-}
-/* ============================================
-   RESPONSIVE
+   RESPONSIVE — TABLET
    ============================================ */
 
 @media (max-width: 768px) {
@@ -586,31 +1956,102 @@
         padding: var(--space-md) 0;
     }
 
-    .profile-section {
+    .profile-section,
+    .profile-saved-fields,
+    .profile-teams,
+    #profile-player,
+    .player-availability-section,
+    .profile-invitations {
         width: 92%;
     }
 
-    .profile-container {
+    .profile-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .profile-avatar {
+        margin: 0 auto;
+    }
+
+    .profile-card .profile-actions {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .profile-card .profile-actions > * {
+        flex: 1;
+    }
+
+    .profile-info {
+        grid-template-columns: 1fr;
+    }
+
+    #player-profile-display .profile-info {
+        grid-template-columns: 1fr;
+    }
+
+    #player-availability-form .profile-form-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .profile-welcome {
+        align-items: flex-start;
+    }
+
+}
+
+
+/* ============================================
+   RESPONSIVE — MOBILE
+   ============================================ */
+
+@media (max-width: 600px) {
+
+    .profile-section,
+    .profile-saved-fields,
+    .profile-teams,
+    #profile-player,
+    .player-availability-section,
+    .profile-invitations {
+        width: 94%;
+
         padding: var(--space-md);
+
+        border-radius: var(--border-radius-md);
     }
 
     .profile-header {
         align-items: flex-start;
-        gap: var(--space-md);
-    }
 
-    .profile-avatar {
-        width: 64px;
-        height: 64px;
-        font-size: var(--font-size-xl);
+        gap: var(--space-md);
     }
 
     .profile-header-info h2 {
         font-size: var(--font-size-xl);
     }
 
-    .profile-info {
-        grid-template-columns: 1fr;
+    .profile-welcome {
+        flex-direction: column;
+
+        padding: var(--space-md);
+    }
+
+    .profile-welcome-icon {
+        margin: 0 auto;
+    }
+
+    .profile-card {
+        padding: var(--space-md);
+    }
+
+    .profile-card .profile-actions {
+        flex-direction: column;
+    }
+
+    .profile-card .profile-actions > * {
+        width: 100%;
     }
 
     .profile-actions {
@@ -618,1062 +2059,28 @@
         align-items: stretch;
     }
 
-    .profile-action {
+    .profile-actions > * {
         width: 100%;
     }
-}
 
+    .profile-edit {
+        padding: var(--space-md);
 
-/* ============================================
-   SMALL MOBILE
-   ============================================ */
-
-@media (max-width: 480px) {
-
-    .profile-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        border-radius: var(--border-radius-md);
     }
 
-    .profile-avatar {
-        width: 72px;
-        height: 72px;
-    }
-
-    .profile-header-info h2 {
+    .profile-title {
         font-size: var(--font-size-lg);
     }
 
-    .profile-container {
-        border-radius: var(--border-radius-md);
-    }
-}
-
-
-
-/* =========================================================
-   EMAIL CONFIRMED
-   ========================================================= */
-
-.email-confirmed-container {
-    text-align: center;
-    margin: 100px auto;
-}
-
-
-/* =========================================================
-   ICON
-   ========================================================= */
-
-.email-confirmed-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 64px;
-    height: 64px;
-
-    margin: 0 auto 1.25rem;
-
-    border-radius: 50%;
-
-    background: var(--primary-color);
-    color: #ffffff;
-
-    font-size: 1.75rem;
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.email-confirmed-container .auth-header {
-    margin-bottom: 1.5rem;
-}
-
-
-.email-confirmed-container .auth-header h2 {
-    margin-bottom: 0.75rem;
-}
-
-
-.email-confirmed-container .auth-header p {
-    max-width: 520px;
-    margin: 0 auto;
-
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   USER INFO
-   ========================================================= */
-
-.email-confirmed-user {
-    width: 100%;
-
-    margin: 1.5rem auto;
-
-    padding: 1rem 1.25rem;
-
-    border-radius: 12px;
-
-    background: var(--background-secondary);
-    border: 1px solid var(--border-color);
-
-    text-align: center;
-}
-
-
-.email-confirmed-user p {
-    margin: 0 0 0.4rem;
-
-    line-height: 1.5;
-}
-
-
-.email-confirmed-user strong {
-    font-weight: 700;
-}
-
-
-.email-confirmed-user span {
-    display: block;
-
-    font-size: 0.95rem;
-
-    opacity: 0.75;
-}
-
-
-/* =========================================================
-   ACTIONS
-   ========================================================= */
-
-.email-confirmed-actions {
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: stretch;
-
-    gap: 0.75rem;
-
-    margin-top: 1.75rem;
-}
-
-
-.email-confirmed-actions .btn-primary,
-.email-confirmed-actions .profile-action {
-    width: 100%;
-
-    box-sizing: border-box;
-
-    text-align: center;
-
-    text-decoration: none;
-}
-
-
-/* ============================================
-   SAVED FIELDS CAROUSEL
-   ============================================ */
-
-.saved-fields-carousel-wrapper {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-
-.saved-fields-carousel {
-    display: flex;
-    gap: 18px;
-
-    width: 100%;
-
-    overflow-x: auto;
-    scroll-behavior: smooth;
-
-    scrollbar-width: none;
-
-    padding: 8px 4px 16px;
-
-    scroll-snap-type: x mandatory;
-}
-
-
-.saved-fields-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* ============================================
-   SAVED FIELD CARD
-   ============================================ */
-
-.saved-field-card {
-    position: relative;
-
-    flex: 0 0 300px;
-
-    overflow: hidden;
-
-    text-decoration: none;
-
-    scroll-snap-align: start;
-}
-
-
-.saved-field-image {
-    position: relative;
-
-    width: 100%;
-    aspect-ratio: 16 / 10;
-
-    overflow: hidden;
-
-    border-radius: 14px;
-}
-
-
-.saved-field-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition:
-        transform 0.3s ease;
-}
-
-
-.saved-field-card:hover
-.saved-field-image img {
-    transform: scale(1.04);
-}
-
-
-/* ============================================
-   FAVORITE
-   ============================================ */
-
-.saved-field-favorite {
-    position: absolute;
-
-    top: 12px;
-    right: 12px;
-
-    z-index: 5;
-}
-
-
-/* ============================================
-   FIELD TYPE
-   ============================================ */
-
-.saved-field-type {
-    position: absolute;
-
-    left: 12px;
-    bottom: 12px;
-
-    padding: 5px 9px;
-
-    border-radius: 7px;
-
-    font-size: 0.75rem;
-    font-weight: 600;
-
-    background: rgba(0, 0, 0, 0.65);
-    color: white;
-
-    backdrop-filter: blur(4px);
-}
-
-
-/* ============================================
-   CONTENT
-   ============================================ */
-
-.saved-field-content {
-    padding: 12px 2px;
-}
-
-
-.saved-field-top {
-    display: flex;
-
-    align-items: flex-start;
-    justify-content: space-between;
-
-    gap: 12px;
-}
-
-
-.saved-field-top h4 {
-    margin: 0;
-
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-
-.saved-field-rating {
-    flex-shrink: 0;
-
-    font-size: 0.8rem;
-
-    opacity: 0.8;
-}
-
-
-.saved-field-location,
-.saved-field-price {
-    margin: 7px 0 0;
-}
-
-
-.saved-field-location {
-    font-size: 0.88rem;
-}
-
-
-.saved-field-price {
-    font-weight: 700;
-}
-
-
-/* ============================================
-   ARROWS
-   ============================================ */
-
-.saved-fields-arrow {
-    flex-shrink: 0;
-
-    width: 40px;
-    height: 40px;
-
-    border: none;
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    font-size: 1.5rem;
-
-    transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.saved-fields-arrow:hover {
-    transform: scale(1.05);
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (min-width: 600px) {
-
-    .email-confirmed-actions {
-        flex-direction: row;
-
-        justify-content: center;
-
-        align-items: center;
-    }
-
-
-    .email-confirmed-actions .btn-primary,
-    .email-confirmed-actions .profile-action {
-        width: auto;
-
-        min-width: 180px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 480px) {
-
-    .email-confirmed-icon {
-        width: 56px;
-        height: 56px;
-
-        margin-bottom: 1rem;
-
-        font-size: 1.5rem;
-    }
-
-
-    .email-confirmed-container .auth-header h2 {
-        font-size: 1.5rem;
-    }
-
-
-    .email-confirmed-user {
-        padding: 0.9rem 1rem;
-    }
-
-
-    .email-confirmed-actions {
-        margin-top: 1.5rem;
-    }
-
-}
-
-
-
-/* ============================================
-   PLAYER PROFILE
-============================================ */
-
-#profile-player {
-    width: 100%;
-}
-
-
-/* ============================================
-   PLAYER PROFILE DISPLAY
-============================================ */
-
-#player-profile-display {
-    width: 100%;
-}
-
-
-#player-profile-display .profile-info {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-md);
-}
-
-
-/* ============================================
-   PLAYER PROFILE INFO ITEM
-============================================ */
-
-#player-profile-display .profile-info-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-
-    padding: var(--space-md);
-
-    background-color: var(--color-surface);
-
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
-
-    box-shadow: var(--shadow-sm);
-
-    transition:
-        background-color var(--transition-fast),
-        border-color var(--transition-fast),
-        box-shadow var(--transition-fast);
-}
-
-
-#player-profile-display .profile-info-item:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-md);
-}
-
-
-/* ============================================
-   PLAYER PROFILE LABEL
-============================================ */
-
-#player-profile-display .profile-info-label {
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-
-    color: var(--color-text-muted);
-}
-
-
-/* ============================================
-   PLAYER PROFILE VALUE
-============================================ */
-
-#player-profile-display .profile-info-item strong {
-    font-size: var(--font-size-md);
-    font-weight: 600;
-
-    color: var(--color-text);
-}
-
-
-/* ============================================
-   PLAYER PROFILE ACTIONS
-============================================ */
-
-#profile-player .profile-form-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-
-    margin-top: var(--space-lg);
-}
-
-
-/* ============================================
-   PLAYER PROFILE BUTTONS
-============================================ */
-
-#profile-player .profile-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 42px;
-
-    padding:
-        var(--space-sm)
-        var(--space-md);
-
-    font-family: var(--font-main);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-
-    color: var(--color-text-buttons);
-    background-color: var(--color-primary);
-
-    border: 1px solid var(--color-primary);
-    border-radius: var(--border-radius-md);
-
-    cursor: pointer;
-
-    transition:
-        background-color var(--transition-fast),
-        border-color var(--transition-fast),
-        box-shadow var(--transition-fast),
-        transform var(--transition-fast);
-}
-
-
-#profile-player .profile-button:hover {
-    background-color: var(--color-primary-hover);
-    border-color: var(--color-primary-hover);
-
-    box-shadow: var(--shadow-sm);
-}
-
-
-#profile-player .profile-button:active {
-    transform: translateY(1px);
-}
-
-
-#profile-player .profile-button:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-}
-
-
-/* ============================================
-   PLAYER PROFILE EDIT FORM
-============================================ */
-
-#profile-player .profile-edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-
-    width: 100%;
-}
-
-
-#profile-player .profile-edit-form[hidden] {
-    display: none;
-}
-
-
-#profile-player #player-profile-display[hidden] {
-    display: none;
-}
-
-/* ============================================
-   PLAYER PROFILE FORM GROUP
-============================================ */
-
-#profile-player .profile-form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-}
-
-
-#profile-player .profile-form-group label {
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-
-    color: var(--color-text);
-}
-
-
-/* ============================================
-   PLAYER PROFILE INPUTS
-============================================ */
-
-#profile-player .profile-form-group input[type="text"],
-#profile-player .profile-form-group select {
-    width: 100%;
-
-    min-height: 44px;
-
-    padding:
-        var(--space-sm)
-        var(--space-md);
-
-    font-family: var(--font-main);
-    font-size: var(--font-size-md);
-
-    color: var(--color-text);
-    background-color: var(--color-bg);
-
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
-
-    outline: none;
-
-    transition:
-        border-color var(--transition-fast),
-        box-shadow var(--transition-fast),
-        background-color var(--transition-fast);
-}
-
-
-#profile-player .profile-form-group input[type="text"]::placeholder {
-    color: var(--color-text-muted);
-}
-
-
-#profile-player .profile-form-group input[type="text"]:hover,
-#profile-player .profile-form-group select:hover {
-    border-color: var(--color-primary);
-}
-
-
-#profile-player .profile-form-group input[type="text"]:focus,
-#profile-player .profile-form-group select:focus {
-    border-color: var(--color-primary);
-
-    box-shadow:
-        0 0 0 3px
-        var(--color-hover);
-}
-
-
-/* ============================================
-   PLAYER PROFILE CHECKBOX
-============================================ */
-
-#profile-player .profile-form-group label:has(
-    input[type="checkbox"]
-) {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-
-    cursor: pointer;
-}
-
-
-#profile-player #player-is-public {
-    width: 17px;
-    height: 17px;
-
-    margin: 0;
-
-    accent-color: var(--color-primary);
-
-    cursor: pointer;
-}
-
-
-/* ============================================
-   PLAYER PROFILE FORM HELP TEXT
-============================================ */
-
-#profile-player .profile-form-group small {
-    font-size: var(--font-size-xs);
-    line-height: 1.5;
-
-    color: var(--color-text-muted);
-}
-
-
-/* ============================================
-   PLAYER PROFILE MESSAGE
-============================================ */
-
-#profile-player #player-profile-message {
-    margin: 0;
-
-    font-size: var(--font-size-sm);
-    line-height: 1.5;
-
-    color: var(--color-text-muted);
-}
-
-
-#profile-player #player-profile-message:not([hidden]) {
-    margin-top: var(--space-sm);
-}
-
-
-/* ============================================
-   PLAYER PROFILE RESPONSIVE
-============================================ */
-
-@media (max-width: 700px) {
-
-    #player-profile-display .profile-info {
-        grid-template-columns: 1fr;
-    }
-
-
-    #profile-player .profile-form-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-
-    #profile-player .profile-button {
-        width: 100%;
-    }
-
-}
-
-
-/* ============================================
-   PLAYER PROFILE SMALL SCREENS
-============================================ */
-
-@media (max-width: 480px) {
-
-    #player-profile-display .profile-info-item {
-        padding: var(--space-sm);
-    }
-
-
-    #profile-player .profile-edit-form {
-        gap: var(--space-md);
-    }
-
-}
-
-
-/* ============================================
-   PLAYER AVAILABILITY
-============================================ */
-
-.player-availability-section {
-    margin-top: var(--space-lg);
-}
-
-
-.player-availability-section form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-
-    margin-top: var(--space-lg);
-}
-
-
-/* ============================================
-   AVAILABILITY LIST
-============================================ */
-
-.player-availability-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-
-    width: 100%;
-
-    margin-top: var(--space-lg);
-}
-
-
-/* ============================================
-   AVAILABILITY CARD
-============================================ */
-
-.player-availability-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    box-sizing: border-box;
-
-    gap: var(--space-md);
-
-    padding: var(--space-md);
-
-    background: var(--color-bg);
-
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
-
-    box-shadow: var(--shadow-sm);
-
-    transition:
-        background-color var(--transition-fast),
-        border-color var(--transition-fast),
-        box-shadow var(--transition-fast);
-}
-
-
-.player-availability-card:hover {
-    background: var(--color-hover);
-
-    border-color: var(--color-primary);
-
-    box-shadow: var(--shadow-md);
-}
-
-
-/* ============================================
-   AVAILABILITY INFO
-============================================ */
-
-.player-availability-info {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-
-    min-width: 0;
-}
-
-
-.player-availability-info strong {
-    color: var(--color-text);
-
-    font-size: var(--font-size-md);
-    font-weight: 600;
-}
-
-
-.player-availability-info span {
-    color: var(--color-text-muted);
-
-    font-size: var(--font-size-sm);
-}
-
-
-/* ============================================
-   AVAILABILITY MESSAGE
-============================================ */
-
-#player-availability-message {
-    margin-top: var(--space-md);
-    margin-bottom: 0;
-
-    color: var(--color-text-muted);
-
-    font-size: var(--font-size-sm);
-}
-
-
-#player-availability-message[hidden] {
-    display: none !important;
-}
-
-
-/* ============================================
-   CANCEL BUTTON
-============================================ */
-
-.player-availability-cancel {
-    flex-shrink: 0;
-}
-
-
-/* ============================================
-   MOBILE
-============================================ */
-
-@media (max-width: 650px) {
-
-    .player-availability-card {
-        align-items: stretch;
+    .profile-edit .profile-actions {
         flex-direction: column;
     }
 
-
-    .player-availability-cancel {
+    #profile-save,
+    #profile-cancel {
         width: 100%;
     }
-
-}
-
-
-/* ============================================
-   PLAYER AVAILABILITY
-============================================ */
-
-.player-availability-section {
-    margin-top: var(--space-lg);
-}
-
-#player-availability-form {
-    margin-top: var(--space-lg);
-}
-
-
-/* ============================================
-   AVAILABILITY FORM
-============================================ */
-
-#player-availability-form .profile-form-grid {
-    display: grid;
-    grid-template-columns:
-        1.2fr
-        1fr
-        1fr
-        1.2fr;
-
-    gap: var(--space-md);
-    align-items: end;
-}
-
-#player-availability-form .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-}
-
-#player-availability-form label {
-    color: var(--color-text);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-}
-
-#player-availability-form input {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-
-/* ============================================
-   SUBMIT BUTTON
-============================================ */
-
-#player-availability-submit {
-    margin-top: var(--space-md);
-}
-
-
-/* ============================================
-   AVAILABILITY LIST
-============================================ */
-
-.player-availability-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-
-    width: 100%;
-    margin-top: var(--space-lg);
-}
-
-
-/* ============================================
-   AVAILABILITY CARD
-============================================ */
-
-.player-availability-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    box-sizing: border-box;
-
-    gap: var(--space-md);
-    padding: var(--space-md);
-
-    background: var(--color-bg);
-
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
-
-    box-shadow: var(--shadow-sm);
-}
-
-.player-availability-info {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-
-    min-width: 0;
-}
-
-.player-availability-info strong {
-    color: var(--color-text);
-    font-size: var(--font-size-md);
-    font-weight: 600;
-}
-
-.player-availability-info span {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
-}
-
-.player-availability-cancel {
-    flex-shrink: 0;
-}
-
-
-/* ============================================
-   MESSAGE
-============================================ */
-
-#player-availability-message {
-    margin-top: var(--space-md);
-    margin-bottom: 0;
-}
-
-#player-availability-message[hidden] {
-    display: none !important;
-}
-
-
-/* ============================================
-   MOBILE
-============================================ */
-
-@media (max-width: 800px) {
-
-    #player-availability-form .profile-form-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-}
-
-
-@media (max-width: 550px) {
 
     #player-availability-form .profile-form-grid {
         grid-template-columns: 1fr;
@@ -1685,6 +2092,7 @@
 
     .player-availability-card {
         align-items: stretch;
+
         flex-direction: column;
     }
 
@@ -1692,4 +2100,2946 @@
         width: 100%;
     }
 
+    .saved-fields-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-section-header {
+        align-items: flex-start;
+    }
+
+}
+
+.field-owner-reservation-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.edit-field-reservation {
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.edit-field-reservation:hover {
+    border-color: var(--color-primary-hover);
+    background: var(--color-primary-hover);
+}
+
+.edit-field-reservation:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.cancel-field-reservation {
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-danger, #dc2626);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-danger, #dc2626);
+    color: var(--color-text-buttons);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.cancel-field-reservation:hover {
+    border-color: var(--color-danger-hover, #b91c1c);
+    background: var(--color-danger-hover, #b91c1c);
+}
+
+.cancel-field-reservation:focus-visible {
+    outline: 2px solid var(--color-danger, #dc2626);
+    outline-offset: 2px;
+}
+
+
+/* ============================================
+   RESPONSIVE — SMALL MOBILE
+   ============================================ */
+
+@media (max-width: 480px) {
+
+    .profile-page {
+        padding: var(--space-sm) 0;
+    }
+
+    .profile-section,
+    .profile-saved-fields,
+    .profile-teams,
+    #profile-player,
+    .player-availability-section,
+    .profile-invitations {
+        width: 96%;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .profile-icon {
+        width: var(--icon-size-xl);
+        height: var(--icon-size-xl);
+    }
+
+    .profile-header-info h2 {
+        font-size: var(--font-size-lg);
+    }
+
+    .profile-avatar {
+        width: 64px;
+        height: 64px;
+    }
+
+    .profile-section-header h2,
+    .profile-section-header h3 {
+        font-size: var(--font-size-lg);
+    }
+
+    .saved-field-card {
+        flex-basis: 270px;
+    }
+
+}
+
+
+/* ============================================
+   EMAIL CONFIRMED — RESPONSIVE
+   ============================================ */
+
+@media (min-width: 600px) {
+
+    .email-confirmed-actions {
+        flex-direction: row;
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .email-confirmed-actions .btn-primary,
+    .email-confirmed-actions .profile-action {
+        width: auto;
+
+        min-width: 180px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .email-confirmed-icon {
+        width: 56px;
+        height: 56px;
+
+        margin-bottom: var(--space-md);
+
+        font-size: var(--font-size-lg);
+    }
+
+    .email-confirmed-container .auth-header h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    .email-confirmed-user {
+        padding: var(--space-md);
+    }
+
+    .email-confirmed-actions {
+        margin-top: var(--space-lg);
+    }
+
+}
+
+
+
+/* for owner field page */
+/* =========================================================
+   FIELD OWNER PAGE
+========================================================= */
+
+.field-owner-page {
+    width: 100%;
+    padding: var(--space-lg) 0 48px;
+
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+
+/* =========================================================
+   SHARED WIDTH
+========================================================= */
+
+.field-owner-hero,
+.field-owner-section {
+    width: min(100% - 32px, 1000px);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   PAGE HERO
+========================================================= */
+
+.field-owner-hero {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-lg);
+
+    background: var(--color-primary);
+    border-radius: var(--border-radius-lg);
+
+    color: var(--color-text-hero-section);
+    box-shadow: var(--shadow-md);
+}
+
+.field-owner-hero-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+
+    max-width: 760px;
+}
+
+.field-owner-hero-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    width: 56px;
+    height: 56px;
+
+    color: var(--color-text-hero-section);
+
+    font-size: var(--icon-size-xl);
+}
+
+.field-owner-hero h1 {
+    margin: 0;
+
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    line-height: 1.2;
+
+    text-shadow: var(--text-shadow-hero);
+}
+
+.field-owner-hero p {
+    margin: var(--space-sm) 0 0;
+
+    color: var(--color-text-hero-section);
+
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   GENERAL SECTION
+========================================================= */
+
+.field-owner-section {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-lg);
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.field-owner-section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md);
+
+    margin-bottom: var(--space-lg);
+}
+
+.field-owner-section-header h2 {
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.field-owner-section-header p {
+    margin: var(--space-xs) 0 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.field-owner-section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+
+    color: var(--color-primary);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.field-owner-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 260px;
+    padding: var(--space-lg);
+
+    text-align: center;
+
+    background: var(--color-bg);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius-md);
+}
+
+.field-owner-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--space-md);
+
+    color: var(--color-primary);
+
+    font-size: var(--icon-size-xl);
+}
+
+.field-owner-empty h3 {
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+}
+
+.field-owner-empty p {
+    max-width: 480px;
+    margin: 0 0 var(--space-lg);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.field-owner-page .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 0 var(--space-lg);
+
+    color: var(--color-text-buttons);
+    background: var(--color-primary);
+
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.field-owner-page .btn-primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.field-owner-page .btn-primary:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.field-owner-how-it-works {
+    background: var(--color-bg);
+}
+
+.field-owner-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+.field-owner-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+
+    padding: var(--space-md);
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.field-owner-step:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.field-owner-step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    width: 34px;
+    height: 34px;
+
+    color: var(--color-text-buttons);
+    background: var(--color-primary);
+
+    border-radius: 50%;
+
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+}
+
+.field-owner-step h3 {
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 700;
+}
+
+.field-owner-step p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.field-owner-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+.field-owner-benefit {
+    padding: var(--space-md);
+
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.field-owner-benefit:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.field-owner-benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+    margin-bottom: var(--space-md);
+
+    color: var(--color-primary);
+
+    font-size: var(--icon-size-lg);
+}
+
+.field-owner-benefit h3 {
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 700;
+}
+
+.field-owner-benefit p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .field-owner-page {
+        padding-top: var(--space-md);
+    }
+
+    .field-owner-hero,
+    .field-owner-section {
+        width: min(100% - 24px, 1000px);
+    }
+
+    .field-owner-hero {
+        padding: var(--space-lg);
+    }
+
+    .field-owner-hero h1 {
+        font-size: var(--font-size-xl);
+    }
+
+    .field-owner-steps,
+    .field-owner-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .field-owner-hero,
+    .field-owner-section {
+        width: calc(100% - 16px);
+    }
+
+    .field-owner-hero {
+        padding: var(--space-md);
+        border-radius: var(--border-radius-md);
+    }
+
+    .field-owner-hero-content {
+        align-items: flex-start;
+    }
+
+    .field-owner-hero-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: var(--icon-size-lg);
+    }
+
+    .field-owner-hero h1 {
+        font-size: var(--font-size-lg);
+    }
+
+    .field-owner-hero p {
+        font-size: var(--font-size-sm);
+    }
+
+    .field-owner-section {
+        padding: var(--space-md);
+        border-radius: var(--border-radius-md);
+    }
+
+    .field-owner-section-header {
+        margin-bottom: var(--space-md);
+    }
+
+    .field-owner-section-header h2 {
+        font-size: var(--font-size-lg);
+    }
+
+    .field-owner-empty {
+        min-height: 230px;
+        padding: var(--space-md);
+    }
+
+    .field-owner-empty h3 {
+        font-size: var(--font-size-md);
+    }
+
+    .field-owner-empty p {
+        font-size: var(--font-size-xs);
+    }
+
+    .field-owner-step,
+    .field-owner-benefit {
+        padding: var(--space-md);
+    }
+
+    .field-owner-page .btn-primary {
+        width: 100%;
+        max-width: 320px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .field-owner-hero,
+    .field-owner-section {
+        width: calc(100% - 12px);
+    }
+
+    .field-owner-hero-content {
+        gap: var(--space-sm);
+    }
+
+    .field-owner-hero h1 {
+        font-size: var(--font-size-md);
+    }
+
+    .field-owner-section {
+        padding: var(--space-sm);
+    }
+
+}
+
+
+.field-owner-edit-button {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+/* for the owner to edit the field details */
+/* ============================================
+   EDIT FIELD PAGE
+============================================ */
+
+.edit-field-page {
+    width: 100%;
+    padding: var(--space-lg) var(--space-md);
+    box-sizing: border-box;
+}
+
+
+.edit-field-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    box-sizing: border-box;
+}
+
+
+/* ============================================
+   HEADER
+============================================ */
+
+.edit-field-header {
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+
+.edit-field-header h1 {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-3xl);
+    line-height: 1.2;
+}
+
+
+.edit-field-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+}
+
+
+/* ============================================
+   LOADING
+============================================ */
+
+.edit-field-loading {
+    padding: var(--space-lg);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+}
+
+
+/* ============================================
+   ERROR
+============================================ */
+
+.edit-field-error {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--color-hover);
+    border: 1px solid var(--color-error);
+    border-radius: var(--border-radius-md);
+    color: var(--color-error);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+
+/* ============================================
+   FORM
+============================================ */
+
+#edit-field-form {
+    width: 100%;
+}
+
+
+#edit-field-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+}
+
+
+/* ============================================
+   FORM GROUP
+============================================ */
+
+#edit-field-fields .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+
+#edit-field-fields .form-group:nth-child(
+    1
+),
+#edit-field-fields .form-group:nth-child(
+    2
+),
+#edit-field-fields .form-group:nth-child(
+    13
+),
+#edit-field-fields .form-group:nth-child(
+    14
+) {
+    grid-column: 1 / -1;
+}
+
+
+/* ============================================
+   LABELS
+============================================ */
+
+#edit-field-fields label {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+
+/* ============================================
+   INPUTS
+============================================ */
+
+#edit-field-fields input,
+#edit-field-fields textarea,
+#edit-field-fields select {
+    width: 100%;
+    padding: 12px var(--space-md);
+    box-sizing: border-box;
+
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+
+#edit-field-fields textarea {
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+
+#edit-field-fields input:hover,
+#edit-field-fields textarea:hover,
+#edit-field-fields select:hover {
+    border-color: var(--color-primary);
+}
+
+
+#edit-field-fields input:focus,
+#edit-field-fields textarea:focus,
+#edit-field-fields select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+
+/* ============================================
+   PLACEHOLDER
+============================================ */
+
+#edit-field-fields input::placeholder,
+#edit-field-fields textarea::placeholder {
+    color: var(--color-text-muted);
+    opacity: 1;
+}
+
+
+/* ============================================
+   FORM ACTIONS
+============================================ */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-md);
+
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+
+    border-top: 1px solid var(--color-border);
+}
+
+
+/* ============================================
+   SAVE BUTTON
+============================================ */
+
+#edit-field-form .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 10px var(--space-lg);
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+
+#edit-field-form .btn-primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-sm);
+}
+
+
+#edit-field-form .btn-primary:active {
+    transform: translateY(1px);
+}
+
+
+#edit-field-form .btn-primary:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+
+#edit-field-form .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 700px) {
+
+    .edit-field-page {
+        padding: var(--space-md) var(--space-sm);
+    }
+
+
+    .edit-field-section {
+        padding: var(--space-md);
+        border-radius: var(--border-radius-md);
+    }
+
+
+    .edit-field-header h1 {
+        font-size: var(--font-size-2xl);
+    }
+
+
+    #edit-field-fields {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+
+    #edit-field-fields .form-group {
+        grid-column: 1 / -1;
+    }
+
+
+    .form-actions {
+        justify-content: stretch;
+    }
+
+
+    #edit-field-form .btn-primary {
+        width: 100%;
+    }
+
+}
+
+
+/* ============================================
+   FIELD OWNER SECTION
+============================================ */
+
+.field-owner-section {
+    width: 100%;
+    max-width: 1000px;
+ /*    margin: 0 auto; */
+    padding: var(--space-lg);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    box-sizing: border-box;
+}
+
+
+/* ============================================
+   SECTION HEADER
+============================================ */
+
+.field-owner-section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-lg);
+
+    margin-bottom: var(--space-lg);
+}
+
+
+.field-owner-section-header h2 {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-2xl);
+    line-height: 1.2;
+}
+
+
+.field-owner-section-header p {
+    margin: 0;
+    max-width: 650px;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+}
+
+
+.field-owner-section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    color: var(--color-icon);
+    background: var(--color-hover);
+
+    border-radius: var(--border-radius-md);
+}
+
+
+.field-owner-section-icon .icon {
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
+}
+
+
+/* ============================================
+   SUBSECTIONS
+============================================ */
+
+.field-owner-subsection {
+    margin-top: var(--space-lg);
+}
+
+
+
+.field-owner-subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.field-owner-subsection-header h3 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    line-height: 1.4;
+}
+
+/* Add another field button */
+.field-owner-subsection-header .btn-primary {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* Mobile layout */
+@media (max-width: 640px) {
+    .field-owner-subsection-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+    }
+
+    .field-owner-subsection-header .btn-primary {
+        align-self: flex-start;
+        max-width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+
+/* ============================================================
+   FIELD OWNER — TEAM REQUESTS
+   ============================================================ */
+
+/* .field-owner-section {
+    margin-bottom: var(--space-xl);
+}
+
+.field-owner-section-header {
+    margin-bottom: var(--space-lg);
+}
+ */
+.field-owner-section-header h2 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+}
+
+.field-owner-section-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+/* ============================================================
+   REQUEST LIST
+   ============================================================ */
+
+.field-owner-requests-list {
+    display: grid;
+    gap: var(--space-md);
+}
+
+/* ============================================================
+   REQUEST CARD
+   ============================================================ */
+
+.field-owner-request-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+}
+
+/* ============================================================
+   REQUEST INFO
+   ============================================================ */
+
+.field-owner-request-info {
+    min-width: 0;
+}
+
+.field-owner-request-info h3 {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+.field-owner-request-info p {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.field-owner-request-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================================
+   REQUEST STATUS
+   ============================================================ */
+
+.field-owner-request-status {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.field-owner-request-status span {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    background: var(--color-warning);
+    color: var(--color-text-buttons);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ============================================================
+   REQUEST ACTIONS
+   ============================================================ */
+
+.field-request-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.field-request-actions button {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-md);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.field-request-actions .accept-field-request {
+    background: var(--color-success);
+    color: var(--color-text-buttons);
+}
+
+.field-request-actions .reject-field-request {
+    background: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+/* ============================================================
+   HOVER
+   ============================================================ */
+
+.field-request-actions .accept-field-request:hover {
+    filter: brightness(0.95);
+}
+
+.field-request-actions .reject-field-request:hover {
+    background: var(--color-surface-hover);
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.field-owner-empty {
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+    text-align: center;
+}
+
+.field-owner-empty p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+    .field-owner-request-card {
+        grid-template-columns: 1fr;
+    }
+
+    .field-owner-request-status {
+        justify-content: flex-start;
+    }
+
+    .field-request-actions {
+        flex-direction: column;
+    }
+
+    .field-request-actions button {
+        width: 100%;
+    }
+}
+
+
+/* ============================================
+   OWNED FIELDS
+============================================ */
+
+.field-owner-fields-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+
+.field-owner-field-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: var(--space-lg);
+
+    padding: var(--space-lg);
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+.field-owner-field-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* ============================================
+   FIELD INFORMATION
+============================================ */
+
+.field-owner-field-info {
+    min-width: 0;
+}
+
+
+.field-owner-field-info h3 {
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    line-height: 1.3;
+
+    overflow-wrap: anywhere;
+}
+
+
+.field-owner-field-info p {
+    margin: 2px 0;
+
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+
+/* ============================================
+   FIELD STATUS
+============================================ */
+
+.field-owner-field-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.field-owner-field-status span {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px var(--space-sm);
+
+    background: var(--color-hover);
+    color: var(--color-primary);
+
+    border: 1px solid var(--color-primary);
+    border-radius: 999px;
+
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* ============================================
+   FIELD ACTIONS
+============================================ */
+
+.field-owner-field-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.field-owner-edit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+    padding: 8px var(--space-md);
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+.field-owner-edit-button:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-sm);
+}
+
+
+.field-owner-edit-button:active {
+    transform: translateY(1px);
+}
+
+
+.field-owner-edit-button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+
+/* ============================================
+   SUBMISSIONS
+============================================ */
+
+.field-owner-submissions-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+
+.field-owner-submission-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+
+    padding: var(--space-md);
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+}
+
+
+.field-owner-submission-info {
+    min-width: 0;
+}
+
+
+.field-owner-submission-info h3 {
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    line-height: 1.3;
+
+    overflow-wrap: anywhere;
+}
+
+
+.field-owner-submission-info p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+
+.field-owner-submission-status {
+    flex-shrink: 0;
+}
+
+
+.field-owner-submission-status span {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px var(--space-sm);
+
+    color: var(--color-text-muted);
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+
+.field-owner-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 48px var(--space-lg);
+
+    text-align: center;
+}
+
+
+.field-owner-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--space-md);
+
+    color: var(--color-icon);
+    background: var(--color-hover);
+
+    border-radius: 50%;
+}
+
+
+.field-owner-empty-icon .icon {
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
+}
+
+
+.field-owner-empty h3 {
+    margin: 0 0 var(--space-sm);
+
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+
+.field-owner-empty p {
+    max-width: 500px;
+    margin: 0 0 var(--space-lg);
+
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+}
+
+
+/* ============================================
+   EMPTY STATE BUTTON
+============================================ */
+
+.field-owner-empty .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 10px var(--space-lg);
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-md);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+.field-owner-empty .btn-primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-sm);
+}
+
+
+.field-owner-empty .btn-primary:active {
+    transform: translateY(1px);
+}
+
+
+.edit-field-subsection {
+    grid-column: 1 / -1;
+
+    margin-top: var(--space-md);
+    padding-top: var(--space-lg);
+
+    border-top: 1px solid var(--color-border);
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+}
+
+.edit-field-subsection-header {
+    grid-column: 1 / -1;
+
+    margin-bottom: 0;
+}
+
+.edit-field-subsection-header h3 {
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-lg);
+}
+
+.edit-field-subsection-header p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.edit-field-subsection .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.edit-field-subsection .form-group label {
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.edit-field-subsection .form-group input,
+.edit-field-subsection .form-group textarea,
+.edit-field-subsection .form-group select {
+    width: 100%;
+    padding: 12px var(--space-md);
+
+    box-sizing: border-box;
+
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+.edit-field-subsection .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.edit-field-subsection .form-group input:focus,
+.edit-field-subsection .form-group textarea:focus,
+.edit-field-subsection .form-group select:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--color-primary) 15%,
+            transparent
+        );
+}
+
+/* Make barbecue notes span the full width */
+.edit-field-subsection .form-group:has(#edit-field-barbecue-notes) {
+    grid-column: 1 / -1;
+}
+
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 700px) {
+
+    .field-owner-section {
+        padding: var(--space-md);
+        border-radius: var(--border-radius-md);
+    }
+
+
+    .field-owner-section-header {
+        align-items: flex-start;
+    }
+
+
+    .field-owner-section-header h2 {
+        font-size: var(--font-size-xl);
+    }
+
+
+    .field-owner-section-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .field-owner-field-card {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+
+    .field-owner-field-status {
+        justify-content: flex-start;
+    }
+
+
+    .field-owner-field-actions {
+        justify-content: flex-start;
+    }
+
+
+    .field-owner-edit-button {
+        width: 100%;
+    }
+
+
+    .field-owner-submission-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    .edit-field-subsection {
+    grid-template-columns: 1fr;
+}
+
+.edit-field-subsection-header {
+    grid-column: 1;
+}
+
+.edit-field-subsection .form-group:has(#edit-field-barbecue-notes) {
+    grid-column: 1;
+}
+
+}
+
+
+.field-owner-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+}
+
+.field-owner-section-header h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    line-height: 1.3;
+}
+
+.field-owner-section-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    .field-owner-section-header {
+        gap: var(--space-sm);
+        margin-bottom: var(--space-md);
+    }
+
+    .field-owner-section-header h2 {
+        font-size: var(--font-size-lg);
+    }
+
+    .field-owner-section-header p {
+        font-size: var(--font-size-sm);
+    }
+}
+
+
+/* ============================================
+   MANUAL RESERVATION
+============================================ */
+
+.field-owner-manual-reservation-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+
+    max-width: 720px;
+    margin-top: var(--space-lg);
+}
+
+
+/* ============================================
+   FORM GROUP
+============================================ */
+
+.field-owner-manual-reservation-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+
+/* ============================================
+   LABELS
+============================================ */
+
+.field-owner-manual-reservation-form label {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+
+/* ============================================
+   INPUTS
+============================================ */
+
+.field-owner-manual-reservation-form input,
+.field-owner-manual-reservation-form select,
+.field-owner-manual-reservation-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+
+/* ============================================
+   FOCUS
+============================================ */
+
+.field-owner-manual-reservation-form input:focus,
+.field-owner-manual-reservation-form select:focus,
+.field-owner-manual-reservation-form textarea:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px var(--color-hover);
+}
+
+
+/* ============================================
+   PLACEHOLDER
+============================================ */
+
+.field-owner-manual-reservation-form input::placeholder,
+.field-owner-manual-reservation-form textarea::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.8;
+}
+
+
+/* ============================================
+   SELECT
+============================================ */
+
+.field-owner-manual-reservation-form select {
+    cursor: pointer;
+}
+
+
+/* ============================================
+   TEXTAREA
+============================================ */
+
+.field-owner-manual-reservation-form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+
+/* ============================================
+   TIME ROW
+============================================ */
+
+.manual-reservation-time-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+}
+
+
+/* ============================================
+   SUBMIT BUTTON
+============================================ */
+
+#manual-reservation-submit {
+    align-self: flex-start;
+
+    margin-top: var(--space-sm);
+
+    padding: var(--space-sm) var(--space-lg);
+
+    border: none;
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+#manual-reservation-submit:hover {
+    background: var(--color-primary-hover);
+    box-shadow: var(--shadow-sm);
+}
+
+#manual-reservation-submit:active {
+    transform: translateY(1px);
+}
+
+#manual-reservation-submit:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+
+/* ============================================
+   FEEDBACK
+============================================ */
+
+.manual-reservation-feedback {
+    margin: 0;
+
+    padding: var(--space-sm) var(--space-md);
+
+    border-radius: var(--border-radius-md);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.manual-reservation-feedback.success {
+    background: var(--color-hover);
+    color: var(--color-primary);
+}
+
+.manual-reservation-feedback.error {
+    background: var(--color-surface);
+    color: var(--color-error);
+}
+
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 600px) {
+
+    .field-owner-manual-reservation-form {
+        max-width: 100%;
+    }
+
+    .manual-reservation-time-row {
+        grid-template-columns: 1fr;
+    }
+
+    #manual-reservation-submit {
+        width: 100%;
+    }
+
+}
+
+
+
+/* ============================================
+   CONFIRMED RESERVATIONS
+============================================ */
+
+.field-owner-reservations {
+    margin-top: var(--space-lg);
+}
+
+.field-owner-reservation-days {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+
+/* ============================================
+   DAY
+============================================ */
+
+.field-owner-reservation-day {
+    overflow: hidden;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    background: var(--color-bg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.field-owner-reservation-day.expanded {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ============================================
+   DAY HEADER
+============================================ */
+
+.field-owner-reservation-day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: var(--space-md);
+
+    border: none;
+
+    background: transparent;
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast);
+}
+
+.field-owner-reservation-day-header:hover {
+    background: var(--color-hover);
+}
+
+
+/* ============================================
+   DATE
+============================================ */
+
+.field-owner-reservation-date {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+
+    min-width: 0;
+}
+
+.field-owner-reservation-weekday {
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+.field-owner-reservation-day-number {
+    color: var(--color-primary);
+
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+}
+
+.field-owner-reservation-month {
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+}
+
+
+/* ============================================
+   TODAY
+============================================ */
+
+.field-owner-reservation-day.today
+    .field-owner-reservation-weekday {
+    color: var(--color-primary);
+}
+
+
+/* ============================================
+   DAY META
+============================================ */
+
+.field-owner-reservation-day-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.field-owner-reservation-count {
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+}
+
+
+/* ============================================
+   CHEVRON
+============================================ */
+
+.field-owner-reservation-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-xl);
+
+    transform: rotate(90deg);
+
+    transition:
+        transform var(--transition);
+}
+
+.field-owner-reservation-day.expanded
+    .field-owner-reservation-chevron {
+    transform: rotate(-90deg);
+}
+
+
+/* ============================================
+   DAY CONTENT
+============================================ */
+
+.field-owner-reservation-day-content {
+    display: grid;
+    grid-template-rows: 1fr;
+
+    padding: 0 var(--space-md) var(--space-md);
+
+    animation: reservationDayOpen var(--transition) forwards;
+}
+
+.field-owner-reservation-day-content[hidden] {
+    display: none;
+}
+
+
+/* ============================================
+   RESERVATION LIST
+============================================ */
+
+.field-owner-reservation-day-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+
+/* ============================================
+   RESERVATION ITEM
+============================================ */
+
+.field-owner-reservation-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-md);
+
+    padding: var(--space-md);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-surface);
+
+    transition:
+        border-color var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+.field-owner-reservation-item:hover {
+    border-color: var(--color-primary);
+    background: var(--color-hover);
+}
+
+
+/* ============================================
+   TIME
+============================================ */
+
+.field-owner-reservation-item-time {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+
+    min-width: 110px;
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-md);
+}
+
+.field-owner-reservation-item-time strong {
+    font-weight: 700;
+}
+
+
+/* ============================================
+   RESERVATION INFO
+============================================ */
+
+.field-owner-reservation-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+
+    min-width: 0;
+}
+
+.field-owner-reservation-item-info h3 {
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+.field-owner-reservation-item-info p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+}
+
+
+/* ============================================
+   RESERVATION TYPE
+============================================ */
+
+.field-owner-reservation-type {
+    align-self: flex-start;
+
+    padding: var(--space-xs) var(--space-sm);
+
+    border-radius: var(--border-radius-sm);
+
+    background: var(--color-hover);
+    color: var(--color-primary);
+
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+
+#field-owner-reservations-empty {
+    margin-top: var(--space-lg);
+}
+
+#field-owner-reservations-empty p {
+    margin: 0;
+
+    padding: var(--space-lg);
+
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    background: var(--color-surface);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    text-align: center;
+}
+
+
+/* ============================================
+   ANIMATION
+============================================ */
+
+@keyframes reservationDayOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 600px) {
+
+    .field-owner-reservation-day-header {
+        padding: var(--space-md);
+    }
+
+    .field-owner-reservation-date {
+        gap: var(--space-xs);
+    }
+
+    .field-owner-reservation-weekday {
+        font-size: var(--font-size-sm);
+    }
+
+    .field-owner-reservation-day-number {
+        font-size: var(--font-size-lg);
+    }
+
+    .field-owner-reservation-month {
+        display: none;
+    }
+
+    .field-owner-reservation-count {
+        font-size: var(--font-size-xs);
+    }
+
+    .field-owner-reservation-item {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+
+    .field-owner-reservation-item-time {
+        min-width: 0;
+    }
+
+}
+
+
+/* ============================================
+   EDIT RESERVATION MODAL
+============================================ */
+
+.field-owner-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--space-md);
+
+    background: rgba(0, 0, 0, 0.55);
+
+    overflow-y: auto;
+}
+
+.field-owner-modal[hidden] {
+    display: none;
+}
+
+
+.field-owner-modal-content {
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+
+    max-height: calc(100vh - (var(--space-lg) * 2));
+    overflow-y: auto;
+
+    padding: var(--space-lg);
+
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+
+    box-shadow: var(--shadow-lg);
+}
+
+
+/* CLOSE BUTTON */
+
+.field-owner-modal-close {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--color-text-muted);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-xl);
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.field-owner-modal-close:hover {
+    background: var(--color-hover);
+    color: var(--color-text);
+}
+
+
+/* TITLE */
+
+.field-owner-modal-content h3 {
+    margin: 0 40px var(--space-lg) 0;
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-xl);
+}
+
+
+/* FORM */
+
+#field-reservation-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+#field-reservation-edit-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+#field-reservation-edit-form label {
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+#field-reservation-edit-form input,
+#field-reservation-edit-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+#field-reservation-edit-form input:focus,
+#field-reservation-edit-form textarea:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+#field-reservation-edit-form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+
+/* ERROR */
+
+#field-reservation-edit-error {
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-error);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-surface);
+    color: var(--color-error);
+
+    font-size: var(--font-size-sm);
+}
+
+
+/* ACTIONS */
+
+.field-owner-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+
+    margin-top: var(--space-sm);
+}
+
+.field-owner-modal-actions button {
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.field-owner-modal-actions button:hover {
+    background: var(--color-hover);
+    border-color: var(--color-primary);
+}
+
+
+/* SAVE BUTTON */
+
+#save-field-reservation-edit {
+    border-color: var(--color-primary);
+
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+}
+
+#save-field-reservation-edit:hover {
+    border-color: var(--color-primary-hover);
+
+    background: var(--color-primary-hover);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .field-owner-modal {
+        align-items: flex-start;
+
+        padding: var(--space-md);
+        padding-top: var(--space-lg);
+    }
+
+    .field-owner-modal-content {
+        max-height: calc(100vh - var(--space-lg));
+        padding: var(--space-md);
+    }
+
+    .field-owner-modal-actions {
+        flex-direction: column;
+    }
+
+    .field-owner-modal-actions button {
+        width: 100%;
+    }
+
+}
+
+
+/* ============================================================
+   FIELD OWNER — MAINTENANCE
+   ============================================================ */
+
+.field-owner-maintenance-list {
+    display: grid;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+/* ============================================================
+   MAINTENANCE ITEM
+   ============================================================ */
+
+.field-owner-maintenance-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+}
+
+.field-owner-maintenance-info {
+    min-width: 0;
+}
+
+.field-owner-maintenance-info h3 {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+.field-owner-maintenance-info p {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.field-owner-maintenance-info p:last-child {
+    margin-bottom: 0;
+}
+
+.field-owner-maintenance-info strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+/* ============================================================
+   MAINTENANCE ACTIONS
+   ============================================================ */
+
+.field-owner-maintenance-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+}
+
+.field-owner-maintenance-actions button {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.field-owner-maintenance-actions
+.edit-field-maintenance:hover {
+    background: var(--color-surface-hover);
+}
+
+.field-owner-maintenance-actions
+.delete-field-maintenance {
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+.field-owner-maintenance-actions
+.delete-field-maintenance:hover {
+    background: var(--color-error);
+    color: #fff;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+    .field-owner-maintenance-item {
+        flex-direction: column;
+    }
+
+    .field-owner-maintenance-actions {
+        width: 100%;
+    }
+
+    .field-owner-maintenance-actions button {
+        flex: 1;
+    }
+}
+
+
+/* ============================================================
+   FIELD OWNER — MAINTENANCE FORM
+   ============================================================ */
+
+#field-maintenance-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    margin-top: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+}
+
+/* ============================================================
+   FORM GROUPS
+   ============================================================ */
+
+#field-maintenance-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+#field-maintenance-form .form-group:last-of-type {
+    grid-column: 1 / -1;
+}
+
+#field-maintenance-form label {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+#field-maintenance-form input,
+#field-maintenance-form select,
+#field-maintenance-form textarea {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background: var(--color-background);
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    box-sizing: border-box;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#field-maintenance-form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+#field-maintenance-form input:focus,
+#field-maintenance-form select:focus,
+#field-maintenance-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow:
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--color-primary) 15%,
+            transparent
+        );
+}
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+#field-maintenance-error {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+/* ============================================================
+   SUBMIT
+   ============================================================ */
+
+#field-maintenance-form
+#create-field-maintenance {
+    grid-column: 1 / -1;
+    justify-self: start;
+    padding: var(--space-sm) var(--space-lg);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-md);
+    background: var(--color-primary);
+    color: var(--color-text-buttons);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+#field-maintenance-form
+#create-field-maintenance:hover {
+    opacity: 0.9;
+}
+
+#field-maintenance-form
+#create-field-maintenance:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+    #field-maintenance-form {
+        grid-template-columns: 1fr;
+    }
+
+    #field-maintenance-form .form-group:last-of-type {
+        grid-column: auto;
+    }
+
+    #field-maintenance-form
+    #create-field-maintenance {
+        width: 100%;
+    }
+}
+
+
+#field-maintenance-empty[hidden] {
+    display: none;
+}
+
+.field-owner-empty[hidden] {
+    display: none !important;
 }

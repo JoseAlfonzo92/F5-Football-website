@@ -1425,3 +1425,347 @@
     }
 
 }
+
+
+.availability-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+
+.availability-status-indicator {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-text-muted);
+}
+
+
+.availability-status-indicator.available {
+    background: var(--color-success);
+}
+
+
+.availability-status-indicator.occupied {
+    background: var(--color-error);
+}
+
+.availability-status-indicator.maintenance {
+    background: var(--color-warning);
+}
+
+
+.availability-status-indicator.closed {
+    background: var(--color-warning);
+}
+
+
+.availability-status-indicator.unknown {
+    background: var(--color-text-muted);
+}
+
+
+#availability-status-text {
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+}
+
+
+.availability-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.availability-status-indicator {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-text-muted);
+}
+
+.availability-status-indicator.available {
+    background: var(--color-success);
+}
+
+.availability-status-indicator.occupied {
+    background: var(--color-error);
+}
+
+.availability-status-indicator.closed {
+    background: var(--color-warning);
+}
+
+.availability-status-indicator.unknown {
+    background: var(--color-text-muted);
+}
+
+#availability-status-text {
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+}
+
+.availability-countdown {
+    margin-top: var(--space-xs);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+
+/* ============================================
+   FIELD AVAILABILITY
+============================================ */
+
+#field-availability-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.availability-day {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background: var(--color-surface);
+    overflow: hidden;
+}
+
+.availability-day-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-md);
+
+    padding: var(--space-md);
+
+    border: 0;
+    background: transparent;
+
+    color: var(--color-text);
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast);
+}
+
+.availability-day-header:hover {
+    background: var(--color-hover);
+}
+
+.availability-day-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.availability-day-info h4 {
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: var(--font-size-md);
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+.availability-day-summary {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.availability-day-arrow {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-xl);
+
+    transition:
+        transform var(--transition-fast);
+}
+
+/* ============================================
+   EXPANDED DAY
+============================================ */
+
+.availability-day.expanded
+.availability-day-arrow {
+    transform: rotate(90deg);
+}
+
+.availability-slots {
+    display: none;
+
+    padding:
+        0 var(--space-md)
+        var(--space-md);
+
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.availability-day.expanded
+.availability-slots {
+    display: flex;
+}
+
+/* ============================================
+   AVAILABILITY SLOT
+============================================ */
+
+.availability-slot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-md);
+
+    padding: var(--space-sm) var(--space-md);
+
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+}
+
+.availability-slot-time {
+    color: var(--color-text);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.availability-slot-status {
+    color: var(--color-error);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.availability-slot.maintenance
+.availability-slot-status {
+    color: var(--color-warning);
+}
+
+
+.availability-slots {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    opacity: 0;
+
+    padding:
+        0 var(--space-md);
+
+    overflow: hidden;
+
+    transition:
+        grid-template-rows var(--transition),
+        opacity var(--transition),
+        padding var(--transition);
+}
+
+.availability-slots::before {
+    content: "";
+    min-height: 0;
+}
+
+.availability-day.expanded
+.availability-slots {
+    grid-template-rows: 1fr;
+
+    opacity: 1;
+
+    padding:
+        0 var(--space-md)
+        var(--space-md);
+}
+
+/*
+    Keep the actual slot content
+    inside the animated grid.
+*/
+.availability-slots {
+    display: grid;
+}
+
+.availability-slot {
+    min-height: 0;
+}
+
+
+/* ============================================
+   AVAILABILITY EXPAND / COLLAPSE
+============================================ */
+
+.availability-slots {
+    display: grid;
+    grid-template-rows: 0fr;
+    grid-auto-flow: column;
+
+    opacity: 0;
+
+    padding:
+        0 var(--space-md);
+
+    overflow: hidden;
+
+    transition:
+        grid-template-rows var(--transition),
+        opacity var(--transition),
+        padding var(--transition);
+}
+
+.availability-slots-inner {
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+
+    overflow: hidden;
+}
+
+.availability-day.expanded
+.availability-slots {
+    grid-template-rows: 1fr;
+
+    opacity: 1;
+
+    padding:
+        0 var(--space-md)
+        var(--space-md);
+}
+
+/* ============================================
+   ARROW
+============================================ */
+
+.availability-day-arrow {
+    transition:
+        transform var(--transition);
+}
+
+.availability-day.expanded
+.availability-day-arrow {
+    transform: rotate(90deg);
+}

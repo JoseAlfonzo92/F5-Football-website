@@ -1,9 +1,7 @@
 import { supabase } from "./supabase.js";
 
 
-/* ============================================
-   GET CURRENT PROFILE
-   ============================================ */
+// GET CURRENT PROFILE
 
 export async function getCurrentProfile() {
 
@@ -45,9 +43,7 @@ export async function getCurrentProfile() {
 }
 
 
-/* ============================================
-   CHECK USERNAME
-   ============================================ */
+// CHECK USERNAME
 
 export async function isUsernameAvailable(
     username,
@@ -80,9 +76,7 @@ export async function isUsernameAvailable(
 }
 
 
-/* ============================================
-   UPDATE PROFILE
-   ============================================ */
+// UPDATE PROFILE
 
 export async function updateProfile({
     username,
@@ -134,9 +128,7 @@ export async function updateProfile({
 }
 
  
-/* ============================================ 
-   GET CURRENT PLAYER PROFILE 
-============================================ */ 
+// GET CURRENT PLAYER PROFILE 
  
 export async function getCurrentPlayerProfile() { 
  
@@ -174,9 +166,7 @@ export async function getCurrentPlayerProfile() {
 } 
  
  
-/* ============================================ 
-   UPDATE PLAYER PROFILE 
-============================================ */ 
+// UPDATE PLAYER PROFILE 
  
 export async function updatePlayerProfile({ 
     position, 
@@ -232,9 +222,7 @@ export async function updatePlayerProfile({
     return data; 
 }
 
-/* ============================================
-   GET PUBLIC PLAYER PROFILES
-============================================ */
+// GET PUBLIC PLAYER PROFILES
 
 export async function getPublicPlayers() {
 

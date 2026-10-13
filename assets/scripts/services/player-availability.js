@@ -1,9 +1,7 @@
 import { supabase } from "./supabase.js";
 
 
-/* ============================================
-   GET PLAYER AVAILABILITY
-============================================ */
+// GET PLAYER AVAILABILITY
 
 export async function getPlayerAvailability(userId) {
 
@@ -45,9 +43,7 @@ export async function getPlayerAvailability(userId) {
 }
 
 
-/* ============================================
-   GET CURRENT PLAYER AVAILABILITY
-============================================ */
+// GET CURRENT PLAYER AVAILABILITY
 
 export async function getCurrentPlayerAvailability() {
 
@@ -66,9 +62,7 @@ export async function getCurrentPlayerAvailability() {
 }
 
 
-/* ============================================
-   CREATE PLAYER AVAILABILITY
-============================================ */
+// CREATE PLAYER AVAILABILITY
 
 export async function createPlayerAvailability({
     availableDate,
@@ -135,9 +129,7 @@ export async function createPlayerAvailability({
 }
 
 
-/* ============================================
-   CANCEL PLAYER AVAILABILITY
-============================================ */
+// CANCEL PLAYER AVAILABILITY
 
 export async function cancelPlayerAvailability(
     availabilityId

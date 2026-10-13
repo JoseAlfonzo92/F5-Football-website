@@ -44,15 +44,15 @@ export async function submitRating(fieldId, rating) {
     if (!existingVote) {
 
         const { error } =
-            await supabase
-                .from("field_votes")
-                .insert({
-                    field_id,
-                    rating,
-                    fingerprint
-                });
+    await supabase
+        .from("field_votes")
+        .insert({
+            field_id: fieldId,
+            rating,
+            fingerprint
+        });
 
-        if (error) throw error;
+if (error) throw error;
 
         await new Promise(resolve =>
             setTimeout(resolve, 300)
