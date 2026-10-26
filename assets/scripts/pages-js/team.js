@@ -177,11 +177,8 @@ function renderChallengeTeams(
 // GET TEAM ID
 
 function getTeamIdFromUrl() {
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
+    
+    const params = new URLSearchParams( window.location.search );
 
     return params.get("id");
 
@@ -387,11 +384,9 @@ function getScheduleField(fieldId) {
 
 function getFieldName(fieldId) {
 
-    const field =
-        getScheduleField(fieldId);
+    const field = getScheduleField(fieldId);
 
-    return field?.name ||
-        "Cualquier cancha";
+    return field?.name || "Cualquier cancha";
 
 }
 
@@ -471,42 +466,12 @@ function getScheduleOverlap(
 
     }
 
-
-    const firstStart =
-        timeToMinutes(
-            normalizeTime(first.start_time)
-        );
-
-    const firstEnd =
-        timeToMinutes(
-            normalizeTime(first.end_time)
-        );
-
-
-    const secondStart =
-        timeToMinutes(
-            normalizeTime(second.start_time)
-        );
-
-    const secondEnd =
-        timeToMinutes(
-            normalizeTime(second.end_time)
-        );
-
-
-    const overlapStart =
-        Math.max(
-            firstStart,
-            secondStart
-        );
-
-
-    const overlapEnd =
-        Math.min(
-            firstEnd,
-            secondEnd
-        );
-
+    const firstStart = timeToMinutes( normalizeTime(first.start_time) );
+    const firstEnd = timeToMinutes( normalizeTime(first.end_time) );
+    const secondStart = timeToMinutes( normalizeTime(second.start_time) );
+    const secondEnd = timeToMinutes( normalizeTime(second.end_time) );
+    const overlapStart = Math.max( firstStart, secondStart );
+    const overlapEnd = Math.min( firstEnd, secondEnd );
 
     /*
      * We only recommend complete
@@ -557,31 +522,16 @@ function getScheduleOverlap(
     }
 
 
-    const fieldCompatibility =
-        getFieldCompatibility(
-            first.field_id,
-            second.field_id
-        );
-
+    const fieldCompatibility = getFieldCompatibility( first.field_id, second.field_id );
 
     return {
 
-        dayOfWeek:
-            Number(first.day_of_week),
-
+        dayOfWeek: Number(first.day_of_week),
         slots,
-
-        fieldCompatible:
-            fieldCompatibility.compatible,
-
-        exactField:
-            fieldCompatibility.exact,
-
-        firstFieldId:
-            first.field_id || null,
-
-        secondFieldId:
-            second.field_id || null
+        fieldCompatible: fieldCompatibility.compatible,
+        exactField: fieldCompatibility.exact,
+        firstFieldId: first.field_id || null,
+        secondFieldId: second.field_id || null
 
     };
 
@@ -591,13 +541,9 @@ function getScheduleOverlap(
  // Compare two complete weekly schedules.
  
 
-function findScheduleMatches(
-    firstSchedule,
-    secondSchedule
-) {
+function findScheduleMatches( firstSchedule, secondSchedule ) {
 
     const matches = [];
-
 
     firstSchedule.forEach(
         first => {
@@ -605,12 +551,7 @@ function findScheduleMatches(
             secondSchedule.forEach(
                 second => {
 
-                    const overlap =
-                        getScheduleOverlap(
-                            first,
-                            second
-                        );
-
+                    const overlap = getScheduleOverlap( first, second );
 
                     if (overlap) {
 
@@ -651,26 +592,13 @@ function findScheduleMatches(
 
                 uniqueMatches.push({
 
-                    dayOfWeek:
-                        match.dayOfWeek,
-
-                    start:
-                        slot.start,
-
-                    end:
-                        slot.end,
-
-                    exactField:
-                        match.exactField,
-
-                    fieldCompatible:
-                        match.fieldCompatible,
-
-                    firstFieldId:
-                        match.firstFieldId,
-
-                    secondFieldId:
-                        match.secondFieldId
+                    dayOfWeek: match.dayOfWeek,
+                    start: slot.start,
+                    end: slot.end,
+                    exactField: match.exactField,
+                    fieldCompatible: match.fieldCompatible,
+                    firstFieldId: match.firstFieldId,
+                    secondFieldId: match.secondFieldId
 
                 });
 
@@ -685,17 +613,10 @@ function findScheduleMatches(
                     !existing.exactField
                 ) {
 
-                    existing.exactField =
-                        true;
-
-                    existing.fieldCompatible =
-                        true;
-
-                    existing.firstFieldId =
-                        match.firstFieldId;
-
-                    existing.secondFieldId =
-                        match.secondFieldId;
+                    existing.exactField = true;
+                    existing.fieldCompatible = true;
+                    existing.firstFieldId = match.firstFieldId;
+                    existing.secondFieldId = match.secondFieldId;
 
                 }
 
@@ -768,50 +689,28 @@ function findScheduleMatches(
 // SCHEDULE RECOMMENDATIONS
 function getScheduleRecommendationContainer() {
 
-    let container =
-        getElement(
-            "challenge-schedule-recommendations"
-        );
-
+    let container = getElement( "challenge-schedule-recommendations" );
 
     if (container) {
         return container;
     }
 
-
-    const challengeForm =
-        getElement(
-            "team-challenge-form"
-        );
-
+    const challengeForm = getElement( "team-challenge-form" );
 
     if (!challengeForm) {
         return null;
     }
 
-
-    container =
-        document.createElement("div");
-
-
-    container.id =
-        "challenge-schedule-recommendations";
-
-
-    container.className =
-        "challenge-schedule-recommendations";
-
+    container = document.createElement("div");
+    container.id = "challenge-schedule-recommendations";
+    container.className = "challenge-schedule-recommendations";
 
     /*
      * Put recommendations before
      * the message textarea.
      */
 
-    const message =
-        getElement(
-            "challenge-message"
-        );
-
+    const message = getElement( "challenge-message" );
 
     if (
         message &&
@@ -836,13 +735,9 @@ function getScheduleRecommendationContainer() {
 }
 
 
-function renderScheduleRecommendations(
-    matches
-) {
+function renderScheduleRecommendations( matches ) {
 
-    const container =
-        getScheduleRecommendationContainer();
-
+    const container = getScheduleRecommendationContainer();
 
     if (!container) {
         return;
@@ -2469,21 +2364,162 @@ function renderTeam(team) {
 
 }
 
+
+function initTeamEditing(team, user) {
+    const editButton = getElement("edit-team-button");
+    const form = getElement("edit-team-form");
+    const cancelButton = getElement("cancel-edit-team-button");
+    const saveButton = getElement("save-team-button");
+    const message = getElement("edit-team-message");
+
+    if (!editButton || !form || !cancelButton || !saveButton) {
+        return;
+    }
+
+    // Only the original creator can edit the team.
+    const isCreator = Boolean(
+        user && team.created_by === user.id
+    );
+
+    editButton.hidden = !isCreator;
+
+    if (!isCreator) {
+        return;
+    }
+
+    const nameInput = getElement("edit-team-name");
+    const descriptionInput = getElement("edit-team-description");
+    const zoneInput = getElement("edit-team-zone");
+    const levelInput = getElement("edit-team-level");
+    const logoInput = getElement("edit-team-logo");
+
+    function showEditMessage(text, type = "") {
+        if (!message) return;
+
+        message.textContent = text;
+        message.className = `teams-message ${type}`.trim();
+        message.hidden = !text;
+    }
+
+    function openForm() {
+        nameInput.value = team.name || "";
+        descriptionInput.value = team.description || "";
+        zoneInput.value = team.zone || "";
+        levelInput.value = team.level || "";
+        logoInput.value = team.logo_url || "";
+
+        showEditMessage("");
+        form.hidden = false;
+        editButton.hidden = true;
+        nameInput.focus();
+    }
+
+    function closeForm() {
+        form.hidden = true;
+        editButton.hidden = false;
+        showEditMessage("");
+    }
+
+    editButton.addEventListener("click", openForm);
+    cancelButton.addEventListener("click", closeForm);
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (saveButton.disabled) return;
+
+        const name = nameInput.value.trim();
+
+        if (!name) {
+            showEditMessage("El nombre del equipo es obligatorio.", "error");
+            nameInput.focus();
+            return;
+        }
+
+        let logoUrl = logoInput.value.trim();
+
+        if (logoUrl) {
+            try {
+                const parsedUrl = new URL(logoUrl);
+
+                if (parsedUrl.protocol !== "https:" && parsedUrl.protocol !== "http:") {
+                    throw new Error("Invalid URL protocol");
+                }
+            } catch {
+                showEditMessage("Ingresá una URL válida para el escudo.", "error");
+                logoInput.focus();
+                return;
+            }
+        }
+
+        const updatedTeam = {
+            name,
+            description: descriptionInput.value.trim() || null,
+            zone: zoneInput.value.trim() || null,
+            level: levelInput.value || null,
+            logo_url: logoUrl || null
+        };
+
+        saveButton.disabled = true;
+        saveButton.textContent = "Guardando...";
+
+        try {
+            const { data, error } = await supabase
+                .from("teams")
+                .update(updatedTeam)
+                .eq("id", team.id)
+                .eq("created_by", user.id)
+                .select(`
+                    id,
+                    name,
+                    description,
+                    logo_url,
+                    zone,
+                    level,
+                    created_by,
+                    created_at
+                `)
+                .maybeSingle();
+
+            if (error) {
+                throw error;
+            }
+
+            if (!data) {
+                throw new Error(
+                    "No se pudo actualizar el equipo. Verificá tus permisos e intentá nuevamente."
+                );
+            }
+
+            Object.assign(team, data);
+            renderTeam(team);
+
+            closeForm();
+            showMessage("Equipo actualizado correctamente.", "success");
+
+        } catch (error) {
+            console.error("Error updating team:", error);
+
+            showEditMessage(
+                error.message || "No se pudieron guardar los cambios.",
+                "error"
+            );
+
+        } finally {
+            saveButton.disabled = false;
+            saveButton.textContent = "Guardar cambios";
+        }
+    });
+}
+
 // RENDER MEMBERS
 
-function renderMembers(members) {
+function renderMembers(members, userIsCaptain = false) {
 
-    const loading =
-        getElement("team-members-loading");
-
-    const empty =
-        getElement("team-members-empty");
-
-    const list =
-        getElement("team-members-list");
-
-    const count =
-        getElement("team-member-count");
+    const loading = getElement("team-members-loading");
+    const empty = getElement("team-members-empty");
+    const list = getElement("team-members-list");
+    const count = getElement("team-member-count");
 
 
     if (loading) {
@@ -2590,18 +2626,175 @@ function renderMembers(members) {
                         </div>
 
 
+                       
                         <span class="team-member-role">
                             ${role}
                         </span>
+
+                        ${
+                            userIsCaptain && member.role === "player"
+                                ? `
+                                    <div class="team-member-actions">
+                                        <button
+                                            type="button"
+                                            class="team-member-action"
+                                            data-team-action="transfer-captain"
+                                            data-user-id="${member.user_id}"
+                                        >
+                                            Transferir capitanía
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="team-member-action"
+                                            data-team-action="remove-player"
+                                            data-user-id="${member.user_id}"
+                                        >
+                                            Eliminar jugador
+                                        </button>
+                                    </div>
+                                `
+                                : ""
+                        }
 
                     </div>
 
                 `;
 
+
             })
             .join("");
 
 }
+
+
+
+function initTeamManagementActions(teamId, userIsCaptain) {
+    const membersList = document.getElementById("team-members-list");
+
+    if (!membersList || membersList.dataset.managementInitialized === "true") {
+        return;
+    }
+
+    membersList.dataset.managementInitialized = "true";
+
+    let actionInProgress = false;
+
+    membersList.addEventListener("click", async (event) => {
+        const button = event.target.closest("[data-team-action]");
+
+        if (!button || !membersList.contains(button)) return;
+        if (!userIsCaptain || actionInProgress) return;
+
+        const action = button.dataset.teamAction;
+        const playerUserId = button.dataset.userId;
+
+        if (!playerUserId) return;
+
+        const playerCard = button.closest(".team-member-card");
+        const roleLabel = playerCard?.querySelector(".team-member-role");
+
+        // Avoid acting on the captain's own card.
+        if (roleLabel?.textContent.trim() === "Capitán") {
+            return;
+        }
+
+        let confirmed = false;
+
+        if (action === "remove-player") {
+            confirmed = window.confirm(
+                "¿Seguro que querés eliminar a este jugador del equipo?"
+            );
+        } else if (action === "transfer-captain") {
+            confirmed = window.confirm(
+                "¿Querés transferir la capitanía a este jugador? " +
+                "Dejarás de ser el capitán y pasarás a ser jugador."
+            );
+        } else {
+            return;
+        }
+
+        if (!confirmed) return;
+
+        actionInProgress = true;
+
+        const actionButtons = membersList.querySelectorAll(
+            "[data-team-action]"
+        );
+
+        actionButtons.forEach((item) => {
+            item.disabled = true;
+        });
+
+        try {
+            // Recheck captain status immediately before the mutation.
+            const currentUser = await getCurrentUser();
+
+            if (!currentUser || !(await isCaptain(teamId, currentUser.id))) {
+                window.alert(
+                    "Ya no tenés permisos de capitán para realizar esta acción."
+                );
+                return;
+            }
+
+            const rpcName =
+                action === "remove-player"
+                    ? "remove_team_player"
+                    : "transfer_team_captain";
+
+            const rpcArgs =
+                action === "remove-player"
+                    ? {
+                        p_team_id: teamId,
+                        p_player_user_id: playerUserId
+                    }
+                    : {
+                        p_team_id: teamId,
+                        p_new_captain_user_id: playerUserId
+                    };
+
+            const { error } = await supabase.rpc(rpcName, rpcArgs);
+
+            if (error) {
+                console.error("TEAM MANAGEMENT ERROR:", error);
+
+                window.alert(
+                    action === "remove-player"
+                        ? "No se pudo eliminar al jugador. Intentá nuevamente."
+                        : "No se pudo transferir la capitanía. Intentá nuevamente."
+                );
+
+                return;
+            }
+
+            window.alert(
+                action === "remove-player"
+                    ? "Jugador eliminado del equipo correctamente."
+                    : "La capitanía se transfirió correctamente."
+            );
+
+            const members = await getTeamMembers(teamId);
+            renderMembers(
+                members,
+                await isCaptain(teamId, currentUser.id)
+            );
+        } catch (error) {
+            console.error("TEAM MANAGEMENT ERROR:", error);
+            window.alert(
+                "Ocurrió un error inesperado. Intentá nuevamente."
+            );
+        } finally {
+            actionInProgress = false;
+
+            membersList
+                .querySelectorAll("[data-team-action]")
+                .forEach((item) => {
+                    item.disabled = false;
+                });
+        }
+    });
+}
+
 
 // RENDER AVAILABILITY
 
@@ -4962,15 +5155,11 @@ if (maintenanceConflict) {
 
 export async function initTeamPage() {
 
-    const loading =
-        getElement("team-loading");
-
+    const loading = getElement("team-loading");
 
     try {
 
-        const teamId =
-            getTeamIdFromUrl();
-
+        const teamId = getTeamIdFromUrl();
 
         if (!teamId) {
 
@@ -4980,9 +5169,7 @@ export async function initTeamPage() {
 
         }
 
-
-        const user =
-            await getCurrentUser();
+        const user = await getCurrentUser();
 
                     let userIsCaptain = false;
 
@@ -4997,6 +5184,8 @@ export async function initTeamPage() {
         }
 
 
+        initTeamManagementActions(teamId, userIsCaptain);
+
         if (!user) {
 
             window.location.href =
@@ -5010,11 +5199,10 @@ export async function initTeamPage() {
 
         // LOAD TEAM
 
-        const team =
-            await getTeam(teamId);
-
+        const team = await getTeam(teamId);
 
         renderTeam(team);
+        initTeamEditing(team, user);
 
 
         // LOAD MEMBERS
@@ -5025,9 +5213,7 @@ export async function initTeamPage() {
             );
 
 
-        renderMembers(
-            members
-        );
+        renderMembers(members, userIsCaptain);
 
 
         // LOAD AVAILABILITY
@@ -5368,140 +5554,128 @@ if (fieldRequestSection) {
 }
 
 
-// FIELD REQUEST FORM
-
-const fieldRequestButton =
-    getElement("show-field-request-button");
-
-const fieldRequestForm =
-    getElement("team-field-request-form");
-
-const fieldRequestCancel =
-    getElement("cancel-field-request");
-
-const fieldRequestField =
-    getElement("field-request-field");
-
-const fieldRequestDate =
-    getElement("field-request-date");
-
-const fieldRequestFeedback =
-    getElement("field-request-feedback");
+    // FIELD REQUEST FORM
+    const fieldRequestButton = getElement("show-field-request-button");
+    const fieldRequestForm = getElement("team-field-request-form");
+    const fieldRequestCancel = getElement("cancel-field-request");
+    const fieldRequestField = getElement("field-request-field");
+    const fieldRequestDate = getElement("field-request-date");
+    const fieldRequestFeedback = getElement("field-request-feedback");
 
 
-// Populate field selector
+    // Populate field selector
 
-if (fieldRequestField) {
+    if (fieldRequestField) {
 
-    fields.forEach(field => {
+        fields.forEach(field => {
 
-        const option =
-            document.createElement("option");
+            const option =
+                document.createElement("option");
 
-        option.value = field.id;
-        option.textContent = field.name;
+            option.value = field.id;
+            option.textContent = field.name;
 
-        fieldRequestField.appendChild(
-            option
-        );
-    });
-}
-
-
-// Minimum date = today in Argentina
-
-if (fieldRequestDate) {
-
-    const argentinaToday =
-        new Intl.DateTimeFormat(
-            "en-CA",
-            {
-                timeZone:
-                    "America/Argentina/Buenos_Aires"
-            }
-        ).format(
-            new Date()
-        );
-
-    fieldRequestDate.min =
-        argentinaToday;
-}
+            fieldRequestField.appendChild(
+                option
+            );
+        });
+    }
 
 
-// Show form
+    // Minimum date = today in Argentina
 
-if (
-    userIsCaptain &&
-    fieldRequestButton &&
-    fieldRequestForm
-) {
+    if (fieldRequestDate) {
 
-    fieldRequestButton.addEventListener(
-        "click",
-        () => {
+        const argentinaToday =
+            new Intl.DateTimeFormat(
+                "en-CA",
+                {
+                    timeZone:
+                        "America/Argentina/Buenos_Aires"
+                }
+            ).format(
+                new Date()
+            );
 
-            fieldRequestForm.hidden =
-                false;
-
-            fieldRequestButton.hidden =
-                true;
-
-            if (fieldRequestFeedback) {
-                fieldRequestFeedback.hidden =
-                    true;
-            }
-        }
-    );
-}
+        fieldRequestDate.min =
+            argentinaToday;
+    }
 
 
-// Cancel
+    // Show form
 
-if (
-    userIsCaptain &&
-    fieldRequestCancel &&
-    fieldRequestForm
-) {
+    if (
+        userIsCaptain &&
+        fieldRequestButton &&
+        fieldRequestForm
+    ) {
 
-    fieldRequestCancel.addEventListener(
-        "click",
-        () => {
+        fieldRequestButton.addEventListener(
+            "click",
+            () => {
 
-            fieldRequestForm.reset();
-
-            fieldRequestForm.hidden =
-                true;
-
-            if (fieldRequestButton) {
-                fieldRequestButton.hidden =
+                fieldRequestForm.hidden =
                     false;
-            }
 
-            if (fieldRequestFeedback) {
-                fieldRequestFeedback.hidden =
+                fieldRequestButton.hidden =
                     true;
+
+                if (fieldRequestFeedback) {
+                    fieldRequestFeedback.hidden =
+                        true;
+                }
             }
-        }
-    );
-}
+        );
+    }
 
 
-// Submit
+    // Cancel
 
-if (
-    userIsCaptain &&
-    fieldRequestForm
-) {
+    if (
+        userIsCaptain &&
+        fieldRequestCancel &&
+        fieldRequestForm
+    ) {
 
-    fieldRequestForm.addEventListener(
-        "submit",
-        event =>
-            handleFieldRequestSubmit(
-                event,
-                teamId
-            )
-    );
-}
+        fieldRequestCancel.addEventListener(
+            "click",
+            () => {
+
+                fieldRequestForm.reset();
+
+                fieldRequestForm.hidden =
+                    true;
+
+                if (fieldRequestButton) {
+                    fieldRequestButton.hidden =
+                        false;
+                }
+
+                if (fieldRequestFeedback) {
+                    fieldRequestFeedback.hidden =
+                        true;
+                }
+            }
+        );
+    }
+
+
+    // Submit
+
+    if (
+        userIsCaptain &&
+        fieldRequestForm
+    ) {
+
+        fieldRequestForm.addEventListener(
+            "submit",
+            event =>
+                handleFieldRequestSubmit(
+                    event,
+                    teamId
+                )
+        );
+    }
 
         // CHECK CAPTAIN
         // LOAD USER'S CAPTAIN TEAMS
@@ -5671,14 +5845,20 @@ if (
          * their own team.
          */
 
-        if (
-            challengerTeams.length &&
-            !userIsCaptain
-        ) {
+                /*
+        * A captain cannot challenge their own team.
+        */
 
-            if (challengeActions) {
-                challengeActions.hidden = false;
-            }
+        const canChallenge =
+            challengerTeams.length > 0 && !userIsCaptain;
+
+        if (challengeButton) {
+            challengeButton.hidden = !canChallenge;
+        }
+
+        if (canChallenge) {
+
+                    
 
 
             if (challengeButton) {
@@ -5759,9 +5939,9 @@ if (
 
 
             const challengeCancel =
-    getElement(
-        "challenge-cancel"
-    );
+            getElement(
+                "challenge-cancel"
+            );
 
 
             if (challengeCancel) {
@@ -5788,9 +5968,9 @@ if (
             }
         );
 
-    }
-
         }
+
+    }
 
             if (userIsCaptain) {
 

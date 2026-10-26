@@ -1,153 +1,150 @@
 import { getCurrentUser, signOut, onAuthStateChange } from "../services/auth.js";
 import { getCurrentProfile } from "../services/profiles.js";
+import { supabase } from "../services/supabase.js";
 
 // UPDATE AUTH UI
 
 function updateAuthUI(profile) {
-
     const loggedIn = Boolean(profile);
 
-    // ACCOUNT-REQUIRED NAVIGATION
+    const ids = {
+        desktopRegister: "desktop-auth-nav",
+        desktopLogin: "desktop-login-nav",
+        desktopUser: "desktop-user-nav",
+        desktopLogout: "desktop-logout-nav",
+        mobileRegister: "mobile-register-nav",
+        mobileLogin: "mobile-login-nav",
+        mobileUser: "mobile-user-nav",
+        mobileLogout: "mobile-logout-nav",
+    };
 
-    const accountRequiredNavItems = [
+    // Account-required links
+    [
         "desktop-teams-nav",
         "desktop-players-nav",
         "mobile-teams-nav",
-        "mobile-players-nav"
+        "mobile-players-nav",
+    ].forEach((id) => {
+        const item = document.getElementById(id);
+        if (item) item.hidden = !loggedIn;
+    });
+
+    // Register and login should only appear when signed out
+    [
+        ids.desktopRegister,
+        ids.desktopLogin,
+        ids.mobileRegister,
+        ids.mobileLogin,
+    ].forEach((id) => {
+        const item = document.getElementById(id);
+        if (item) item.hidden = loggedIn;
+    });
+
+    // Profile and logout should only appear when signed in
+    [
+        ids.desktopUser,
+        ids.desktopLogout,
+        ids.mobileUser,
+        ids.mobileLogout,
+    ].forEach((id) => {
+        const item = document.getElementById(id);
+        if (item) item.hidden = !loggedIn;
+    });
+
+    // Update account display names
+    if (loggedIn) {
+        [ids.desktopUser, ids.mobileUser].forEach((id) => {
+            const item = document.getElementById(id);
+            const link = item?.querySelector("a");
+
+            if (link) {
+                link.textContent =
+                    profile.display_name ||
+                    profile.username ||
+                    "Mi cuenta";
+            }
+        });
+    }
+}
+
+
+// UPDATE ADMIN NAVIGATION
+
+async function updateAdminNav(user) {
+    const adminNavItems = [
+        "desktop-admin-nav",
+        "mobile-admin-nav"
     ];
 
-    accountRequiredNavItems.forEach((id) => {
+    // Hide links by default until authorization is confirmed.
+    adminNavItems.forEach((id) => {
         const item = document.getElementById(id);
 
         if (item) {
-            item.hidden = !loggedIn;
+            item.hidden = true;
         }
     });
 
-    //DESKTOP
-
-    const desktopRegister = document.getElementById("desktop-auth-nav");
-    const desktopLogin = document.getElementById("desktop-login-nav");
-    const desktopUser = document.getElementById("desktop-user-nav");
-    const desktopLogout = document.getElementById("desktop-logout-nav");
-
-    //MOBILE
-
-    const mobileRegister = document.getElementById("mobile-register-nav");
-    const mobileLogin = document.getElementById("mobile-login-nav");
-    const mobileUser = document.getElementById("mobile-user-nav");
-    const mobileLogout = document.getElementById("mobile-logout-nav");
-
-    //DESKTOP UI
-
-    if (desktopRegister) {
-
-        desktopRegister.hidden = loggedIn;
+    if (!user) {
+        return;
     }
 
+    try {
+        const { data: isAdmin, error } = await supabase.rpc(
+            "is_fulsap_admin"
+        );
 
-    if (desktopLogin) {
-
-        desktopLogin.hidden = loggedIn;
-    }
-
-
-    if (desktopUser) {
-
-        desktopUser.hidden = !loggedIn;
-
-        if (loggedIn) {
-
-            const link = desktopUser.querySelector("a");
-
-            if (link) {
-
-                link.textContent =
-                    profile.display_name ||
-                    profile.username ||
-                    "Mi cuenta";
-            }
+        if (error) {
+            console.error(
+                "Could not verify admin permissions:",
+                error
+            );
+            return;
         }
-    }
 
+        if (isAdmin === true) {
+            adminNavItems.forEach((id) => {
+                const item = document.getElementById(id);
 
-    if (desktopLogout) {
-
-        desktopLogout.hidden = !loggedIn;
-    }
-
-
-    //MOBILE UI
-
-    if (mobileRegister) {
-
-        mobileRegister.hidden = loggedIn;
-    }
-
-
-    if (mobileLogin) {
-
-        mobileLogin.hidden = loggedIn;
-    }
-
-
-    if (mobileUser) {
-
-        mobileUser.hidden = !loggedIn;
-
-        if (loggedIn) {
-
-            const link = mobileUser.querySelector("a");
-
-            if (link) {
-
-                link.textContent =
-                    profile.display_name ||
-                    profile.username ||
-                    "Mi cuenta";
-            }
+                if (item) {
+                    item.hidden = false;
+                }
+            });
         }
-    }
-
-
-    if (mobileLogout) {
-
-        mobileLogout.hidden = !loggedIn;
+    } catch (error) {
+        console.error(
+            "Admin navigation error:",
+            error
+        );
     }
 }
 
 
 // REFRESH AUTH UI
 
-async function refreshAuthUI() {
+// REFRESH AUTH UI
 
+async function refreshAuthUI() {
     const user = await getCurrentUser();
 
+    // Always refresh admin navigation, including when logged out.
+    await updateAdminNav(user);
 
     // LOGGED OUT
-
     if (!user) {
-
         updateAuthUI(null);
-
         return;
     }
 
-
     // LOGGED IN
-
     const profile = await getCurrentProfile();
 
-
     if (!profile) {
-
         console.warn(
             "Authenticated user found, but profile could not be loaded."
         );
-
         return;
     }
-
 
     updateAuthUI(profile);
 }
@@ -219,24 +216,16 @@ export function initAuthNav() {
 
     // AUTH STATE CHANGES
 
-    onAuthStateChange(
-        async (event, session) => {
+   // AUTH STATE CHANGES
 
-            console.log(
-                "AUTH EVENT:",
-                event
-            );
+    onAuthStateChange((event, session) => {
+        console.log("AUTH EVENT:", event);
 
-
-            if (!session) {
-
-                updateAuthUI(null);
-
-                return;
-            }
-
-
-            await refreshAuthUI();
-        }
-    );
+        // Defer the async work until the auth callback has finished.
+        setTimeout(() => {
+            refreshAuthUI().catch((error) => {
+                console.error("Error refreshing auth UI:", error);
+            });
+        }, 0);
+    });
 }

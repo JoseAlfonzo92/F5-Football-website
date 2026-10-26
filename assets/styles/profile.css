@@ -716,8 +716,8 @@
 ========================================================= */
 
 .profile-saved-fields {
-    width: min(100% - 32px, 1000px);
-    margin: 0 auto;
+    /* width: min(100% - 32px, 1000px); */
+    /* margin: 0 auto; */
     padding: var(--space-lg);
     background: var(--color-surface);
     border: 1px solid var(--color-border);

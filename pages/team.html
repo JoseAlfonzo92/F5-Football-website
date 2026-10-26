@@ -59,7 +59,7 @@
 </script>
 </head>
 <body>
-   <!-- HEADER -->
+     <!-- HEADER -->
     <header class="header">
         <div class="container">
             <!-- Logo -->
@@ -84,6 +84,7 @@
                             <li><a href="add-field.html">Agregar cancha</a></li>
                             <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
                              <li><a href="contact.html">Contacto</a></li>
+                             <li class="admin-required-nav" id="desktop-admin-nav" hidden><a href="admin.html">Administrador</a></li>
                             
                              <!-- AUTH -->
                             <li class="auth-nav-item" id="desktop-auth-nav"><a href="register.html">Registrarse</a></li>
@@ -124,10 +125,11 @@
                     <li><a href="add-field.html">Agregar cancha</a></li>
                     <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
                     <li><a href="contact.html">Contacto</a></li>
+                    <li class="admin-required-nav" id="mobile-admin-nav" hidden><a href="admin.html">Administrador</a></li>
                     
                     <!-- AUTH -->
-                    <li class="auth-nav-item" id="mobile-register-nav"><a href="register.html">Registrarse</a></li>
-                    <li class="auth-nav-item" id="mobile-login-nav"><a href="login.html">Iniciar sesión</a></li>
+                    <li class="auth-nav-item" id="mobile-register-nav" hidden><a href="register.html">Registrarse</a></li>
+                    <li class="auth-nav-item" id="mobile-login-nav" hidden><a href="login.html">Iniciar sesión</a></li>
                     <li class="auth-nav-item" id="mobile-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
                     <li class="auth-nav-item" id="mobile-logout-nav" hidden><button type="button" id="mobile-logout-button">Cerrar sesión</button></li>
 
@@ -224,7 +226,7 @@
                 <div
                     class="team-detail-actions"
                     id="team-detail-actions"
-                    hidden
+                    
                 >
 
                     <!-- Challenge button -->
@@ -237,7 +239,90 @@
                         Desafiar equipo
                     </button>
 
+
+                    <!-- edit team buttons -->
+                                     <!-- Edit team button: visibility controlled by team.js -->
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="edit-team-button"
+                    hidden
+                >
+                    Editar equipo
+                </button>
+
                 </div>
+
+
+                                <!-- EDIT TEAM FORM -->
+                <form id="edit-team-form" class="team-edit-form" hidden>
+                    <h2>Editar equipo</h2>
+
+                    <div class="team-edit-field">
+                        <label for="edit-team-name">Nombre del equipo</label>
+                        <input
+                            type="text"
+                            id="edit-team-name"
+                            name="name"
+                            maxlength="80"
+                            required
+                        >
+                    </div>
+
+                    <div class="team-edit-field">
+                        <label for="edit-team-description">Descripción</label>
+                        <textarea
+                            id="edit-team-description"
+                            name="description"
+                            rows="3"
+                            maxlength="500"
+                        ></textarea>
+                    </div>
+
+                    <div class="team-edit-field">
+                        <label for="edit-team-zone">Zona</label>
+                        <input
+                            type="text"
+                            id="edit-team-zone"
+                            name="zone"
+                            maxlength="100"
+                        >
+                    </div>
+
+                    <div class="team-edit-field">
+                        <label for="edit-team-level">Nivel</label>
+                        <select id="edit-team-level" name="level">
+                            <option value="">Sin nivel</option>
+                            <option value="beginner">Principiante</option>
+                            <option value="intermediate">Intermedio</option>
+                            <option value="advanced">Avanzado</option>
+                            <option value="competitive">Competitivo</option>
+                        </select>
+                    </div>
+
+                    <div class="team-edit-field">
+                        <label for="edit-team-logo">URL del escudo (opcional)</label>
+                        <input
+                            type="url"
+                            id="edit-team-logo"
+                            name="logo_url"
+                            maxlength="2048"
+                            placeholder="https://..."
+                        >
+                    </div>
+
+                    <p id="edit-team-message" role="status" aria-live="polite"></p>
+
+                    <div class="team-edit-actions">
+                        <button type="submit" class="btn-primary" id="save-team-button">
+                            Guardar cambios
+                        </button>
+
+                        <button type="button" class="btn-secondary" id="cancel-edit-team-button">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
 
 
                 <!-- ==========================================

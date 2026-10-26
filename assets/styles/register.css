@@ -73,6 +73,17 @@
     line-height: 1.6;
 }
 
+/* Support both heading levels on auth pages */
+.auth-header h1,
+.auth-header h2 {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+
 
 /* ============================================
    AUTH FORM
@@ -313,6 +324,7 @@
         padding: var(--space-lg);
     }
 
+    .auth-header h1,
     .auth-header h2 {
         font-size: var(--font-size-xl);
     }
@@ -321,4 +333,80 @@
         font-size: var(--font-size-sm);
     }
 
+}
+
+
+
+/* Both password-recovery forms */
+#recovery-email-form,
+#reset-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+#recovery-email-form[hidden],
+#reset-password-form[hidden] {
+    display: none !important;
+}
+
+#recovery-email-form .form-group,
+#reset-password-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+#recovery-email-form label,
+#reset-password-form label {
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+#recovery-email-form .form-input,
+#reset-password-form .form-input {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+}
+
+#recovery-email-form .form-input:focus,
+#reset-password-form .form-input:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+#recovery-email-button,
+#reset-password-button {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px var(--space-md);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-primary);
+    color: var(--color-text-buttons);
+    font-family: var(--font-main);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+#recovery-email-button:hover:not(:disabled),
+#reset-password-button:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+}
+
+#recovery-email-button:disabled,
+#reset-password-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
 }

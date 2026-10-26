@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta
+    name="description"
+    content="Publicá tu cancha de fútbol en Fulsap y conseguí más consultas y reservas. Mostrá precios, horarios, fotos, comodidades y permití que miles de jugadores encuentren tu establecimiento.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador | Fulsap</title>
+
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/admin-dashboard.css">
+
+    <!-- Apple Touch icon (still useful for iOS) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+
+    <!-- Manifest (for PWA support) -->
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+    <!-- Theme‑specific favicons -->
+    <link rel="icon" href="../assets/favicon/fulsap-white-theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="../assets/favicon/fulsap-black-theme.ico" media="(prefers-color-scheme: dark)"> 
+
+    <!-- font awesome cdn link -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+<!-- Leaflet CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
+
+<!-- Leaflet JS -->
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
+<!-- Routing Machine CSS -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" /> -->
+
+<!-- Routing Machine JS -->
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script> -->
+
+<!-- prevent theme flash on load -->
+<script>
+(function () {
+    const savedTheme = localStorage.getItem("theme");
+
+    const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const theme = savedTheme || (systemDark ? "dark" : "light");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+})();
+</script>
+</head>
+<body>
+   <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <h1>Fulsap</h1>
+            </a>
+            
+            <!-- Desktop Search -->
+            <div class="search desktop-search">
+                <input type="text" class="global-search" placeholder="Buscar canchas, precios...">
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="nav desktop-nav">
+                <ul>
+                    <li class="dropdown"><a href="#" class="quick-link">Enlaces rápidos <span data-icon="arrow"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../index.html">Inicio</a></li>
+                            <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                            <li class="account-required-nav" id="desktop-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                            <li class="account-required-nav" id="desktop-players-nav"><a href="players.html">Jugadores</a></li>
+                            <li><a href="add-field.html">Agregar cancha</a></li>
+                            <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                             <li><a href="contact.html">Contacto</a></li>
+                             <li class="admin-required-nav" id="desktop-admin-nav" hidden><a href="admin.html">Administrador</a></li>
+                            
+                             <!-- AUTH -->
+                            <li class="auth-nav-item" id="desktop-auth-nav"><a href="register.html">Registrarse</a></li>
+                            <li class="auth-nav-item" id="desktop-login-nav"><a href="login.html">Iniciar sesión</a></li>
+
+                            <li class="auth-nav-item" id="desktop-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                            <li class="auth-nav-item" id="desktop-logout-nav" hidden><button type="button" id="desktop-logout-button">Cerrar sesión</button></li>
+
+                        </ul>
+
+                    </li>
+                    <li><button class="theme-toggle"></button></li>
+               </ul>
+            </nav>
+
+            <!-- MOBILE -->
+            <div class="controls mobile-only">
+                <span data-icon="search" id="search-toggle"></span>
+                    <div class="menu-toggle" id="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+            </div>
+            
+            <!-- Mobile Search -->
+            <div class="search mobile-search" id="mobile-search">
+                <input type="text" class="global-search" placeholder="Buscar...">
+            </div>
+
+            <!-- Mobile Nav -->
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul>    
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="all-fields-page.html">Todas las canchas</a></li>
+                    <li class="account-required-nav" id="mobile-teams-nav"><a href="all-teams.html">Todos los equipos</a></li>
+                    <li class="account-required-nav" id="mobile-players-nav"><a href="players.html">Jugadores</a></li>
+                    <li><a href="add-field.html">Agregar cancha</a></li>
+                    <!-- <li><a href="terms-page.html">Términos y condiciones</a></li> -->
+                    <li><a href="contact.html">Contacto</a></li>
+                    <li class="admin-required-nav" id="mobile-admin-nav" hidden><a href="admin.html">Administrador</a></li>
+                    
+                    <!-- AUTH -->
+                    <li class="auth-nav-item" id="mobile-register-nav" hidden><a href="register.html">Registrarse</a></li>
+                    <li class="auth-nav-item" id="mobile-login-nav" hidden><a href="login.html">Iniciar sesión</a></li>
+                    <li class="auth-nav-item" id="mobile-user-nav" hidden><a href="profile.html">Mi cuenta</a></li>
+                    <li class="auth-nav-item" id="mobile-logout-nav" hidden><button type="button" id="mobile-logout-button">Cerrar sesión</button></li>
+
+                    <li><button class="theme-toggle mobile-theme"></button></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+<main id="admin-dashboard-page" class="admin-shell">
+  <header class="topbar">
+    <!-- <a class="brand" href="../index.html" aria-label="Inicio de Fulsap">
+      <span class="brand-mark">F</span>
+      <span>fulsap<span class="brand-muted"> / administración</span></span>
+    </a> -->
+
+    <div id="session-tools" class="session-tools" hidden>
+      <span id="admin-email" class="session-email"></span>
+      <button id="sign-out" class="button button-quiet" type="button">
+        Cerrar sesión
+      </button>
+    </div>
+  </header>
+
+  <section id="loading-state" class="state-panel">
+    <span class="spinner" aria-hidden="true"></span>
+    <p>Verificando tu sesión…</p>
+  </section>
+
+  <section id="login-view" class="login-wrap" hidden>
+    <div class="login-card">
+      <div class="eyebrow">ÁREA RESTRINGIDA</div>
+      <h1>Acceso de administrador</h1>
+      <p class="muted">
+        Iniciá sesión con tu cuenta de administrador de Fulsap para gestionar
+        las solicitudes y las canchas publicadas.
+      </p>
+
+      <form id="login-form" class="stack">
+        <label for="login-email">Correo electrónico</label>
+        <input
+          id="login-email"
+          name="email"
+          type="email"
+          autocomplete="username"
+          required
+        >
+
+        <label for="login-password">Contraseña</label>
+        <input
+          id="login-password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button class="button button-primary" type="submit">
+          Iniciar sesión
+        </button>
+
+        <p id="login-error" class="notice notice-error" role="alert" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="denied-view" class="state-panel" hidden>
+    <div class="state-icon">!</div>
+    <h1>Acceso restringido</h1>
+    <p class="muted">
+      Iniciaste sesión, pero tu cuenta no tiene permisos de administrador
+      en Fulsap.
+    </p>
+    <button id="denied-sign-out" class="button button-quiet" type="button">
+      Cerrar sesión
+    </button>
+  </section>
+
+  <section id="dashboard-view" hidden>
+    <div class="page-heading">
+      <div>
+        <div class="eyebrow">PANEL DE CONTROL</div>
+        <h1>Gestión de canchas</h1>
+        <p class="muted">
+          Revisá las solicitudes, verificá los pagos manualmente y
+          administrá las canchas publicadas.
+        </p>
+      </div>
+
+      <button id="refresh-button" class="button button-quiet" type="button">
+        ↻ Actualizar
+      </button>
+    </div>
+
+    <div id="global-notice" class="notice" role="status" hidden></div>
+
+    <div class="stats-grid">
+      <article class="stat-card">
+        <span class="stat-label">Solicitudes pendientes</span>
+        <strong id="stat-pending">—</strong>
+        <span class="stat-foot">Esperando revisión</span>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Pagos verificados</span>
+        <strong id="stat-paid">—</strong>
+        <span class="stat-foot">Listos para aprobar</span>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Canchas publicadas</span>
+        <strong id="stat-active">—</strong>
+        <span class="stat-foot">Visibles para el público</span>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Canchas bloqueadas</span>
+        <strong id="stat-blocked">—</strong>
+        <span class="stat-foot">Ocultas de los listados</span>
+      </article>
+    </div>
+
+    <nav class="tabs" aria-label="Secciones de administración">
+      <button class="tab is-active" data-tab="submissions" type="button">
+        Solicitudes
+        <span id="pending-tab-count" class="tab-count">0</span>
+      </button>
+
+      <button class="tab" data-tab="fields" type="button">
+        Canchas publicadas
+      </button>
+
+      <button class="tab" data-tab="activity" type="button">
+        Historial de acciones
+      </button>
+    </nav>
+
+    <section id="panel-submissions" class="tab-panel">
+      <div class="section-heading">
+        <div>
+          <h2>Solicitudes de publicación</h2>
+          <p class="muted">
+            Es obligatorio verificar el pago antes de aprobar una solicitud.
+          </p>
+        </div>
+
+        <div class="filters">
+          <input
+            id="submission-search"
+            type="search"
+            placeholder="Buscar por nombre o ciudad…"
+            aria-label="Buscar solicitudes por nombre o ciudad"
+          >
+
+          <select id="submission-filter" aria-label="Filtrar solicitudes">
+            <option value="pending">Pendientes</option>
+            <option value="all">Todos los estados</option>
+            <option value="approved">Aprobadas</option>
+            <option value="rejected">Canceladas / rechazadas</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="submission-list" class="card-list">
+        <div class="empty-state">Cargando solicitudes…</div>
+      </div>
+    </section>
+
+    <section id="panel-fields" class="tab-panel" hidden>
+      <div class="section-heading">
+        <div>
+          <h2>Canchas publicadas</h2>
+          <p class="muted">
+            Podés bloquear una cancha para ocultarla de los resultados
+            públicos sin eliminarla.
+          </p>
+        </div>
+
+        <input
+          id="field-search"
+          type="search"
+          placeholder="Buscar canchas…"
+          aria-label="Buscar canchas"
+        >
+      </div>
+
+      <div id="field-list" class="card-list">
+        <div class="empty-state">Cargando canchas…</div>
+      </div>
+    </section>
+
+    <section id="panel-activity" class="tab-panel" hidden>
+      <div class="section-heading">
+        <div>
+          <h2>Historial de acciones</h2>
+          <p class="muted">
+            Consultá los últimos cambios realizados desde el panel de administración.
+          </p>
+        </div>
+      </div>
+
+      <div id="activity-list" class="activity-list">
+        <div class="empty-state">Cargando historial…</div>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      Fulsap · Las acciones administrativas quedan registradas en el historial.
+    </footer>
+  </section>
+</main>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <a href="../index.html" class="footer-logo">Fulsap</a>
+
+            <p>
+            Descubrí, compará y contactá canchas de fútbol en Argentina desde una sola plataforma.
+        </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h4>Explorar</h4>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/all-fields-page.html">Todas las canchas</a></li>
+                <li><a href="../pages/info-page.html">Cómo funciona</a></li>
+                <li><a href="../pages/info-page.html#help-faq">Preguntas frecuentes</a></li>
+                <li><a href="../pages/contact.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>Av. Calle 1234, Provincia, Argentina</p>
+            <p>+54 11 1234-5678</p>
+            <p>email@fulsap.com.ar</p>
+        </div>
+
+        <!-- SOCIALS -->
+        <div class="footer-socials">
+            <h4>Seguinos</h4>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank"><span data-icon="instagram"></span></a>
+                <a href="https://www.facebook.com/" target="_blank"><span data-icon="facebook"></span></a>
+                <a href="https://x.com/" target="_blank"><span data-icon="xTwitter"></span></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><span data-icon="whatsapp"></span></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+    <p>© 2026 Fulsap. Todos los derechos reservados.</p>
+
+    <p class="developer">
+        Propiedad y desarrollo de
+        <a href="https://zonofal.com" target="_blank" rel="noopener noreferrer">
+            Zonofal
+        </a>
+    </p>
+
+    <div class="footer-legal">
+        <a href="../pages/terms-page.html">Términos y Condiciones</a>
+        <span>•</span>
+        <a href="../pages/privacy-page.html">Política de Privacidad</a>
+        <span>•</span>
+        <a href="../pages/add-field.html">Sumá tu cancha</a>
+    </div>
+</div>
+</footer>
+<script type="module" src="../assets/scripts/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>

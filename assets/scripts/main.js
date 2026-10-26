@@ -28,6 +28,8 @@ import { initPlayerPage } from "./pages-js/player.js";
 import { initFieldOwnerPage } from "./pages-js/fieldOwner.js";
 import { initEditFieldPage } from "./pages-js/editField.js";
 import { getPublishFieldUrl } from "./services/auth.js";
+//import { initPasswordReset } from "./pages-js/resetPassword.js";
+import { initAdminDashboard } from "./pages-js/adminDashboard.js";
 
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -101,6 +103,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         initLoginPage();
     }
 
+        // PASSWORD RESET PAGE
+    if (
+        document.getElementById("recovery-email-form") &&
+        document.getElementById("reset-password-form")
+    ) {
+        const { initPasswordReset } =
+            await import("./pages-js/resetPassword.js");
+
+        initPasswordReset();
+    }
+
     // PROFILE PAGE
     if (document.querySelector("#profile-card")) {
         initProfilePage();
@@ -145,6 +158,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         await initFieldOwnerPage();
 
+    }
+
+     // ADMIN DASHBOARD PAGE
+    if (document.getElementById("admin-dashboard-page")) {
+        await initAdminDashboard();
     }
 
     // EDIT FIELD PAGE
