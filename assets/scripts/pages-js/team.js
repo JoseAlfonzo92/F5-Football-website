@@ -104,7 +104,8 @@ export async function getCaptainTeams(userId) {
             role,
             teams (
                 id,
-                name
+                name,
+                is_active
             )
         `)
         .eq("user_id", userId)
@@ -147,12 +148,15 @@ function renderChallengeTeams(
     `;
 
 
-    captainTeams
-        .filter(
-            item =>
-                item.team_id !== currentTeamId
-        )
-        .forEach(item => {
+    
+captainTeams
+    .filter(
+        item =>
+            item.team_id !== currentTeamId &&
+            item.teams?.is_active === true
+    )
+    .forEach(item => {
+
 
             const option =
                 document.createElement("option");
@@ -194,16 +198,19 @@ async function getTeam(teamId) {
         error
     } = await supabase
         .from("teams")
-        .select(`
-            id,
-            name,
-            description,
-            logo_url,
-            zone,
-            level,
-            created_by,
-            created_at
-        `)
+        
+.select(`
+    id,
+    name,
+    description,
+    logo_url,
+    zone,
+    level,
+    created_by,
+    created_at,
+    is_active
+`)
+
         .eq("id", teamId)
         .single();
 
@@ -2266,6 +2273,9 @@ async function refreshTeamMatches(teamId) {
 // RENDER TEAM
 
 function renderTeam(team) {
+    
+console.log("Team active status:", team.is_active, team);
+
 
     const detail =
         getElement("team-detail");
@@ -2273,6 +2283,12 @@ function renderTeam(team) {
     if (detail) {
         detail.hidden = false;
     }
+
+    const inactiveStatus = getElement("team-inactive-status");
+
+if (inactiveStatus) {
+    inactiveStatus.hidden = team.is_active !== false;
+}
 
 
     const name =
@@ -2365,6 +2381,7 @@ function renderTeam(team) {
 }
 
 
+
 function initTeamEditing(team, user) {
     const editButton = getElement("edit-team-button");
     const form = getElement("edit-team-form");
@@ -2393,6 +2410,19 @@ function initTeamEditing(team, user) {
     const levelInput = getElement("edit-team-level");
     const logoInput = getElement("edit-team-logo");
 
+    // Crest upload elements
+    const logoTrigger = getElement("edit-team-logo-trigger");
+    const logoFileInput = getElement("edit-team-logo-file");
+    const logoPreview = getElement("edit-team-logo-preview");
+    const logoPlaceholder = getElement("edit-team-logo-placeholder");
+
+    // Cloudinary configuration
+    const CLOUDINARY_CLOUD_NAME = "dolmulmgp";
+    const CLOUDINARY_UPLOAD_PRESET = "f5-team-crests";
+
+    let selectedLogoFile = null;
+    let previewObjectUrl = null;
+
     function showEditMessage(text, type = "") {
         if (!message) return;
 
@@ -2401,12 +2431,78 @@ function initTeamEditing(team, user) {
         message.hidden = !text;
     }
 
+    function updateLogoPreview(url) {
+        if (!logoPreview || !logoPlaceholder) return;
+
+        if (url) {
+            logoPreview.src = url;
+            logoPreview.hidden = false;
+            logoPlaceholder.hidden = true;
+        } else {
+            logoPreview.removeAttribute("src");
+            logoPreview.hidden = true;
+            logoPlaceholder.hidden = false;
+        }
+    }
+
+    function clearLogoSelection() {
+        selectedLogoFile = null;
+
+        if (logoFileInput) {
+            logoFileInput.value = "";
+        }
+
+        if (previewObjectUrl) {
+            URL.revokeObjectURL(previewObjectUrl);
+            previewObjectUrl = null;
+        }
+    }
+
+    function resetLogoEditor() {
+        clearLogoSelection();
+
+        if (logoInput) {
+            logoInput.value = team.logo_url || "";
+        }
+
+        updateLogoPreview(team.logo_url || "");
+    }
+
+    async function uploadTeamLogo(file) {
+        const formData = new FormData();
+
+        formData.append("file", file);
+        formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+        const response = await fetch(
+            `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.secure_url) {
+            console.error("Cloudinary upload error:", data);
+
+            throw new Error(
+                data.error?.message ||
+                "No se pudo subir el escudo. Intentá nuevamente."
+            );
+        }
+
+        return data.secure_url;
+    }
+
     function openForm() {
         nameInput.value = team.name || "";
         descriptionInput.value = team.description || "";
         zoneInput.value = team.zone || "";
         levelInput.value = team.level || "";
-        logoInput.value = team.logo_url || "";
+
+        resetLogoEditor();
 
         showEditMessage("");
         form.hidden = false;
@@ -2415,9 +2511,50 @@ function initTeamEditing(team, user) {
     }
 
     function closeForm() {
+        resetLogoEditor();
+
         form.hidden = true;
         editButton.hidden = false;
         showEditMessage("");
+    }
+
+    // Open file picker when clicking the crest.
+    if (logoTrigger && logoFileInput) {
+        logoTrigger.addEventListener("click", () => {
+            logoFileInput.click();
+        });
+
+        logoFileInput.addEventListener("change", () => {
+            const file = logoFileInput.files?.[0];
+
+            if (!file) return;
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            ];
+
+            if (!allowedTypes.includes(file.type)) {
+                clearLogoSelection();
+                updateLogoPreview(team.logo_url || "");
+
+                showEditMessage(
+                    "El archivo debe ser JPG, PNG o WebP.",
+                    "error"
+                );
+
+                return;
+            }
+
+            clearLogoSelection();
+
+            selectedLogoFile = file;
+            previewObjectUrl = URL.createObjectURL(file);
+
+            updateLogoPreview(previewObjectUrl);
+            showEditMessage("");
+        });
     }
 
     editButton.addEventListener("click", openForm);
@@ -2431,7 +2568,11 @@ function initTeamEditing(team, user) {
         const name = nameInput.value.trim();
 
         if (!name) {
-            showEditMessage("El nombre del equipo es obligatorio.", "error");
+            showEditMessage(
+                "El nombre del equipo es obligatorio.",
+                "error"
+            );
+
             nameInput.focus();
             return;
         }
@@ -2442,28 +2583,44 @@ function initTeamEditing(team, user) {
             try {
                 const parsedUrl = new URL(logoUrl);
 
-                if (parsedUrl.protocol !== "https:" && parsedUrl.protocol !== "http:") {
+                if (
+                    parsedUrl.protocol !== "https:" &&
+                    parsedUrl.protocol !== "http:"
+                ) {
                     throw new Error("Invalid URL protocol");
                 }
             } catch {
-                showEditMessage("Ingresá una URL válida para el escudo.", "error");
+                showEditMessage(
+                    "Ingresá una URL válida para el escudo.",
+                    "error"
+                );
+
                 logoInput.focus();
                 return;
             }
         }
 
-        const updatedTeam = {
-            name,
-            description: descriptionInput.value.trim() || null,
-            zone: zoneInput.value.trim() || null,
-            level: levelInput.value || null,
-            logo_url: logoUrl || null
-        };
-
         saveButton.disabled = true;
         saveButton.textContent = "Guardando...";
 
         try {
+            // A newly selected file takes priority over the manual URL.
+            if (selectedLogoFile) {
+                showEditMessage("Subiendo escudo...", "info");
+
+                logoUrl = await uploadTeamLogo(selectedLogoFile);
+            }
+
+            const updatedTeam = {
+                name,
+                description: descriptionInput.value.trim() || null,
+                zone: zoneInput.value.trim() || null,
+                level: levelInput.value || null,
+                logo_url: logoUrl || null
+            };
+
+            showEditMessage("Guardando cambios...", "info");
+
             const { data, error } = await supabase
                 .from("teams")
                 .update(updatedTeam)
@@ -2495,7 +2652,11 @@ function initTeamEditing(team, user) {
             renderTeam(team);
 
             closeForm();
-            showMessage("Equipo actualizado correctamente.", "success");
+
+            showMessage(
+                "Equipo actualizado correctamente.",
+                "success"
+            );
 
         } catch (error) {
             console.error("Error updating team:", error);
@@ -2511,6 +2672,7 @@ function initTeamEditing(team, user) {
         }
     });
 }
+
 
 // RENDER MEMBERS
 
@@ -5151,6 +5313,196 @@ if (maintenanceConflict) {
 
 
 
+
+function initTeamDeactivation(team, user, captain) {
+    const deactivateButton = getElement("deactivate-team-btn");
+    const reactivateButton = getElement("reactivate-team-btn");
+    const deleteButton = getElement("delete-team-btn");
+    const inactiveStatus = getElement("team-inactive-status");
+
+    
+
+    // Show the correct button based on the team's status and permissions.
+    if (deactivateButton) {
+        deactivateButton.hidden =
+            team.is_active === false || !captain || !user;
+    }
+
+    if (reactivateButton) {
+        reactivateButton.hidden =
+            team.is_active !== false || !captain || !user;
+    }
+
+    
+    if (deleteButton) {
+        deleteButton.hidden = !captain || !user;
+    }
+
+
+    if (inactiveStatus) {
+        inactiveStatus.hidden = team.is_active !== false;
+    }
+
+    // Avoid registering duplicate event listeners.
+    if (deactivateButton &&
+        deactivateButton.dataset.deactivationInitialized !== "true") {
+
+        deactivateButton.dataset.deactivationInitialized = "true";
+
+        deactivateButton.addEventListener("click", async () => {
+            const confirmed = window.confirm(
+                "¿Seguro que querés desactivar este equipo? No podrás crear nuevas actividades para él, pero su historial de partidos seguirá disponible."
+            );
+
+            if (!confirmed) return;
+
+            deactivateButton.disabled = true;
+
+            try {
+                const { error } = await supabase.rpc("deactivate_team", {
+                    p_team_id: team.id
+                });
+
+                if (error) throw error;
+
+                team.is_active = false;
+
+                deactivateButton.hidden = true;
+
+                if (reactivateButton && captain && user) {
+                    reactivateButton.hidden = false;
+                }
+
+                if (inactiveStatus) {
+                    inactiveStatus.hidden = false;
+                }
+
+                showMessage(
+                    "El equipo fue desactivado correctamente.",
+                    "success"
+                );
+            } catch (error) {
+                console.error("Error deactivating team:", error);
+
+                showMessage(
+                    "No pudimos desactivar el equipo. Intentá nuevamente.",
+                    "error"
+                );
+            } finally {
+                deactivateButton.disabled = false;
+            }
+        });
+    }
+
+    // Reactivation handler.
+    if (reactivateButton &&
+        reactivateButton.dataset.reactivationInitialized !== "true") {
+
+        reactivateButton.dataset.reactivationInitialized = "true";
+
+        reactivateButton.addEventListener("click", async () => {
+            const confirmed = window.confirm(
+                "¿Querés reactivar este equipo? Volverá a estar disponible para crear nuevas actividades."
+            );
+
+            if (!confirmed) return;
+
+            reactivateButton.disabled = true;
+
+            try {
+                const { error } = await supabase.rpc("reactivate_team", {
+                    p_team_id: team.id
+                });
+
+                if (error) throw error;
+
+                team.is_active = true;
+
+                reactivateButton.hidden = true;
+
+                if (deactivateButton && captain && user) {
+                    deactivateButton.hidden = false;
+                }
+
+                if (inactiveStatus) {
+                    inactiveStatus.hidden = true;
+                }
+
+                showMessage(
+                    "El equipo fue reactivado correctamente.",
+                    "success"
+                );
+            } catch (error) {
+                console.error("Error reactivating team:", error);
+
+                showMessage(
+                    "No pudimos reactivar el equipo. Intentá nuevamente.",
+                    "error"
+                );
+            } finally {
+                reactivateButton.disabled = false;
+            }
+        });
+    }
+
+    
+    // Permanent deletion handler.
+    if (
+        deleteButton &&
+        deleteButton.dataset.deletionInitialized !== "true"
+    ) {
+        deleteButton.dataset.deletionInitialized = "true";
+
+        deleteButton.addEventListener("click", async () => {
+            // Recheck the UI-level permission before requesting deletion.
+            if (!captain || !user) {
+                showMessage(
+                    "Solo el capitán del equipo puede eliminarlo.",
+                    "error"
+                );
+                return;
+            }
+
+            const confirmed = window.confirm(
+                `¿Eliminar permanentemente el equipo "${team.name}"?\n\n` +
+                "Esta acción no se puede deshacer. También podrían eliminarse " +
+                "los partidos, desafíos y otros registros relacionados con este equipo."
+            );
+
+            if (!confirmed) return;
+
+            deleteButton.disabled = true;
+
+            try {
+                const { error } = await supabase.rpc("delete_team", {
+                    p_team_id: team.id
+                });
+
+                if (error) throw error;
+
+                showMessage(
+                    "El equipo fue eliminado correctamente.",
+                    "success"
+                );
+
+                window.location.href = "teams.html";
+            } catch (error) {
+                console.error("Error deleting team:", error);
+
+                showMessage(
+                    "No pudimos eliminar el equipo. Intentá nuevamente.",
+                    "error"
+                );
+            } finally {
+                deleteButton.disabled = false;
+            }
+        });
+    }
+
+
+}
+
+
 // INITIALIZE
 
 export async function initTeamPage() {
@@ -5202,6 +5554,7 @@ export async function initTeamPage() {
         const team = await getTeam(teamId);
 
         renderTeam(team);
+        initTeamDeactivation(team, user, userIsCaptain);
         initTeamEditing(team, user);
 
 
@@ -5280,6 +5633,7 @@ export async function initTeamPage() {
     matchTeams,
     userIsCaptain
 );
+
 
     // MATCH ACTION BUTTONS 
     const matchesList =
@@ -5849,12 +6203,28 @@ if (fieldRequestSection) {
         * A captain cannot challenge their own team.
         */
 
-        const canChallenge =
-            challengerTeams.length > 0 && !userIsCaptain;
+        
+const challengeUnavailableMessage = getElement(
+    "challenge-unavailable-message"
+);
 
-        if (challengeButton) {
-            challengeButton.hidden = !canChallenge;
-        }
+const viewedTeamIsInactive = team.is_active === false;
+
+const canChallenge =
+    challengerTeams.some(
+        item => item.teams?.is_active === true
+    ) &&
+    !viewedTeamIsInactive &&
+    !userIsCaptain;
+
+if (challengeButton) {
+    challengeButton.hidden = !canChallenge;
+}
+
+if (challengeUnavailableMessage) {
+    challengeUnavailableMessage.hidden = !viewedTeamIsInactive;
+}
+
 
         if (canChallenge) {
 

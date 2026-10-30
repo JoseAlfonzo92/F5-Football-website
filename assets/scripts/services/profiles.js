@@ -80,9 +80,9 @@ export async function isUsernameAvailable(
 
 export async function updateProfile({
     username,
-    displayName
+    displayName,
+    avatarUrl
 }) {
-
     const {
         data: {
             user
@@ -90,31 +90,33 @@ export async function updateProfile({
         error: userError
     } = await supabase.auth.getUser();
 
-
     if (userError || !user) {
-
         throw new Error(
             "No hay una sesión activa."
         );
     }
 
+    const profileUpdates = {
+        username,
+        display_name: displayName
+    };
+
+    // Only update avatar_url when explicitly provided.
+    if (avatarUrl !== undefined) {
+        profileUpdates.avatar_url = avatarUrl;
+    }
 
     const {
         data,
         error
     } = await supabase
         .from("profiles")
-        .update({
-            username,
-            display_name: displayName
-        })
+        .update(profileUpdates)
         .eq("id", user.id)
         .select()
         .single();
 
-
     if (error) {
-
         console.error(
             "Error updating profile:",
             error
@@ -122,7 +124,6 @@ export async function updateProfile({
 
         throw error;
     }
-
 
     return data;
 }

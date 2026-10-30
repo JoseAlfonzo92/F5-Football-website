@@ -219,6 +219,17 @@
                 </div>
 
 
+                <div id="team-inactive-status" hidden>
+    <span class="team-card-status-inactive">
+        Equipo inactivo
+    </span>
+
+    <p id="team-inactive-notice">
+        Este equipo ya no está activo en Fulsap, pero podés consultar su historial de partidos.
+    </p>
+</div>
+
+
                 <!-- ==========================================
                      TEAM ACTIONS
                 =========================================== -->
@@ -240,6 +251,13 @@
                     </button>
 
 
+                    
+<p id="challenge-unavailable-message" hidden>
+    No podés desafiar a este equipo porque está inactivo.
+</p>
+
+
+
                     <!-- edit team buttons -->
                                      <!-- Edit team button: visibility controlled by team.js -->
                 <button
@@ -251,78 +269,155 @@
                     Editar equipo
                 </button>
 
+
+                
+<button id="deactivate-team-btn" type="button" hidden>
+    Desactivar equipo
+</button>
+
+
+<button id="reactivate-team-btn" type="button" hidden>
+    Reactivar equipo
+</button>
+
+
+
+<button
+    id="delete-team-btn"
+    class="team-action-btn team-action-btn--danger"
+    type="button"
+    hidden
+>
+    Eliminar equipo permanentemente
+</button>
+
+
+
                 </div>
 
 
                                 <!-- EDIT TEAM FORM -->
-                <form id="edit-team-form" class="team-edit-form" hidden>
-                    <h2>Editar equipo</h2>
+                
+<!-- EDIT TEAM FORM -->
+<form id="edit-team-form" class="team-edit-form" hidden>
+    <h2>Editar equipo</h2>
 
-                    <div class="team-edit-field">
-                        <label for="edit-team-name">Nombre del equipo</label>
-                        <input
-                            type="text"
-                            id="edit-team-name"
-                            name="name"
-                            maxlength="80"
-                            required
-                        >
-                    </div>
+    <div class="team-edit-field">
+        <label for="edit-team-name">Nombre del equipo</label>
+        <input
+            type="text"
+            id="edit-team-name"
+            name="name"
+            maxlength="80"
+            required
+        >
+    </div>
 
-                    <div class="team-edit-field">
-                        <label for="edit-team-description">Descripción</label>
-                        <textarea
-                            id="edit-team-description"
-                            name="description"
-                            rows="3"
-                            maxlength="500"
-                        ></textarea>
-                    </div>
+    <div class="team-edit-field">
+        <label for="edit-team-description">Descripción</label>
+        <textarea
+            id="edit-team-description"
+            name="description"
+            rows="3"
+            maxlength="500"
+        ></textarea>
+    </div>
 
-                    <div class="team-edit-field">
-                        <label for="edit-team-zone">Zona</label>
-                        <input
-                            type="text"
-                            id="edit-team-zone"
-                            name="zone"
-                            maxlength="100"
-                        >
-                    </div>
+    <div class="team-edit-field">
+        <label for="edit-team-zone">Zona</label>
+        <input
+            type="text"
+            id="edit-team-zone"
+            name="zone"
+            maxlength="100"
+        >
+    </div>
 
-                    <div class="team-edit-field">
-                        <label for="edit-team-level">Nivel</label>
-                        <select id="edit-team-level" name="level">
-                            <option value="">Sin nivel</option>
-                            <option value="beginner">Principiante</option>
-                            <option value="intermediate">Intermedio</option>
-                            <option value="advanced">Avanzado</option>
-                            <option value="competitive">Competitivo</option>
-                        </select>
-                    </div>
+    <div class="team-edit-field">
+        <label for="edit-team-level">Nivel</label>
+        <select id="edit-team-level" name="level">
+            <option value="">Sin nivel</option>
+            <option value="beginner">Principiante</option>
+            <option value="intermediate">Intermedio</option>
+            <option value="advanced">Avanzado</option>
+            <option value="competitive">Competitivo</option>
+        </select>
+    </div>
 
-                    <div class="team-edit-field">
-                        <label for="edit-team-logo">URL del escudo (opcional)</label>
-                        <input
-                            type="url"
-                            id="edit-team-logo"
-                            name="logo_url"
-                            maxlength="2048"
-                            placeholder="https://..."
-                        >
-                    </div>
+    <!-- TEAM CREST UPLOAD -->
+    <div class="team-edit-field">
+        <label>Escudo del equipo</label>
 
-                    <p id="edit-team-message" role="status" aria-live="polite"></p>
+        <div class="team-logo-upload-container">
+            <button
+                type="button"
+                id="edit-team-logo-trigger"
+                class="team-logo-upload-button"
+                aria-label="Cambiar escudo del equipo"
+            >
+                <img
+                    id="edit-team-logo-preview"
+                    src=""
+                    alt="Vista previa del escudo"
+                    hidden
+                >
 
-                    <div class="team-edit-actions">
-                        <button type="submit" class="btn-primary" id="save-team-button">
-                            Guardar cambios
-                        </button>
+                <span
+                    id="edit-team-logo-placeholder"
+                    data-icon="users"
+                ></span>
 
-                        <button type="button" class="btn-secondary" id="cancel-edit-team-button">
-                            Cancelar
-                        </button>
-                    </div>
-                </form>
+                <span class="team-logo-upload-overlay" aria-hidden="true">
+                    ✎
+                </span>
+            </button>
+
+            <input
+                type="file"
+                id="edit-team-logo-file"
+                accept="image/jpeg,image/png,image/webp"
+                hidden
+            >
+
+            <small>
+                Haz clic en el escudo para cambiar la imagen (JPG, PNG o WebP).
+            </small>
+        </div>
+    </div>
+
+    <!-- OPTIONAL MANUAL URL -->
+    <div class="team-edit-field">
+        <label for="edit-team-logo">URL del escudo (opcional)</label>
+        <input
+            type="url"
+            id="edit-team-logo"
+            name="logo_url"
+            maxlength="2048"
+            placeholder="https://..."
+        >
+    </div>
+
+    <p id="edit-team-message" role="status" aria-live="polite"></p>
+
+    <div class="team-edit-actions">
+        <button
+            type="submit"
+            class="btn-primary"
+            id="save-team-button"
+        >
+            Guardar cambios
+        </button>
+
+        <button
+            type="button"
+            class="btn-secondary"
+            id="cancel-edit-team-button"
+        >
+            Cancelar
+        </button>
+    </div>
+</form>
+
 
 
                 <!-- ==========================================

@@ -9,8 +9,16 @@ import { getCurrentPlayerAvailability, createPlayerAvailability, cancelPlayerAva
 import { getPendingTeamInvitations, acceptTeamInvitation, rejectTeamInvitation} from "./team.js";
 import { getFields } from "./fieldsRenderer.js";
 
+let currentProfile = null;
 let currentPlayerProfile = null;
 let currentPlayerAvailability = [];
+
+let selectedAvatarFile = null;
+let avatarPreviewObjectUrl = null;
+
+const CLOUDINARY_CLOUD_NAME = "dolmulmgp";
+const CLOUDINARY_UPLOAD_PRESET = "f5-player-avatars";
+const MAX_AVATAR_SIZE = 5 * 1024 * 1024;
 
 
 //HELPERS
@@ -51,6 +59,138 @@ function hideMessage() {
 
 
     element.hidden = true;
+}
+
+
+function updatePlayerAvatarPreview(imageUrl) {
+    const preview = getElement("player-avatar-preview");
+    const placeholder = getElement("player-avatar-placeholder");
+
+    if (!preview) return;
+
+    const existingImage = preview.querySelector("img");
+
+    if (existingImage) {
+        existingImage.remove();
+    }
+
+    if (imageUrl) {
+        const image = document.createElement("img");
+
+        image.src = imageUrl;
+        image.alt = "Foto de perfil";
+        image.onerror = () => {
+            image.remove();
+
+            if (placeholder) {
+                placeholder.hidden = false;
+            }
+        };
+
+        preview.appendChild(image);
+
+        if (placeholder) {
+            placeholder.hidden = true;
+        }
+    } else if (placeholder) {
+        placeholder.hidden = false;
+    }
+}
+
+function clearAvatarSelection() {
+    const fileInput = getElement("player-avatar-file");
+
+    selectedAvatarFile = null;
+
+    if (avatarPreviewObjectUrl) {
+        URL.revokeObjectURL(avatarPreviewObjectUrl);
+        avatarPreviewObjectUrl = null;
+    }
+
+    if (fileInput) {
+        fileInput.value = "";
+    }
+
+    updatePlayerAvatarPreview(
+        currentProfile?.avatar_url || null
+    );
+}
+
+function handleAvatarFileSelection(event) {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    const message = getElement("player-profile-message");
+
+    if (!allowedTypes.includes(file.type)) {
+        clearAvatarSelection();
+
+        if (message) {
+            message.textContent = "El archivo debe ser JPG, PNG o WebP.";
+            message.hidden = false;
+        }
+
+        return;
+    }
+
+    if (file.size > MAX_AVATAR_SIZE) {
+        clearAvatarSelection();
+
+        if (message) {
+            message.textContent = "La imagen no puede superar los 5 MB.";
+            message.hidden = false;
+        }
+
+        return;
+    }
+
+    if (avatarPreviewObjectUrl) {
+        URL.revokeObjectURL(avatarPreviewObjectUrl);
+    }
+
+    selectedAvatarFile = file;
+    avatarPreviewObjectUrl = URL.createObjectURL(file);
+
+    updatePlayerAvatarPreview(avatarPreviewObjectUrl);
+
+    if (message) {
+        message.hidden = true;
+    }
+}
+
+async function uploadPlayerAvatar(file) {
+    const formData = new FormData();
+
+    formData.append("file", file);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+    const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.secure_url) {
+        console.error("Cloudinary avatar upload error:", data);
+
+        throw new Error(
+            data.error?.message ||
+            "No se pudo subir la foto de perfil. Intentá nuevamente."
+        );
+    }
+
+    return data.secure_url;
 }
 
 
@@ -136,10 +276,15 @@ if (profileCard) {
 
 
     if (editUsername) {
+        editUsername.value = profile.username || "";
 
-        editUsername.value =
-            profile.username || "";
+        editUsername.dataset.originalUsername =
+            (profile.username || "").trim();
     }
+
+    updatePlayerAvatarPreview(
+    profile.avatar_url || null
+);
 }
 
 
@@ -284,94 +429,81 @@ async function handlePlayerProfileSubmit(event) {
     }
 
 
-    try {
+   try {
+    let updatedProfile = currentProfile;
 
-        console.log(
-            "CALLING UPDATE PLAYER PROFILE"
-        );
-
-
-        const updatedPlayerProfile =
-            await updatePlayerProfile({
-
-                position:
-                    positionInput.value || null,
-
-                zone:
-                    zoneInput.value.trim() || null,
-
-                level:
-                    levelInput.value || null,
-
-                isPublic:
-                    publicInput.checked
-
-            });
-
-            currentPlayerProfile =
-    updatedPlayerProfile;
-
-
-        console.log(
-            "PLAYER PROFILE UPDATED",
-            updatedPlayerProfile
-        );
-
-
-        // UPDATE DISPLAY
-
-        renderPlayerProfile(
-            updatedPlayerProfile
-        );
-
-
-        // SHOW DISPLAY
-
-        if (display) {
-            display.hidden = false;
-        }
-
-
-        // HIDE FORM 
-
-        if (form) {
-            form.hidden = true;
-        }
-
-
-        // MESSAGE
-
+    // Upload avatar only when a new image was selected.
+    if (selectedAvatarFile) {
         if (message) {
-
-            message.textContent =
-                "Información de jugador guardada correctamente.";
-
-            message.hidden = false;
-
-            setTimeout(() => {
-
-                message.hidden = true;
-
-            }, 3000);
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "Error saving player profile:",
-            error
-        );
-
-
-        if (message) {
-
-            message.textContent =
-                "No se pudo guardar la información de jugador.";
-
+            message.textContent = "Subiendo foto de perfil...";
             message.hidden = false;
         }
+
+        const avatarUrl = await uploadPlayerAvatar(
+            selectedAvatarFile
+        );
+
+        if (message) {
+            message.textContent = "Guardando información...";
+        }
+
+        updatedProfile = await updateProfile({
+            avatarUrl
+        });
     }
+
+    const updatedPlayerProfile =
+        await updatePlayerProfile({
+            position: positionInput.value || null,
+            zone: zoneInput.value.trim() || null,
+            level: levelInput.value || null,
+            isPublic: publicInput.checked
+        });
+
+    currentProfile = updatedProfile;
+    currentPlayerProfile = updatedPlayerProfile;
+
+    renderProfile(currentProfile);
+    renderPlayerProfile(updatedPlayerProfile);
+
+    updatePlayerAvatarPreview(
+        currentProfile?.avatar_url || null
+    );
+
+    clearAvatarSelection();
+
+    if (display) {
+        display.hidden = false;
+    }
+
+    if (form) {
+        form.hidden = true;
+    }
+
+    if (message) {
+        message.textContent =
+            "Información de jugador guardada correctamente.";
+
+        message.hidden = false;
+
+        setTimeout(() => {
+            message.hidden = true;
+        }, 3000);
+    }
+} catch (error) {
+    console.error(
+        "Error saving player profile:",
+        error
+    );
+
+    if (message) {
+        message.textContent =
+            error.message ||
+            "No se pudo guardar la información de jugador.";
+
+        message.hidden = false;
+    }
+}
 }
 
 
@@ -431,6 +563,7 @@ function handleCancelPlayerProfile() {
 
     }
 
+    clearAvatarSelection();
 
     // SHOW DISPLAY
 
@@ -547,6 +680,13 @@ async function handleProfileSubmit(event) {
             ?.value
             .trim();
 
+            const usernameInput = getElement("edit-username");
+
+const originalUsername =
+    usernameInput?.dataset.originalUsername || "";
+
+const usernameChanged = username !== originalUsername;
+
 
     const saveButton =
         getElement("profile-save");
@@ -593,19 +733,16 @@ async function handleProfileSubmit(event) {
 
     // VALIDATE USERNAME
 
-    const usernameError =
-        validateUsername(username);
+    // VALIDATE USERNAME ONLY IF IT CHANGED
 
+if (usernameChanged) {
+    const usernameError = validateUsername(username);
 
     if (usernameError) {
-
-        showMessage(
-            usernameError,
-            "error"
-        );
-
+        showMessage(usernameError, "error");
         return;
     }
+}
 
 
     try {
@@ -620,31 +757,33 @@ async function handleProfileSubmit(event) {
 
         // CHECK USERNAME
 
-        const available =
-            await isUsernameAvailable(
-                username,
-                user.id
-            );
+      // CHECK USERNAME AVAILABILITY ONLY IF IT CHANGED
 
+if (usernameChanged) {
+    const available = await isUsernameAvailable(
+        username,
+        user.id
+    );
 
-        if (!available) {
+    if (!available) {
+        showMessage(
+            "Ese nombre de usuario ya está en uso.",
+            "error"
+        );
 
-            showMessage(
-                "Ese nombre de usuario ya está en uso.",
-                "error"
-            );
+        return;
+    }
+}
 
-            return;
-        }
+// UPDATE PROFILE
 
+const updates = { displayName };
 
-        // UPDATE
+if (usernameChanged) {
+    updates.username = username;
+}
 
-        const updatedProfile =
-            await updateProfile({
-                username,
-                displayName
-            });
+const updatedProfile = await updateProfile(updates);
 
 
         renderProfile(
@@ -1851,6 +1990,8 @@ export async function initProfilePage() {
         const profile =
             await getCurrentProfile();
 
+            currentProfile = profile;
+
          currentPlayerProfile =
         await getCurrentPlayerProfile();
 
@@ -1981,6 +2122,27 @@ export async function initProfilePage() {
                 handlePlayerProfileSubmit
             );
         }
+
+
+        const avatarFileInput =
+    getElement("player-avatar-file");
+
+const avatarUploadTrigger =
+    getElement("player-avatar-upload-trigger");
+
+if (avatarFileInput) {
+    avatarFileInput.addEventListener(
+        "change",
+        handleAvatarFileSelection
+    );
+}
+
+if (avatarUploadTrigger && avatarFileInput) {
+    avatarUploadTrigger.addEventListener(
+        "click",
+        () => avatarFileInput.click()
+    );
+}
 
 
         // EDIT PLAYER PROFILE

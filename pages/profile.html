@@ -638,6 +638,35 @@
                     hidden
                 >
 
+                <div class="profile-form-group player-avatar-group">
+  <label for="player-avatar-file">Foto de perfil</label>
+
+  <div class="player-avatar-upload">
+    <div class="player-avatar-preview" id="player-avatar-preview">
+      <span id="player-avatar-placeholder" data-icon="user"></span>
+    </div>
+
+    <div class="player-avatar-controls">
+      <input
+        type="file"
+        id="player-avatar-file"
+        accept="image/jpeg,image/png,image/webp"
+        hidden
+      >
+
+      <button
+        type="button"
+        class="profile-button"
+        id="player-avatar-upload-trigger"
+      >
+        Seleccionar imagen
+      </button>
+
+      <small>JPG, PNG o WebP. Tamaño máximo: 5 MB.</small>
+    </div>
+  </div>
+</div>
+
                     <div class="profile-form-group">
 
                         <label for="player-position">
