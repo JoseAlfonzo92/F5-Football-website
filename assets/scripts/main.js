@@ -27,7 +27,7 @@ import { initPlayersPage } from "./pages-js/players.js";
 import { initPlayerPage } from "./pages-js/player.js";
 import { initFieldOwnerPage } from "./pages-js/fieldOwner.js";
 import { initEditFieldPage } from "./pages-js/editField.js";
-import { getPublishFieldUrl } from "./services/auth.js";
+import { getPublishFieldUrl, getCurrentUser } from "./services/auth.js";
 //import { initPasswordReset } from "./pages-js/resetPassword.js";
 import { initAdminDashboard } from "./pages-js/adminDashboard.js";
 
@@ -35,14 +35,34 @@ import { initAdminDashboard } from "./pages-js/adminDashboard.js";
 document.addEventListener("DOMContentLoaded", async () => {
 
     async function initPublishFieldButton() {
+        const button = document.getElementById(
+            "publish-field-button"
+        );
 
-        const button =
-            document.getElementById("publish-field-button");
+        const accountNotice = document.getElementById(
+            "owner-account-notice"
+        );
 
         if (!button) return;
 
-        button.href =
-            await getPublishFieldUrl();
+        const user = await getCurrentUser();
+
+        // Preserve the existing authentication-aware destination.
+        button.href = await getPublishFieldUrl();
+
+        if (user) {
+            button.textContent = "Publicar mi cancha";
+
+            if (accountNotice) {
+                accountNotice.hidden = true;
+            }
+        } else {
+            button.textContent = "Crear cuenta y publicar mi cancha";
+
+            if (accountNotice) {
+                accountNotice.hidden = false;
+            }
+        }
     }
 
     injectIcons();
